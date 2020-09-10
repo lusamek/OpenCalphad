@@ -1,6 +1,8 @@
 
 
-Virtual Machine of OpenCalphad with FLTK/GTK Frontend 
+Virtual Machine of OpenCalphad for Windows, Mac, and Linux.
+
+(Preinstalled FLTK/GTK Frontend)
 
 See Virtualbox
 
