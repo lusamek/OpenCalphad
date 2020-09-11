@@ -9,15 +9,9 @@ URL to download the version of OpenCalphad for classroom: https://www.dropbox.co
 
 
 --
-Source Code:
-https://github.com/sundmanbo/opencalphad
+# References
 
+[1] Source Code: https://github.com/sundmanbo/opencalphad
 
-
-
-
-
-
-
-
+[2] Virtualbox: https://www.virtualbox.org/
 
