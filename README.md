@@ -8,6 +8,12 @@ URL to download the version of OpenCalphad for classroom: https://www.dropbox.co
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/OC-Screen1.jpg)
 
 
+--
+Source Code:
+https://github.com/sundmanbo/opencalphad
+
+
+
 
 
 
