@@ -2,11 +2,11 @@
 
 Virtual Machine of OpenCalphad for Windows, Mac, and Linux.
 
-(Preinstalled FLTK/GTK Frontend)
+URL to download the version of OpenCalphad for classroom: https://www.dropbox.com/s/4lab0ipan8e0rrw/virtualbox-debian-opencalphad.zip?dl=0
 
-See Virtualbox
 
-![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/OpenCalphad%20-%20AgCu%20Example%20-%201.jpg)
+
+
 
 
 
