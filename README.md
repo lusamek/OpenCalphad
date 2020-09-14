@@ -12,7 +12,7 @@ If necessary, the manual of installation of virtualbox is at the following url: 
 After download, virtualbox needs to be installed.  
 
 Screenshot #2:
-![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Guide-OC-VM-P01.jpg)
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Guide-OC-VB-P01.jpg)
 
 
 ## 2. OC-image 
