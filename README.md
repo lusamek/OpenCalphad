@@ -11,6 +11,9 @@ Download the software virtualbox corresponding to your architecture. https://www
 If necessary, the manual of installation of virtualbox is at the following url: https://www.virtualbox.org/wiki/Documentation
 After download, virtualbox needs to be installed.  
 
+Screenshot #2:
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Guide-OC-VM-P01.jpg)
+
 
 ## 2. OC-image 
 After the installation of virtualbox, you may find the image at the following link:
@@ -18,16 +21,21 @@ URL to download the version of OpenCalphad for classroom: https://www.dropbox.co
 
 ## 3. Open image file
 After the download of the image file of the virtual machine, the files need to be uncompressed. The image is compressed with the regular ZIP compression format.
-The Zip file contains several files. The debian-oc.vdi file is the main file, which will be opened with virtualbox. This will result in the following screenshot (screenshot #1). 
+The Zip file contains several files. The debian-oc.vdi file is the main file, which will be opened with virtualbox. This will result in the following screenshot (screenshot #3). 
 
-Screenshot #2:
+Screenshot #3:
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Guide-OC-VM-P01.jpg)
 
 ## 4. Start 
-After the user can use the context menu of the virtual machine, as indicated in the screenshot (screenshot #3). The virtual machine will boot and directly start OC after 1-2 minutes of boot time. 
+After the user can use the context menu of the virtual machine, as indicated in the screenshot (screenshot #4), to start the machine. "Start" will be displayed (screenshot #4). The virtual machine will boot. It will take 1-2 minutes of boot time. After boot time, OpenCalphad software will be launched directly. 
 
-Screenshot #3:
+Screenshot #4:
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Guide-OC-VM-P02.jpg)
+
+
+## 5. Using OC
+The documentation of OpenCalphad is available at the url: http://www.opencalphad.com/
+Please visit the website of OpenCalphad for more information.
 
 
 --
