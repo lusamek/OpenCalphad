@@ -20,8 +20,7 @@ After the installation of virtualbox, you may find the image at the following li
 URL to download the version of OpenCalphad for classroom: https://www.dropbox.com/s/4lab0ipan8e0rrw/virtualbox-debian-opencalphad.zip?dl=0
 
 ## 3. Open image file
-After the download of the image file of the virtual machine, the files need to be uncompressed. The image is compressed with the regular ZIP compression format.
-The Zip file contains several files. The debian-oc.vdi file is the main file, which will be opened with virtualbox. This will result in the following screenshot (screenshot #3). 
+After the download of the image file of the virtual machine, the files need to be uncompressed. The image is compressed with the regular ZIP compression format. It can be uncompressed with software, like Winzip or Winrar. The "debian-oc.vdi" file is the main file, which will be opened using virtualbox. This will result in the following screenshot (screenshot #3). 
 
 Screenshot #3:
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Guide-OC-VM-P01.jpg)
