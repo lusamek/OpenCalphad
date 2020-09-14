@@ -1,7 +1,7 @@
 
 
 # Introduction
-This website gives the possibility to use OpenCalphad using a virtual machine. In computing, a virtual machine (VM) is an emulation of a computer system.  The virtual machine of OpenCalphad was designed to run on the platforms: Windows, Mac, and Linux. It uses the VirtualBox project, which is has the GNU Licensing. 
+This website gives the possibility to use OpenCalphad using a virtual machine. In computing, a virtual machine (VM) is an emulation of a computer system.  The virtual machine of OpenCalphad was designed to run on the platforms: Windows, Mac, and Linux. It uses the host software of the VirtualBox project, which is has the GNU Licensing. 
 
 Screenshot #1: ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/OC-Screen1.jpg)
 
