@@ -21,13 +21,13 @@ After the download of the image file of the virtual machine, the files need to b
 The Zip file contains several files. The debian-oc.vdi file is the main file, which will be opened with virtualbox. This will result in the following screenshot (screenshot #1). 
 
 Screenshot #2:
-https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Guide-OC-VM-P01.jpg
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Guide-OC-VM-P01.jpg)
 
 ## 4. Start 
 After the user can use the context menu of the virtual machine, as indicated in the screenshot (screenshot #3). The virtual machine will boot and directly start OC after 1-2 minutes of boot time. 
 
 Screenshot #3:
-https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Guide-OC-VM-P02.jpg
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Guide-OC-VM-P02.jpg)
 
 
 --
