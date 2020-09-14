@@ -16,7 +16,7 @@ Screenshot #2:
 
 
 ## 2. OC-image 
-After the installation of virtualbox, you may find the image at the following link:
+After the installation of virtualbox, you may find the image at the following link.
 URL to download the version of OpenCalphad for classroom: https://www.dropbox.com/s/4lab0ipan8e0rrw/virtualbox-debian-opencalphad.zip?dl=0
 
 ## 3. Open image file
