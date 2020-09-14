@@ -26,7 +26,7 @@ Screenshot #3:
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Guide-OC-VM-P01.jpg)
 
 ## 4. Start 
-After the user can use the context menu of the virtual machine, as indicated in the screenshot (screenshot #4), to start the machine. "Start" will be displayed (screenshot #4). The virtual machine will boot. It will take 1-2 minutes of boot time. After boot time, OpenCalphad software will be launched directly. 
+After the user can use the context menu of the virtual machine, as indicated in the screenshot (screenshot #4), to start the machine. "Start" will be displayed (screenshot #4). The virtual machine will boot. It will take 1-2 minutes of boot time. After boot time, OpenCalphad software will be launched directly. The virtual machine is running OC on the Linux operating system. 
 
 Screenshot #4:
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Guide-OC-VM-P02.jpg)
@@ -34,7 +34,7 @@ Screenshot #4:
 
 ## 5. Using OC
 The documentation of OpenCalphad is available at the url: http://www.opencalphad.com/
-Please visit the website of OpenCalphad for more information.
+Please visit the website of OpenCalphad for more information. 
 
 
 --
