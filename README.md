@@ -38,7 +38,7 @@ Please visit the website of OpenCalphad for more information.
 
 
 
-Example #1: Fe-C system
+Example #1: Fe-C system <br/>
 ` oc macros/map3.OCM ` 
 (Press Return)
 
@@ -46,7 +46,7 @@ Example #1: Fe-C system
 
 
 
-Example #2:
+Example #2: <br/>
 ` oc macros/map11.OCM ` 
 (Press Return)
 
@@ -54,7 +54,7 @@ Example #2:
 
 
 
-Example #3: Fe-C-Cr system
+Example #3: Fe-C-Cr system <br/>
 ` oc macros/map16.OCM ` 
 (Press Return)
 
@@ -63,7 +63,7 @@ Example #3: Fe-C-Cr system
 
 
 
-Example #4: Al-Fe system
+Example #4: Al-Fe system <br/>
 ` oc macros/map17.OCM ` 
 (Press Return)
 
