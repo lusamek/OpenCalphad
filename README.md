@@ -36,6 +36,8 @@ Screenshot #4:
 The documentation of OpenCalphad is available at the url: http://www.opencalphad.com/
 Please visit the website of OpenCalphad for more information. 
 
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Example-OC5-Fe-C.jpg)
+
 
 --
 # References
