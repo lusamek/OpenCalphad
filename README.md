@@ -37,7 +37,14 @@ The documentation of OpenCalphad is available at the url: http://www.opencalphad
 Please visit the website of OpenCalphad for more information. 
 
 
+
+Example #1:
+` oc macros/map3.OCM ` 
+
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Example-OC6-Fe-C-map3.jpg)
+
+
+
 
 --
 # References
