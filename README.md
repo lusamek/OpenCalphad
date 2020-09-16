@@ -40,6 +40,7 @@ Please visit the website of OpenCalphad for more information.
 
 Example #1:
 ` oc macros/map3.OCM ` 
+(Press Return)
 
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Example-OC6-Fe-C-map3.jpg)
 
