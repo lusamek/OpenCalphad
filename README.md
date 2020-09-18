@@ -35,8 +35,10 @@ Screenshot #4:
 ## 5. Using OC
 The documentation of OpenCalphad is available at the url: http://www.opencalphad.com/
 Please visit the website of OpenCalphad for more information. 
+<br/>
+<br/>
 
-
+In the terminal xterm, the command "oc" is available to load and run a macro. 
 
 Example #1: Fe-C system <br/>
 ` oc macros/map3.OCM ` 
