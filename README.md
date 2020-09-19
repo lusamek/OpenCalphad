@@ -76,7 +76,8 @@ Example #4: Al-Fe system <br/>
 
 Frontend for Fe-C system:<br/>
 ` flopencalphad ` 
-(Press Return)
+(Press Return) <br/>
+The "Makefile" allows to compile flopencalphad on Mac, Linux, and BSD/Unix.<br/>
 
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/flopencalphad.png)
 
