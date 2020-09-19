@@ -75,7 +75,7 @@ Example #4: Al-Fe system <br/>
 
 
 Frontend for Fe-C system:<br/>
-` flopencalphad ` 
+` flopencalphad ~/macros/ ` 
 (Press Return) <br/>
 The "Makefile" allows to compile flopencalphad on Mac, Linux, and BSD/Unix.<br/>
 
