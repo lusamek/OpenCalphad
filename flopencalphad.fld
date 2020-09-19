@@ -1,0 +1,395 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0304
+header_name {.h}
+code_name {.cxx}
+decl {\#include <stdio.h>} {private local
+}
+
+decl {\#include <stdlib.h>} {private local
+}
+
+decl {\#include "headerf.h"} {private local
+}
+
+decl {\#include <FL/Fl_Output.H>} {private local
+}
+
+decl {\#include "flopencalphad_def.h"} {private local
+}
+
+Function {redraw()} {open
+} {
+  code {printf("Redraw!\\n");
+
+
+strncpy( var_calc_x ,  input_var_calc_x->value() , PATH_MAX );
+strncpy( var_calc_y ,  input_var_calc_y->value() , PATH_MAX );
+// strncpy( var_plot_x ,  input_var_plot_x->value() , PATH_MAX );
+// strncpy( var_plot_y ,  input_var_plot_y->value() , PATH_MAX );
+strncpy( var_tdb_database, input_var_tdb_database->value(), PATH_MAX );  
+
+strncpy( var_system ,      output_system->value() , PATH_MAX );
+// output_system->value( "fe c" );
+// output_system->value( var_system  );} {}
+}
+
+Function {make_window()} {open
+} {
+  Fl_Window win1 {
+    label Notes open
+    xywh {434 194 775 700} type Double labeltype ENGRAVED_LABEL resizable visible
+  } {
+    Fl_Box {} {
+      label {FLTK OpenCalphad}
+      xywh {30 25 710 30} box ENGRAVED_BOX labeltype ENGRAVED_LABEL
+    }
+    Fl_Group {} {
+      label {1. Element} open
+      xywh {30 85 350 125} box DOWN_BOX labeltype ENGRAVED_LABEL
+    } {
+      Fl_Button {} {
+        label Fe
+        callback {printf( " Fe Element Selected\\n" );
+
+// printf( "%s\\n" ,   inputline->value( browser1->text(  browser1->value() )  ) ) ;
+
+  strncat( var_system , "fe" , PATH_MAX - strlen( var_system ) -1 );
+  strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
+  output_system->value( var_system );
+  
+  redraw();}
+        xywh {40 95 45 35} labelfont 1 labelsize 12
+      }
+      Fl_Button {} {
+        label C
+        callback {printf( " C Selected\\n" );
+
+
+
+  strncat( var_system , "c" , PATH_MAX - strlen( var_system ) -1 );
+  strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
+    output_system->value( var_system );
+
+redraw();}
+        xywh {100 95 45 35} labelfont 1 labelsize 12
+      }
+      Fl_Button {} {
+        label Mn
+        callback {printf( " Mn Selected\\n" );
+
+
+  strncat( var_system , "mn" , PATH_MAX - strlen( var_system ) -1 );
+  strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
+    output_system->value( var_system );
+    
+redraw();}
+        xywh {160 95 45 35} labelfont 1 labelsize 12
+      }
+      Fl_Button {} {
+        label Al
+        callback {printf( " Al Selected\\n" );
+
+
+  strncat( var_system , "al" , PATH_MAX - strlen( var_system ) -1 );
+  strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
+    output_system->value( var_system );  
+
+redraw();}
+        xywh {220 95 45 35} labelfont 1 labelsize 12
+      }
+      Fl_Button {} {
+        label Si
+        callback {// printf( "%s\\n" ,   inputline->value( browser1->text(  browser1->value() )  ) ) ;
+
+
+printf( " Si Selected\\n" );
+
+  strncat( var_system , "si" , PATH_MAX - strlen( var_system ) -1 );
+  strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
+    output_system->value( var_system );
+
+
+redraw();}
+        xywh {40 140 45 35} labelfont 1 labelsize 12
+      }
+      Fl_Button {} {
+        label V
+        callback {printf( " V Selected\\n" );
+
+
+  strncat( var_system , "v" , PATH_MAX - strlen( var_system ) -1 );
+  strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
+    output_system->value( var_system );
+
+redraw();}
+        xywh {100 140 45 35} labelfont 1 labelsize 12
+      }
+      Fl_Button {} {
+        label Mo
+        callback {printf( " Mo Selected\\n" );
+
+  strncat( var_system , "mo" , PATH_MAX - strlen( var_system ) -1 );
+  strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
+    output_system->value( var_system );
+
+redraw();}
+        xywh {159 140 45 35} labelfont 1 labelsize 12
+      }
+      Fl_Button {} {
+        label Cr
+        callback {printf( " Cr Selected\\n" );
+
+
+  strncat( var_system , "cr" , PATH_MAX - strlen( var_system ) -1 );
+  strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
+    output_system->value( var_system );
+
+redraw();}
+        xywh {220 140 45 35} labelfont 1 labelsize 12
+      }
+      Fl_Button {} {
+        label Cu
+        callback {printf( " Cu Selected\\n" );
+
+  strncat( var_system , "cu" , PATH_MAX - strlen( var_system ) -1 );
+  strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
+    output_system->value( var_system );
+
+
+redraw();}
+        xywh {280 95 45 35} labelfont 1 labelsize 12
+      }
+      Fl_Button {} {
+        label Nb
+        callback {printf( " nb Selected\\n" );
+
+
+  strncat( var_system , "nb" , PATH_MAX - strlen( var_system ) -1 );
+  strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
+    output_system->value( var_system );
+    
+    
+redraw();}
+        xywh {280 140 45 35} labelfont 1 labelsize 12
+      }
+    }
+    Fl_Group {} {
+      label {2. Compute} open
+      xywh {30 240 350 170} box DOWN_FRAME labeltype ENGRAVED_LABEL resizable
+    } {
+      Fl_Output output_system {
+        label System
+        xywh {95 255 205 25} color 49
+        code1 {output_system->value( "fe c" );}
+      }
+      Fl_Button {} {
+        label CA
+        callback {printf( " Clr \\n" );
+
+// printf( "%s\\n" ,   inputline->value( browser1->text(  browser1->value() )  ) ) ;
+
+   strncpy( var_system, "", PATH_MAX );
+   output_system->value( var_system );  
+
+   redraw();}
+        xywh {305 255 30 25} labelfont 1 labelsize 12
+      }
+      Fl_Input input_var_calc_x {
+        label {X var.}
+        xywh {95 285 205 25}
+        code1 {input_var_calc_x->value( "c" );}
+      }
+      Fl_Button {} {
+        label CA
+        callback {printf( " Clr \\n" );
+
+// printf( "%s\\n" ,   inputline->value( browser1->text(  browser1->value() )  ) ) ;
+
+input_var_calc_x->value( "" );
+
+redraw();}
+        xywh {305 285 30 25} labelfont 1 labelsize 12
+      }
+      Fl_Input input_var_calc_y {
+        label {Y var.}
+        xywh {95 315 205 25}
+        code1 {input_var_calc_y->value( "T" );}
+      }
+      Fl_Button {} {
+        label CA
+        callback {printf( " Clr \\n" );
+
+// printf( "%s\\n" ,   inputline->value( browser1->text(  browser1->value() )  ) ) ;
+
+input_var_calc_y->value( "" );
+
+redraw();}
+        xywh {305 315 30 25} labelfont 1 labelsize 12
+      }
+      Fl_Input input_var_tdb_database {
+        label TDB
+        xywh {95 345 205 25}
+        code1 {input_var_tdb_database->value( "steel1.tdb" );}
+      }
+      Fl_Button {} {
+        label CA
+        callback {printf( " Clr \\n" );
+
+// printf( "%s\\n" ,   inputline->value( browser1->text(  browser1->value() )  ) ) ;
+
+input_var_tdb_database->value( "" );
+
+redraw();}
+        xywh {305 345 30 25} labelfont 1 labelsize 12
+      }
+    }
+    Fl_Button {} {
+      label {&Quit}
+      callback {exit( 0 );}
+      xywh {290 650 95 30}
+    }
+    Fl_Group {} {
+      label {3. OCM GNUPlot} open
+      xywh {30 450 350 170} box DOWN_BOX labeltype ENGRAVED_LABEL
+    } {
+      Fl_Button {} {
+        label {[&3] Compute!}
+        callback {char mydirnow[2500];
+  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
+
+
+
+  redraw();
+  nsystem(  "  screen -d  -m   xterm -e   oc   macro.ocm " );
+  
+  // oc6 bug 
+  // gnuplot ocgnu.plt  &}
+        xywh {135 540 145 25}
+      }
+      Fl_Button {} {
+        label {[&2] Edit!}
+        callback {redraw();
+
+nsystem( "  screen -d -m fledit  macro.ocm " );}
+        xywh {135 505 145 25}
+      }
+      Fl_Button {} {
+        label {[&1] Create!}
+        callback {redraw();
+
+clear_plot();
+
+
+create_macro( );}
+        xywh {135 470 145 25}
+      }
+      Fl_Button {} {
+        label {[&4] Plot!}
+        callback {char mydirnow[2500];
+  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
+
+
+
+  redraw();
+  nsystem(  "  screen -d  -m  gnuplot ocgnu.plt  " );
+  
+  
+  // oc6 bug 
+  // gnuplot ocgnu.plt  &}
+        xywh {135 575 145 25}
+      }
+    }
+    Fl_Button {} {
+      label {&Options}
+      callback {win2->show();}
+      xywh {30 650 245 30}
+    }
+    Fl_Group {} {
+      label Output open
+      xywh {390 85 345 535} box DOWN_BOX labeltype ENGRAVED_LABEL
+    } {}
+  }
+  Fl_Window win2 {open selected
+    xywh {1088 92 890 330} type Double visible
+  } {
+    Fl_Box {} {
+      label {FLTK OpenCalphad -- Options}
+      xywh {15 25 855 35} box ENGRAVED_BOX labeltype ENGRAVED_LABEL
+    }
+    Fl_Group {} {
+      label {System Call} open
+      xywh {15 100 285 45} box DOWN_BOX labeltype ENGRAVED_LABEL
+    } {
+      Fl_Button {} {
+        label ls
+        callback {nls();}
+        xywh {25 110 50 25}
+      }
+      Fl_Button {} {
+        label xterm
+        callback {nsystem( " screen -d -m xterm " );}
+        xywh {80 110 50 25}
+      }
+      Fl_Button {} {
+        label calc
+        callback {nsystem( " screen -d -m fl48 " );}
+        xywh {135 110 50 25}
+      }
+      Fl_Button {} {
+        label {Close Plots}
+        callback {nsystem( " pkill gnuplot " );}
+        xywh {190 110 90 25}
+      }
+    }
+    Fl_Group {} {
+      label Notepad open
+      xywh {15 170 285 140} box DOWN_BOX labeltype ENGRAVED_LABEL
+    } {
+      Fl_Browser browser1 {
+        callback {printf( "Click\\n" );}
+        xywh {25 180 260 90}
+        code1 {browser1->type(FL_HOLD_BROWSER);}
+      }
+      Fl_Input input_notes {
+        label Notes
+        tooltip Demo xywh {70 275 165 25} color 55
+      }
+      Fl_Button {} {
+        label {&Add}
+        callback {browser1->add(   input_notes->value()  );
+
+// if (  browser1->value() >= 1 )  printf( "%s\\n" ,   browser1->text(  browser1->value() )  )  ;}
+        xywh {240 275 45 25}
+      }
+    }
+  }
+}
+
+Function {addkeypress( int keypress )} {open
+} {
+  code {//char str[PATH_MAX]; 
+   //snprintf( str , sizeof( str ), "%s%c", inputline->value() , keypress ); 
+   //inputline->value( str  );} {}
+}
+
+Function {main( int argc, char *argv[])} {open return_type int
+} {
+  code {// working dir 
+  if ( argc == 2)
+  if ( strcmp( argv[1] , "" ) !=  0 )
+  {
+          chdir( argv[ 1 ] );
+  }
+  
+  char mydirnow[2500];
+  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
+
+  // vars
+  strncpy( var_system, "", PATH_MAX);
+  
+
+  make_window();
+  win1->show();
+
+  Fl::run();} {}
+}
