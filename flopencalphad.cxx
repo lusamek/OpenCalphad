@@ -139,6 +139,61 @@ static void cb_Nb(Fl_Button*, void*) {
 redraw();
 }
 
+static void cb_Ni(Fl_Button*, void*) {
+  printf( " ni Selected\n" );
+
+
+  strncat( var_system , "ni" , PATH_MAX - strlen( var_system ) -1 );
+  strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
+    output_system->value( var_system );
+
+redraw();
+}
+
+static void cb_Ag(Fl_Button*, void*) {
+  printf( " ag Selected\n" );
+
+
+  strncat( var_system , "ag" , PATH_MAX - strlen( var_system ) -1 );
+  strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
+    output_system->value( var_system );
+
+redraw();
+}
+
+static void cb_Ti(Fl_Button*, void*) {
+  printf( " ti Selected\n" );
+
+
+  strncat( var_system , "ti" , PATH_MAX - strlen( var_system ) -1 );
+  strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
+    output_system->value( var_system );
+
+redraw();
+}
+
+static void cb_Zn(Fl_Button*, void*) {
+  printf( " zn Selected\n" );
+
+
+  strncat( var_system , "zn" , PATH_MAX - strlen( var_system ) -1 );
+  strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
+    output_system->value( var_system );
+
+redraw();
+}
+
+static void cb_W(Fl_Button*, void*) {
+  printf( " w Selected\n" );
+
+
+  strncat( var_system , "w" , PATH_MAX - strlen( var_system ) -1 );
+  strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
+    output_system->value( var_system );
+
+redraw();
+}
+
 Fl_Output *output_system=(Fl_Output *)0;
 
 static void cb_CA(Fl_Button*, void*) {
@@ -252,8 +307,8 @@ static void cb_calc(Fl_Button*, void*) {
   nsystem( " screen -d -m fl48 " );
 }
 
-static void cb_Close(Fl_Button*, void*) {
-  nsystem( " pkill gnuplot " );
+static void cb_fledit(Fl_Button*, void*) {
+  nsystem( " screen -d -m fledit " );
 }
 
 Fl_Browser *browser1=(Fl_Browser *)0;
@@ -270,13 +325,30 @@ static void cb_Add(Fl_Button*, void*) {
 // if (  browser1->value() >= 1 )  printf( "%s\n" ,   browser1->text(  browser1->value() )  )  ;
 }
 
+static void cb_Edit(Fl_Button*, void*) {
+  redraw();
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  fledit  " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , var_tdb_database , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );
+}
+
+static void cb_Close(Fl_Button*, void*) {
+  nsystem( " pkill gnuplot " );
+}
+
 Fl_Double_Window* make_window() {
   { win1 = new Fl_Double_Window(775, 700, "Notes");
     { Fl_Box* o = new Fl_Box(30, 25, 710, 30, "FLTK OpenCalphad");
       o->box(FL_ENGRAVED_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
     } // Fl_Box* o
-    { Fl_Group* o = new Fl_Group(30, 85, 350, 125, "1. Element");
+    { Fl_Group* o = new Fl_Group(30, 85, 350, 155, "1. Element");
       o->box(FL_DOWN_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
       { Fl_Button* o = new Fl_Button(40, 95, 45, 35, "Fe");
@@ -299,12 +371,12 @@ Fl_Double_Window* make_window() {
         o->labelsize(12);
         o->callback((Fl_Callback*)cb_Al);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(40, 140, 45, 35, "Si");
+      { Fl_Button* o = new Fl_Button(280, 95, 45, 35, "Si");
         o->labelfont(1);
         o->labelsize(12);
         o->callback((Fl_Callback*)cb_Si);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(100, 140, 45, 35, "V");
+      { Fl_Button* o = new Fl_Button(280, 185, 45, 35, "V");
         o->labelfont(1);
         o->labelsize(12);
         o->callback((Fl_Callback*)cb_V);
@@ -314,12 +386,12 @@ Fl_Double_Window* make_window() {
         o->labelsize(12);
         o->callback((Fl_Callback*)cb_Mo);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(220, 140, 45, 35, "Cr");
+      { Fl_Button* o = new Fl_Button(100, 140, 45, 35, "Cr");
         o->labelfont(1);
         o->labelsize(12);
         o->callback((Fl_Callback*)cb_Cr);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(280, 95, 45, 35, "Cu");
+      { Fl_Button* o = new Fl_Button(100, 185, 45, 35, "Cu");
         o->labelfont(1);
         o->labelsize(12);
         o->callback((Fl_Callback*)cb_Cu);
@@ -329,40 +401,65 @@ Fl_Double_Window* make_window() {
         o->labelsize(12);
         o->callback((Fl_Callback*)cb_Nb);
       } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(40, 140, 45, 35, "Ni");
+        o->labelfont(1);
+        o->labelsize(12);
+        o->callback((Fl_Callback*)cb_Ni);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(40, 185, 45, 35, "Ag");
+        o->labelfont(1);
+        o->labelsize(12);
+        o->callback((Fl_Callback*)cb_Ag);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(220, 140, 45, 35, "Ti");
+        o->labelfont(1);
+        o->labelsize(12);
+        o->callback((Fl_Callback*)cb_Ti);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(160, 185, 45, 35, "Zn");
+        o->labelfont(1);
+        o->labelsize(12);
+        o->callback((Fl_Callback*)cb_Zn);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(220, 185, 45, 35, "W");
+        o->labelfont(1);
+        o->labelsize(12);
+        o->callback((Fl_Callback*)cb_W);
+      } // Fl_Button* o
       o->end();
     } // Fl_Group* o
-    { Fl_Group* o = new Fl_Group(30, 240, 350, 170, "2. Compute");
+    { Fl_Group* o = new Fl_Group(30, 270, 350, 150, "2. Compute");
       o->box(FL_DOWN_FRAME);
       o->labeltype(FL_ENGRAVED_LABEL);
-      { output_system = new Fl_Output(95, 255, 205, 25, "System");
+      { output_system = new Fl_Output(95, 285, 205, 25, "System");
         output_system->color(FL_BACKGROUND_COLOR);
         output_system->value( "fe c" );
       } // Fl_Output* output_system
-      { Fl_Button* o = new Fl_Button(305, 255, 30, 25, "CA");
+      { Fl_Button* o = new Fl_Button(305, 285, 30, 25, "CA");
         o->labelfont(1);
         o->labelsize(12);
         o->callback((Fl_Callback*)cb_CA);
       } // Fl_Button* o
-      { input_var_calc_x = new Fl_Input(95, 285, 205, 25, "X var.");
+      { input_var_calc_x = new Fl_Input(95, 315, 205, 25, "X var.");
         input_var_calc_x->value( "c" );
       } // Fl_Input* input_var_calc_x
-      { Fl_Button* o = new Fl_Button(305, 285, 30, 25, "CA");
+      { Fl_Button* o = new Fl_Button(305, 315, 30, 25, "CA");
         o->labelfont(1);
         o->labelsize(12);
         o->callback((Fl_Callback*)cb_CA1);
       } // Fl_Button* o
-      { input_var_calc_y = new Fl_Input(95, 315, 205, 25, "Y var.");
+      { input_var_calc_y = new Fl_Input(95, 345, 205, 25, "Y var.");
         input_var_calc_y->value( "T" );
       } // Fl_Input* input_var_calc_y
-      { Fl_Button* o = new Fl_Button(305, 315, 30, 25, "CA");
+      { Fl_Button* o = new Fl_Button(305, 345, 30, 25, "CA");
         o->labelfont(1);
         o->labelsize(12);
         o->callback((Fl_Callback*)cb_CA2);
       } // Fl_Button* o
-      { input_var_tdb_database = new Fl_Input(95, 345, 205, 25, "TDB");
+      { input_var_tdb_database = new Fl_Input(95, 375, 205, 25, "TDB");
         input_var_tdb_database->value( "steel1.tdb" );
       } // Fl_Input* input_var_tdb_database
-      { Fl_Button* o = new Fl_Button(305, 345, 30, 25, "CA");
+      { Fl_Button* o = new Fl_Button(305, 375, 30, 25, "CA");
         o->labelfont(1);
         o->labelsize(12);
         o->callback((Fl_Callback*)cb_CA3);
@@ -408,17 +505,17 @@ Fl_Double_Window* make_window() {
     { Fl_Group* o = new Fl_Group(15, 100, 285, 45, "System Call");
       o->box(FL_DOWN_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
-      { Fl_Button* o = new Fl_Button(25, 110, 50, 25, "ls");
+      { Fl_Button* o = new Fl_Button(25, 110, 50, 25, "&ls");
         o->callback((Fl_Callback*)cb_ls);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(80, 110, 50, 25, "xterm");
+      { Fl_Button* o = new Fl_Button(80, 110, 50, 25, "&xterm");
         o->callback((Fl_Callback*)cb_xterm);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(135, 110, 50, 25, "calc");
+      { Fl_Button* o = new Fl_Button(135, 110, 50, 25, "&calc");
         o->callback((Fl_Callback*)cb_calc);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(190, 110, 90, 25, "Close Plots");
-        o->callback((Fl_Callback*)cb_Close);
+      { Fl_Button* o = new Fl_Button(190, 110, 50, 25, "&fledit");
+        o->callback((Fl_Callback*)cb_fledit);
       } // Fl_Button* o
       o->end();
     } // Fl_Group* o
@@ -435,6 +532,22 @@ Fl_Double_Window* make_window() {
       } // Fl_Input* input_notes
       { Fl_Button* o = new Fl_Button(240, 275, 45, 25, "&Add");
         o->callback((Fl_Callback*)cb_Add);
+      } // Fl_Button* o
+      o->end();
+    } // Fl_Group* o
+    { Fl_Group* o = new Fl_Group(325, 100, 270, 205, "Database");
+      o->box(FL_DOWN_BOX);
+      o->labeltype(FL_ENGRAVED_LABEL);
+      { Fl_Button* o = new Fl_Button(335, 110, 50, 25, "&Edit");
+        o->callback((Fl_Callback*)cb_Edit);
+      } // Fl_Button* o
+      o->end();
+    } // Fl_Group* o
+    { Fl_Group* o = new Fl_Group(620, 100, 245, 205, "Plot");
+      o->box(FL_DOWN_BOX);
+      o->labeltype(FL_ENGRAVED_LABEL);
+      { Fl_Button* o = new Fl_Button(630, 110, 90, 25, "Close &Plots");
+        o->callback((Fl_Callback*)cb_Close);
       } // Fl_Button* o
       o->end();
     } // Fl_Group* o
