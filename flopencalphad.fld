@@ -37,7 +37,7 @@ Function {make_window()} {open
 } {
   Fl_Window win1 {
     label Notes open
-    xywh {448 81 775 700} type Double resizable visible
+    xywh {450 83 775 700} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad}
@@ -181,7 +181,7 @@ redraw();}
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );
 
-redraw();} selected
+redraw();}
         xywh {40 140 45 35} labelfont 1 labelsize 12
       }
       Fl_Button {} {
@@ -370,7 +370,7 @@ create_macro( );}
     } {}
   }
   Fl_Window win2 {open
-    xywh {807 619 890 330} type Double visible
+    xywh {445 543 890 330} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Options}
@@ -400,14 +400,25 @@ create_macro( );}
         callback {nsystem( " screen -d -m fledit " );}
         xywh {190 110 50 25}
       }
+      Fl_Button {} {
+        label ccode
+        callback {nsystem( " screen -d -m fledit flopencalphad_def.h  " );}
+        xywh {245 110 50 25}
+      }
     }
     Fl_Group {} {
-      label Notepad open
+      label Browser open
       xywh {15 170 285 140} box DOWN_BOX labeltype ENGRAVED_LABEL
     } {
       Fl_Browser browser1 {
-        callback {printf( "Click\\n" );}
-        xywh {25 180 260 90}
+        callback {printf( "Click\\n" );
+
+
+
+ input_var_tdb_database->value(  browser1->text(   browser1->value() ) ); 
+
+redraw();}
+        xywh {25 180 260 90} resizable
         code1 {browser1->type(FL_HOLD_BROWSER);}
       }
       Fl_Input input_notes {
@@ -424,7 +435,7 @@ create_macro( );}
     }
     Fl_Group {} {
       label Database open
-      xywh {325 100 270 205} box DOWN_BOX labeltype ENGRAVED_LABEL
+      xywh {325 100 285 205} box DOWN_BOX labeltype ENGRAVED_LABEL
     } {
       Fl_Button {} {
         label {&Edit}
@@ -439,6 +450,94 @@ create_macro( );}
   strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
   nsystem(  charo );}
         xywh {335 110 50 25}
+      }
+      Fl_Button {} {
+        label {ls tdb}
+        callback {redraw();
+
+  printf( "============================\\n" );
+  printf( "   DATABASE                 \\n" );
+  printf( "============================\\n" );
+  
+  nlsgrep( ".tdb" );
+  nlsgrep( ".TDB" );}
+        xywh {390 110 50 25}
+      }
+      Fl_Button {} {
+        label Element
+        callback {redraw();
+  
+  
+  printf( "============================\\n" );
+  printf( "   ELEMENT                  \\n" );
+  printf( "============================\\n" );
+  
+  
+  
+  filegrep( var_tdb_database , "ELEMENT" );}
+        xywh {445 110 75 25}
+      }
+      Fl_Button {} {
+        label Browse
+        callback {redraw();
+
+  printf( "============================\\n" );
+  printf( "   DATABASE                 \\n" );
+  printf( "============================\\n" );
+  
+  nlsgrep( ".tdb" );
+  nlsgrep( ".TDB" );
+  
+  
+  printf( "============================\\n" );
+  printf( "   DATABASE                 \\n" );
+  printf( "============================\\n" );
+
+  
+        browser1->clear();
+	DIR *dirp;
+	struct dirent *dp;
+	dirp = opendir( "." );
+	while  ((dp = readdir( dirp )) != NULL ) 
+	{
+		if (  strcmp( dp->d_name, "." ) != 0 )
+		if (  strcmp( dp->d_name, ".." ) != 0 )
+                {
+                    if ( ( strstr( dp->d_name, ".TDB" ) != 0 )  || ( strstr( dp->d_name, ".tdb" ) != 0 )  ) 
+                    {
+			printf( "%s\\n", dp->d_name );
+ 		        browser1->add(  dp->d_name  );
+ 		     }
+                }
+	}
+	closedir( dirp );}
+        xywh {525 110 70 25}
+      }
+      Fl_Button {} {
+        label Species
+        callback {redraw();
+  
+  
+  printf( "============================\\n" );
+  printf( "   SPECIES                  \\n" );
+  printf( "============================\\n" );
+  
+  
+  
+  filegrep( var_tdb_database , "SPECIES" );}
+        xywh {445 140 75 25}
+      }
+      Fl_Button {} {
+        label Path
+        callback {redraw();
+
+  printf( "============================\\n" );
+  printf( "   PATH                     \\n" );
+  printf( "============================\\n" );
+  
+    char mydirnow[2500];
+  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );} selected
+        xywh {390 140 50 25}
       }
     }
     Fl_Group {} {

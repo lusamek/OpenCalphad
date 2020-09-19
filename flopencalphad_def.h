@@ -74,6 +74,76 @@ void nls()
 
 
 
+
+void nlsgrep( const char *pattern )
+{ 
+	DIR *dirp;
+	struct dirent *dp;
+	dirp = opendir( "." );
+	while  ((dp = readdir( dirp )) != NULL ) 
+	{
+		if (  strcmp( dp->d_name, "." ) != 0 )
+		if (  strcmp( dp->d_name, ".." ) != 0 )
+                {
+                    if ( strstr( dp->d_name, pattern ) != 0 ) 
+			printf( "%s\n", dp->d_name );
+                }
+	}
+	closedir( dirp );
+}
+
+
+
+
+
+
+
+
+
+void filegrep(  const char *filein , const char *pattern )
+{
+  int i;
+  FILE *fp;
+  char strline[PATH_MAX];
+  char strlinein[PATH_MAX];
+
+  printf( "File exist (%s) (%d)\n", filein , fexist( filein ) );
+  if ( fexist( filein ) == 1 )
+  {
+    fp = fopen( filein , "rb");
+    while( !feof(fp) )
+    {
+	    fgets( strlinein , PATH_MAX, fp);
+	    strncpy( strline , "" , PATH_MAX );
+	    for( i = 0 ; ( i <= strlen( strlinein ) ); i++ )
+	    {
+		    if ( strlinein[ i ] != '\n' )
+			    strline[i]=strlinein[i];
+
+		    if ( !feof(fp) )
+		    {
+		            if ( strlinein[ i ] == '\n' )
+			    if ( strstr( strline, pattern ) != 0 ) 
+			    {
+				    printf( "%s\n" , strline );
+			    }
+		    }
+	    }
+     }
+     fclose( fp );
+   }
+}
+
+
+
+
+
+
+
+
+
+
+
 void nsystem( const char *mycmd )
 {
 	printf( "1.System Command %s>\n", mycmd );
@@ -164,56 +234,6 @@ void create_macro(  )
         fclose( fp );
 	printf( "2.Create Macro\n" );
 }
-
-
-/*
-new Y
-@$ =================================================================
-@$
-@$ In Fe-C, we have fcc_a1 bcc_a2 liquid graphite  
-@$
-@$ =================================================================
-@&
-
-set echo
-
-r t ./steel1.tdb
-fe c
-
-
-
-set cond t=1000 p=1e5 n=1 x(c)=.2 
-
-
-
-c e
-
-l r 1
-
-@&
-
-set ax 1 x(c) 0 0.25 ,,,
-set ax 2 t 500 2000 10
-
-l ax
-
-l sh
-
-
-
-map
-
-
-plot
-w%(*,c)
-T_C
-title map 1 fig 1
-render
-
-*/
-
-
-
 
 
 

@@ -311,10 +311,20 @@ static void cb_fledit(Fl_Button*, void*) {
   nsystem( " screen -d -m fledit " );
 }
 
+static void cb_ccode(Fl_Button*, void*) {
+  nsystem( " screen -d -m fledit flopencalphad_def.h  " );
+}
+
 Fl_Browser *browser1=(Fl_Browser *)0;
 
 static void cb_browser1(Fl_Browser*, void*) {
   printf( "Click\n" );
+
+
+
+ input_var_tdb_database->value(  browser1->text(   browser1->value() ) ); 
+
+redraw();
 }
 
 Fl_Input *input_notes=(Fl_Input *)0;
@@ -336,6 +346,89 @@ static void cb_Edit(Fl_Button*, void*) {
   strncat( charo , var_tdb_database , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "\" " , PATH_MAX -  strlen( charo ) -1 );
   nsystem(  charo );
+}
+
+static void cb_ls1(Fl_Button*, void*) {
+  redraw();
+
+  printf( "============================\n" );
+  printf( "   DATABASE                 \n" );
+  printf( "============================\n" );
+  
+  nlsgrep( ".tdb" );
+  nlsgrep( ".TDB" );
+}
+
+static void cb_Element(Fl_Button*, void*) {
+  redraw();
+  
+  
+  printf( "============================\n" );
+  printf( "   ELEMENT                  \n" );
+  printf( "============================\n" );
+  
+  
+  
+  filegrep( var_tdb_database , "ELEMENT" );
+}
+
+static void cb_Browse(Fl_Button*, void*) {
+  redraw();
+
+  printf( "============================\n" );
+  printf( "   DATABASE                 \n" );
+  printf( "============================\n" );
+  
+  nlsgrep( ".tdb" );
+  nlsgrep( ".TDB" );
+  
+  
+  printf( "============================\n" );
+  printf( "   DATABASE                 \n" );
+  printf( "============================\n" );
+
+  
+        browser1->clear();
+	DIR *dirp;
+	struct dirent *dp;
+	dirp = opendir( "." );
+	while  ((dp = readdir( dirp )) != NULL ) 
+	{
+		if (  strcmp( dp->d_name, "." ) != 0 )
+		if (  strcmp( dp->d_name, ".." ) != 0 )
+                {
+                    if ( ( strstr( dp->d_name, ".TDB" ) != 0 )  || ( strstr( dp->d_name, ".tdb" ) != 0 )  ) 
+                    {
+			printf( "%s\n", dp->d_name );
+ 		        browser1->add(  dp->d_name  );
+ 		     }
+                }
+	}
+	closedir( dirp );
+}
+
+static void cb_Species(Fl_Button*, void*) {
+  redraw();
+  
+  
+  printf( "============================\n" );
+  printf( "   SPECIES                  \n" );
+  printf( "============================\n" );
+  
+  
+  
+  filegrep( var_tdb_database , "SPECIES" );
+}
+
+static void cb_Path(Fl_Button*, void*) {
+  redraw();
+
+  printf( "============================\n" );
+  printf( "   PATH                     \n" );
+  printf( "============================\n" );
+  
+    char mydirnow[2500];
+  printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
 }
 
 static void cb_Close(Fl_Button*, void*) {
@@ -517,13 +610,17 @@ Fl_Double_Window* make_window() {
       { Fl_Button* o = new Fl_Button(190, 110, 50, 25, "&fledit");
         o->callback((Fl_Callback*)cb_fledit);
       } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(245, 110, 50, 25, "ccode");
+        o->callback((Fl_Callback*)cb_ccode);
+      } // Fl_Button* o
       o->end();
     } // Fl_Group* o
-    { Fl_Group* o = new Fl_Group(15, 170, 285, 140, "Notepad");
+    { Fl_Group* o = new Fl_Group(15, 170, 285, 140, "Browser");
       o->box(FL_DOWN_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
       { browser1 = new Fl_Browser(25, 180, 260, 90);
         browser1->callback((Fl_Callback*)cb_browser1);
+        Fl_Group::current()->resizable(browser1);
         browser1->type(FL_HOLD_BROWSER);
       } // Fl_Browser* browser1
       { input_notes = new Fl_Input(70, 275, 165, 25, "Notes");
@@ -535,11 +632,26 @@ Fl_Double_Window* make_window() {
       } // Fl_Button* o
       o->end();
     } // Fl_Group* o
-    { Fl_Group* o = new Fl_Group(325, 100, 270, 205, "Database");
+    { Fl_Group* o = new Fl_Group(325, 100, 285, 205, "Database");
       o->box(FL_DOWN_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
       { Fl_Button* o = new Fl_Button(335, 110, 50, 25, "&Edit");
         o->callback((Fl_Callback*)cb_Edit);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(390, 110, 50, 25, "ls tdb");
+        o->callback((Fl_Callback*)cb_ls1);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(445, 110, 75, 25, "Element");
+        o->callback((Fl_Callback*)cb_Element);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(525, 110, 70, 25, "Browse");
+        o->callback((Fl_Callback*)cb_Browse);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(445, 140, 75, 25, "Species");
+        o->callback((Fl_Callback*)cb_Species);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(390, 140, 50, 25, "Path");
+        o->callback((Fl_Callback*)cb_Path);
       } // Fl_Button* o
       o->end();
     } // Fl_Group* o
@@ -552,6 +664,7 @@ Fl_Double_Window* make_window() {
       o->end();
     } // Fl_Group* o
     win2->end();
+    win2->resizable(win2);
   } // Fl_Double_Window* win2
   return win2;
 }
