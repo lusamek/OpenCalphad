@@ -79,9 +79,6 @@ Frontend for Fe-C system:<br/>
 (Press Return) <br/>
 The "Makefile" allows to compile flopencalphad on Mac, Linux, and BSD/Unix.<br/>
 
-![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/flopencalphad.png)
-
-
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/flopencalphad-2.png)
 
 
