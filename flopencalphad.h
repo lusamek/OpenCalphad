@@ -19,6 +19,11 @@ extern Fl_Double_Window *win2;
 #include <FL/Fl_Browser.H>
 extern Fl_Browser *browser1;
 extern Fl_Input *input_notes;
+extern Fl_Double_Window *win3;
+extern Fl_Double_Window *win4;
+extern Fl_Double_Window *win5;
+extern Fl_Browser *browser2;
+extern Fl_Input *input_var_macro_filename;
 Fl_Double_Window* make_window();
 void addkeypress( int keypress );
 int main( int argc, char *argv[]);
