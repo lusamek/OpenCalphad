@@ -85,6 +85,8 @@ The "Makefile" allows to compile flopencalphad on Mac, Linux, and BSD/Unix.<br/>
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/flopencalphad-2.png)
 
 
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/flopencalphad-3.png)
+
 
 
 --
