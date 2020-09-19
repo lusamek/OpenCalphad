@@ -3,7 +3,7 @@
 #include "flopencalphad.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "headerf.h"
+#include "ccode.h"
 #include <FL/Fl_Output.H>
 #include "flopencalphad_def.h"
 
@@ -272,7 +272,6 @@ static void cb_Add(Fl_Button*, void*) {
 
 Fl_Double_Window* make_window() {
   { win1 = new Fl_Double_Window(775, 700, "Notes");
-    win1->labeltype(FL_ENGRAVED_LABEL);
     { Fl_Box* o = new Fl_Box(30, 25, 710, 30, "FLTK OpenCalphad");
       o->box(FL_ENGRAVED_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);

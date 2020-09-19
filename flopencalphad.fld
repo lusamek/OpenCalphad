@@ -8,7 +8,7 @@ decl {\#include <stdio.h>} {private local
 decl {\#include <stdlib.h>} {private local
 }
 
-decl {\#include "headerf.h"} {private local
+decl {\#include "ccode.h"} {selected private local
 }
 
 decl {\#include <FL/Fl_Output.H>} {private local
@@ -37,7 +37,7 @@ Function {make_window()} {open
 } {
   Fl_Window win1 {
     label Notes open
-    xywh {434 194 775 700} type Double labeltype ENGRAVED_LABEL resizable visible
+    xywh {436 69 775 700} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad}
@@ -309,8 +309,8 @@ create_macro( );}
       xywh {390 85 345 535} box DOWN_BOX labeltype ENGRAVED_LABEL
     } {}
   }
-  Fl_Window win2 {open selected
-    xywh {1088 92 890 330} type Double visible
+  Fl_Window win2 {open
+    xywh {477 94 890 330} type Double visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Options}
