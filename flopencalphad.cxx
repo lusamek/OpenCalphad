@@ -369,7 +369,7 @@ static void cb_Element(Fl_Button*, void*) {
   
   
   
-  filegrep( var_tdb_database , "ELEMENT" );
+  filegrep( var_tdb_database , "ELEM" );
 }
 
 static void cb_Browse(Fl_Button*, void*) {
@@ -417,7 +417,7 @@ static void cb_Species(Fl_Button*, void*) {
   
   
   
-  filegrep( var_tdb_database , "SPECIES" );
+  filegrep( var_tdb_database , "SPECIE" );
 }
 
 static void cb_Path(Fl_Button*, void*) {

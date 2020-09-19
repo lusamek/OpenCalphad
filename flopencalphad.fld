@@ -37,7 +37,7 @@ Function {make_window()} {open
 } {
   Fl_Window win1 {
     label Notes open
-    xywh {450 83 775 700} type Double resizable visible
+    xywh {452 85 775 700} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad}
@@ -370,7 +370,7 @@ create_macro( );}
     } {}
   }
   Fl_Window win2 {open
-    xywh {445 543 890 330} type Double resizable visible
+    xywh {447 545 890 330} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Options}
@@ -474,7 +474,7 @@ redraw();}
   
   
   
-  filegrep( var_tdb_database , "ELEMENT" );}
+  filegrep( var_tdb_database , "ELEM" );}
         xywh {445 110 75 25}
       }
       Fl_Button {} {
@@ -524,7 +524,7 @@ redraw();}
   
   
   
-  filegrep( var_tdb_database , "SPECIES" );}
+  filegrep( var_tdb_database , "SPECIE" );} selected
         xywh {445 140 75 25}
       }
       Fl_Button {} {
@@ -536,7 +536,7 @@ redraw();}
   printf( "============================\\n" );
   
     char mydirnow[2500];
-  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );} selected
+  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );}
         xywh {390 140 50 25}
       }
     }
