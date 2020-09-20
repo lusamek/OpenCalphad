@@ -8,7 +8,7 @@
 #include "flopencalphad_def.h"
 
 void redraw() {
-  printf("Redraw!\n");
+  printf("> Procedure redraw!\n");
   
   
   strncpy( var_calc_x ,  input_var_calc_x->value() , PATH_MAX );
@@ -20,6 +20,8 @@ void redraw() {
   strncpy( var_system ,      output_system->value() , PATH_MAX );
   // output_system->value( "fe c" );
   // output_system->value( var_system  );
+  
+  // input_var_set_condition->value( "t=1000 p=1e5 n=1 x(c)=0.2 " );
 }
 
 Fl_Double_Window *win1=(Fl_Double_Window *)0;
@@ -30,8 +32,12 @@ static void cb_Fe(Fl_Button*, void*) {
 // printf( "%s\n" ,   inputline->value( browser1->text(  browser1->value() )  ) ) ;
 
   strncat( var_system , "fe" , PATH_MAX - strlen( var_system ) -1 );
-  strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
+  strncat( var_system , " " ,  PATH_MAX -  strlen( var_system ) -1 );
   output_system->value( var_system );
+  
+  var_calc_number_element++;
+  
+  add_new_element( "fe" );
   
   redraw();
 }
@@ -45,6 +51,12 @@ static void cb_C(Fl_Button*, void*) {
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );
 
+
+  var_calc_number_element++;
+
+  add_new_element( "c" );  
+
+
 redraw();
 }
 
@@ -56,6 +68,12 @@ static void cb_Mn(Fl_Button*, void*) {
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );
     
+  var_calc_number_element++;
+  
+
+  add_new_element( "mn" );  
+
+
 redraw();
 }
 
@@ -66,6 +84,14 @@ static void cb_Al(Fl_Button*, void*) {
   strncat( var_system , "al" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );  
+
+  var_calc_number_element++;
+  
+  
+  add_new_element( "al" );  
+
+
+  
 
 redraw();
 }
@@ -80,6 +106,12 @@ printf( " Si Selected\n" );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );
 
+  var_calc_number_element++;
+  
+
+  add_new_element( "si" );  
+
+
 
 redraw();
 }
@@ -92,6 +124,12 @@ static void cb_V(Fl_Button*, void* v) {
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );
 
+  var_calc_number_element++;
+  
+  add_new_element( "v" );  
+
+
+
 redraw();
 }
 
@@ -101,6 +139,12 @@ static void cb_Mo(Fl_Button*, void*) {
   strncat( var_system , "mo" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );
+
+  var_calc_number_element++;
+  
+
+  add_new_element( "mo" );  
+
 
 redraw();
 }
@@ -113,6 +157,12 @@ static void cb_Cr(Fl_Button*, void*) {
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );
 
+  var_calc_number_element++;
+  
+  add_new_element( "cr" );  
+
+
+
 redraw();
 }
 
@@ -122,6 +172,12 @@ static void cb_Cu(Fl_Button*, void*) {
   strncat( var_system , "cu" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );
+
+  var_calc_number_element++;
+  
+
+  add_new_element( "cu" );  
+
 
 
 redraw();
@@ -135,7 +191,11 @@ static void cb_Nb(Fl_Button*, void*) {
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );
     
-    
+  var_calc_number_element++;
+  
+
+  add_new_element( "nb" );  
+
 redraw();
 }
 
@@ -146,6 +206,14 @@ static void cb_Ni(Fl_Button*, void*) {
   strncat( var_system , "ni" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );
+
+  var_calc_number_element++;
+  
+  
+  add_new_element( "ni" );  
+
+
+  
 
 redraw();
 }
@@ -158,6 +226,12 @@ static void cb_Ag(Fl_Button*, void*) {
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );
 
+  var_calc_number_element++;
+  
+  add_new_element( "ag" );  
+
+
+
 redraw();
 }
 
@@ -168,6 +242,12 @@ static void cb_Ti(Fl_Button*, void*) {
   strncat( var_system , "ti" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );
+
+  var_calc_number_element++;
+  
+
+  add_new_element( "ti" );  
+
 
 redraw();
 }
@@ -180,6 +260,12 @@ static void cb_Zn(Fl_Button*, void*) {
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );
 
+  var_calc_number_element++;
+  
+  add_new_element( "zn" );  
+
+
+
 redraw();
 }
 
@@ -191,6 +277,12 @@ static void cb_W(Fl_Button*, void*) {
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );
 
+  var_calc_number_element++;
+  
+  add_new_element( "w" );  
+
+
+
 redraw();
 }
 
@@ -201,8 +293,13 @@ static void cb_CA(Fl_Button*, void*) {
 
 // printf( "%s\n" ,   inputline->value( browser1->text(  browser1->value() )  ) ) ;
 
+
+   input_var_set_condition->value( " t=1000 p=1e5 n=1  " );
+   
    strncpy( var_system, "", PATH_MAX );
-   output_system->value( var_system );  
+   output_system->value( var_system ); 
+   
+   var_calc_number_element = 0; 
 
    redraw();
 }
@@ -303,6 +400,10 @@ static void cb_Plot(Fl_Button*, void*) {
 
 static void cb_Macro(Fl_Button*, void*) {
   win5->show();
+}
+
+static void cb_Condition(Fl_Button*, void*) {
+  win6->show();
 }
 
 Fl_Double_Window *win2=(Fl_Double_Window *)0;
@@ -424,6 +525,10 @@ static void cb_Path(Fl_Button*, void*) {
   printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
 }
 
+static void cb_Close(Fl_Button*, void*) {
+  win2->hide();
+}
+
 Fl_Double_Window *win3=(Fl_Double_Window *)0;
 
 static void cb_ls1(Fl_Button*, void*) {
@@ -442,10 +547,6 @@ static void cb_fledit(Fl_Button*, void*) {
   nsystem( " screen -d -m fledit " );
 }
 
-static void cb_ccode(Fl_Button*, void*) {
-  nsystem( " screen -d -m fledit flopencalphad_def.h  " );
-}
-
 static void cb_Path1(Fl_Button*, void*) {
   redraw();
 
@@ -461,10 +562,50 @@ static void cb_rox(Fl_Button*, void*) {
   nsystem( " rox " );
 }
 
+static void cb_ccode(Fl_Button*, void*) {
+  nsystem( " screen -d -m fledit flopencalphad_def.h  " );
+}
+
+static void cb_Inipath(Fl_Button*, void*) {
+  redraw();
+
+  printf( "============================\n" );
+  printf( "  CHANGE PATH               \n" );
+  printf( "============================\n" );
+  
+  printf( "Change to...\n" );
+  chdir( inipath );
+  
+  char mydirnow[2500];
+  printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
+}
+
+static void cb_Userpath(Fl_Button*, void*) {
+  redraw();
+
+  printf( "============================\n" );
+  printf( "  CHANGE PATH               \n" );
+  printf( "============================\n" );
+  
+  printf( "Change to...\n" );
+  chdir( userpath );
+  
+  char mydirnow[2500];
+  printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
+}
+
+static void cb_Close1(Fl_Button*, void*) {
+  win3->hide();
+}
+
 Fl_Double_Window *win4=(Fl_Double_Window *)0;
 
-static void cb_Close(Fl_Button*, void*) {
+static void cb_Close2(Fl_Button*, void*) {
   nsystem( " pkill gnuplot " );
+}
+
+static void cb_Close3(Fl_Button*, void*) {
+  win4->hide();
 }
 
 Fl_Double_Window *win5=(Fl_Double_Window *)0;
@@ -539,6 +680,28 @@ static void cb_Use(Fl_Button*, void*) {
   
 
   ncp( "macro.ocm" ,   input_var_macro_filename->value() );
+}
+
+static void cb_Close4(Fl_Button*, void*) {
+  win5->hide();
+}
+
+Fl_Double_Window *win6=(Fl_Double_Window *)0;
+
+Fl_Input *input_var_set_condition=(Fl_Input *)0;
+
+Fl_Input *input_var_calc_ymin=(Fl_Input *)0;
+
+Fl_Input *input_var_calc_ymax=(Fl_Input *)0;
+
+Fl_Input *input_var_calc_ystep=(Fl_Input *)0;
+
+Fl_Input *input_var_calc_xmin=(Fl_Input *)0;
+
+Fl_Input *input_var_calc_xmax=(Fl_Input *)0;
+
+static void cb_Close5(Fl_Button*, void*) {
+  win6->hide();
 }
 
 Fl_Double_Window* make_window() {
@@ -632,7 +795,8 @@ Fl_Double_Window* make_window() {
       o->labeltype(FL_ENGRAVED_LABEL);
       { output_system = new Fl_Output(95, 285, 205, 25, "System");
         output_system->color(FL_BACKGROUND_COLOR);
-        output_system->value( "fe c" );
+        output_system->value( "fe c " );
+        var_calc_number_element = 2;
       } // Fl_Output* output_system
       { Fl_Button* o = new Fl_Button(305, 285, 30, 25, "CA");
         o->labelfont(1);
@@ -697,16 +861,19 @@ Fl_Double_Window* make_window() {
     { Fl_Button* o = new Fl_Button(30, 650, 80, 30, "&Database");
       o->callback((Fl_Callback*)cb_Database);
     } // Fl_Button* o
-    { Fl_Button* o = new Fl_Button(120, 650, 80, 30, "&Plot");
+    { Fl_Button* o = new Fl_Button(210, 650, 80, 30, "&Plot");
       o->callback((Fl_Callback*)cb_Plot);
     } // Fl_Button* o
-    { Fl_Button* o = new Fl_Button(210, 650, 80, 30, "&Macro");
+    { Fl_Button* o = new Fl_Button(300, 650, 80, 30, "&Macro");
       o->callback((Fl_Callback*)cb_Macro);
+    } // Fl_Button* o
+    { Fl_Button* o = new Fl_Button(120, 650, 80, 30, "&Condition");
+      o->callback((Fl_Callback*)cb_Condition);
     } // Fl_Button* o
     win1->end();
   } // Fl_Double_Window* win1
-  { win2 = new Fl_Double_Window(890, 330);
-    { Fl_Box* o = new Fl_Box(15, 25, 855, 35, "FLTK OpenCalphad -- Database");
+  { win2 = new Fl_Double_Window(875, 355);
+    { Fl_Box* o = new Fl_Box(15, 25, 850, 35, "FLTK OpenCalphad -- Database");
       o->box(FL_ENGRAVED_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
     } // Fl_Box* o
@@ -750,15 +917,18 @@ Fl_Double_Window* make_window() {
       } // Fl_Button* o
       o->end();
     } // Fl_Group* o
+    { Fl_Button* o = new Fl_Button(755, 320, 110, 25, "Close Frame");
+      o->callback((Fl_Callback*)cb_Close);
+    } // Fl_Button* o
     win2->end();
     win2->resizable(win2);
   } // Fl_Double_Window* win2
-  { win3 = new Fl_Double_Window(400, 210);
+  { win3 = new Fl_Double_Window(400, 435);
     { Fl_Box* o = new Fl_Box(10, 15, 380, 35, "FLTK OpenCalphad -- Option");
       o->box(FL_ENGRAVED_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
     } // Fl_Box* o
-    { Fl_Group* o = new Fl_Group(20, 105, 365, 80, "System Call");
+    { Fl_Group* o = new Fl_Group(10, 105, 375, 80, "System Call");
       o->box(FL_DOWN_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
       { Fl_Button* o = new Fl_Button(30, 115, 50, 25, "&ls");
@@ -767,43 +937,60 @@ Fl_Double_Window* make_window() {
       { Fl_Button* o = new Fl_Button(85, 115, 50, 25, "&xterm");
         o->callback((Fl_Callback*)cb_xterm);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(140, 115, 50, 25, "&calc");
+      { Fl_Button* o = new Fl_Button(195, 145, 50, 25, "&calc");
         o->callback((Fl_Callback*)cb_calc);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(195, 115, 50, 25, "&fledit");
         o->callback((Fl_Callback*)cb_fledit);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(250, 115, 50, 25, "ccode");
-        o->callback((Fl_Callback*)cb_ccode);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(305, 115, 50, 25, "Path");
+      { Fl_Button* o = new Fl_Button(30, 150, 50, 25, "Path");
         o->callback((Fl_Callback*)cb_Path1);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(30, 150, 50, 25, "rox");
+      { Fl_Button* o = new Fl_Button(85, 150, 50, 25, "rox");
         o->callback((Fl_Callback*)cb_rox);
       } // Fl_Button* o
       o->end();
     } // Fl_Group* o
-    win3->end();
-    win3->resizable(win3);
-  } // Fl_Double_Window* win3
-  { win4 = new Fl_Double_Window(845, 370);
-    { Fl_Box* o = new Fl_Box(20, 25, 800, 35, "FLTK OpenCalphad -- Plot");
-      o->box(FL_ENGRAVED_BOX);
-      o->labeltype(FL_ENGRAVED_LABEL);
-    } // Fl_Box* o
-    { Fl_Group* o = new Fl_Group(20, 105, 800, 220, "Plot");
+    { Fl_Group* o = new Fl_Group(10, 230, 375, 160, "Debug -- Development");
       o->box(FL_DOWN_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
-      { Fl_Button* o = new Fl_Button(30, 115, 90, 25, "Close &Plots");
-        o->callback((Fl_Callback*)cb_Close);
+      { Fl_Button* o = new Fl_Button(20, 245, 100, 25, "ccode");
+        o->callback((Fl_Callback*)cb_ccode);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(20, 275, 100, 25, "Inipath");
+        o->callback((Fl_Callback*)cb_Inipath);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(20, 305, 100, 25, "Userpath");
+        o->callback((Fl_Callback*)cb_Userpath);
       } // Fl_Button* o
       o->end();
     } // Fl_Group* o
+    { Fl_Button* o = new Fl_Button(275, 395, 110, 25, "Close Frame");
+      o->callback((Fl_Callback*)cb_Close1);
+    } // Fl_Button* o
+    win3->end();
+    win3->resizable(win3);
+  } // Fl_Double_Window* win3
+  { win4 = new Fl_Double_Window(830, 330);
+    { Fl_Box* o = new Fl_Box(15, 25, 800, 35, "FLTK OpenCalphad -- Plot");
+      o->box(FL_ENGRAVED_BOX);
+      o->labeltype(FL_ENGRAVED_LABEL);
+    } // Fl_Box* o
+    { Fl_Group* o = new Fl_Group(15, 105, 800, 185, "Plot");
+      o->box(FL_DOWN_BOX);
+      o->labeltype(FL_ENGRAVED_LABEL);
+      { Fl_Button* o = new Fl_Button(25, 115, 90, 25, "Close &Plots");
+        o->callback((Fl_Callback*)cb_Close2);
+      } // Fl_Button* o
+      o->end();
+    } // Fl_Group* o
+    { Fl_Button* o = new Fl_Button(705, 295, 110, 25, "Close Frame");
+      o->callback((Fl_Callback*)cb_Close3);
+    } // Fl_Button* o
     win4->end();
   } // Fl_Double_Window* win4
-  { win5 = new Fl_Double_Window(885, 345);
-    { Fl_Box* o = new Fl_Box(30, 15, 830, 35, "FLTK OpenCalphad -- Macro");
+  { win5 = new Fl_Double_Window(880, 365);
+    { Fl_Box* o = new Fl_Box(25, 15, 835, 35, "FLTK OpenCalphad -- Macro");
       o->box(FL_ENGRAVED_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
     } // Fl_Box* o
@@ -815,7 +1002,7 @@ Fl_Double_Window* make_window() {
         Fl_Group::current()->resizable(browser2);
         browser2->type(FL_HOLD_BROWSER);
       } // Fl_Browser* browser2
-      { input_var_macro_filename = new Fl_Input(95, 290, 310, 25, "Filename");
+      { input_var_macro_filename = new Fl_Input(105, 290, 295, 25, "Filename");
       } // Fl_Input* input_var_macro_filename
       o->end();
     } // Fl_Group* o
@@ -833,10 +1020,47 @@ Fl_Double_Window* make_window() {
       } // Fl_Button* o
       o->end();
     } // Fl_Group* o
+    { Fl_Button* o = new Fl_Button(750, 330, 110, 25, "Close Frame");
+      o->callback((Fl_Callback*)cb_Close4);
+    } // Fl_Button* o
     win5->end();
     win5->resizable(win5);
   } // Fl_Double_Window* win5
-  return win5;
+  { win6 = new Fl_Double_Window(655, 465);
+    { Fl_Box* o = new Fl_Box(15, 15, 625, 30, "FLTK OpenCalphad -- Condition");
+      o->box(FL_ENGRAVED_BOX);
+      o->labeltype(FL_ENGRAVED_LABEL);
+    } // Fl_Box* o
+    { Fl_Group* o = new Fl_Group(15, 105, 625, 315, "Set-Condition");
+      o->box(FL_DOWN_BOX);
+      o->labeltype(FL_ENGRAVED_LABEL);
+      { input_var_set_condition = new Fl_Input(90, 135, 535, 25, "set-con");
+        input_var_set_condition->value( "t=1000 p=1e5 n=1 x(c)=0.2 " );
+      } // Fl_Input* input_var_set_condition
+      { input_var_calc_ymin = new Fl_Input(90, 280, 535, 25, "Ymin");
+        input_var_calc_ymin->value( "500" );
+      } // Fl_Input* input_var_calc_ymin
+      { input_var_calc_ymax = new Fl_Input(90, 310, 535, 25, "Ymax");
+        input_var_calc_ymax->value( "2000" );
+      } // Fl_Input* input_var_calc_ymax
+      { input_var_calc_ystep = new Fl_Input(90, 340, 535, 25, "Ystep");
+        input_var_calc_ystep->value( "10" );
+      } // Fl_Input* input_var_calc_ystep
+      { input_var_calc_xmin = new Fl_Input(90, 195, 535, 25, "Xmin");
+        input_var_calc_xmin->value( "0" );
+      } // Fl_Input* input_var_calc_xmin
+      { input_var_calc_xmax = new Fl_Input(90, 225, 535, 25, "Xmax");
+        input_var_calc_xmax->value( "0.25" );
+      } // Fl_Input* input_var_calc_xmax
+      o->end();
+      Fl_Group::current()->resizable(o);
+    } // Fl_Group* o
+    { Fl_Button* o = new Fl_Button(530, 430, 110, 25, "Close Frame");
+      o->callback((Fl_Callback*)cb_Close5);
+    } // Fl_Button* o
+    win6->end();
+  } // Fl_Double_Window* win6
+  return win6;
 }
 
 void addkeypress( int keypress ) {
@@ -846,19 +1070,22 @@ void addkeypress( int keypress ) {
 }
 
 int main( int argc, char *argv[]) {
-  // working dir 
+  char mydirnow[2500];  
+    strncpy( inipath , getcwd( mydirnow, 2500 ), 2500 );
+    
+    // working dir 
     if ( argc == 2)
     if ( strcmp( argv[1] , "" ) !=  0 )
     {
             chdir( argv[ 1 ] );
     }
-    
-    char mydirnow[2500];
     printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
+    strncpy( userpath , getcwd( mydirnow, 2500 ), 2500 );
+  
   
     // vars
-    strncpy( var_system, "", PATH_MAX);
-    
+    strncpy( var_system, "fe c ", PATH_MAX);
+    //output_system->value( var_system );  <- seg.
   
     make_window();
     win1->show();

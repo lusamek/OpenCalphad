@@ -17,9 +17,8 @@ decl {\#include <FL/Fl_Output.H>} {private local
 decl {\#include "flopencalphad_def.h"} {private local
 }
 
-Function {redraw()} {open
-} {
-  code {printf("Redraw!\\n");
+Function {redraw()} {} {
+  code {printf("> Procedure redraw!\\n");
 
 
 strncpy( var_calc_x ,  input_var_calc_x->value() , PATH_MAX );
@@ -30,14 +29,16 @@ strncpy( var_tdb_database, input_var_tdb_database->value(), PATH_MAX );
 
 strncpy( var_system ,      output_system->value() , PATH_MAX );
 // output_system->value( "fe c" );
-// output_system->value( var_system  );} {}
+// output_system->value( var_system  );
+
+// input_var_set_condition->value( "t=1000 p=1e5 n=1 x(c)=0.2 " );} {}
 }
 
 Function {make_window()} {open
 } {
   Fl_Window win1 {
     label Notes open
-    xywh {1127 298 775 700} type Double resizable visible
+    xywh {560 30 775 700} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad}
@@ -54,8 +55,12 @@ Function {make_window()} {open
 // printf( "%s\\n" ,   inputline->value( browser1->text(  browser1->value() )  ) ) ;
 
   strncat( var_system , "fe" , PATH_MAX - strlen( var_system ) -1 );
-  strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
+  strncat( var_system , " " ,  PATH_MAX -  strlen( var_system ) -1 );
   output_system->value( var_system );
+  
+  var_calc_number_element++;
+  
+  add_new_element( "fe" );
   
   redraw();}
         xywh {40 95 45 35} labelfont 1 labelsize 12
@@ -70,6 +75,12 @@ Function {make_window()} {open
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );
 
+
+  var_calc_number_element++;
+
+  add_new_element( "c" );  
+
+
 redraw();}
         xywh {100 95 45 35} labelfont 1 labelsize 12
       }
@@ -82,6 +93,12 @@ redraw();}
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );
     
+  var_calc_number_element++;
+  
+
+  add_new_element( "mn" );  
+
+
 redraw();}
         xywh {160 95 45 35} labelfont 1 labelsize 12
       }
@@ -93,6 +110,14 @@ redraw();}
   strncat( var_system , "al" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );  
+
+  var_calc_number_element++;
+  
+  
+  add_new_element( "al" );  
+
+
+  
 
 redraw();}
         xywh {220 95 45 35} labelfont 1 labelsize 12
@@ -108,6 +133,12 @@ printf( " Si Selected\\n" );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );
 
+  var_calc_number_element++;
+  
+
+  add_new_element( "si" );  
+
+
 
 redraw();}
         xywh {280 95 45 35} labelfont 1 labelsize 12
@@ -121,6 +152,12 @@ redraw();}
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );
 
+  var_calc_number_element++;
+  
+  add_new_element( "v" );  
+
+
+
 redraw();}
         xywh {280 185 45 35} labelfont 1 labelsize 12
       }
@@ -131,6 +168,12 @@ redraw();}
   strncat( var_system , "mo" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );
+
+  var_calc_number_element++;
+  
+
+  add_new_element( "mo" );  
+
 
 redraw();}
         xywh {159 140 45 35} labelfont 1 labelsize 12
@@ -144,6 +187,12 @@ redraw();}
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );
 
+  var_calc_number_element++;
+  
+  add_new_element( "cr" );  
+
+
+
 redraw();}
         xywh {100 140 45 35} labelfont 1 labelsize 12
       }
@@ -154,6 +203,12 @@ redraw();}
   strncat( var_system , "cu" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );
+
+  var_calc_number_element++;
+  
+
+  add_new_element( "cu" );  
+
 
 
 redraw();}
@@ -168,7 +223,11 @@ redraw();}
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );
     
-    
+  var_calc_number_element++;
+  
+
+  add_new_element( "nb" );  
+
 redraw();}
         xywh {280 140 45 35} labelfont 1 labelsize 12
       }
@@ -180,6 +239,14 @@ redraw();}
   strncat( var_system , "ni" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );
+
+  var_calc_number_element++;
+  
+  
+  add_new_element( "ni" );  
+
+
+  
 
 redraw();}
         xywh {40 140 45 35} labelfont 1 labelsize 12
@@ -193,6 +260,12 @@ redraw();}
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );
 
+  var_calc_number_element++;
+  
+  add_new_element( "ag" );  
+
+
+
 redraw();}
         xywh {40 185 45 35} labelfont 1 labelsize 12
       }
@@ -204,6 +277,12 @@ redraw();}
   strncat( var_system , "ti" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );
+
+  var_calc_number_element++;
+  
+
+  add_new_element( "ti" );  
+
 
 redraw();}
         xywh {220 140 45 35} labelfont 1 labelsize 12
@@ -217,6 +296,12 @@ redraw();}
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );
 
+  var_calc_number_element++;
+  
+  add_new_element( "zn" );  
+
+
+
 redraw();}
         xywh {160 185 45 35} labelfont 1 labelsize 12
       }
@@ -229,6 +314,12 @@ redraw();}
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );
 
+  var_calc_number_element++;
+  
+  add_new_element( "w" );  
+
+
+
 redraw();}
         xywh {220 185 45 35} labelfont 1 labelsize 12
       }
@@ -240,7 +331,8 @@ redraw();}
       Fl_Output output_system {
         label System
         xywh {95 285 205 25} color 49
-        code1 {output_system->value( "fe c" );}
+        code1 {output_system->value( "fe c " );}
+        code2 {var_calc_number_element = 2;}
       }
       Fl_Button {} {
         label CA
@@ -248,8 +340,13 @@ redraw();}
 
 // printf( "%s\\n" ,   inputline->value( browser1->text(  browser1->value() )  ) ) ;
 
+
+   input_var_set_condition->value( " t=1000 p=1e5 n=1  " );
+   
    strncpy( var_system, "", PATH_MAX );
-   output_system->value( var_system );  
+   output_system->value( var_system ); 
+   
+   var_calc_number_element = 0; 
 
    redraw();}
         xywh {305 285 30 25} labelfont 1 labelsize 12
@@ -376,20 +473,25 @@ create_macro( );}
     Fl_Button {} {
       label {&Plot}
       callback {win4->show();}
-      xywh {120 650 80 30}
+      xywh {210 650 80 30}
     }
     Fl_Button {} {
       label {&Macro}
       callback {win5->show();}
-      xywh {210 650 80 30}
+      xywh {300 650 80 30}
+    }
+    Fl_Button {} {
+      label {&Condition}
+      callback {win6->show();}
+      xywh {120 650 80 30}
     }
   }
-  Fl_Window win2 {open
-    xywh {189 240 890 330} type Double resizable visible
+  Fl_Window win2 {
+    xywh {332 181 875 355} type Double hide resizable
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Database}
-      xywh {15 25 855 35} box ENGRAVED_BOX labeltype ENGRAVED_LABEL
+      xywh {15 25 850 35} box ENGRAVED_BOX labeltype ENGRAVED_LABEL
     }
     Fl_Group {} {
       label Browser open
@@ -526,9 +628,14 @@ redraw();}
         xywh {495 145 50 25}
       }
     }
+    Fl_Button {} {
+      label {Close Frame}
+      callback {win2->hide();}
+      xywh {755 320 110 25}
+    }
   }
-  Fl_Window win3 {open
-    xywh {961 52 400 210} type Double resizable visible
+  Fl_Window win3 {
+    xywh {497 237 400 435} type Double hide resizable
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Option}
@@ -536,7 +643,7 @@ redraw();}
     }
     Fl_Group {} {
       label {System Call} open
-      xywh {20 105 365 80} box DOWN_BOX labeltype ENGRAVED_LABEL
+      xywh {10 105 375 80} box DOWN_BOX labeltype ENGRAVED_LABEL
     } {
       Fl_Button {} {
         label {&ls}
@@ -551,17 +658,12 @@ redraw();}
       Fl_Button {} {
         label {&calc}
         callback {nsystem( " screen -d -m fl48 " );}
-        xywh {140 115 50 25}
+        xywh {195 145 50 25}
       }
       Fl_Button {} {
         label {&fledit}
         callback {nsystem( " screen -d -m fledit " );}
         xywh {195 115 50 25}
-      }
-      Fl_Button {} {
-        label ccode
-        callback {nsystem( " screen -d -m fledit flopencalphad_def.h  " );}
-        xywh {250 115 50 25}
       }
       Fl_Button {} {
         label Path
@@ -573,39 +675,89 @@ redraw();}
   
     char mydirnow[2500];
   printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );}
-        xywh {305 115 50 25}
+        xywh {30 150 50 25}
       }
       Fl_Button {} {
         label rox
         callback {nsystem( " rox " );}
-        xywh {30 150 50 25}
+        xywh {85 150 50 25}
       }
     }
+    Fl_Group {} {
+      label {Debug -- Development} open
+      xywh {10 230 375 160} box DOWN_BOX labeltype ENGRAVED_LABEL
+    } {
+      Fl_Button {} {
+        label ccode
+        callback {nsystem( " screen -d -m fledit flopencalphad_def.h  " );}
+        xywh {20 245 100 25}
+      }
+      Fl_Button {} {
+        label Inipath
+        callback {redraw();
+
+  printf( "============================\\n" );
+  printf( "  CHANGE PATH               \\n" );
+  printf( "============================\\n" );
+  
+  printf( "Change to...\\n" );
+  chdir( inipath );
+  
+  char mydirnow[2500];
+  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );}
+        xywh {20 275 100 25}
+      }
+      Fl_Button {} {
+        label Userpath
+        callback {redraw();
+
+  printf( "============================\\n" );
+  printf( "  CHANGE PATH               \\n" );
+  printf( "============================\\n" );
+  
+  printf( "Change to...\\n" );
+  chdir( userpath );
+  
+  char mydirnow[2500];
+  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );}
+        xywh {20 305 100 25}
+      }
+    }
+    Fl_Button {} {
+      label {Close Frame}
+      callback {win3->hide();}
+      xywh {275 395 110 25}
+    }
   }
-  Fl_Window win4 {open
-    xywh {1076 695 845 370} type Double visible
+  Fl_Window win4 {
+    xywh {376 248 830 330} type Double hide
   } {
     Fl_Box {} {
-      label {FLTK OpenCalphad -- Plot} selected
-      xywh {20 25 800 35} box ENGRAVED_BOX labeltype ENGRAVED_LABEL
+      label {FLTK OpenCalphad -- Plot}
+      xywh {15 25 800 35} box ENGRAVED_BOX labeltype ENGRAVED_LABEL
     }
     Fl_Group {} {
       label Plot open
-      xywh {20 105 800 220} box DOWN_BOX labeltype ENGRAVED_LABEL
+      xywh {15 105 800 185} box DOWN_BOX labeltype ENGRAVED_LABEL
     } {
       Fl_Button {} {
         label {Close &Plots}
         callback {nsystem( " pkill gnuplot " );}
-        xywh {30 115 90 25}
+        xywh {25 115 90 25}
       }
     }
+    Fl_Button {} {
+      label {Close Frame}
+      callback {win4->hide();}
+      xywh {705 295 110 25}
+    }
   }
-  Fl_Window win5 {open
-    xywh {196 596 885 345} type Double resizable visible
+  Fl_Window win5 {
+    xywh {414 319 880 365} type Double hide resizable
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Macro}
-      xywh {30 15 830 35} box ENGRAVED_BOX labeltype ENGRAVED_LABEL
+      xywh {25 15 835 35} box ENGRAVED_BOX labeltype ENGRAVED_LABEL
     }
     Fl_Group {} {
       label Browser open
@@ -624,7 +776,7 @@ redraw();}
       }
       Fl_Input input_var_macro_filename {
         label Filename
-        xywh {95 290 310 25}
+        xywh {105 290 295 25}
       }
     }
     Fl_Group {} {
@@ -693,11 +845,63 @@ redraw();}
         xywh {590 130 100 25}
       }
     }
+    Fl_Button {} {
+      label {Close Frame}
+      callback {win5->hide();}
+      xywh {750 330 110 25}
+    }
+  }
+  Fl_Window win6 {open
+    xywh {466 158 655 465} type Double resizable visible
+  } {
+    Fl_Box {} {
+      label {FLTK OpenCalphad -- Condition}
+      xywh {15 15 625 30} box ENGRAVED_BOX labeltype ENGRAVED_LABEL
+    }
+    Fl_Group {} {
+      label {Set-Condition} open
+      xywh {15 105 625 315} box DOWN_BOX labeltype ENGRAVED_LABEL resizable
+    } {
+      Fl_Input input_var_set_condition {
+        label {set-con}
+        xywh {90 135 535 25}
+        code1 {input_var_set_condition->value( "t=1000 p=1e5 n=1 x(c)=0.2 " );}
+      }
+      Fl_Input input_var_calc_ymin {
+        label Ymin
+        xywh {90 280 535 25}
+        code1 {input_var_calc_ymin->value( "500" );}
+      }
+      Fl_Input input_var_calc_ymax {
+        label Ymax
+        xywh {90 310 535 25}
+        code1 {input_var_calc_ymax->value( "2000" );}
+      }
+      Fl_Input input_var_calc_ystep {
+        label Ystep
+        xywh {90 340 535 25}
+        code1 {input_var_calc_ystep->value( "10" );}
+      }
+      Fl_Input input_var_calc_xmin {
+        label Xmin
+        xywh {90 195 535 25}
+        code1 {input_var_calc_xmin->value( "0" );}
+      }
+      Fl_Input input_var_calc_xmax {
+        label Xmax
+        xywh {90 225 535 25}
+        code1 {input_var_calc_xmax->value( "0.25" );}
+      }
+    }
+    Fl_Button {} {
+      label {Close Frame}
+      callback {win6->hide();}
+      xywh {530 430 110 25}
+    }
   }
 }
 
-Function {addkeypress( int keypress )} {open
-} {
+Function {addkeypress( int keypress )} {} {
   code {//char str[PATH_MAX]; 
    //snprintf( str , sizeof( str ), "%s%c", inputline->value() , keypress ); 
    //inputline->value( str  );} {}
@@ -705,22 +909,26 @@ Function {addkeypress( int keypress )} {open
 
 Function {main( int argc, char *argv[])} {open return_type int
 } {
-  code {// working dir 
+  code {char mydirnow[2500];  
+  strncpy( inipath , getcwd( mydirnow, 2500 ), 2500 );
+  
+  // working dir 
   if ( argc == 2)
   if ( strcmp( argv[1] , "" ) !=  0 )
   {
           chdir( argv[ 1 ] );
   }
-  
-  char mydirnow[2500];
   printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
+  strncpy( userpath , getcwd( mydirnow, 2500 ), 2500 );
+
 
   // vars
-  strncpy( var_system, "", PATH_MAX);
-  
+  strncpy( var_system, "fe c ", PATH_MAX);
+  //output_system->value( var_system );  <- seg.
 
   make_window();
   win1->show();
 
-  Fl::run();} {}
+  Fl::run();} {selected
+  }
 }

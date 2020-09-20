@@ -26,18 +26,19 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-/////////////////////////////////////////////////////// 
-/////////////////////////////////////////////////////// 
 
 
 
-#include <unistd.h>
+
+
+#include <stdio.h>   
 #include <time.h>
 #include <math.h>
+#include <unistd.h>
+
 #include <FL/Fl.H>
 #include <FL/Fl_Window.H>
 #include <FL/Fl_Box.H>
-#include <stdio.h>   
 #include <FL/Fl_Box.H>
 
 #include <FL/Fl_Input.H>
@@ -51,6 +52,14 @@ char var_calc_y[PATH_MAX];
 char var_plot_x[PATH_MAX];
 char var_plot_y[PATH_MAX];
 char var_tdb_database[PATH_MAX];
+int  var_calc_number_element = 2 ; 
+
+
+
+char inipath[2500];
+char userpath[2500];
+
+
 
 
 ///////////////////////////////////////////
@@ -99,7 +108,6 @@ void nlsgrep( const char *pattern )
 
 
 
-
 void filegrep(  const char *filein , const char *pattern )
 {
   int i;
@@ -140,10 +148,6 @@ void filegrep(  const char *filein , const char *pattern )
 
 
 
-
-
-
-
 void nsystem( const char *mycmd )
 {
 	printf( "1.System Command %s>\n", mycmd );
@@ -163,6 +167,30 @@ void clear_plot(  )
         fp = fopen( "ocgnu.plt" , "wb+");
         fclose( fp );
 }
+
+
+
+
+
+
+void add_new_element( const char *pattern)
+{
+ printf(">Add new element!\n");
+ 
+ char charo[PATH_MAX];
+ char curcontent[PATH_MAX];
+
+ if( var_calc_number_element >= 2 )
+ {  
+    
+    strncpy( curcontent, input_var_set_condition->value( ), PATH_MAX );
+    snprintf( charo , sizeof( charo ), "x(%s)=0.01 ", pattern  );
+    strncat( curcontent , charo , PATH_MAX - strlen( curcontent ) -1 );
+    input_var_set_condition->value( curcontent );
+ }
+}  
+
+
 
 
 
@@ -194,20 +222,34 @@ void create_macro(  )
         fputs( "\n", fp );
         fputs( "\n", fp );
 
+   //  input_var_set_condition->value( "t=1000 p=1e5 n=1 x(c)=0.2 " );   
+   //  The default one for fe-c:
+   //  snprintf( charo , sizeof(charo ), "set cond t=1000 p=1e5 n=1 x(%s)=0.2",  var_calc_x  );
+   //  fputs( charo , fp );
+   //  fputs( "\n", fp );
 
-        snprintf( charo , sizeof(charo ), "set cond t=1000 p=1e5 n=1 x(%s)=0.2",  var_calc_x  );
+        strncpy( charo, "", PATH_MAX );     
+        snprintf( charo , sizeof( charo ), " set cond %s ",  input_var_set_condition->value()    );
         fputs( charo , fp );
         fputs( "\n", fp );
 
         fputs( "c e\n", fp ); fputs( "\n", fp );
         fputs( "l r 1\n", fp ); fputs( "\n", fp );
 
-        snprintf( charo , sizeof(charo ), "set ax 1 x(%s) 0 0.25 ,,,",  var_calc_x  );
+
+        // input_var_calc_x and input_var_calc_y  
+        strncpy( charo, "", PATH_MAX );
+        //snprintf( charo , sizeof( charo ), "set ax 1 x(%s) 0 0.25 ,,,",   input_var_calc_x->value()   );
+        snprintf( charo , sizeof( charo ), "set ax 1 x(%s) %s %s ,,,",   input_var_calc_x->value() ,
+        input_var_calc_xmin->value(),   input_var_calc_xmax->value() );
         fputs( charo , fp );
         fputs( "\n", fp );
         fputs( "\n", fp );
 
-        snprintf( charo , sizeof(charo ), "set ax 2 t 500 2000 10" );
+        //snprintf( charo , sizeof( charo ), "set ax 2 t 500 2000 10" );
+        strncpy(  charo, "", PATH_MAX );
+        snprintf( charo , sizeof( charo ), "set ax 2 %s %s %s %s",   input_var_calc_y->value() , 
+        input_var_calc_ymin->value(),   input_var_calc_ymax->value(),  input_var_calc_ystep->value()      );
         fputs( charo , fp );
         fputs( "\n", fp );
         fputs( "\n", fp );
@@ -234,6 +276,9 @@ void create_macro(  )
         fclose( fp );
 	printf( "2.Create Macro\n" );
 }
+
+
+
 
 
 void ncp( const char *filetarget,  const char *  filesource )
