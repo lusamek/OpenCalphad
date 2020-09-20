@@ -93,7 +93,7 @@ The "Database" panel allows to select the database (*.tdb file). It allows to li
 The "Macro" panel allows to edit and run a list of commands.
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/flopencalphad-4.png)
 
-The "Set-Condition" panel allows to give the initial parameters.
+The panel for "Set-Condition" allows to give the initial parameters.
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/flopencalphad-5.png)
 
 
