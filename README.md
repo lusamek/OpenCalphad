@@ -79,7 +79,7 @@ The "Makefile" allows to compile flopencalphad on Mac, Linux, and BSD/Unix.<br/>
 This project is downloaded on the host machine or Unix/Linux/Mac. 
 The ZIP file needs to be decompressed.
 It requires the FLTK library and C++ compiler (e.g. CLANG or GCC). 
-In order to create the executable, the compilation is possible with ` make all`. <br/>
+In order to create the executables, the compilation is possible with ` make all`. <br/>
 The installation is possible with ` make install `. 
 This will install the
 files into the directory /usr/local/bin/.
