@@ -19,6 +19,8 @@
 
 int main(int argc, char **argv)
 {
+        printf( "Example:  cd directory ; telserver \n");
+
 	int	listenfd, connfd, fd, pid, n, size;
 	struct sockaddr_in servaddr;
 	char buf[BUFSIZE],fname[50],command[50];

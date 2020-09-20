@@ -20,15 +20,18 @@
 
 int main(int argc, char **argv)
 {
+        printf( "Example: telclient 127.0.0.1 \n");
+
 	int sockfd, fd, n, size,count=0;
 	long int size1,size2;
 	char buf[BUFSIZE], fname[50], command[50];
 	struct sockaddr_in servaddr;
 	struct stat stat_buf;
 
-	if (argc != 2) {
-	printf("Usage: %s server_address", argv[0]);
-	exit(1);
+	if (argc != 2) 
+	{
+	    printf("Usage: %s server_address", argv[0]);
+   	    exit(1);
 	}
 
 	printf("11\n");

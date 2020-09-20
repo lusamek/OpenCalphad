@@ -10,3 +10,13 @@ install:
 	   cp flopencalphad /usr/local/bin/flopencalphad 
 
 
+telnet:
+	   cc telclient.c -o telclient 
+	   cc telserver.c -o telserver  
+
+install-telnet:
+	   cp telserver        /usr/local/bin/telserver  
+	   cp telclient        /usr/local/bin/telclient  
+
+
+
