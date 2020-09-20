@@ -62,9 +62,61 @@ char userpath[2500];
 
 
 
-///////////////////////////////////////////
-///////////////////////////////////////////
-///////////////////////////////////////////
+   
+
+#include <fcntl.h>
+#include <unistd.h>
+static int cat_fd(int fd) 
+{
+  char buf[4096];
+  ssize_t nread;
+
+  while ((nread = read(fd, buf, sizeof buf)) > 0) 
+  {
+    ssize_t ntotalwritten = 0;
+    while (ntotalwritten < nread) {
+      ssize_t nwritten = write(STDOUT_FILENO, buf + ntotalwritten, nread - ntotalwritten);
+      if (nwritten < 1)
+        return -1;
+      ntotalwritten += nwritten;
+    }
+  }
+  return nread == 0 ? 0 : -1;
+}
+/////////////////
+static int ncat_static(const char *fname) 
+{
+  int fd, success;
+  if ((fd = open(fname, O_RDONLY)) == -1)
+    return -1;
+
+  success = cat_fd(fd);
+
+  if (close(fd) != 0)
+    return -1;
+
+  return success;
+}
+
+
+
+
+
+
+
+void ncat( const char* pattern )
+{
+      printf( "File exist (%s) (%d)\n", pattern , fexist( pattern ) );
+      if ( fexist( pattern )  == 1 )
+      {
+              ncat_static( pattern );
+      }
+}
+
+
+
+
+
 void nls()
 { 
 	DIR *dirp;
@@ -148,11 +200,32 @@ void filegrep(  const char *filein , const char *pattern )
 
 
 
+
 void nsystem( const char *mycmd )
 {
 	printf( "1.System Command %s>\n", mycmd );
 	system( mycmd );
 	printf( "2.System Command %s>\n", mycmd );
+}
+
+
+
+void nrun( const char *mycmd, const char *myfile )
+{
+	printf( "============================\n" );
+	printf( "   VIM                      \n" );
+	printf( "============================\n" );
+	char cmdi[PATH_MAX];
+	strncpy( cmdi , mycmd , PATH_MAX );
+	strncat( cmdi , " " , PATH_MAX - strlen( cmdi ) -1 );
+	strncat( cmdi , " \""  , PATH_MAX - strlen( cmdi ) -1 );
+	strncat( cmdi , myfile , PATH_MAX - strlen( cmdi ) -1 );
+	strncat( cmdi , "\" "  , PATH_MAX - strlen( cmdi ) -1 );
+	strncat( cmdi , " " , PATH_MAX - strlen( cmdi ) -1 );
+	nsystem( cmdi ); 
+	printf( "============================\n" );
+	printf( "   VIM (Completed)          \n" );
+	printf( "============================\n" );
 }
 
 

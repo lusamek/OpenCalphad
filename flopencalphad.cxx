@@ -581,6 +581,11 @@ static void cb_Function(Fl_Button*, void*) {
   filegrep( var_tdb_database , "FUNCTION " );
 }
 
+static void cb_Cat(Fl_Button*, void*) {
+  redraw();
+  ncat( var_tdb_database );
+}
+
 static void cb_Close(Fl_Button*, void*) {
   win2->hide();
 }
@@ -595,7 +600,7 @@ static void cb_xterm(Fl_Button*, void*) {
   nsystem( " screen -d -m xterm " );
 }
 
-static void cb_calc(Fl_Button*, void*) {
+static void cb_fl48(Fl_Button*, void*) {
   nsystem( " screen -d -m fl48 " );
 }
 
@@ -616,6 +621,10 @@ static void cb_Path1(Fl_Button*, void*) {
 
 static void cb_rox(Fl_Button*, void*) {
   nsystem( " rox " );
+}
+
+static void cb_x48(Fl_Button*, void*) {
+  nsystem( " screen -d -m x48 " );
 }
 
 static void cb_ccode(Fl_Button*, void*) {
@@ -652,6 +661,69 @@ static void cb_Userpath(Fl_Button*, void*) {
 
 static void cb_Close1(Fl_Button*, void*) {
   win3->hide();
+}
+
+static void cb_VIM(Fl_Button*, void*) {
+  redraw();
+  
+  nrun( " vim " ,  input_var_macro_filename->value() );
+}
+
+static void cb_VIM1(Fl_Button*, void*) {
+  redraw();
+  
+  nrun( " vim " , "macro.ocm" );
+}
+
+static void cb_VIM2(Fl_Button*, void*) {
+  redraw();
+  
+  nrun( " vim " , input_var_tdb_database->value(  ) );
+}
+
+static void cb_41(Fl_Button*, void*) {
+  char mydirnow[2500];
+  printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
+
+
+
+  redraw();
+  nsystem(  "  screen -d  -m  gnuplot ocgnu.plt  " );
+  
+  
+  // oc6 bug 
+  // gnuplot ocgnu.plt  &;
+}
+
+static void cb_31(Fl_Button*, void*) {
+  char mydirnow[2500];
+  printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
+
+
+
+  redraw();
+  nsystem(  "  screen -d  -m   xterm -e   oc   macro.ocm " );
+  
+  // oc6 bug 
+  // gnuplot ocgnu.plt  &;
+}
+
+static void cb_GnuPlot(Fl_Button*, void*) {
+  char mydirnow[2500];
+  printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
+
+
+
+  redraw();
+  
+  printf(   "Export Result on Solaris/Unix/BSD Simulation Station\n" );
+  
+  nsystem(  " env DISPLAY=192.168.1.2:0    screen -d  -m  gnuplot ocgnu.plt  " );
+  
+  
+  
+  // oc6 bug 
+  // gnuplot ocgnu.plt  &;
 }
 
 Fl_Double_Window *win4=(Fl_Double_Window *)0;
@@ -781,6 +853,12 @@ static void cb_View1(Fl_Button*, void*) {
   strncat( charo , input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "\" " , PATH_MAX -  strlen( charo ) -1 );
   nsystem(  charo );
+}
+
+static void cb_Cat1(Fl_Button*, void*) {
+  redraw();
+  
+  ncat( input_var_macro_filename->value() );
 }
 
 static void cb_Close4(Fl_Button*, void*) {
@@ -1003,7 +1081,7 @@ Fl_Double_Window* make_window() {
     { Fl_Group* o = new Fl_Group(415, 95, 450, 215, "Database");
       o->box(FL_DOWN_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
-      { Fl_Button* o = new Fl_Button(525, 145, 50, 25, "&Edit");
+      { Fl_Button* o = new Fl_Button(525, 175, 50, 25, "&Edit");
         o->callback((Fl_Callback*)cb_Edit);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(580, 115, 50, 25, "ls tdb");
@@ -1021,7 +1099,7 @@ Fl_Double_Window* make_window() {
       { Fl_Button* o = new Fl_Button(580, 145, 50, 25, "Path");
         o->callback((Fl_Callback*)cb_Path);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(525, 115, 50, 25, "&View");
+      { Fl_Button* o = new Fl_Button(525, 145, 50, 25, "&View");
         o->callback((Fl_Callback*)cb_View);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(635, 175, 75, 25, "&Phase");
@@ -1033,6 +1111,9 @@ Fl_Double_Window* make_window() {
       { Fl_Button* o = new Fl_Button(635, 235, 75, 25, "&Function");
         o->callback((Fl_Callback*)cb_Function);
       } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(525, 115, 50, 25, "&Cat");
+        o->callback((Fl_Callback*)cb_Cat);
+      } // Fl_Button* o
       o->end();
     } // Fl_Group* o
     { Fl_Button* o = new Fl_Button(755, 320, 110, 25, "Close Frame");
@@ -1041,7 +1122,7 @@ Fl_Double_Window* make_window() {
     win2->end();
     win2->resizable(win2);
   } // Fl_Double_Window* win2
-  { win3 = new Fl_Double_Window(400, 435);
+  { win3 = new Fl_Double_Window(405, 475);
     { Fl_Box* o = new Fl_Box(10, 15, 380, 35, "FLTK OpenCalphad -- Option");
       o->box(FL_ENGRAVED_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
@@ -1055,8 +1136,8 @@ Fl_Double_Window* make_window() {
       { Fl_Button* o = new Fl_Button(85, 115, 50, 25, "&xterm");
         o->callback((Fl_Callback*)cb_xterm);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(195, 145, 50, 25, "&calc");
-        o->callback((Fl_Callback*)cb_calc);
+      { Fl_Button* o = new Fl_Button(195, 145, 50, 25, "&fl48");
+        o->callback((Fl_Callback*)cb_fl48);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(195, 115, 50, 25, "&fledit");
         o->callback((Fl_Callback*)cb_fledit);
@@ -1067,25 +1148,51 @@ Fl_Double_Window* make_window() {
       { Fl_Button* o = new Fl_Button(85, 150, 50, 25, "rox");
         o->callback((Fl_Callback*)cb_rox);
       } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(250, 145, 50, 25, "x48");
+        o->callback((Fl_Callback*)cb_x48);
+      } // Fl_Button* o
       o->end();
     } // Fl_Group* o
-    { Fl_Group* o = new Fl_Group(10, 230, 375, 160, "Debug -- Development");
+    { Fl_Group* o = new Fl_Group(10, 210, 375, 55, "Debug");
       o->box(FL_DOWN_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
-      { Fl_Button* o = new Fl_Button(20, 245, 100, 25, "ccode");
+      { Fl_Button* o = new Fl_Button(20, 225, 100, 25, "ccode");
         o->callback((Fl_Callback*)cb_ccode);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(20, 275, 100, 25, "Inipath");
+      { Fl_Button* o = new Fl_Button(130, 225, 100, 25, "Inipath");
         o->callback((Fl_Callback*)cb_Inipath);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(20, 305, 100, 25, "Userpath");
+      { Fl_Button* o = new Fl_Button(245, 225, 100, 25, "Userpath");
         o->callback((Fl_Callback*)cb_Userpath);
       } // Fl_Button* o
       o->end();
     } // Fl_Group* o
-    { Fl_Button* o = new Fl_Button(275, 395, 110, 25, "Close Frame");
+    { Fl_Button* o = new Fl_Button(280, 435, 110, 30, "&Close Frame");
       o->callback((Fl_Callback*)cb_Close1);
     } // Fl_Button* o
+    { Fl_Group* o = new Fl_Group(10, 295, 375, 125, "Development");
+      o->box(FL_DOWN_BOX);
+      o->labeltype(FL_ENGRAVED_LABEL);
+      { Fl_Button* o = new Fl_Button(145, 310, 90, 25, "VIM &Macro");
+        o->callback((Fl_Callback*)cb_VIM);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(40, 310, 90, 25, "&VIM SIM");
+        o->callback((Fl_Callback*)cb_VIM1);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(250, 310, 110, 25, "VIM &Database");
+        o->callback((Fl_Callback*)cb_VIM2);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(215, 345, 145, 25, "[&4] Plot!");
+        o->callback((Fl_Callback*)cb_41);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(40, 345, 150, 25, "[&3] Compute!");
+        o->callback((Fl_Callback*)cb_31);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(40, 380, 320, 25, "GnuPlot XForward/Unix");
+        o->callback((Fl_Callback*)cb_GnuPlot);
+      } // Fl_Button* o
+      o->end();
+    } // Fl_Group* o
     win3->end();
     win3->resizable(win3);
   } // Fl_Double_Window* win3
@@ -1126,17 +1233,20 @@ Fl_Double_Window* make_window() {
     { Fl_Group* o = new Fl_Group(15, 80, 370, 60, "Macro");
       o->box(FL_DOWN_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
-      { Fl_Button* o = new Fl_Button(35, 100, 70, 25, "Browse");
+      { Fl_Button* o = new Fl_Button(25, 100, 70, 25, "Browse");
         o->callback((Fl_Callback*)cb_Browse1);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(175, 100, 50, 25, "&Edit");
+      { Fl_Button* o = new Fl_Button(210, 100, 50, 25, "&Edit");
         o->callback((Fl_Callback*)cb_Edit1);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(235, 100, 135, 25, "&Use macro");
+      { Fl_Button* o = new Fl_Button(265, 100, 110, 25, "&Use macro");
         o->callback((Fl_Callback*)cb_Use);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(115, 100, 50, 25, "&View");
+      { Fl_Button* o = new Fl_Button(155, 100, 50, 25, "&View");
         o->callback((Fl_Callback*)cb_View1);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(100, 100, 50, 25, "&Cat");
+        o->callback((Fl_Callback*)cb_Cat1);
       } // Fl_Button* o
       o->end();
     } // Fl_Group* o

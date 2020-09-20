@@ -38,7 +38,7 @@ Function {make_window()} {open
 } {
   Fl_Window win1 {
     label Notes open
-    xywh {592 69 775 700} type Double resizable visible
+    xywh {284 86 775 700} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad}
@@ -492,7 +492,7 @@ create_macro( );}
     }
   }
   Fl_Window win2 {open
-    xywh {340 189 875 355} type Double resizable visible
+    xywh {358 189 875 355} type Double hide resizable
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Database}
@@ -542,7 +542,7 @@ redraw();}
   strncat( charo , var_tdb_database , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
   nsystem(  charo );}
-        xywh {525 145 50 25}
+        xywh {525 175 50 25}
       }
       Fl_Button {} {
         label {ls tdb}
@@ -644,7 +644,7 @@ redraw();}
   strncat( charo , var_tdb_database , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
   nsystem(  charo );}
-        xywh {525 115 50 25}
+        xywh {525 145 50 25}
       }
       Fl_Button {} {
         label {&Phase}
@@ -671,7 +671,7 @@ redraw();}
   
   
   
-  filegrep( var_tdb_database , "FUN " );} selected
+  filegrep( var_tdb_database , "FUN " );}
         xywh {635 205 75 25}
       }
       Fl_Button {} {
@@ -688,6 +688,12 @@ redraw();}
   filegrep( var_tdb_database , "FUNCTION " );}
         xywh {635 235 75 25}
       }
+      Fl_Button {} {
+        label {&Cat}
+        callback {redraw();
+  ncat( var_tdb_database );}
+        xywh {525 115 50 25}
+      }
     }
     Fl_Button {} {
       label {Close Frame}
@@ -695,8 +701,8 @@ redraw();}
       xywh {755 320 110 25}
     }
   }
-  Fl_Window win3 {
-    xywh {696 543 400 435} type Double hide resizable
+  Fl_Window win3 {open
+    xywh {1346 237 405 475} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Option}
@@ -717,7 +723,7 @@ redraw();}
         xywh {85 115 50 25}
       }
       Fl_Button {} {
-        label {&calc}
+        label {&fl48}
         callback {nsystem( " screen -d -m fl48 " );}
         xywh {195 145 50 25}
       }
@@ -743,15 +749,20 @@ redraw();}
         callback {nsystem( " rox " );}
         xywh {85 150 50 25}
       }
+      Fl_Button {} {
+        label x48
+        callback {nsystem( " screen -d -m x48 " );}
+        xywh {250 145 50 25}
+      }
     }
     Fl_Group {} {
-      label {Debug -- Development} open
-      xywh {10 230 375 160} box DOWN_BOX labeltype ENGRAVED_LABEL
+      label Debug open
+      xywh {10 210 375 55} box DOWN_BOX labeltype ENGRAVED_LABEL
     } {
       Fl_Button {} {
         label ccode
         callback {nsystem( " screen -d -m fledit flopencalphad_def.h  " );}
-        xywh {20 245 100 25}
+        xywh {20 225 100 25}
       }
       Fl_Button {} {
         label Inipath
@@ -766,7 +777,7 @@ redraw();}
   
   char mydirnow[2500];
   printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );}
-        xywh {20 275 100 25}
+        xywh {130 225 100 25}
       }
       Fl_Button {} {
         label Userpath
@@ -781,17 +792,91 @@ redraw();}
   
   char mydirnow[2500];
   printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );}
-        xywh {20 305 100 25}
+        xywh {245 225 100 25}
       }
     }
     Fl_Button {} {
-      label {Close Frame}
+      label {&Close Frame}
       callback {win3->hide();}
-      xywh {275 395 110 25}
+      xywh {280 435 110 30}
+    }
+    Fl_Group {} {
+      label Development open
+      xywh {10 295 375 125} box DOWN_BOX labeltype ENGRAVED_LABEL
+    } {
+      Fl_Button {} {
+        label {VIM &Macro}
+        callback {redraw();
+  
+  nrun( " vim " ,  input_var_macro_filename->value() );}
+        xywh {145 310 90 25}
+      }
+      Fl_Button {} {
+        label {&VIM SIM}
+        callback {redraw();
+  
+  nrun( " vim " , "macro.ocm" );}
+        xywh {40 310 90 25}
+      }
+      Fl_Button {} {
+        label {VIM &Database}
+        callback {redraw();
+  
+  nrun( " vim " , input_var_tdb_database->value(  ) );}
+        xywh {250 310 110 25}
+      }
+      Fl_Button {} {
+        label {[&4] Plot!}
+        callback {char mydirnow[2500];
+  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
+
+
+
+  redraw();
+  nsystem(  "  screen -d  -m  gnuplot ocgnu.plt  " );
+  
+  
+  // oc6 bug 
+  // gnuplot ocgnu.plt  &} selected
+        xywh {215 345 145 25}
+      }
+      Fl_Button {} {
+        label {[&3] Compute!}
+        callback {char mydirnow[2500];
+  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
+
+
+
+  redraw();
+  nsystem(  "  screen -d  -m   xterm -e   oc   macro.ocm " );
+  
+  // oc6 bug 
+  // gnuplot ocgnu.plt  &}
+        xywh {40 345 150 25}
+      }
+      Fl_Button {} {
+        label {GnuPlot XForward/Unix}
+        callback {char mydirnow[2500];
+  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
+
+
+
+  redraw();
+  
+  printf(   "Export Result on Solaris/Unix/BSD Simulation Station\\n" );
+  
+  nsystem(  " env DISPLAY=192.168.1.2:0    screen -d  -m  gnuplot ocgnu.plt  " );
+  
+  
+  
+  // oc6 bug 
+  // gnuplot ocgnu.plt  &}
+        xywh {40 380 320 25}
+      }
     }
   }
   Fl_Window win4 {
-    xywh {584 246 830 330} type Double hide
+    xywh {586 248 830 330} type Double hide
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Plot}
@@ -814,7 +899,7 @@ redraw();}
     }
   }
   Fl_Window win5 {open
-    xywh {392 284 850 485} type Double resizable visible
+    xywh {491 537 850 485} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Macro}
@@ -905,7 +990,7 @@ redraw();}
                 }
 	}
 	closedir( dirp );}
-        xywh {35 100 70 25}
+        xywh {25 100 70 25}
       }
       Fl_Button {} {
         label {&Edit}
@@ -919,7 +1004,7 @@ redraw();}
   strncat( charo , input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
   nsystem(  charo );}
-        xywh {175 100 50 25}
+        xywh {210 100 50 25}
       }
       Fl_Button {} {
         label {&Use macro}
@@ -935,7 +1020,7 @@ redraw();}
   
 
   ncp( "macro.ocm" ,   input_var_macro_filename->value() );}
-        xywh {235 100 135 25}
+        xywh {265 100 110 25}
       }
       Fl_Button {} {
         label {&View}
@@ -949,7 +1034,14 @@ redraw();}
   strncat( charo , input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
   nsystem(  charo );}
-        xywh {115 100 50 25}
+        xywh {155 100 50 25}
+      }
+      Fl_Button {} {
+        label {&Cat}
+        callback {redraw();
+  
+  ncat( input_var_macro_filename->value() );}
+        xywh {100 100 50 25}
       }
     }
     Fl_Button {} {
