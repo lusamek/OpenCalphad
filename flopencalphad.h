@@ -24,6 +24,7 @@ extern Fl_Double_Window *win4;
 extern Fl_Double_Window *win5;
 extern Fl_Browser *browser2;
 extern Fl_Input *input_var_macro_filename;
+extern Fl_Browser *browser_macro_filecontent;
 extern Fl_Double_Window *win6;
 extern Fl_Input *input_var_set_condition;
 extern Fl_Input *input_var_calc_ymin;

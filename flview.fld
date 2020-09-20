@@ -1,0 +1,97 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0304
+header_name {.h}
+code_name {.cxx}
+decl {\#include <stdio.h>} {private local
+}
+
+decl {\#include <stdlib.h>} {private local
+}
+
+decl {\#include "ccode.h"} {private local
+}
+
+decl {char user_arg1[PATH_MAX];} {private local
+}
+
+Function {loadpanel( const char *pattern )} {open
+} {
+  code {printf("Load Panel!\\n");
+
+
+  
+  int fetchi;
+  FILE *fp5;
+  FILE *fp6;
+  char fetchline[PATH_MAX];
+  char fetchlinetmp[PATH_MAX];
+
+    fbrow->clear( );    
+    
+    fp6 = fopen( pattern , "rb");
+    while( !feof(fp6) ) 
+    {
+          fgets(fetchlinetmp, PATH_MAX, fp6); 
+          strncpy( fetchline, "" , PATH_MAX );
+          for( fetchi = 0 ; ( fetchi <= strlen( fetchlinetmp ) ); fetchi++ )
+            if ( fetchlinetmp[ fetchi ] != '\\n' )
+                 fetchline[fetchi]=fetchlinetmp[fetchi];
+                 
+                if ( !feof( fp6 ) ) 
+                {
+                 fbrow->add( fetchline );    
+                }
+
+     }
+     fclose( fp6 );} {}
+}
+
+Function {make_window()} {open
+} {
+  Fl_Window win1 {open
+    xywh {379 200 875 655} type Double hide resizable
+  } {
+    Fl_Button {} {
+      label {&Cancel}
+      callback {exit( 0 );}
+      xywh {735 625 135 25} labelfont 1
+    }
+    Fl_Button {} {
+      label {&Load}
+      callback {loadpanel( user_arg1 );}
+      xywh {595 625 135 25}
+    }
+    Fl_Browser fbrow {
+      xywh {25 25 825 585}
+      code2 {fbrow->type(FL_HOLD_BROWSER);}
+    }
+  }
+}
+
+Function {main( int argc, char *argv[])} {open return_type int
+} {
+  code {printf( " == FLVIEW == \\n" );
+
+  char mydirnow[2500];
+  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
+ 
+  char filein[PATH_MAX];
+  char filesource[PATH_MAX];
+  strncpy( filesource , "/etc/hostname" , PATH_MAX );
+  strncpy( filein ,     filesource , PATH_MAX );
+  if ( argc == 2)
+  if ( strcmp( argv[1] , "" ) !=  0 ) 
+  {
+          strncpy( filein, argv[ 1 ], PATH_MAX );
+          strncpy( filesource , argv[ 1 ], PATH_MAX );
+  }
+  strncpy( user_arg1, filein , PATH_MAX );
+ 
+  make_window();
+  
+  loadpanel(   filein   );
+  
+  win1->show();
+  Fl::run();} {selected
+  }
+}

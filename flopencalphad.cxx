@@ -406,6 +406,10 @@ static void cb_Condition(Fl_Button*, void*) {
   win6->show();
 }
 
+static void cb_Help(Fl_Button*, void*) {
+  nsystem(  " screen -d -m dillo http://github.com/lusamek/opencalphad " );
+}
+
 Fl_Double_Window *win2=(Fl_Double_Window *)0;
 
 Fl_Browser *browser1=(Fl_Browser *)0;
@@ -525,6 +529,19 @@ static void cb_Path(Fl_Button*, void*) {
   printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
 }
 
+static void cb_View(Fl_Button*, void*) {
+  redraw();
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  flview   " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , var_tdb_database , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );
+}
+
 static void cb_Close(Fl_Button*, void*) {
   win2->hide();
 }
@@ -619,6 +636,38 @@ static void cb_browser2(Fl_Browser*, void*) {
  input_var_macro_filename->value(  browser2->text(   browser2->value() ) ); 
 
 
+
+  
+  int fetchi;
+  FILE *fp5;
+  FILE *fp6;
+  char fetchline[PATH_MAX];
+  char fetchlinetmp[PATH_MAX];
+  char filein[PATH_MAX];
+  strncpy( filein,   input_var_macro_filename->value(), PATH_MAX );
+  
+  
+    browser_macro_filecontent->clear();
+    
+    fp6 = fopen( filein , "rb");
+    while( !feof(fp6) ) 
+    {
+          fgets(fetchlinetmp, PATH_MAX, fp6); 
+          strncpy( fetchline, "" , PATH_MAX );
+          for( fetchi = 0 ; ( fetchi <= strlen( fetchlinetmp ) ); fetchi++ )
+            if ( fetchlinetmp[ fetchi ] != '\n' )
+                 fetchline[fetchi]=fetchlinetmp[fetchi];
+                 
+                if ( !feof( fp6 ) ) 
+                {
+                    browser_macro_filecontent->add( fetchline );    
+                }
+
+     }
+     fclose( fp6 );
+
+  
+ 
  redraw();
 }
 
@@ -682,9 +731,24 @@ static void cb_Use(Fl_Button*, void*) {
   ncp( "macro.ocm" ,   input_var_macro_filename->value() );
 }
 
+static void cb_View1(Fl_Button*, void*) {
+  redraw();
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  flview   " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );
+}
+
 static void cb_Close4(Fl_Button*, void*) {
   win5->hide();
 }
+
+Fl_Browser *browser_macro_filecontent=(Fl_Browser *)0;
 
 Fl_Double_Window *win6=(Fl_Double_Window *)0;
 
@@ -828,7 +892,6 @@ Fl_Double_Window* make_window() {
         o->callback((Fl_Callback*)cb_CA3);
       } // Fl_Button* o
       o->end();
-      Fl_Group::current()->resizable(o);
     } // Fl_Group* o
     { Fl_Button* o = new Fl_Button(640, 650, 95, 30, "&Quit");
       o->callback((Fl_Callback*)cb_Quit);
@@ -857,6 +920,7 @@ Fl_Double_Window* make_window() {
       o->box(FL_DOWN_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
       o->end();
+      Fl_Group::current()->resizable(o);
     } // Fl_Group* o
     { Fl_Button* o = new Fl_Button(30, 650, 80, 30, "&Database");
       o->callback((Fl_Callback*)cb_Database);
@@ -869,6 +933,9 @@ Fl_Double_Window* make_window() {
     } // Fl_Button* o
     { Fl_Button* o = new Fl_Button(120, 650, 80, 30, "&Condition");
       o->callback((Fl_Callback*)cb_Condition);
+    } // Fl_Button* o
+    { Fl_Button* o = new Fl_Button(470, 650, 80, 30, "Help");
+      o->callback((Fl_Callback*)cb_Help);
     } // Fl_Button* o
     win1->end();
   } // Fl_Double_Window* win1
@@ -897,7 +964,7 @@ Fl_Double_Window* make_window() {
     { Fl_Group* o = new Fl_Group(415, 95, 450, 215, "Database");
       o->box(FL_DOWN_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
-      { Fl_Button* o = new Fl_Button(440, 115, 50, 25, "&Edit");
+      { Fl_Button* o = new Fl_Button(440, 145, 50, 25, "&Edit");
         o->callback((Fl_Callback*)cb_Edit);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(495, 115, 50, 25, "ls tdb");
@@ -914,6 +981,9 @@ Fl_Double_Window* make_window() {
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(495, 145, 50, 25, "Path");
         o->callback((Fl_Callback*)cb_Path);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(440, 115, 50, 25, "&View");
+        o->callback((Fl_Callback*)cb_View);
       } // Fl_Button* o
       o->end();
     } // Fl_Group* o
@@ -989,42 +1059,52 @@ Fl_Double_Window* make_window() {
     } // Fl_Button* o
     win4->end();
   } // Fl_Double_Window* win4
-  { win5 = new Fl_Double_Window(880, 365);
-    { Fl_Box* o = new Fl_Box(25, 15, 835, 35, "FLTK OpenCalphad -- Macro");
+  { win5 = new Fl_Double_Window(850, 485);
+    { Fl_Box* o = new Fl_Box(15, 15, 820, 35, "FLTK OpenCalphad -- Macro");
       o->box(FL_ENGRAVED_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
     } // Fl_Box* o
-    { Fl_Group* o = new Fl_Group(25, 110, 390, 215, "Browser");
+    { Fl_Group* o = new Fl_Group(15, 175, 370, 270, "Browser");
       o->box(FL_DOWN_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
-      { browser2 = new Fl_Browser(35, 125, 370, 155);
+      { browser2 = new Fl_Browser(35, 220, 330, 215);
         browser2->callback((Fl_Callback*)cb_browser2);
-        Fl_Group::current()->resizable(browser2);
         browser2->type(FL_HOLD_BROWSER);
       } // Fl_Browser* browser2
-      { input_var_macro_filename = new Fl_Input(105, 290, 295, 25, "Filename");
+      { input_var_macro_filename = new Fl_Input(100, 185, 265, 25, "Filename");
       } // Fl_Input* input_var_macro_filename
       o->end();
     } // Fl_Group* o
-    { Fl_Group* o = new Fl_Group(430, 110, 430, 215, "Macro");
+    { Fl_Group* o = new Fl_Group(15, 80, 370, 60, "Macro");
       o->box(FL_DOWN_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
-      { Fl_Button* o = new Fl_Button(450, 130, 70, 25, "Browse");
+      { Fl_Button* o = new Fl_Button(35, 100, 70, 25, "Browse");
         o->callback((Fl_Callback*)cb_Browse1);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(530, 130, 50, 25, "&Edit");
+      { Fl_Button* o = new Fl_Button(175, 100, 50, 25, "&Edit");
         o->callback((Fl_Callback*)cb_Edit1);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(590, 130, 100, 25, "&Use macro");
+      { Fl_Button* o = new Fl_Button(235, 100, 135, 25, "&Use macro");
         o->callback((Fl_Callback*)cb_Use);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(115, 100, 50, 25, "&View");
+        o->callback((Fl_Callback*)cb_View1);
       } // Fl_Button* o
       o->end();
     } // Fl_Group* o
-    { Fl_Button* o = new Fl_Button(750, 330, 110, 25, "Close Frame");
+    { Fl_Button* o = new Fl_Button(725, 450, 110, 25, "Close Frame");
       o->callback((Fl_Callback*)cb_Close4);
     } // Fl_Button* o
+    { Fl_Group* o = new Fl_Group(405, 80, 430, 365, "File description");
+      o->box(FL_DOWN_BOX);
+      o->labeltype(FL_ENGRAVED_LABEL);
+      { browser_macro_filecontent = new Fl_Browser(410, 85, 420, 355);
+        browser_macro_filecontent->type(FL_HOLD_BROWSER);
+      } // Fl_Browser* browser_macro_filecontent
+      o->end();
+      Fl_Group::current()->resizable(o);
+    } // Fl_Group* o
     win5->end();
-    win5->resizable(win5);
   } // Fl_Double_Window* win5
   { win6 = new Fl_Double_Window(655, 465);
     { Fl_Box* o = new Fl_Box(15, 15, 625, 30, "FLTK OpenCalphad -- Condition");

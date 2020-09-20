@@ -38,7 +38,7 @@ Function {make_window()} {open
 } {
   Fl_Window win1 {
     label Notes open
-    xywh {560 30 775 700} type Double resizable visible
+    xywh {680 161 775 700} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad}
@@ -326,7 +326,7 @@ redraw();}
     }
     Fl_Group {} {
       label {2. Compute} open
-      xywh {30 270 350 150} box DOWN_FRAME labeltype ENGRAVED_LABEL resizable
+      xywh {30 270 350 150} box DOWN_FRAME labeltype ENGRAVED_LABEL
     } {
       Fl_Output output_system {
         label System
@@ -463,7 +463,7 @@ create_macro( );}
     }
     Fl_Group {} {
       label Output open
-      xywh {390 85 345 535} box DOWN_BOX labeltype ENGRAVED_LABEL
+      xywh {390 85 345 535} box DOWN_BOX labeltype ENGRAVED_LABEL resizable
     } {}
     Fl_Button {} {
       label {&Database}
@@ -485,9 +485,14 @@ create_macro( );}
       callback {win6->show();}
       xywh {120 650 80 30}
     }
+    Fl_Button {} {
+      label Help
+      callback {nsystem(  " screen -d -m dillo http://github.com/lusamek/opencalphad " );}
+      xywh {470 650 80 30}
+    }
   }
-  Fl_Window win2 {
-    xywh {332 181 875 355} type Double hide resizable
+  Fl_Window win2 {open
+    xywh {336 185 875 355} type Double hide resizable
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Database}
@@ -537,7 +542,7 @@ redraw();}
   strncat( charo , var_tdb_database , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
   nsystem(  charo );}
-        xywh {440 115 50 25}
+        xywh {440 145 50 25}
       }
       Fl_Button {} {
         label {ls tdb}
@@ -627,6 +632,20 @@ redraw();}
   printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );}
         xywh {495 145 50 25}
       }
+      Fl_Button {} {
+        label {&View}
+        callback {redraw();
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  flview   " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , var_tdb_database , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );}
+        xywh {440 115 50 25}
+      }
     }
     Fl_Button {} {
       label {Close Frame}
@@ -635,7 +654,7 @@ redraw();}
     }
   }
   Fl_Window win3 {
-    xywh {497 237 400 435} type Double hide resizable
+    xywh {696 543 400 435} type Double hide resizable
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Option}
@@ -730,7 +749,7 @@ redraw();}
     }
   }
   Fl_Window win4 {
-    xywh {376 248 830 330} type Double hide
+    xywh {584 246 830 330} type Double hide
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Plot}
@@ -752,16 +771,16 @@ redraw();}
       xywh {705 295 110 25}
     }
   }
-  Fl_Window win5 {
-    xywh {414 319 880 365} type Double hide resizable
+  Fl_Window win5 {open selected
+    xywh {388 402 850 485} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Macro}
-      xywh {25 15 835 35} box ENGRAVED_BOX labeltype ENGRAVED_LABEL
+      xywh {15 15 820 35} box ENGRAVED_BOX labeltype ENGRAVED_LABEL
     }
     Fl_Group {} {
       label Browser open
-      xywh {25 110 390 215} box DOWN_BOX labeltype ENGRAVED_LABEL
+      xywh {15 175 370 270} box DOWN_BOX labeltype ENGRAVED_LABEL
     } {
       Fl_Browser browser2 {
         callback {printf( "Click\\n" );
@@ -770,18 +789,50 @@ redraw();}
  input_var_macro_filename->value(  browser2->text(   browser2->value() ) ); 
 
 
+
+  
+  int fetchi;
+  FILE *fp5;
+  FILE *fp6;
+  char fetchline[PATH_MAX];
+  char fetchlinetmp[PATH_MAX];
+  char filein[PATH_MAX];
+  strncpy( filein,   input_var_macro_filename->value(), PATH_MAX );
+  
+  
+    browser_macro_filecontent->clear();
+    
+    fp6 = fopen( filein , "rb");
+    while( !feof(fp6) ) 
+    {
+          fgets(fetchlinetmp, PATH_MAX, fp6); 
+          strncpy( fetchline, "" , PATH_MAX );
+          for( fetchi = 0 ; ( fetchi <= strlen( fetchlinetmp ) ); fetchi++ )
+            if ( fetchlinetmp[ fetchi ] != '\\n' )
+                 fetchline[fetchi]=fetchlinetmp[fetchi];
+                 
+                if ( !feof( fp6 ) ) 
+                {
+                    browser_macro_filecontent->add( fetchline );    
+                }
+
+     }
+     fclose( fp6 );
+
+  
+ 
  redraw();}
-        xywh {35 125 370 155} resizable
+        xywh {35 220 330 215}
         code1 {browser2->type(FL_HOLD_BROWSER);}
       }
       Fl_Input input_var_macro_filename {
         label Filename
-        xywh {105 290 295 25}
+        xywh {100 185 265 25}
       }
     }
     Fl_Group {} {
       label Macro open
-      xywh {430 110 430 215} box DOWN_BOX labeltype ENGRAVED_LABEL
+      xywh {15 80 370 60} box DOWN_BOX labeltype ENGRAVED_LABEL
     } {
       Fl_Button {} {
         label Browse
@@ -812,7 +863,7 @@ redraw();}
                 }
 	}
 	closedir( dirp );}
-        xywh {450 130 70 25}
+        xywh {35 100 70 25}
       }
       Fl_Button {} {
         label {&Edit}
@@ -826,7 +877,7 @@ redraw();}
   strncat( charo , input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
   nsystem(  charo );}
-        xywh {530 130 50 25}
+        xywh {175 100 50 25}
       }
       Fl_Button {} {
         label {&Use macro}
@@ -842,17 +893,40 @@ redraw();}
   
 
   ncp( "macro.ocm" ,   input_var_macro_filename->value() );}
-        xywh {590 130 100 25}
+        xywh {235 100 135 25}
+      }
+      Fl_Button {} {
+        label {&View}
+        callback {redraw();
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  flview   " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );}
+        xywh {115 100 50 25}
       }
     }
     Fl_Button {} {
       label {Close Frame}
       callback {win5->hide();}
-      xywh {750 330 110 25}
+      xywh {725 450 110 25}
+    }
+    Fl_Group {} {
+      label {File description} open
+      xywh {405 80 430 365} box DOWN_BOX labeltype ENGRAVED_LABEL resizable
+    } {
+      Fl_Browser browser_macro_filecontent {
+        xywh {410 85 420 355}
+        code0 {browser_macro_filecontent->type(FL_HOLD_BROWSER);}
+      }
     }
   }
-  Fl_Window win6 {open
-    xywh {466 158 655 465} type Double resizable visible
+  Fl_Window win6 {
+    xywh {1212 597 655 465} type Double hide resizable
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Condition}
@@ -929,6 +1003,5 @@ Function {main( int argc, char *argv[])} {open return_type int
   make_window();
   win1->show();
 
-  Fl::run();} {selected
-  }
+  Fl::run();} {}
 }
