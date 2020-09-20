@@ -114,6 +114,21 @@ The panel for "Set-Condition" allows to give the initial parameters.
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/flopencalphad-5.png)
 
 
+# Tutorial
+
+<br/>
+The diagram for the Fe-C system can be achieved as follows. <br/>
+1. Select in "Database" panel the steel1.TDB database <br/>
+2. click on the button "CA" to delete the list of elements in the panel for the "System" field. <br/>
+3. Click on "Fe" and "C" buttons. The set-condition field in the "Condition" panel will be proposed by the GUI as follows: " t=1000 p=1e5 n=1 x(c)=0.01 ".<br/>
+4. Enter "C" for X for the simulations. <br/>
+5. Click on 1.Create, 2.Edit, 3.Compute, and 4. Plot. <br/>
+
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/flopencalphad-5.png)
+<br/>
+
+
+
 <br/>
 The diagram for the Fe-Si system can be achieved as follows. <br/>
 1. Select in "Database" panel the steel7.TDB database <br/>
