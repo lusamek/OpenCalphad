@@ -92,7 +92,7 @@ The selection of database (*.tdb file) is selection using the "Database" panel.
 The panel for "Macro" allows to edit and run a list of commands.
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/flopencalphad-4.png)
 
-The "Set-Condition" panel allows to give condition parameters:
+The "Set-Condition" panel allows to give the initial parameters.
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/flopencalphad-5.png)
 
 
