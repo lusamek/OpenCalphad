@@ -82,7 +82,7 @@ It requires the FLTK library and C++ compiler (e.g. CLANG or GCC).
 In order to create the executable, the compilation is possible with ` make all`. <br/>
 The installation is possible with ` make install `. 
 This will install the
-file into the directory /usr/local/bin/.
+files into the directory /usr/local/bin/.
 <br/>
 <br/>
 
