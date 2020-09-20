@@ -78,7 +78,7 @@ Example #4: Al-Fe system <br/>
 The "Makefile" allows to compile flopencalphad on Mac, Linux, and BSD/Unix.<br/>
 This project is downloaded on the host machine or Unix/Linux/Mac. 
 It requires the FLTK library and C++ compiler (e.g. CLANG or GCC).
-The compile is possible with ` make all`. <br/>
+In order to create the executable, the compilation is possible with ` make all`. <br/>
 The installation is possible with ` make install `. 
 This will install the
 file into the directory /usr/local/bin/.
