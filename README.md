@@ -126,6 +126,11 @@ The diagram for the Fe-Si can be achieved as follows. <br/>
 
 
 --
+# Support 
+
+IRC on Freenode
+https://webchat.freenode.net/?channels=#opencalphad
+
 # References
 
 [1] Source Code: https://github.com/sundmanbo/opencalphad
