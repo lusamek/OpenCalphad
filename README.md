@@ -74,10 +74,21 @@ Example #4: Al-Fe system <br/>
 
 
 
+## 5. Using GUI
+The "Makefile" allows to compile flopencalphad on Mac, Linux, and BSD/Unix.<br/>
+This project is downloaded on the host machine or Unix/Linux/Mac. 
+It requires the FLTK library and C++ compiler (e.g. CLANG or GCC).
+The compile is possible with ` make all`. <br/>
+The installation is possible with ` make install `. 
+This will install the
+file into the directory /usr/local/bin/.
+<br/>
+<br/>
+
 Frontend for Fe-C system:<br/>
 ` flopencalphad ~/macros/ ` 
 (Press Return) <br/>
-The "Makefile" allows to compile flopencalphad on Mac, Linux, and BSD/Unix.<br/>
+
 
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/flopencalphad-2.png)
 
