@@ -115,7 +115,7 @@ The panel for "Set-Condition" allows to give the initial parameters.
 
 
 <br/>
-The diagram for the Fe-Si can be achieved as follows. <br/>
+The diagram for the Fe-Si system can be achieved as follows. <br/>
 1. Select in "Database" panel the steel7.TDB database <br/>
 2. click on the button "CA" to delete the list of elements in the panel for the "System" field. <br/>
 3. Click on "Fe" and "Si" buttons. The set-condition field in the "Condition" panel will be proposed by the GUI as follows: " t=1000 p=1e5 n=1 x(si)=0.01 ".<br/>
@@ -126,7 +126,7 @@ The diagram for the Fe-Si can be achieved as follows. <br/>
 <br/>
 
 <br/>
-The diagram for the Fe-Mn can be achieved as follows. <br/>
+The diagram for the Fe-Mn system can be achieved as follows. <br/>
 1. Select in "Database" panel the cost507R.TDB database <br/>
 2. click on the button "CA" to delete the list of elements in the panel for the "System" field. <br/>
 3. Click on "Fe" and "Mn" buttons. The set-condition field in the "Condition" panel will be proposed by the GUI as follows: " t=1000 p=1e5 n=1 x(mn)=0.01 ".<br/>
