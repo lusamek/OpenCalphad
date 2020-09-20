@@ -38,7 +38,7 @@ Function {make_window()} {open
 } {
   Fl_Window win1 {
     label Notes open
-    xywh {680 161 775 700} type Double resizable visible
+    xywh {592 69 775 700} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad}
@@ -492,7 +492,7 @@ create_macro( );}
     }
   }
   Fl_Window win2 {open
-    xywh {336 185 875 355} type Double hide resizable
+    xywh {340 189 875 355} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Database}
@@ -542,7 +542,7 @@ redraw();}
   strncat( charo , var_tdb_database , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
   nsystem(  charo );}
-        xywh {440 145 50 25}
+        xywh {525 145 50 25}
       }
       Fl_Button {} {
         label {ls tdb}
@@ -554,7 +554,7 @@ redraw();}
   
   nlsgrep( ".tdb" );
   nlsgrep( ".TDB" );}
-        xywh {495 115 50 25}
+        xywh {580 115 50 25}
       }
       Fl_Button {} {
         label {Elemen&t}
@@ -568,7 +568,7 @@ redraw();}
   
   
   filegrep( var_tdb_database , "ELEM" );}
-        xywh {550 115 75 25}
+        xywh {635 115 75 25}
       }
       Fl_Button {} {
         label Browse
@@ -604,7 +604,7 @@ redraw();}
                 }
 	}
 	closedir( dirp );}
-        xywh {630 115 70 25}
+        xywh {435 115 70 25}
       }
       Fl_Button {} {
         label {&Species}
@@ -618,7 +618,7 @@ redraw();}
   
   
   filegrep( var_tdb_database , "SPECIE" );}
-        xywh {550 145 75 25}
+        xywh {635 145 75 25}
       }
       Fl_Button {} {
         label Path
@@ -630,7 +630,7 @@ redraw();}
   
     char mydirnow[2500];
   printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );}
-        xywh {495 145 50 25}
+        xywh {580 145 50 25}
       }
       Fl_Button {} {
         label {&View}
@@ -644,7 +644,49 @@ redraw();}
   strncat( charo , var_tdb_database , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
   nsystem(  charo );}
-        xywh {440 115 50 25}
+        xywh {525 115 50 25}
+      }
+      Fl_Button {} {
+        label {&Phase}
+        callback {redraw();
+  
+  
+  printf( "============================\\n" );
+  printf( "   PHASE                   \\n" );
+  printf( "============================\\n" );
+  
+  
+  
+  filegrep( var_tdb_database , "PHASE " );}
+        xywh {635 175 75 25}
+      }
+      Fl_Button {} {
+        label {&Fun}
+        callback {redraw();
+  
+  
+  printf( "============================\\n" );
+  printf( "   FUN                   \\n" );
+  printf( "============================\\n" );
+  
+  
+  
+  filegrep( var_tdb_database , "FUN " );} selected
+        xywh {635 205 75 25}
+      }
+      Fl_Button {} {
+        label {&Function}
+        callback {redraw();
+  
+  
+  printf( "============================\\n" );
+  printf( "   FUNCTION                  \\n" );
+  printf( "============================\\n" );
+  
+  
+  
+  filegrep( var_tdb_database , "FUNCTION " );}
+        xywh {635 235 75 25}
       }
     }
     Fl_Button {} {
@@ -771,8 +813,8 @@ redraw();}
       xywh {705 295 110 25}
     }
   }
-  Fl_Window win5 {open selected
-    xywh {388 402 850 485} type Double resizable visible
+  Fl_Window win5 {open
+    xywh {392 284 850 485} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Macro}

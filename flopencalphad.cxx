@@ -542,6 +542,45 @@ static void cb_View(Fl_Button*, void*) {
   nsystem(  charo );
 }
 
+static void cb_Phase(Fl_Button*, void*) {
+  redraw();
+  
+  
+  printf( "============================\n" );
+  printf( "   PHASE                   \n" );
+  printf( "============================\n" );
+  
+  
+  
+  filegrep( var_tdb_database , "PHASE " );
+}
+
+static void cb_Fun(Fl_Button*, void*) {
+  redraw();
+  
+  
+  printf( "============================\n" );
+  printf( "   FUN                   \n" );
+  printf( "============================\n" );
+  
+  
+  
+  filegrep( var_tdb_database , "FUN " );
+}
+
+static void cb_Function(Fl_Button*, void*) {
+  redraw();
+  
+  
+  printf( "============================\n" );
+  printf( "   FUNCTION                  \n" );
+  printf( "============================\n" );
+  
+  
+  
+  filegrep( var_tdb_database , "FUNCTION " );
+}
+
 static void cb_Close(Fl_Button*, void*) {
   win2->hide();
 }
@@ -964,26 +1003,35 @@ Fl_Double_Window* make_window() {
     { Fl_Group* o = new Fl_Group(415, 95, 450, 215, "Database");
       o->box(FL_DOWN_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
-      { Fl_Button* o = new Fl_Button(440, 145, 50, 25, "&Edit");
+      { Fl_Button* o = new Fl_Button(525, 145, 50, 25, "&Edit");
         o->callback((Fl_Callback*)cb_Edit);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(495, 115, 50, 25, "ls tdb");
+      { Fl_Button* o = new Fl_Button(580, 115, 50, 25, "ls tdb");
         o->callback((Fl_Callback*)cb_ls);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(550, 115, 75, 25, "Elemen&t");
+      { Fl_Button* o = new Fl_Button(635, 115, 75, 25, "Elemen&t");
         o->callback((Fl_Callback*)cb_Elemen);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(630, 115, 70, 25, "Browse");
+      { Fl_Button* o = new Fl_Button(435, 115, 70, 25, "Browse");
         o->callback((Fl_Callback*)cb_Browse);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(550, 145, 75, 25, "&Species");
+      { Fl_Button* o = new Fl_Button(635, 145, 75, 25, "&Species");
         o->callback((Fl_Callback*)cb_Species);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(495, 145, 50, 25, "Path");
+      { Fl_Button* o = new Fl_Button(580, 145, 50, 25, "Path");
         o->callback((Fl_Callback*)cb_Path);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(440, 115, 50, 25, "&View");
+      { Fl_Button* o = new Fl_Button(525, 115, 50, 25, "&View");
         o->callback((Fl_Callback*)cb_View);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(635, 175, 75, 25, "&Phase");
+        o->callback((Fl_Callback*)cb_Phase);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(635, 205, 75, 25, "&Fun");
+        o->callback((Fl_Callback*)cb_Fun);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(635, 235, 75, 25, "&Function");
+        o->callback((Fl_Callback*)cb_Function);
       } // Fl_Button* o
       o->end();
     } // Fl_Group* o
