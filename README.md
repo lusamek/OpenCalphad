@@ -107,7 +107,10 @@ Frontend/GUI: <br/>
 The "Database" panel allows to select the database (*.tdb file). It allows to list the elements and species, which are available in the database.
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/flopencalphad-3.png)
 
-The "Macro" panel allows to edit and run a list of commands.
+The "Macro" panel gives a preview of the list of commands.
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/flopencalphad-8.png)
+
+The "Macro" panel allows to edit and run a list of commands. The button "use macro" will select and setup the macro for the simulations. After selection of the macro, the process "2. Edit", "3. Compute", and "4. Plot" will display. 
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/flopencalphad-4.png)
 
 The panel for "Set-Condition" allows to give the initial parameters.
