@@ -86,9 +86,14 @@ Frontend/GUI: <br/>
 ` flopencalphad ~/macros/ ` 
 (Click on "Macro" button) <br/>
 
+The selection of database (*.tdb file) is selection using the "Database" panel.
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/flopencalphad-3.png)
 
+The panel for "Macro" allows to edit and run a list of commands.
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/flopencalphad-4.png)
+
+The "Set-Condition" panel allows to give condition parameters:
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/flopencalphad-5.png)
 
 
 --
