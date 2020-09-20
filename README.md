@@ -86,10 +86,11 @@ Frontend/GUI: <br/>
 ` flopencalphad ~/macros/ ` 
 (Click on "Macro" button) <br/>
 
-The selection of database (*.tdb file) is selection using the "Database" panel.
+
+The "Database" panel allows to select the database (*.tdb file). It allows to list the elements and species, which are available in the database.
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/flopencalphad-3.png)
 
-The panel for "Macro" allows to edit and run a list of commands.
+The "Macro" panel allows to edit and run a list of commands.
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/flopencalphad-4.png)
 
 The "Set-Condition" panel allows to give the initial parameters.
