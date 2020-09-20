@@ -19,17 +19,22 @@ Screenshot #2:
 After the installation of virtualbox, you may find the image at the following link.
 URL to download the version of OpenCalphad for classroom: https://www.dropbox.com/s/4lab0ipan8e0rrw/virtualbox-debian-opencalphad.zip?dl=0
 
+
+
 ## 3. Open image file
 After the download of the image file of the virtual machine, the files need to be uncompressed. The image is compressed with the regular ZIP compression format. It can be uncompressed with software, like Winzip or Winrar. The "debian-oc.vdi" file is the main file, which will be opened using virtualbox. This will result in the following screenshot (screenshot #3). 
 
 Screenshot #3:
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Guide-OC-VM-P01.jpg)
 
+
 ## 4. Start 
 After the user can use the context menu of the virtual machine, as indicated in the screenshot (screenshot #4), to start the machine. "Start" will be displayed (screenshot #4). The virtual machine will boot. It will take 1-2 minute(s) of boot time. After the boot of the system, OpenCalphad will be launched directly. The virtual machine is running OC on the Linux operating system. The window manager is IceWM. 
 
 Screenshot #4:
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Guide-OC-VM-P02.jpg)
+
+
 
 
 ## 5. Using OC
@@ -45,7 +50,7 @@ Example #1: Fe-C system <br/>
 (Press Return)
 
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Example-OC6-Fe-C-map3.jpg)
-
+<br/>
 
 
 Example #2: <br/>
@@ -53,7 +58,7 @@ Example #2: <br/>
 (Press Return)
 
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Example-OC6-Fe-C-map11.jpg)
-
+<br/>
 
 
 Example #3: Fe-C-Cr system <br/>
@@ -61,7 +66,7 @@ Example #3: Fe-C-Cr system <br/>
 (Press Return)
 
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Example-OC6-map16.jpg)
-
+<br/>
 
 
 
@@ -70,7 +75,7 @@ Example #4: Al-Fe system <br/>
 (Press Return)
 
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Example-OC6-Fe-C-map17.jpg)
-
+<br/>
 
 
 
@@ -92,7 +97,7 @@ Frontend for Fe-C system:<br/>
 
 
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/flopencalphad-2.png)
-
+<br/>
 
 Frontend/GUI: <br/>
 ` flopencalphad ~/macros/ ` 
@@ -111,12 +116,12 @@ The panel for "Set-Condition" allows to give the initial parameters.
 The diagram for the Fe-Si can be achieved as follows. <br/>
 1. First, click on the button "CA" to delete the list of elements in the panel. <br/>
 2. Select in "Database" panel the steel7.TDB database <br/>
-3. Click on "Fe" and "Si" buttons. The set-condition field in the "Condition" panel will be proposed by the GUI as follows: " t=1000 p=1e5 n=1 x(si)=0.01 " <br/>
-4. Enter "Si" for X for the simulations <br/>
-5. Click on 1.Create, 2.Edit, 3.Compute, and 4. Plot <br/>
+3. Click on "Fe" and "Si" buttons. The set-condition field in the "Condition" panel will be proposed by the GUI as follows: " t=1000 p=1e5 n=1 x(si)=0.01 ".<br/>
+4. Enter "Si" for X for the simulations. <br/>
+5. Click on 1.Create, 2.Edit, 3.Compute, and 4. Plot. <br/>
 
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/flopencalphad-6.png)
-
+<br/>
 
 
 
