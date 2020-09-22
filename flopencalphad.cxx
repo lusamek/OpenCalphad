@@ -351,7 +351,14 @@ static void cb_3(Fl_Button*, void*) {
 
 
   redraw();
-  nsystem(  "  screen -d  -m   xterm -e   oc   macro.ocm " );
+  
+  if ( checkbutton_xterm_console->value( ) == 1 ) 
+     nsystem(  "  screen -d  -m   xterm -e   oc   macro.ocm " );
+     
+  else if ( checkbutton_single_console->value( ) == 1 ) 
+     nsystem(  "  oc   macro.ocm " );
+     
+     
   
   // oc6 bug 
   // gnuplot ocgnu.plt  &;
@@ -408,6 +415,10 @@ static void cb_Condition(Fl_Button*, void*) {
 
 static void cb_Help(Fl_Button*, void*) {
   nsystem(  " screen -d -m dillo http://github.com/lusamek/opencalphad " );
+}
+
+static void cb_Dev(Fl_Button*, void*) {
+  win7->show();
 }
 
 Fl_Double_Window *win2=(Fl_Double_Window *)0;
@@ -631,133 +642,13 @@ static void cb_fxrun(Fl_Button*, void*) {
   nsystem( " screen -d -m fxrun " );
 }
 
-static void cb_ccode(Fl_Button*, void*) {
-  nsystem( " screen -d -m fledit flopencalphad_def.h  " );
-}
-
-static void cb_Inipath(Fl_Button*, void*) {
-  redraw();
-
-  printf( "============================\n" );
-  printf( "  CHANGE PATH               \n" );
-  printf( "============================\n" );
-  
-  printf( "Change to...\n" );
-  chdir( inipath );
-  
-  char mydirnow[2500];
-  printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
-}
-
-static void cb_Userpath(Fl_Button*, void*) {
-  redraw();
-
-  printf( "============================\n" );
-  printf( "  CHANGE PATH               \n" );
-  printf( "============================\n" );
-  
-  printf( "Change to...\n" );
-  chdir( userpath );
-  
-  char mydirnow[2500];
-  printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
-}
-
 static void cb_Close1(Fl_Button*, void*) {
   win3->hide();
 }
 
-static void cb_VIM(Fl_Button*, void*) {
-  redraw();
-  
-  nrun( " vim " ,  input_var_macro_filename->value() );
-}
+Fl_Check_Button *checkbutton_single_console=(Fl_Check_Button *)0;
 
-static void cb_VIM1(Fl_Button*, void*) {
-  redraw();
-  
-  nrun( " vim " , "macro.ocm" );
-}
-
-static void cb_VIM2(Fl_Button*, void*) {
-  redraw();
-  
-  nrun( " vim " , input_var_tdb_database->value(  ) );
-}
-
-static void cb_41(Fl_Button*, void*) {
-  char mydirnow[2500];
-  printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
-
-
-
-  redraw();
-  nsystem(  "  screen -d  -m  gnuplot ocgnu.plt  " );
-  
-  
-  // oc6 bug 
-  // gnuplot ocgnu.plt  &;
-}
-
-static void cb_31(Fl_Button*, void*) {
-  char mydirnow[2500];
-  printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
-
-
-
-  redraw();
-  nsystem(  "  screen -d  -m   xterm -e   oc   macro.ocm " );
-  
-  // oc6 bug 
-  // gnuplot ocgnu.plt  &;
-}
-
-static void cb_GnuPlot(Fl_Button*, void*) {
-  char mydirnow[2500];
-  printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
-
-
-
-  redraw();
-  
-  printf(   "Export Result on Solaris/Unix/BSD Simulation Station\n" );
-  
-  nsystem(  " env DISPLAY=192.168.1.2:0    screen -d  -m  gnuplot ocgnu.plt  " );
-  
-  
-  
-  // oc6 bug 
-  // gnuplot ocgnu.plt  &;
-}
-
-static void cb_Use(Fl_Button*, void*) {
-  redraw();
-
-  printf( "============================\n" );
-  printf( "   MACRO                    \n" );
-  printf( "============================\n" );
-  
-  printf( "   FILECOPY                  \n" );
-  printf( "   Source: %s                  \n" ,  input_var_macro_filename->value()   );
-  printf( "   Destination: %s                  \n" ,  "macro.ocm"   );
-  
-
-  ncp( "macro.ocm" ,   input_var_macro_filename->value() );
-}
-
-static void cb_Use1(Fl_Button*, void*) {
-  redraw();
-
-  printf( "============================\n" );
-  printf( "   MACRO (OCL with SKIP)    \n" );
-  printf( "============================\n" );
-  
-  printf( "   FILECOPY                  \n" );
-  printf( "   Source: %s                  \n" ,  input_var_macro_filename->value()   );
-  printf( "   Destination: %s                  \n" ,  "macro.ocm"   );
-  
-  ncpskip(  "macro.ocm" ,  input_var_macro_filename->value()  ,  "@&"  );
-}
+Fl_Check_Button *checkbutton_xterm_console=(Fl_Check_Button *)0;
 
 Fl_Double_Window *win4=(Fl_Double_Window *)0;
 
@@ -864,7 +755,7 @@ static void cb_New(Fl_Button*, void*) {
   nsystem(  charo );
 }
 
-static void cb_Use2(Fl_Button*, void*) {
+static void cb_Use(Fl_Button*, void*) {
   redraw();
 
   printf( "============================\n" );
@@ -942,7 +833,7 @@ static void cb_Browse2(Fl_Button*, void*) {
 	closedir( dirp );
 }
 
-static void cb_Use3(Fl_Button*, void*) {
+static void cb_Use1(Fl_Button*, void*) {
   redraw();
 
   printf( "============================\n" );
@@ -978,6 +869,107 @@ Fl_Input *input_var_calc_xmax=(Fl_Input *)0;
 
 static void cb_Close5(Fl_Button*, void*) {
   win6->hide();
+}
+
+Fl_Double_Window *win7=(Fl_Double_Window *)0;
+
+static void cb_ccode(Fl_Button*, void*) {
+  nsystem( " screen -d -m fledit flopencalphad_def.h  " );
+}
+
+static void cb_Inipath(Fl_Button*, void*) {
+  redraw();
+
+  printf( "============================\n" );
+  printf( "  CHANGE PATH               \n" );
+  printf( "============================\n" );
+  
+  printf( "Change to...\n" );
+  chdir( inipath );
+  
+  char mydirnow[2500];
+  printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
+}
+
+static void cb_Userpath(Fl_Button*, void*) {
+  redraw();
+
+  printf( "============================\n" );
+  printf( "  CHANGE PATH               \n" );
+  printf( "============================\n" );
+  
+  printf( "Change to...\n" );
+  chdir( userpath );
+  
+  char mydirnow[2500];
+  printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
+}
+
+static void cb_Close6(Fl_Button*, void*) {
+  win3->hide();
+}
+
+static void cb_VIM(Fl_Button*, void*) {
+  redraw();
+  
+  nrun( " vim " ,  input_var_macro_filename->value() );
+}
+
+static void cb_VIM1(Fl_Button*, void*) {
+  redraw();
+  
+  nrun( " vim " , "macro.ocm" );
+}
+
+static void cb_VIM2(Fl_Button*, void*) {
+  redraw();
+  
+  nrun( " vim " , input_var_tdb_database->value(  ) );
+}
+
+static void cb_41(Fl_Button*, void*) {
+  char mydirnow[2500];
+  printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
+
+
+
+  redraw();
+  nsystem(  "  screen -d  -m  gnuplot ocgnu.plt  " );
+  
+  
+  // oc6 bug 
+  // gnuplot ocgnu.plt  &;
+}
+
+static void cb_31(Fl_Button*, void*) {
+  char mydirnow[2500];
+  printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
+
+
+
+  redraw();
+  nsystem(  "  screen -d  -m   xterm -e   oc   macro.ocm " );
+  
+  // oc6 bug 
+  // gnuplot ocgnu.plt  &;
+}
+
+static void cb_GnuPlot(Fl_Button*, void*) {
+  char mydirnow[2500];
+  printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
+
+
+
+  redraw();
+  
+  printf(   "Export Result on Solaris/Unix/BSD Simulation Station\n" );
+  
+  nsystem(  " env DISPLAY=192.168.1.2:0    screen -d  -m  gnuplot ocgnu.plt  " );
+  
+  
+  
+  // oc6 bug 
+  // gnuplot ocgnu.plt  &;
 }
 
 Fl_Double_Window* make_window() {
@@ -1105,7 +1097,7 @@ Fl_Double_Window* make_window() {
       } // Fl_Button* o
       o->end();
     } // Fl_Group* o
-    { Fl_Button* o = new Fl_Button(640, 650, 95, 30, "&Quit");
+    { Fl_Button* o = new Fl_Button(670, 650, 65, 30, "&Quit");
       o->callback((Fl_Callback*)cb_Quit);
     } // Fl_Button* o
     { Fl_Group* o = new Fl_Group(30, 450, 350, 170, "3. OCM GNUPlot");
@@ -1125,7 +1117,7 @@ Fl_Double_Window* make_window() {
       } // Fl_Button* o
       o->end();
     } // Fl_Group* o
-    { Fl_Button* o = new Fl_Button(555, 650, 80, 30, "&Option");
+    { Fl_Button* o = new Fl_Button(590, 650, 65, 30, "&Option");
       o->callback((Fl_Callback*)cb_Option);
     } // Fl_Button* o
     { Fl_Group* o = new Fl_Group(390, 85, 345, 535, "Output");
@@ -1146,8 +1138,12 @@ Fl_Double_Window* make_window() {
     { Fl_Button* o = new Fl_Button(120, 650, 80, 30, "&Condition");
       o->callback((Fl_Callback*)cb_Condition);
     } // Fl_Button* o
-    { Fl_Button* o = new Fl_Button(470, 650, 80, 30, "Help");
+    { Fl_Button* o = new Fl_Button(390, 650, 105, 30, "Help");
+      o->labelfont(1);
       o->callback((Fl_Callback*)cb_Help);
+    } // Fl_Button* o
+    { Fl_Button* o = new Fl_Button(510, 650, 65, 30, "&Dev");
+      o->callback((Fl_Callback*)cb_Dev);
     } // Fl_Button* o
     win1->end();
   } // Fl_Double_Window* win1
@@ -1217,89 +1213,53 @@ Fl_Double_Window* make_window() {
     win2->end();
     win2->resizable(win2);
   } // Fl_Double_Window* win2
-  { win3 = new Fl_Double_Window(405, 540, "Development");
-    { Fl_Box* o = new Fl_Box(10, 15, 380, 35, "FLTK OpenCalphad -- Option");
+  { win3 = new Fl_Double_Window(405, 370, "Option");
+    { Fl_Box* o = new Fl_Box(15, 15, 380, 35, "FLTK OpenCalphad -- Option");
       o->box(FL_ENGRAVED_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
     } // Fl_Box* o
-    { Fl_Group* o = new Fl_Group(10, 105, 375, 80, "System Call");
+    { Fl_Group* o = new Fl_Group(15, 95, 375, 80, "User system call");
       o->box(FL_DOWN_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
-      { Fl_Button* o = new Fl_Button(30, 115, 50, 25, "&ls");
+      { Fl_Button* o = new Fl_Button(30, 105, 50, 25, "&ls");
         o->callback((Fl_Callback*)cb_ls1);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(85, 115, 50, 25, "&xterm");
+      { Fl_Button* o = new Fl_Button(85, 105, 50, 25, "&xterm");
         o->callback((Fl_Callback*)cb_xterm);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(195, 145, 50, 25, "&fl48");
+      { Fl_Button* o = new Fl_Button(270, 135, 50, 25, "&fl48");
         o->callback((Fl_Callback*)cb_fl48);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(195, 115, 50, 25, "&fledit");
+      { Fl_Button* o = new Fl_Button(270, 105, 50, 25, "&fledit");
         o->callback((Fl_Callback*)cb_fledit);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(30, 150, 50, 25, "Path");
+      { Fl_Button* o = new Fl_Button(30, 140, 50, 25, "Path");
         o->callback((Fl_Callback*)cb_Path1);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(85, 150, 50, 25, "rox");
+      { Fl_Button* o = new Fl_Button(85, 140, 50, 25, "rox");
         o->callback((Fl_Callback*)cb_rox);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(250, 145, 50, 25, "x48");
+      { Fl_Button* o = new Fl_Button(325, 135, 50, 25, "x48");
         o->callback((Fl_Callback*)cb_x48);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(250, 115, 50, 25, "&fxrun");
+      { Fl_Button* o = new Fl_Button(325, 105, 50, 25, "&fxrun");
         o->callback((Fl_Callback*)cb_fxrun);
       } // Fl_Button* o
       o->end();
     } // Fl_Group* o
-    { Fl_Group* o = new Fl_Group(10, 210, 375, 55, "Debug");
-      o->box(FL_DOWN_BOX);
-      o->labeltype(FL_ENGRAVED_LABEL);
-      { Fl_Button* o = new Fl_Button(20, 225, 100, 25, "ccode");
-        o->callback((Fl_Callback*)cb_ccode);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(130, 225, 100, 25, "Inipath");
-        o->callback((Fl_Callback*)cb_Inipath);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(245, 225, 115, 25, "Userpath");
-        o->callback((Fl_Callback*)cb_Userpath);
-      } // Fl_Button* o
-      o->end();
-    } // Fl_Group* o
-    { Fl_Button* o = new Fl_Button(275, 500, 110, 30, "&Close Frame");
+    { Fl_Button* o = new Fl_Button(280, 330, 110, 30, "&Close Frame");
       o->callback((Fl_Callback*)cb_Close1);
     } // Fl_Button* o
-    { Fl_Group* o = new Fl_Group(10, 295, 375, 125, "Development");
+    { Fl_Group* o = new Fl_Group(15, 225, 375, 95, "Console output");
       o->box(FL_DOWN_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
-      { Fl_Button* o = new Fl_Button(145, 310, 90, 25, "VIM &Macro");
-        o->callback((Fl_Callback*)cb_VIM);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(40, 310, 90, 25, "&VIM SIM");
-        o->callback((Fl_Callback*)cb_VIM1);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(250, 310, 110, 25, "VIM &Database");
-        o->callback((Fl_Callback*)cb_VIM2);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(215, 345, 145, 25, "[&4] Plot!");
-        o->callback((Fl_Callback*)cb_41);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(40, 345, 150, 25, "[&3] Compute!");
-        o->callback((Fl_Callback*)cb_31);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(40, 380, 320, 25, "GnuPlot XForward/Unix");
-        o->callback((Fl_Callback*)cb_GnuPlot);
-      } // Fl_Button* o
-      o->end();
-    } // Fl_Group* o
-    { Fl_Group* o = new Fl_Group(10, 440, 375, 55, "Macro Dev");
-      o->box(FL_DOWN_BOX);
-      o->labeltype(FL_ENGRAVED_LABEL);
-      { Fl_Button* o = new Fl_Button(25, 455, 105, 25, "Use Macro");
-        o->callback((Fl_Callback*)cb_Use);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(145, 455, 225, 25, "Use Macro Commands");
-        o->callback((Fl_Callback*)cb_Use1);
-      } // Fl_Button* o
+      { checkbutton_single_console = new Fl_Check_Button(35, 235, 25, 25, "Single console output");
+        checkbutton_single_console->down_box(FL_DOWN_BOX);
+      } // Fl_Check_Button* checkbutton_single_console
+      { checkbutton_xterm_console = new Fl_Check_Button(35, 265, 25, 25, "xterm console output");
+        checkbutton_xterm_console->down_box(FL_DOWN_BOX);
+        checkbutton_xterm_console->value( 1 );
+      } // Fl_Check_Button* checkbutton_xterm_console
       o->end();
     } // Fl_Group* o
     win3->end();
@@ -1320,6 +1280,7 @@ Fl_Double_Window* make_window() {
         o->callback((Fl_Callback*)cb_Clear);
       } // Fl_Button* o
       o->end();
+      Fl_Group::current()->resizable(o);
     } // Fl_Group* o
     { Fl_Button* o = new Fl_Button(705, 295, 110, 25, "Close Frame");
       o->callback((Fl_Callback*)cb_Close3);
@@ -1352,7 +1313,7 @@ Fl_Double_Window* make_window() {
         o->callback((Fl_Callback*)cb_New);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(25, 135, 95, 25, "&Use macro");
-        o->callback((Fl_Callback*)cb_Use2);
+        o->callback((Fl_Callback*)cb_Use);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(320, 105, 50, 25, "&View");
         o->callback((Fl_Callback*)cb_View1);
@@ -1367,7 +1328,7 @@ Fl_Double_Window* make_window() {
         o->callback((Fl_Callback*)cb_Browse2);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(145, 135, 95, 25, "&Use ocl");
-        o->callback((Fl_Callback*)cb_Use3);
+        o->callback((Fl_Callback*)cb_Use1);
       } // Fl_Button* o
       o->end();
     } // Fl_Group* o
@@ -1419,7 +1380,55 @@ Fl_Double_Window* make_window() {
     } // Fl_Button* o
     win6->end();
   } // Fl_Double_Window* win6
-  return win6;
+  { win7 = new Fl_Double_Window(405, 555, "Development");
+    { Fl_Box* o = new Fl_Box(10, 15, 380, 35, "FLTK OpenCalphad -- Development");
+      o->box(FL_ENGRAVED_BOX);
+      o->labeltype(FL_ENGRAVED_LABEL);
+    } // Fl_Box* o
+    { Fl_Group* o = new Fl_Group(10, 90, 375, 55, "Debug");
+      o->box(FL_DOWN_BOX);
+      o->labeltype(FL_ENGRAVED_LABEL);
+      { Fl_Button* o = new Fl_Button(20, 105, 100, 25, "ccode");
+        o->callback((Fl_Callback*)cb_ccode);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(130, 105, 100, 25, "Inipath");
+        o->callback((Fl_Callback*)cb_Inipath);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(245, 105, 115, 25, "Userpath");
+        o->callback((Fl_Callback*)cb_Userpath);
+      } // Fl_Button* o
+      o->end();
+    } // Fl_Group* o
+    { Fl_Button* o = new Fl_Button(275, 500, 110, 30, "&Close Frame");
+      o->callback((Fl_Callback*)cb_Close6);
+    } // Fl_Button* o
+    { Fl_Group* o = new Fl_Group(10, 195, 375, 125, "Development");
+      o->box(FL_DOWN_BOX);
+      o->labeltype(FL_ENGRAVED_LABEL);
+      { Fl_Button* o = new Fl_Button(145, 210, 90, 25, "VIM &Macro");
+        o->callback((Fl_Callback*)cb_VIM);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(40, 210, 90, 25, "&VIM SIM");
+        o->callback((Fl_Callback*)cb_VIM1);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(250, 210, 110, 25, "VIM &Database");
+        o->callback((Fl_Callback*)cb_VIM2);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(215, 245, 145, 25, "[&4] Plot!");
+        o->callback((Fl_Callback*)cb_41);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(40, 245, 150, 25, "[&3] Compute!");
+        o->callback((Fl_Callback*)cb_31);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(40, 280, 320, 25, "GnuPlot XForward/Unix");
+        o->callback((Fl_Callback*)cb_GnuPlot);
+      } // Fl_Button* o
+      o->end();
+    } // Fl_Group* o
+    win7->end();
+    win7->resizable(win7);
+  } // Fl_Double_Window* win7
+  return win7;
 }
 
 void addkeypress( int keypress ) {

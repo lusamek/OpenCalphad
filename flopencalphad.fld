@@ -38,7 +38,7 @@ Function {make_window()} {open
 } {
   Fl_Window win1 {
     label FLOPENCALPHAD open
-    xywh {284 86 775 700} type Double resizable visible
+    xywh {268 189 775 700} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad}
@@ -403,7 +403,7 @@ redraw();}
     Fl_Button {} {
       label {&Quit}
       callback {exit( 0 );}
-      xywh {640 650 95 30}
+      xywh {670 650 65 30}
     }
     Fl_Group {} {
       label {3. OCM GNUPlot} open
@@ -417,10 +417,17 @@ redraw();}
 
 
   redraw();
-  nsystem(  "  screen -d  -m   xterm -e   oc   macro.ocm " );
+  
+  if ( checkbutton_xterm_console->value( ) == 1 ) 
+     nsystem(  "  screen -d  -m   xterm -e   oc   macro.ocm " );
+     
+  else if ( checkbutton_single_console->value( ) == 1 ) 
+     nsystem(  "  oc   macro.ocm " );
+     
+     
   
   // oc6 bug 
-  // gnuplot ocgnu.plt  &}
+  // gnuplot ocgnu.plt  &} selected
         xywh {135 540 145 25}
       }
       Fl_Button {} {
@@ -459,7 +466,7 @@ create_macro( );}
     Fl_Button {} {
       label {&Option}
       callback {win3->show();}
-      xywh {555 650 80 30}
+      xywh {590 650 65 30}
     }
     Fl_Group {} {
       label Output open
@@ -488,7 +495,12 @@ create_macro( );}
     Fl_Button {} {
       label Help
       callback {nsystem(  " screen -d -m dillo http://github.com/lusamek/opencalphad " );}
-      xywh {470 650 80 30}
+      xywh {390 650 105 30} labelfont 1
+    }
+    Fl_Button {} {
+      label {&Dev}
+      callback {win7->show();}
+      xywh {510 650 65 30}
     }
   }
   Fl_Window win2 {
@@ -703,36 +715,36 @@ redraw();}
     }
   }
   Fl_Window win3 {
-    label Development open
-    xywh {1346 237 405 540} type Double resizable visible
+    label Option open
+    xywh {1230 182 405 370} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Option}
-      xywh {10 15 380 35} box ENGRAVED_BOX labeltype ENGRAVED_LABEL
+      xywh {15 15 380 35} box ENGRAVED_BOX labeltype ENGRAVED_LABEL
     }
     Fl_Group {} {
-      label {System Call} open
-      xywh {10 105 375 80} box DOWN_BOX labeltype ENGRAVED_LABEL
+      label {User system call} open
+      xywh {15 95 375 80} box DOWN_BOX labeltype ENGRAVED_LABEL
     } {
       Fl_Button {} {
         label {&ls}
         callback {nls();}
-        xywh {30 115 50 25}
+        xywh {30 105 50 25}
       }
       Fl_Button {} {
         label {&xterm}
         callback {nsystem( " screen -d -m xterm " );}
-        xywh {85 115 50 25}
+        xywh {85 105 50 25}
       }
       Fl_Button {} {
         label {&fl48}
         callback {nsystem( " screen -d -m fl48 " );}
-        xywh {195 145 50 25}
+        xywh {270 135 50 25}
       }
       Fl_Button {} {
         label {&fledit}
         callback {nsystem( " screen -d -m fledit " );}
-        xywh {195 115 50 25}
+        xywh {270 105 50 25}
       }
       Fl_Button {} {
         label Path
@@ -744,183 +756,47 @@ redraw();}
   
     char mydirnow[2500];
   printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );}
-        xywh {30 150 50 25}
+        xywh {30 140 50 25}
       }
       Fl_Button {} {
         label rox
         callback {nsystem( " rox " );}
-        xywh {85 150 50 25}
+        xywh {85 140 50 25}
       }
       Fl_Button {} {
         label x48
         callback {nsystem( " screen -d -m x48 " );}
-        xywh {250 145 50 25}
+        xywh {325 135 50 25}
       }
       Fl_Button {} {
         label {&fxrun}
         callback {nsystem( " screen -d -m fxrun " );}
-        xywh {250 115 50 25}
-      }
-    }
-    Fl_Group {} {
-      label Debug open
-      xywh {10 210 375 55} box DOWN_BOX labeltype ENGRAVED_LABEL
-    } {
-      Fl_Button {} {
-        label ccode
-        callback {nsystem( " screen -d -m fledit flopencalphad_def.h  " );}
-        xywh {20 225 100 25}
-      }
-      Fl_Button {} {
-        label Inipath
-        callback {redraw();
-
-  printf( "============================\\n" );
-  printf( "  CHANGE PATH               \\n" );
-  printf( "============================\\n" );
-  
-  printf( "Change to...\\n" );
-  chdir( inipath );
-  
-  char mydirnow[2500];
-  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );}
-        xywh {130 225 100 25}
-      }
-      Fl_Button {} {
-        label Userpath
-        callback {redraw();
-
-  printf( "============================\\n" );
-  printf( "  CHANGE PATH               \\n" );
-  printf( "============================\\n" );
-  
-  printf( "Change to...\\n" );
-  chdir( userpath );
-  
-  char mydirnow[2500];
-  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );}
-        xywh {245 225 115 25}
+        xywh {325 105 50 25}
       }
     }
     Fl_Button {} {
       label {&Close Frame}
       callback {win3->hide();}
-      xywh {275 500 110 30}
+      xywh {280 330 110 30}
     }
     Fl_Group {} {
-      label Development open
-      xywh {10 295 375 125} box DOWN_BOX labeltype ENGRAVED_LABEL
+      label {Console output} open
+      xywh {15 225 375 95} box DOWN_BOX labeltype ENGRAVED_LABEL
     } {
-      Fl_Button {} {
-        label {VIM &Macro}
-        callback {redraw();
-  
-  nrun( " vim " ,  input_var_macro_filename->value() );}
-        xywh {145 310 90 25}
+      Fl_Check_Button checkbutton_single_console {
+        label {Single console output}
+        xywh {35 235 25 25} down_box DOWN_BOX
       }
-      Fl_Button {} {
-        label {&VIM SIM}
-        callback {redraw();
-  
-  nrun( " vim " , "macro.ocm" );}
-        xywh {40 310 90 25}
-      }
-      Fl_Button {} {
-        label {VIM &Database}
-        callback {redraw();
-  
-  nrun( " vim " , input_var_tdb_database->value(  ) );}
-        xywh {250 310 110 25}
-      }
-      Fl_Button {} {
-        label {[&4] Plot!}
-        callback {char mydirnow[2500];
-  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
-
-
-
-  redraw();
-  nsystem(  "  screen -d  -m  gnuplot ocgnu.plt  " );
-  
-  
-  // oc6 bug 
-  // gnuplot ocgnu.plt  &}
-        xywh {215 345 145 25}
-      }
-      Fl_Button {} {
-        label {[&3] Compute!}
-        callback {char mydirnow[2500];
-  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
-
-
-
-  redraw();
-  nsystem(  "  screen -d  -m   xterm -e   oc   macro.ocm " );
-  
-  // oc6 bug 
-  // gnuplot ocgnu.plt  &}
-        xywh {40 345 150 25}
-      }
-      Fl_Button {} {
-        label {GnuPlot XForward/Unix}
-        callback {char mydirnow[2500];
-  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
-
-
-
-  redraw();
-  
-  printf(   "Export Result on Solaris/Unix/BSD Simulation Station\\n" );
-  
-  nsystem(  " env DISPLAY=192.168.1.2:0    screen -d  -m  gnuplot ocgnu.plt  " );
-  
-  
-  
-  // oc6 bug 
-  // gnuplot ocgnu.plt  &}
-        xywh {40 380 320 25}
-      }
-    }
-    Fl_Group {} {
-      label {Macro Dev} open
-      xywh {10 440 375 55} box DOWN_BOX labeltype ENGRAVED_LABEL
-    } {
-      Fl_Button {} {
-        label {Use Macro}
-        callback {redraw();
-
-  printf( "============================\\n" );
-  printf( "   MACRO                    \\n" );
-  printf( "============================\\n" );
-  
-  printf( "   FILECOPY                  \\n" );
-  printf( "   Source: %s                  \\n" ,  input_var_macro_filename->value()   );
-  printf( "   Destination: %s                  \\n" ,  "macro.ocm"   );
-  
-
-  ncp( "macro.ocm" ,   input_var_macro_filename->value() );}
-        xywh {25 455 105 25}
-      }
-      Fl_Button {} {
-        label {Use Macro Commands}
-        callback {redraw();
-
-  printf( "============================\\n" );
-  printf( "   MACRO (OCL with SKIP)    \\n" );
-  printf( "============================\\n" );
-  
-  printf( "   FILECOPY                  \\n" );
-  printf( "   Source: %s                  \\n" ,  input_var_macro_filename->value()   );
-  printf( "   Destination: %s                  \\n" ,  "macro.ocm"   );
-  
-  ncpskip(  "macro.ocm" ,  input_var_macro_filename->value()  ,  "@&"  );}
-        xywh {145 455 225 25}
+      Fl_Check_Button checkbutton_xterm_console {
+        label {xterm console output}
+        xywh {35 265 25 25} down_box DOWN_BOX
+        code2 {checkbutton_xterm_console->value( 1 );}
       }
     }
   }
   Fl_Window win4 {
     label {Graphics Plot} open
-    xywh {586 248 830 330} type Double visible
+    xywh {586 248 830 330} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Plot}
@@ -928,7 +804,7 @@ redraw();}
     }
     Fl_Group {} {
       label Plot open
-      xywh {15 105 800 185} box DOWN_BOX labeltype ENGRAVED_LABEL
+      xywh {15 105 800 185} box DOWN_BOX labeltype ENGRAVED_LABEL resizable
     } {
       Fl_Button {} {
         label {Close all &plots}
@@ -949,7 +825,7 @@ nsystem( "  rm  ocgnu.plt " );}
     }
   }
   Fl_Window win5 {
-    label Macro open selected
+    label Macro open
     xywh {497 631 850 485} type Double resizable visible
   } {
     Fl_Box {} {
@@ -1217,6 +1093,134 @@ nsystem( "  rm  ocgnu.plt " );}
       label {Close Frame}
       callback {win6->hide();}
       xywh {530 430 110 25}
+    }
+  }
+  Fl_Window win7 {
+    label Development open
+    xywh {889 206 405 555} type Double hide resizable
+  } {
+    Fl_Box {} {
+      label {FLTK OpenCalphad -- Development}
+      xywh {10 15 380 35} box ENGRAVED_BOX labeltype ENGRAVED_LABEL
+    }
+    Fl_Group {} {
+      label Debug open
+      xywh {10 90 375 55} box DOWN_BOX labeltype ENGRAVED_LABEL
+    } {
+      Fl_Button {} {
+        label ccode
+        callback {nsystem( " screen -d -m fledit flopencalphad_def.h  " );}
+        xywh {20 105 100 25}
+      }
+      Fl_Button {} {
+        label Inipath
+        callback {redraw();
+
+  printf( "============================\\n" );
+  printf( "  CHANGE PATH               \\n" );
+  printf( "============================\\n" );
+  
+  printf( "Change to...\\n" );
+  chdir( inipath );
+  
+  char mydirnow[2500];
+  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );}
+        xywh {130 105 100 25}
+      }
+      Fl_Button {} {
+        label Userpath
+        callback {redraw();
+
+  printf( "============================\\n" );
+  printf( "  CHANGE PATH               \\n" );
+  printf( "============================\\n" );
+  
+  printf( "Change to...\\n" );
+  chdir( userpath );
+  
+  char mydirnow[2500];
+  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );}
+        xywh {245 105 115 25}
+      }
+    }
+    Fl_Button {} {
+      label {&Close Frame}
+      callback {win3->hide();}
+      xywh {275 500 110 30}
+    }
+    Fl_Group {} {
+      label Development open
+      xywh {10 195 375 125} box DOWN_BOX labeltype ENGRAVED_LABEL
+    } {
+      Fl_Button {} {
+        label {VIM &Macro}
+        callback {redraw();
+  
+  nrun( " vim " ,  input_var_macro_filename->value() );}
+        xywh {145 210 90 25}
+      }
+      Fl_Button {} {
+        label {&VIM SIM}
+        callback {redraw();
+  
+  nrun( " vim " , "macro.ocm" );}
+        xywh {40 210 90 25}
+      }
+      Fl_Button {} {
+        label {VIM &Database}
+        callback {redraw();
+  
+  nrun( " vim " , input_var_tdb_database->value(  ) );}
+        xywh {250 210 110 25}
+      }
+      Fl_Button {} {
+        label {[&4] Plot!}
+        callback {char mydirnow[2500];
+  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
+
+
+
+  redraw();
+  nsystem(  "  screen -d  -m  gnuplot ocgnu.plt  " );
+  
+  
+  // oc6 bug 
+  // gnuplot ocgnu.plt  &}
+        xywh {215 245 145 25}
+      }
+      Fl_Button {} {
+        label {[&3] Compute!}
+        callback {char mydirnow[2500];
+  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
+
+
+
+  redraw();
+  nsystem(  "  screen -d  -m   xterm -e   oc   macro.ocm " );
+  
+  // oc6 bug 
+  // gnuplot ocgnu.plt  &}
+        xywh {40 245 150 25}
+      }
+      Fl_Button {} {
+        label {GnuPlot XForward/Unix}
+        callback {char mydirnow[2500];
+  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
+
+
+
+  redraw();
+  
+  printf(   "Export Result on Solaris/Unix/BSD Simulation Station\\n" );
+  
+  nsystem(  " env DISPLAY=192.168.1.2:0    screen -d  -m  gnuplot ocgnu.plt  " );
+  
+  
+  
+  // oc6 bug 
+  // gnuplot ocgnu.plt  &}
+        xywh {40 280 320 25}
+      }
     }
   }
 }
