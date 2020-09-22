@@ -427,7 +427,7 @@ redraw();}
      
   
   // oc6 bug 
-  // gnuplot ocgnu.plt  &} selected
+  // gnuplot ocgnu.plt  &}
         xywh {135 540 145 25}
       }
       Fl_Button {} {
@@ -1145,7 +1145,7 @@ nsystem( "  rm  ocgnu.plt " );}
     }
     Fl_Button {} {
       label {&Close Frame}
-      callback {win3->hide();}
+      callback {win7->hide();} selected
       xywh {275 500 110 30}
     }
     Fl_Group {} {

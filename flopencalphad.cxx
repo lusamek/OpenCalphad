@@ -906,7 +906,7 @@ static void cb_Userpath(Fl_Button*, void*) {
 }
 
 static void cb_Close6(Fl_Button*, void*) {
-  win3->hide();
+  win7->hide();
 }
 
 static void cb_VIM(Fl_Button*, void*) {
