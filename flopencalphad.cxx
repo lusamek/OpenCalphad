@@ -847,12 +847,11 @@ static void cb_Browse1(Fl_Button*, void*) {
 	closedir( dirp );
 }
 
-static void cb_Edit1(Fl_Button*, void*) {
+static void cb_New(Fl_Button*, void*) {
   redraw();
-  
   char charo[PATH_MAX];
   strncpy( charo, "", PATH_MAX );
-  strncat( charo , " screen -d -m  fledit  " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " screen -d -m  flnotepad  " , PATH_MAX - strlen( charo ) -1 );
   strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , " \"" , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
@@ -892,6 +891,19 @@ static void cb_Cat1(Fl_Button*, void*) {
   redraw();
   
   ncat( input_var_macro_filename->value() );
+}
+
+static void cb_Edit1(Fl_Button*, void*) {
+  redraw();
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  fledit  " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );
 }
 
 static void cb_Close4(Fl_Button*, void*) {
@@ -1232,10 +1244,10 @@ Fl_Double_Window* make_window() {
     { Fl_Group* o = new Fl_Group(10, 440, 375, 55, "Macro Dev");
       o->box(FL_DOWN_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
-      { Fl_Button* o = new Fl_Button(20, 455, 100, 25, "Use Macro");
+      { Fl_Button* o = new Fl_Button(25, 455, 105, 25, "Use Macro");
         o->callback((Fl_Callback*)cb_Use);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(135, 455, 225, 25, "Use Macro Commands");
+      { Fl_Button* o = new Fl_Button(145, 455, 225, 25, "Use Macro Commands");
         o->callback((Fl_Callback*)cb_Use1);
       } // Fl_Button* o
       o->end();
@@ -1266,34 +1278,37 @@ Fl_Double_Window* make_window() {
       o->box(FL_ENGRAVED_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
     } // Fl_Box* o
-    { Fl_Group* o = new Fl_Group(15, 175, 370, 270, "Browser");
+    { Fl_Group* o = new Fl_Group(15, 205, 370, 240, "Browser");
       o->box(FL_DOWN_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
-      { browser2 = new Fl_Browser(35, 220, 330, 215);
+      { browser2 = new Fl_Browser(35, 245, 330, 195);
         browser2->callback((Fl_Callback*)cb_browser2);
         browser2->type(FL_HOLD_BROWSER);
       } // Fl_Browser* browser2
-      { input_var_macro_filename = new Fl_Input(100, 185, 265, 25, "Filename");
+      { input_var_macro_filename = new Fl_Input(100, 215, 265, 25, "Filename");
       } // Fl_Input* input_var_macro_filename
       o->end();
     } // Fl_Group* o
-    { Fl_Group* o = new Fl_Group(15, 80, 370, 60, "Macro");
+    { Fl_Group* o = new Fl_Group(15, 80, 370, 95, "Macro");
       o->box(FL_DOWN_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
-      { Fl_Button* o = new Fl_Button(25, 100, 70, 25, "Browse");
+      { Fl_Button* o = new Fl_Button(25, 100, 95, 25, "Browse");
         o->callback((Fl_Callback*)cb_Browse1);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(210, 100, 50, 25, "&Edit");
-        o->callback((Fl_Callback*)cb_Edit1);
+      { Fl_Button* o = new Fl_Button(270, 100, 50, 25, "&New");
+        o->callback((Fl_Callback*)cb_New);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(265, 100, 110, 25, "&Use macro");
+      { Fl_Button* o = new Fl_Button(25, 140, 95, 25, "&Use macro");
         o->callback((Fl_Callback*)cb_Use2);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(155, 100, 50, 25, "&View");
+      { Fl_Button* o = new Fl_Button(215, 100, 50, 25, "&View");
         o->callback((Fl_Callback*)cb_View1);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(100, 100, 50, 25, "&Cat");
+      { Fl_Button* o = new Fl_Button(160, 100, 50, 25, "&Cat");
         o->callback((Fl_Callback*)cb_Cat1);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(325, 100, 50, 25, "&Edit");
+        o->callback((Fl_Callback*)cb_Edit1);
       } // Fl_Button* o
       o->end();
     } // Fl_Group* o

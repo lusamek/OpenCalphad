@@ -701,7 +701,7 @@ redraw();}
       xywh {755 320 110 25}
     }
   }
-  Fl_Window win3 {open
+  Fl_Window win3 {open selected
     xywh {1346 237 405 540} type Double resizable visible
   } {
     Fl_Box {} {
@@ -897,7 +897,7 @@ redraw();}
   
 
   ncp( "macro.ocm" ,   input_var_macro_filename->value() );}
-        xywh {20 455 100 25}
+        xywh {25 455 105 25}
       }
       Fl_Button {} {
         label {Use Macro Commands}
@@ -911,8 +911,8 @@ redraw();}
   printf( "   Source: %s                  \\n" ,  input_var_macro_filename->value()   );
   printf( "   Destination: %s                  \\n" ,  "macro.ocm"   );
   
-  ncpskip(  "macro.ocm" ,  input_var_macro_filename->value()  ,  "@&"  );} selected
-        xywh {135 455 225 25}
+  ncpskip(  "macro.ocm" ,  input_var_macro_filename->value()  ,  "@&"  );}
+        xywh {145 455 225 25}
       }
     }
   }
@@ -940,7 +940,7 @@ redraw();}
     }
   }
   Fl_Window win5 {open
-    xywh {400 625 850 485} type Double resizable visible
+    xywh {497 631 850 485} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Macro}
@@ -948,7 +948,7 @@ redraw();}
     }
     Fl_Group {} {
       label Browser open
-      xywh {15 175 370 270} box DOWN_BOX labeltype ENGRAVED_LABEL
+      xywh {15 205 370 240} box DOWN_BOX labeltype ENGRAVED_LABEL
     } {
       Fl_Browser browser2 {
         callback {printf( "Click\\n" );
@@ -990,17 +990,17 @@ redraw();}
   
  
  redraw();}
-        xywh {35 220 330 215}
+        xywh {35 245 330 195}
         code1 {browser2->type(FL_HOLD_BROWSER);}
       }
       Fl_Input input_var_macro_filename {
         label Filename
-        xywh {100 185 265 25}
+        xywh {100 215 265 25}
       }
     }
     Fl_Group {} {
       label Macro open
-      xywh {15 80 370 60} box DOWN_BOX labeltype ENGRAVED_LABEL
+      xywh {15 80 370 95} box DOWN_BOX labeltype ENGRAVED_LABEL
     } {
       Fl_Button {} {
         label Browse
@@ -1031,21 +1031,20 @@ redraw();}
                 }
 	}
 	closedir( dirp );}
-        xywh {25 100 70 25}
+        xywh {25 100 95 25}
       }
       Fl_Button {} {
-        label {&Edit}
+        label {&New}
         callback {redraw();
-  
   char charo[PATH_MAX];
   strncpy( charo, "", PATH_MAX );
-  strncat( charo , " screen -d -m  fledit  " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " screen -d -m  flnotepad  " , PATH_MAX - strlen( charo ) -1 );
   strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
   nsystem(  charo );}
-        xywh {210 100 50 25}
+        xywh {270 100 50 25}
       }
       Fl_Button {} {
         label {&Use macro}
@@ -1061,7 +1060,7 @@ redraw();}
   
 
   ncp( "macro.ocm" ,   input_var_macro_filename->value() );}
-        xywh {265 100 110 25}
+        xywh {25 140 95 25}
       }
       Fl_Button {} {
         label {&View}
@@ -1075,14 +1074,28 @@ redraw();}
   strncat( charo , input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
   nsystem(  charo );}
-        xywh {155 100 50 25}
+        xywh {215 100 50 25}
       }
       Fl_Button {} {
         label {&Cat}
         callback {redraw();
   
   ncat( input_var_macro_filename->value() );}
-        xywh {100 100 50 25}
+        xywh {160 100 50 25}
+      }
+      Fl_Button {} {
+        label {&Edit}
+        callback {redraw();
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  fledit  " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );}
+        xywh {325 100 50 25}
       }
     }
     Fl_Button {} {
