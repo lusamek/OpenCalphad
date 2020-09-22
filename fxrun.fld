@@ -1,0 +1,64 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0304
+header_name {.h}
+code_name {.cxx}
+decl {\#include "fldrawtn.h"} {private local
+}
+
+Function {make_window()} {open
+} {
+  Fl_Window win3 {
+    label {Run Command} open
+    xywh {561 266 370 195} type Double visible
+  } {
+    Fl_Box {} {
+      image {icons/run.xpm} xywh {10 10 55 55}
+    }
+    Fl_Box {} {
+      label {Enter the name of the application you would like to run or the URL you would like to view}
+      xywh {70 10 290 69} align 148
+    }
+    Fl_Input input_open {
+      label {Open:}
+      xywh {70 90 290 25}
+    }
+    Fl_Check_Button {} {
+      label {Run in terminal}
+      xywh {70 125 290 25} down_box DOWN_BOX
+    }
+    Fl_Button {} {
+      label {&OK}
+      callback {char cmdi[PATH_MAX];
+ 	strncpy( cmdi , " "  , PATH_MAX );
+	strncat( cmdi , "  screen -d -m  " , PATH_MAX - strlen( cmdi ) -1 );
+	strncat( cmdi , input_open->value() , PATH_MAX - strlen( cmdi ) -1 );
+	strncat( cmdi , " " , PATH_MAX - strlen( cmdi ) -1 );
+	system(  cmdi );
+	
+	
+	 exit( 0 );} selected
+      xywh {175 160 90 25}
+    }
+    Fl_Button {} {
+      label {&Cancel}
+      callback {exit( 0 );}
+      xywh {270 160 90 25}
+    }
+  }
+}
+
+Function {main()} {open return_type int
+} {
+  code {printf( "FXRUN\\n" );
+   
+   
+ 
+  
+    make_window();
+    win3->show(); 
+    
+ 
+
+  
+    return(Fl::run());} {}
+}

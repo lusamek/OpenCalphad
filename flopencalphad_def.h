@@ -354,6 +354,51 @@ void create_macro(  )
 
 
 
+
+void ncpskip( const char *filetarget,  const char *  filesource , const char *pattern)
+{
+  int fetchi;
+  FILE *fp5;
+  FILE *fp6;
+  char fetchline[PATH_MAX];
+  char fetchlinetmp[PATH_MAX];
+  char filein[PATH_MAX];
+    
+  if ( fexist( filesource ) == 1 )
+  {
+    fp6 = fopen( filesource , "rb");
+    fp5 = fopen( filetarget , "wb");
+    while( !feof(fp6) ) 
+    {
+          fgets(fetchlinetmp, PATH_MAX, fp6); 
+          strncpy( fetchline, "" , PATH_MAX );
+          for( fetchi = 0 ; ( fetchi <= strlen( fetchlinetmp ) ); fetchi++ )
+            if ( fetchlinetmp[ fetchi ] != '\n' )
+                 fetchline[fetchi]=fetchlinetmp[fetchi];
+                 
+                if ( !feof( fp6 ) ) 
+                {
+		   if ( strstr( fetchline, pattern ) == 0 ) 
+		   {
+                    fputs( fetchline, fp5 );
+                    fputs( "\n", fp5 );
+		   }
+		   else
+		   {
+		    printf( "Skip line : %s\n" , fetchline );
+		   }
+                }
+     }
+     fclose( fp6 );
+     fclose( fp5 );
+   }
+}
+
+
+
+
+
+
 void ncp( const char *filetarget,  const char *  filesource )
 {
   char            buffer[1];
@@ -381,6 +426,15 @@ void ncp( const char *filetarget,  const char *  filesource )
         fclose(fp);
       }
 }
+
+
+
+
+
+
+
+
+
 
 
 

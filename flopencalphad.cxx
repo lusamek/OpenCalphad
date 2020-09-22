@@ -627,6 +627,10 @@ static void cb_x48(Fl_Button*, void*) {
   nsystem( " screen -d -m x48 " );
 }
 
+static void cb_fxrun(Fl_Button*, void*) {
+  nsystem( " screen -d -m fxrun " );
+}
+
 static void cb_ccode(Fl_Button*, void*) {
   nsystem( " screen -d -m fledit flopencalphad_def.h  " );
 }
@@ -724,6 +728,35 @@ static void cb_GnuPlot(Fl_Button*, void*) {
   
   // oc6 bug 
   // gnuplot ocgnu.plt  &;
+}
+
+static void cb_Use(Fl_Button*, void*) {
+  redraw();
+
+  printf( "============================\n" );
+  printf( "   MACRO                    \n" );
+  printf( "============================\n" );
+  
+  printf( "   FILECOPY                  \n" );
+  printf( "   Source: %s                  \n" ,  input_var_macro_filename->value()   );
+  printf( "   Destination: %s                  \n" ,  "macro.ocm"   );
+  
+
+  ncp( "macro.ocm" ,   input_var_macro_filename->value() );
+}
+
+static void cb_Use1(Fl_Button*, void*) {
+  redraw();
+
+  printf( "============================\n" );
+  printf( "   MACRO (SKIP)             \n" );
+  printf( "============================\n" );
+  
+  printf( "   FILECOPY                  \n" );
+  printf( "   Source: %s                  \n" ,  input_var_macro_filename->value()   );
+  printf( "   Destination: %s                  \n" ,  "macro.ocm"   );
+  
+  ncpskip(  "macro.ocm" ,  input_var_macro_filename->value()  ,  "@&"  );
 }
 
 Fl_Double_Window *win4=(Fl_Double_Window *)0;
@@ -827,7 +860,7 @@ static void cb_Edit1(Fl_Button*, void*) {
   nsystem(  charo );
 }
 
-static void cb_Use(Fl_Button*, void*) {
+static void cb_Use2(Fl_Button*, void*) {
   redraw();
 
   printf( "============================\n" );
@@ -1122,7 +1155,7 @@ Fl_Double_Window* make_window() {
     win2->end();
     win2->resizable(win2);
   } // Fl_Double_Window* win2
-  { win3 = new Fl_Double_Window(405, 475);
+  { win3 = new Fl_Double_Window(405, 540);
     { Fl_Box* o = new Fl_Box(10, 15, 380, 35, "FLTK OpenCalphad -- Option");
       o->box(FL_ENGRAVED_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
@@ -1151,6 +1184,9 @@ Fl_Double_Window* make_window() {
       { Fl_Button* o = new Fl_Button(250, 145, 50, 25, "x48");
         o->callback((Fl_Callback*)cb_x48);
       } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(250, 115, 50, 25, "&fxrun");
+        o->callback((Fl_Callback*)cb_fxrun);
+      } // Fl_Button* o
       o->end();
     } // Fl_Group* o
     { Fl_Group* o = new Fl_Group(10, 210, 375, 55, "Debug");
@@ -1162,12 +1198,12 @@ Fl_Double_Window* make_window() {
       { Fl_Button* o = new Fl_Button(130, 225, 100, 25, "Inipath");
         o->callback((Fl_Callback*)cb_Inipath);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(245, 225, 100, 25, "Userpath");
+      { Fl_Button* o = new Fl_Button(245, 225, 115, 25, "Userpath");
         o->callback((Fl_Callback*)cb_Userpath);
       } // Fl_Button* o
       o->end();
     } // Fl_Group* o
-    { Fl_Button* o = new Fl_Button(280, 435, 110, 30, "&Close Frame");
+    { Fl_Button* o = new Fl_Button(275, 500, 110, 30, "&Close Frame");
       o->callback((Fl_Callback*)cb_Close1);
     } // Fl_Button* o
     { Fl_Group* o = new Fl_Group(10, 295, 375, 125, "Development");
@@ -1190,6 +1226,17 @@ Fl_Double_Window* make_window() {
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(40, 380, 320, 25, "GnuPlot XForward/Unix");
         o->callback((Fl_Callback*)cb_GnuPlot);
+      } // Fl_Button* o
+      o->end();
+    } // Fl_Group* o
+    { Fl_Group* o = new Fl_Group(10, 440, 375, 55, "Macro Dev");
+      o->box(FL_DOWN_BOX);
+      o->labeltype(FL_ENGRAVED_LABEL);
+      { Fl_Button* o = new Fl_Button(20, 455, 100, 25, "Use Macro");
+        o->callback((Fl_Callback*)cb_Use);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(135, 455, 225, 25, "Use Macro Commands");
+        o->callback((Fl_Callback*)cb_Use1);
       } // Fl_Button* o
       o->end();
     } // Fl_Group* o
@@ -1240,7 +1287,7 @@ Fl_Double_Window* make_window() {
         o->callback((Fl_Callback*)cb_Edit1);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(265, 100, 110, 25, "&Use macro");
-        o->callback((Fl_Callback*)cb_Use);
+        o->callback((Fl_Callback*)cb_Use2);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(155, 100, 50, 25, "&View");
         o->callback((Fl_Callback*)cb_View1);

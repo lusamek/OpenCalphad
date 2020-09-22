@@ -702,7 +702,7 @@ redraw();}
     }
   }
   Fl_Window win3 {open
-    xywh {1346 237 405 475} type Double resizable visible
+    xywh {1346 237 405 540} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Option}
@@ -754,6 +754,11 @@ redraw();}
         callback {nsystem( " screen -d -m x48 " );}
         xywh {250 145 50 25}
       }
+      Fl_Button {} {
+        label {&fxrun}
+        callback {nsystem( " screen -d -m fxrun " );}
+        xywh {250 115 50 25}
+      }
     }
     Fl_Group {} {
       label Debug open
@@ -792,13 +797,13 @@ redraw();}
   
   char mydirnow[2500];
   printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );}
-        xywh {245 225 100 25}
+        xywh {245 225 115 25}
       }
     }
     Fl_Button {} {
       label {&Close Frame}
       callback {win3->hide();}
-      xywh {280 435 110 30}
+      xywh {275 500 110 30}
     }
     Fl_Group {} {
       label Development open
@@ -837,7 +842,7 @@ redraw();}
   
   
   // oc6 bug 
-  // gnuplot ocgnu.plt  &} selected
+  // gnuplot ocgnu.plt  &}
         xywh {215 345 145 25}
       }
       Fl_Button {} {
@@ -874,6 +879,42 @@ redraw();}
         xywh {40 380 320 25}
       }
     }
+    Fl_Group {} {
+      label {Macro Dev} open
+      xywh {10 440 375 55} box DOWN_BOX labeltype ENGRAVED_LABEL
+    } {
+      Fl_Button {} {
+        label {Use Macro}
+        callback {redraw();
+
+  printf( "============================\\n" );
+  printf( "   MACRO                    \\n" );
+  printf( "============================\\n" );
+  
+  printf( "   FILECOPY                  \\n" );
+  printf( "   Source: %s                  \\n" ,  input_var_macro_filename->value()   );
+  printf( "   Destination: %s                  \\n" ,  "macro.ocm"   );
+  
+
+  ncp( "macro.ocm" ,   input_var_macro_filename->value() );}
+        xywh {20 455 100 25}
+      }
+      Fl_Button {} {
+        label {Use Macro Commands}
+        callback {redraw();
+
+  printf( "============================\\n" );
+  printf( "   MACRO (SKIP)             \\n" );
+  printf( "============================\\n" );
+  
+  printf( "   FILECOPY                  \\n" );
+  printf( "   Source: %s                  \\n" ,  input_var_macro_filename->value()   );
+  printf( "   Destination: %s                  \\n" ,  "macro.ocm"   );
+  
+  ncpskip(  "macro.ocm" ,  input_var_macro_filename->value()  ,  "@&"  );} selected
+        xywh {135 455 225 25}
+      }
+    }
   }
   Fl_Window win4 {
     xywh {586 248 830 330} type Double hide
@@ -899,7 +940,7 @@ redraw();}
     }
   }
   Fl_Window win5 {open
-    xywh {491 537 850 485} type Double resizable visible
+    xywh {400 625 850 485} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Macro}
