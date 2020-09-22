@@ -37,7 +37,7 @@ strncpy( var_system ,      output_system->value() , PATH_MAX );
 Function {make_window()} {open
 } {
   Fl_Window win1 {
-    label Notes open
+    label FLOPENCALPHAD open
     xywh {284 86 775 700} type Double resizable visible
   } {
     Fl_Box {} {
@@ -491,8 +491,9 @@ create_macro( );}
       xywh {470 650 80 30}
     }
   }
-  Fl_Window win2 {open
-    xywh {358 189 875 355} type Double hide resizable
+  Fl_Window win2 {
+    label Database open
+    xywh {358 189 875 355} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Database}
@@ -701,7 +702,8 @@ redraw();}
       xywh {755 320 110 25}
     }
   }
-  Fl_Window win3 {open
+  Fl_Window win3 {
+    label Development open
     xywh {1346 237 405 540} type Double resizable visible
   } {
     Fl_Box {} {
@@ -917,7 +919,8 @@ redraw();}
     }
   }
   Fl_Window win4 {
-    xywh {586 248 830 330} type Double hide
+    label {Graphics Plot} open
+    xywh {586 248 830 330} type Double visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Plot}
@@ -928,9 +931,15 @@ redraw();}
       xywh {15 105 800 185} box DOWN_BOX labeltype ENGRAVED_LABEL
     } {
       Fl_Button {} {
-        label {Close &Plots}
+        label {Close all &plots}
         callback {nsystem( " pkill gnuplot " );}
-        xywh {25 115 90 25}
+        xywh {165 115 130 25}
+      }
+      Fl_Button {} {
+        label {Clear GnuPlot plt}
+        callback {/// this might be modified for windows/mac ...
+nsystem( "  rm  ocgnu.plt " );}
+        xywh {25 115 130 25}
       }
     }
     Fl_Button {} {
@@ -939,7 +948,8 @@ redraw();}
       xywh {705 295 110 25}
     }
   }
-  Fl_Window win5 {open
+  Fl_Window win5 {
+    label Macro open selected
     xywh {497 631 850 485} type Double resizable visible
   } {
     Fl_Box {} {
@@ -1141,7 +1151,7 @@ redraw();}
   printf( "   Source: %s                  \\n" ,  input_var_macro_filename->value()   );
   printf( "   Destination: %s                  \\n" ,  "macro.ocm"   );
   
-  ncpskip(  "macro.ocm" ,  input_var_macro_filename->value()  ,  "@&"  );} selected
+  ncpskip(  "macro.ocm" ,  input_var_macro_filename->value()  ,  "@&"  );}
         xywh {145 135 95 25}
       }
     }
@@ -1161,7 +1171,8 @@ redraw();}
     }
   }
   Fl_Window win6 {
-    xywh {1212 597 655 465} type Double hide resizable
+    label Condition
+    xywh {1212 597 655 465} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Condition}

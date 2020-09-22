@@ -765,6 +765,11 @@ static void cb_Close2(Fl_Button*, void*) {
   nsystem( " pkill gnuplot " );
 }
 
+static void cb_Clear(Fl_Button*, void*) {
+  /// this might be modified for windows/mac ...
+nsystem( "  rm  ocgnu.plt " );
+}
+
 static void cb_Close3(Fl_Button*, void*) {
   win4->hide();
 }
@@ -976,7 +981,7 @@ static void cb_Close5(Fl_Button*, void*) {
 }
 
 Fl_Double_Window* make_window() {
-  { win1 = new Fl_Double_Window(775, 700, "Notes");
+  { win1 = new Fl_Double_Window(775, 700, "FLOPENCALPHAD");
     { Fl_Box* o = new Fl_Box(30, 25, 710, 30, "FLTK OpenCalphad");
       o->box(FL_ENGRAVED_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
@@ -1146,7 +1151,7 @@ Fl_Double_Window* make_window() {
     } // Fl_Button* o
     win1->end();
   } // Fl_Double_Window* win1
-  { win2 = new Fl_Double_Window(875, 355);
+  { win2 = new Fl_Double_Window(875, 355, "Database");
     { Fl_Box* o = new Fl_Box(15, 25, 850, 35, "FLTK OpenCalphad -- Database");
       o->box(FL_ENGRAVED_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
@@ -1212,7 +1217,7 @@ Fl_Double_Window* make_window() {
     win2->end();
     win2->resizable(win2);
   } // Fl_Double_Window* win2
-  { win3 = new Fl_Double_Window(405, 540);
+  { win3 = new Fl_Double_Window(405, 540, "Development");
     { Fl_Box* o = new Fl_Box(10, 15, 380, 35, "FLTK OpenCalphad -- Option");
       o->box(FL_ENGRAVED_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
@@ -1300,7 +1305,7 @@ Fl_Double_Window* make_window() {
     win3->end();
     win3->resizable(win3);
   } // Fl_Double_Window* win3
-  { win4 = new Fl_Double_Window(830, 330);
+  { win4 = new Fl_Double_Window(830, 330, "Graphics Plot");
     { Fl_Box* o = new Fl_Box(15, 25, 800, 35, "FLTK OpenCalphad -- Plot");
       o->box(FL_ENGRAVED_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
@@ -1308,8 +1313,11 @@ Fl_Double_Window* make_window() {
     { Fl_Group* o = new Fl_Group(15, 105, 800, 185, "Plot");
       o->box(FL_DOWN_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
-      { Fl_Button* o = new Fl_Button(25, 115, 90, 25, "Close &Plots");
+      { Fl_Button* o = new Fl_Button(165, 115, 130, 25, "Close all &plots");
         o->callback((Fl_Callback*)cb_Close2);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(25, 115, 130, 25, "Clear GnuPlot plt");
+        o->callback((Fl_Callback*)cb_Clear);
       } // Fl_Button* o
       o->end();
     } // Fl_Group* o
@@ -1318,7 +1326,7 @@ Fl_Double_Window* make_window() {
     } // Fl_Button* o
     win4->end();
   } // Fl_Double_Window* win4
-  { win5 = new Fl_Double_Window(850, 485);
+  { win5 = new Fl_Double_Window(850, 485, "Macro");
     { Fl_Box* o = new Fl_Box(15, 15, 820, 35, "FLTK OpenCalphad -- Macro");
       o->box(FL_ENGRAVED_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
@@ -1377,7 +1385,7 @@ Fl_Double_Window* make_window() {
     } // Fl_Group* o
     win5->end();
   } // Fl_Double_Window* win5
-  { win6 = new Fl_Double_Window(655, 465);
+  { win6 = new Fl_Double_Window(655, 465, "Condition");
     { Fl_Box* o = new Fl_Box(15, 15, 625, 30, "FLTK OpenCalphad -- Condition");
       o->box(FL_ENGRAVED_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
