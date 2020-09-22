@@ -661,6 +661,46 @@ static void cb_Clear(Fl_Button*, void*) {
 nsystem( "  rm  ocgnu.plt " );
 }
 
+static void cb_View1(Fl_Button*, void*) {
+  redraw();
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  flview   " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "ocgnu.plt"   , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );
+}
+
+static void cb_Edit1(Fl_Button*, void*) {
+  redraw();
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  fledit   " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "ocgnu.plt"   , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );
+}
+
+static void cb_Plot1(Fl_Button*, void*) {
+  char mydirnow[2500];
+  printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
+
+
+
+  redraw();
+  nsystem(  "  screen -d  -m  gnuplot ocgnu.plt  " );
+  
+  
+  // oc6 bug 
+  // gnuplot ocgnu.plt  &;
+}
+
 static void cb_Close3(Fl_Button*, void*) {
   win4->hide();
 }
@@ -770,7 +810,7 @@ static void cb_Use(Fl_Button*, void*) {
   ncp( "macro.ocm" ,   input_var_macro_filename->value() );
 }
 
-static void cb_View1(Fl_Button*, void*) {
+static void cb_View2(Fl_Button*, void*) {
   redraw();
   
   char charo[PATH_MAX];
@@ -789,7 +829,7 @@ static void cb_Cat1(Fl_Button*, void*) {
   ncat( input_var_macro_filename->value() );
 }
 
-static void cb_Edit1(Fl_Button*, void*) {
+static void cb_Edit2(Fl_Button*, void*) {
   redraw();
   
   char charo[PATH_MAX];
@@ -1270,14 +1310,23 @@ Fl_Double_Window* make_window() {
       o->box(FL_ENGRAVED_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
     } // Fl_Box* o
-    { Fl_Group* o = new Fl_Group(15, 105, 800, 185, "Plot");
+    { Fl_Group* o = new Fl_Group(15, 100, 800, 185, "Plot");
       o->box(FL_DOWN_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
-      { Fl_Button* o = new Fl_Button(165, 115, 130, 25, "Close all &plots");
+      { Fl_Button* o = new Fl_Button(165, 250, 130, 25, "Close all &plots");
         o->callback((Fl_Callback*)cb_Close2);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(25, 115, 130, 25, "Clear GnuPlot plt");
+      { Fl_Button* o = new Fl_Button(25, 250, 130, 25, "Clear GnuPlot plt");
         o->callback((Fl_Callback*)cb_Clear);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(25, 110, 130, 25, "View Plot File");
+        o->callback((Fl_Callback*)cb_View1);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(165, 110, 130, 25, "Edit Plot File");
+        o->callback((Fl_Callback*)cb_Edit1);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(25, 150, 130, 25, "Plot!");
+        o->callback((Fl_Callback*)cb_Plot1);
       } // Fl_Button* o
       o->end();
       Fl_Group::current()->resizable(o);
@@ -1316,13 +1365,13 @@ Fl_Double_Window* make_window() {
         o->callback((Fl_Callback*)cb_Use);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(320, 105, 50, 25, "&View");
-        o->callback((Fl_Callback*)cb_View1);
+        o->callback((Fl_Callback*)cb_View2);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(265, 105, 50, 25, "&Cat");
         o->callback((Fl_Callback*)cb_Cat1);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(320, 135, 50, 25, "&Edit");
-        o->callback((Fl_Callback*)cb_Edit1);
+        o->callback((Fl_Callback*)cb_Edit2);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(145, 105, 95, 25, "Browse ocl");
         o->callback((Fl_Callback*)cb_Browse2);
@@ -1351,7 +1400,7 @@ Fl_Double_Window* make_window() {
       o->box(FL_ENGRAVED_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
     } // Fl_Box* o
-    { Fl_Group* o = new Fl_Group(15, 105, 625, 315, "Set-Condition");
+    { Fl_Group* o = new Fl_Group(15, 105, 625, 315, "Set-Condition (Create)");
       o->box(FL_DOWN_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
       { input_var_set_condition = new Fl_Input(90, 135, 535, 25, "set-con");

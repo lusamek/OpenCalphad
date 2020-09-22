@@ -796,7 +796,7 @@ redraw();}
   }
   Fl_Window win4 {
     label {Graphics Plot} open
-    xywh {586 248 830 330} type Double resizable visible
+    xywh {457 180 830 330} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Plot}
@@ -804,18 +804,61 @@ redraw();}
     }
     Fl_Group {} {
       label Plot open
-      xywh {15 105 800 185} box DOWN_BOX labeltype ENGRAVED_LABEL resizable
+      xywh {15 100 800 185} box DOWN_BOX labeltype ENGRAVED_LABEL resizable
     } {
       Fl_Button {} {
         label {Close all &plots}
         callback {nsystem( " pkill gnuplot " );}
-        xywh {165 115 130 25}
+        xywh {165 250 130 25}
       }
       Fl_Button {} {
         label {Clear GnuPlot plt}
         callback {/// this might be modified for windows/mac ...
 nsystem( "  rm  ocgnu.plt " );}
-        xywh {25 115 130 25}
+        xywh {25 250 130 25}
+      }
+      Fl_Button {} {
+        label {View Plot File}
+        callback {redraw();
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  flview   " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "ocgnu.plt"   , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );} selected
+        xywh {25 110 130 25}
+      }
+      Fl_Button {} {
+        label {Edit Plot File}
+        callback {redraw();
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  fledit   " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "ocgnu.plt"   , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );}
+        xywh {165 110 130 25}
+      }
+      Fl_Button {} {
+        label {Plot!}
+        callback {char mydirnow[2500];
+  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
+
+
+
+  redraw();
+  nsystem(  "  screen -d  -m  gnuplot ocgnu.plt  " );
+  
+  
+  // oc6 bug 
+  // gnuplot ocgnu.plt  &}
+        xywh {25 150 130 25}
       }
     }
     Fl_Button {} {
@@ -1047,7 +1090,7 @@ nsystem( "  rm  ocgnu.plt " );}
     }
   }
   Fl_Window win6 {
-    label Condition
+    label Condition open
     xywh {1212 597 655 465} type Double resizable visible
   } {
     Fl_Box {} {
@@ -1055,7 +1098,7 @@ nsystem( "  rm  ocgnu.plt " );}
       xywh {15 15 625 30} box ENGRAVED_BOX labeltype ENGRAVED_LABEL
     }
     Fl_Group {} {
-      label {Set-Condition} open
+      label {Set-Condition (Create)} open
       xywh {15 105 625 315} box DOWN_BOX labeltype ENGRAVED_LABEL resizable
     } {
       Fl_Input input_var_set_condition {
@@ -1097,7 +1140,7 @@ nsystem( "  rm  ocgnu.plt " );}
   }
   Fl_Window win7 {
     label Development open
-    xywh {889 206 405 555} type Double hide resizable
+    xywh {889 206 405 555} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Development}
@@ -1145,7 +1188,7 @@ nsystem( "  rm  ocgnu.plt " );}
     }
     Fl_Button {} {
       label {&Close Frame}
-      callback {win7->hide();} selected
+      callback {win7->hide();}
       xywh {275 500 110 30}
     }
     Fl_Group {} {
