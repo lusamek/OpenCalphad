@@ -701,7 +701,7 @@ redraw();}
       xywh {755 320 110 25}
     }
   }
-  Fl_Window win3 {open selected
+  Fl_Window win3 {open
     xywh {1346 237 405 540} type Double resizable visible
   } {
     Fl_Box {} {
@@ -904,7 +904,7 @@ redraw();}
         callback {redraw();
 
   printf( "============================\\n" );
-  printf( "   MACRO (SKIP)             \\n" );
+  printf( "   MACRO (OCL with SKIP)    \\n" );
   printf( "============================\\n" );
   
   printf( "   FILECOPY                  \\n" );
@@ -1000,7 +1000,7 @@ redraw();}
     }
     Fl_Group {} {
       label Macro open
-      xywh {15 80 370 95} box DOWN_BOX labeltype ENGRAVED_LABEL
+      xywh {15 85 370 95} box DOWN_BOX labeltype ENGRAVED_LABEL
     } {
       Fl_Button {} {
         label Browse
@@ -1012,8 +1012,8 @@ redraw();}
   
   nlsgrep( ".ocm" );
   nlsgrep( ".OCM" );
-  
    
+      
         browser2->clear();
 	DIR *dirp;
 	struct dirent *dp;
@@ -1023,7 +1023,7 @@ redraw();}
 		if (  strcmp( dp->d_name, "." ) != 0 )
 		if (  strcmp( dp->d_name, ".." ) != 0 )
                 {
-                    if ( ( strstr( dp->d_name, ".OCM" ) != 0 )  || ( strstr( dp->d_name, ".ocm" ) != 0 )  ) 
+                    if ( ( strstr( dp->d_name, ".OCM" ) != 0 )  || ( strstr( dp->d_name, ".ocm" ) != 0 )          ) 
                     {
 			printf( "%s\\n", dp->d_name );
  		        browser2->add(  dp->d_name  );
@@ -1031,7 +1031,7 @@ redraw();}
                 }
 	}
 	closedir( dirp );}
-        xywh {25 100 95 25}
+        xywh {25 105 95 25}
       }
       Fl_Button {} {
         label {&New}
@@ -1044,7 +1044,7 @@ redraw();}
   strncat( charo , input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
   nsystem(  charo );}
-        xywh {270 100 50 25}
+        xywh {265 135 50 25}
       }
       Fl_Button {} {
         label {&Use macro}
@@ -1060,7 +1060,7 @@ redraw();}
   
 
   ncp( "macro.ocm" ,   input_var_macro_filename->value() );}
-        xywh {25 140 95 25}
+        xywh {25 135 95 25}
       }
       Fl_Button {} {
         label {&View}
@@ -1074,14 +1074,14 @@ redraw();}
   strncat( charo , input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
   nsystem(  charo );}
-        xywh {215 100 50 25}
+        xywh {320 105 50 25}
       }
       Fl_Button {} {
         label {&Cat}
         callback {redraw();
   
   ncat( input_var_macro_filename->value() );}
-        xywh {160 100 50 25}
+        xywh {265 105 50 25}
       }
       Fl_Button {} {
         label {&Edit}
@@ -1095,7 +1095,54 @@ redraw();}
   strncat( charo , input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
   nsystem(  charo );}
-        xywh {325 100 50 25}
+        xywh {320 135 50 25}
+      }
+      Fl_Button {} {
+        label {Browse ocl}
+        callback {redraw();
+
+  printf( "============================\\n" );
+  printf( "   MACRO                    \\n" );
+  printf( "============================\\n" );
+
+  nlsgrep( ".ocl" );
+ 
+  printf( "  ocl: improved OC format with more features (ocl: OC Language).\\n" );
+  printf( "  ocm: standard OC format.\\n" );
+     
+        browser2->clear();
+	DIR *dirp;
+	struct dirent *dp;
+	dirp = opendir( "." );
+	while  ((dp = readdir( dirp )) != NULL ) 
+	{
+		if (  strcmp( dp->d_name, "." ) != 0 )
+		if (  strcmp( dp->d_name, ".." ) != 0 )
+                {
+                    if ( strstr( dp->d_name, ".ocl" ) != 0 ) 
+                    {
+			printf( "%s\\n", dp->d_name );
+ 		        browser2->add(  dp->d_name  );
+ 		     }
+                }
+	}
+	closedir( dirp );}
+        xywh {145 105 95 25}
+      }
+      Fl_Button {} {
+        label {&Use ocl}
+        callback {redraw();
+
+  printf( "============================\\n" );
+  printf( "   MACRO (OCL with SKIP)    \\n" );
+  printf( "============================\\n" );
+  
+  printf( "   FILECOPY                  \\n" );
+  printf( "   Source: %s                  \\n" ,  input_var_macro_filename->value()   );
+  printf( "   Destination: %s                  \\n" ,  "macro.ocm"   );
+  
+  ncpskip(  "macro.ocm" ,  input_var_macro_filename->value()  ,  "@&"  );} selected
+        xywh {145 135 95 25}
       }
     }
     Fl_Button {} {

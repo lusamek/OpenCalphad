@@ -1,3 +1,5 @@
+
+
 /*-
  * Copyright (c) 2008 The NetBSD Foundation, Inc.
  * All rights reserved.
@@ -26,8 +28,6 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-
-
 
 
 
@@ -355,6 +355,7 @@ void create_macro(  )
 
 
 
+
 void ncpskip( const char *filetarget,  const char *  filesource , const char *pattern)
 {
   int fetchi;
@@ -363,20 +364,47 @@ void ncpskip( const char *filetarget,  const char *  filesource , const char *pa
   char fetchline[PATH_MAX];
   char fetchlinetmp[PATH_MAX];
   char filein[PATH_MAX];
+  int  gameover = 0; 
     
   if ( fexist( filesource ) == 1 )
   {
     fp6 = fopen( filesource , "rb");
     fp5 = fopen( filetarget , "wb");
-    while( !feof(fp6) ) 
+    while( !feof( fp6 ) )
     {
+
           fgets(fetchlinetmp, PATH_MAX, fp6); 
           strncpy( fetchline, "" , PATH_MAX );
+
           for( fetchi = 0 ; ( fetchi <= strlen( fetchlinetmp ) ); fetchi++ )
             if ( fetchlinetmp[ fetchi ] != '\n' )
                  fetchline[fetchi]=fetchlinetmp[fetchi];
+
+                if ( gameover == 0 )
+		if ( fetchline[ 0 ] == '@'  )   
+		if ( fetchline[ 1 ] == '!'  )   
+		if ( fetchline[ 2 ] == 'E'  )   
+		if ( fetchline[ 3 ] == 'O'  )   
+		if ( fetchline[ 4 ] == 'F'  )   
+		{
+                    /// mode debug: @!EOF => end of file  (upper case)
+		    printf( "    => @!EOF detected (end of file).\n");
+		    gameover = 1;
+		}
+
+                if ( gameover == 0 )
+		if ( fetchline[ 0 ] == '!'  )   
+		if ( fetchline[ 1 ] == 'E'  )   
+		if ( fetchline[ 2 ] == 'O'  )   
+		if ( fetchline[ 3 ] == 'F'  )   
+		{
+                    /// mode debug: !EOF => end of file  (upper case)
+		    printf( "    => !EOF detected (end of file).\n");
+		    gameover = 1;
+		}
                  
                 if ( !feof( fp6 ) ) 
+                if ( gameover == 0 )
                 {
 		   if ( strstr( fetchline, pattern ) == 0 ) 
 		   {
@@ -393,6 +421,10 @@ void ncpskip( const char *filetarget,  const char *  filesource , const char *pa
      fclose( fp5 );
    }
 }
+
+
+
+
 
 
 

@@ -749,7 +749,7 @@ static void cb_Use1(Fl_Button*, void*) {
   redraw();
 
   printf( "============================\n" );
-  printf( "   MACRO (SKIP)             \n" );
+  printf( "   MACRO (OCL with SKIP)    \n" );
   printf( "============================\n" );
   
   printf( "   FILECOPY                  \n" );
@@ -826,8 +826,8 @@ static void cb_Browse1(Fl_Button*, void*) {
   
   nlsgrep( ".ocm" );
   nlsgrep( ".OCM" );
-  
    
+      
         browser2->clear();
 	DIR *dirp;
 	struct dirent *dp;
@@ -837,7 +837,7 @@ static void cb_Browse1(Fl_Button*, void*) {
 		if (  strcmp( dp->d_name, "." ) != 0 )
 		if (  strcmp( dp->d_name, ".." ) != 0 )
                 {
-                    if ( ( strstr( dp->d_name, ".OCM" ) != 0 )  || ( strstr( dp->d_name, ".ocm" ) != 0 )  ) 
+                    if ( ( strstr( dp->d_name, ".OCM" ) != 0 )  || ( strstr( dp->d_name, ".ocm" ) != 0 )          ) 
                     {
 			printf( "%s\n", dp->d_name );
  		        browser2->add(  dp->d_name  );
@@ -904,6 +904,51 @@ static void cb_Edit1(Fl_Button*, void*) {
   strncat( charo , input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "\" " , PATH_MAX -  strlen( charo ) -1 );
   nsystem(  charo );
+}
+
+static void cb_Browse2(Fl_Button*, void*) {
+  redraw();
+
+  printf( "============================\n" );
+  printf( "   MACRO                    \n" );
+  printf( "============================\n" );
+
+  nlsgrep( ".ocl" );
+ 
+  printf( "  ocl: improved OC format with more features (ocl: OC Language).\n" );
+  printf( "  ocm: standard OC format.\n" );
+     
+        browser2->clear();
+	DIR *dirp;
+	struct dirent *dp;
+	dirp = opendir( "." );
+	while  ((dp = readdir( dirp )) != NULL ) 
+	{
+		if (  strcmp( dp->d_name, "." ) != 0 )
+		if (  strcmp( dp->d_name, ".." ) != 0 )
+                {
+                    if ( strstr( dp->d_name, ".ocl" ) != 0 ) 
+                    {
+			printf( "%s\n", dp->d_name );
+ 		        browser2->add(  dp->d_name  );
+ 		     }
+                }
+	}
+	closedir( dirp );
+}
+
+static void cb_Use3(Fl_Button*, void*) {
+  redraw();
+
+  printf( "============================\n" );
+  printf( "   MACRO (OCL with SKIP)    \n" );
+  printf( "============================\n" );
+  
+  printf( "   FILECOPY                  \n" );
+  printf( "   Source: %s                  \n" ,  input_var_macro_filename->value()   );
+  printf( "   Destination: %s                  \n" ,  "macro.ocm"   );
+  
+  ncpskip(  "macro.ocm" ,  input_var_macro_filename->value()  ,  "@&"  );
 }
 
 static void cb_Close4(Fl_Button*, void*) {
@@ -1289,26 +1334,32 @@ Fl_Double_Window* make_window() {
       } // Fl_Input* input_var_macro_filename
       o->end();
     } // Fl_Group* o
-    { Fl_Group* o = new Fl_Group(15, 80, 370, 95, "Macro");
+    { Fl_Group* o = new Fl_Group(15, 85, 370, 95, "Macro");
       o->box(FL_DOWN_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
-      { Fl_Button* o = new Fl_Button(25, 100, 95, 25, "Browse");
+      { Fl_Button* o = new Fl_Button(25, 105, 95, 25, "Browse");
         o->callback((Fl_Callback*)cb_Browse1);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(270, 100, 50, 25, "&New");
+      { Fl_Button* o = new Fl_Button(265, 135, 50, 25, "&New");
         o->callback((Fl_Callback*)cb_New);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(25, 140, 95, 25, "&Use macro");
+      { Fl_Button* o = new Fl_Button(25, 135, 95, 25, "&Use macro");
         o->callback((Fl_Callback*)cb_Use2);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(215, 100, 50, 25, "&View");
+      { Fl_Button* o = new Fl_Button(320, 105, 50, 25, "&View");
         o->callback((Fl_Callback*)cb_View1);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(160, 100, 50, 25, "&Cat");
+      { Fl_Button* o = new Fl_Button(265, 105, 50, 25, "&Cat");
         o->callback((Fl_Callback*)cb_Cat1);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(325, 100, 50, 25, "&Edit");
+      { Fl_Button* o = new Fl_Button(320, 135, 50, 25, "&Edit");
         o->callback((Fl_Callback*)cb_Edit1);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(145, 105, 95, 25, "Browse ocl");
+        o->callback((Fl_Callback*)cb_Browse2);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(145, 135, 95, 25, "&Use ocl");
+        o->callback((Fl_Callback*)cb_Use3);
       } // Fl_Button* o
       o->end();
     } // Fl_Group* o
