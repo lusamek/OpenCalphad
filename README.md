@@ -83,13 +83,13 @@ Example #4: Al-Fe system <br/>
 
 The GUI of OC is under development. It will be available in a next release (in the vdi image). 
 
-Currently, it can be compiled using the GNU C/C++ Compiler.
+Currently, it can be compiled using the GNU C/C++ Compiler.  
 The "Makefile" allows to compile flopencalphad on Mac, Linux, and BSD/Unix.<br/>
 This project is downloaded on the host machine or Unix/Linux/Mac. 
 The ZIP file needs to be decompressed.
 It requires the FLTK library and C++ compiler (e.g. CLANG or GCC). 
 In order to create the executables, the compilation is possible with ` make all`. <br/>
-The installation is possible with ` make install `. 
+The installation is possible with ` make install ` using root access. 
 This will install the
 files into the directory /usr/local/bin/.
 <br/>
