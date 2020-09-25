@@ -89,9 +89,11 @@ This project is downloaded on the host machine or Unix/Linux/Mac.
 The ZIP file needs to be decompressed.
 It requires the FLTK library and C++ compiler (e.g. CLANG or GCC). 
 In order to create the executables, the compilation is possible with ` make all`. <br/>
-The installation is possible with ` make install ` using root access. 
-This will install the
-files into the directory /usr/local/bin/.
+The installation is possible with ` make install ` using root access. This will install the files into the directory /usr/local/bin/.
+
+It is recommended to use the GUI as as regular user.  As user, the GUI can be started by the following command: 
+` ./flopencalphad ~/macros   ` 
+
 <br/>
 <br/>
 
