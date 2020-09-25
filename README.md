@@ -79,7 +79,11 @@ Example #4: Al-Fe system <br/>
 
 
 
-## 5. Using GUI
+## 5. Using GUI (under dev)
+
+The GUI of OC is under development. It will be available in a next release (in the vdi image). 
+
+Currently, it can be compiled using the GNU C/C++ Compiler.
 The "Makefile" allows to compile flopencalphad on Mac, Linux, and BSD/Unix.<br/>
 This project is downloaded on the host machine or Unix/Linux/Mac. 
 The ZIP file needs to be decompressed.
