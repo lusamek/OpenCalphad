@@ -90,7 +90,7 @@ The ZIP file needs to be decompressed. It requires the FLTK library and C++ comp
 In order to create the executables, the compilation is possible with ` make all`. 
 The installation is possible with ` make install ` using root access. This will install the files into the directory /usr/local/bin/.
 
-It is recommended to use the GUI as as regular user. The command `echo $PATH ` will display the default PATH for executables.  As user, the GUI can be started by the following command from the directory, where it was compiled : 
+It is recommended to use the GUI as a regular user. The command `echo $PATH ` will display the default PATH for executables.  As user, the GUI can be started by the following command from the directory, where it was compiled : 
 ` ./flopencalphad ~/macros   ` 
 
 <br/>
