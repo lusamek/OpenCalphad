@@ -99,6 +99,12 @@ The installation is possible with ` make install ` using root access. This will 
 It is recommended to use the GUI as a regular user. The command `echo $PATH ` will display the default PATH for executables.  As user, the GUI can be started by the following command from the directory, where it was compiled : 
 ` ./flopencalphad ~/macros   ` 
 
+Screenshot of Virtual Machine running the GUI:
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/gui-vm-oc-screenshot-1.png)
+
+A precompiled GUI Virtual image is available at the following Link: 
+(to be given soon).
+
 <br/>
 <br/>
 
