@@ -15,6 +15,8 @@ Screenshot #2:
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Guide-OC-VB-P01.jpg)
 
 
+
+
 ## 2. OC-image 
 After the installation of virtualbox, you may find the image at the following link.
 URL to download the version of OpenCalphad for classroom: https://www.dropbox.com/s/4lab0ipan8e0rrw/virtualbox-debian-opencalphad.zip?dl=0
@@ -26,6 +28,10 @@ After the download of the image file of the virtual machine, the files need to b
 
 Screenshot #3:
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Guide-OC-VM-P01.jpg)
+
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/vdi-image-explorer.png)
+
+
 
 
 ## 4. Start 
