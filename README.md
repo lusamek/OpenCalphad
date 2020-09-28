@@ -87,17 +87,16 @@ Example #4: Al-Fe system <br/>
 
 ## 5. Using GUI (under dev)
 
-The GUI of OC is under development. It will be available in a next release (in the vdi image). 
+The GUI of OC is under development.  
 
 Currently, it can be compiled using the GNU C/C++ Compiler.  
 The "Makefile" allows to compile flopencalphad on Mac, Linux, and BSD/Unix. 
 This project is downloaded on the host machine or Unix/Linux/Mac. 
 The ZIP file needs to be decompressed. It requires the FLTK library and C++ compiler (e.g. CLANG or GCC). 
 In order to create the executables, the compilation is possible with ` make all`. 
-The installation is possible with ` make install ` using root access. This will install the files into the directory /usr/local/bin/.
-
-It is recommended to use the GUI as a regular user. The command `echo $PATH ` will display the default PATH for executables.  As user, the GUI can be started by the following command from the directory, where it was compiled : 
+The installation is possible with ` make install ` using root access. This will install the files into the directory /usr/local/bin/. The command `echo $PATH ` will display the default PATH for executables.  As user, the GUI can be started by the following command from the directory, where it was compiled : 
 ` ./flopencalphad ~/macros   ` 
+
 
 Screenshot of Virtual Machine running the GUI:
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/gui-vm-oc-screenshot-1.png)
@@ -108,6 +107,7 @@ https://www.dropbox.com/s/32onfn56y8hx082/virtualbox-debian-opencalphad-GUI-v1.1
 
 <br/>
 <br/>
+
 
 Frontend for Fe-C system:<br/>
 ` flopencalphad ~/macros/ ` 
