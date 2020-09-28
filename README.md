@@ -102,8 +102,9 @@ It is recommended to use the GUI as a regular user. The command `echo $PATH ` wi
 Screenshot of Virtual Machine running the GUI:
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/gui-vm-oc-screenshot-1.png)
 
-A precompiled GUI Virtual image is available at the following Link: 
-(to be given soon).
+A precompiled GUI Virtual image is available at the following Link: <br/>
+https://www.dropbox.com/s/32onfn56y8hx082/virtualbox-debian-opencalphad-GUI-v1.1.zip?dl=0 
+(md5 checksum: 57ff8cc52de02868de4d255a9c6b140b virtualbox-debian-opencalphad-GUI-v1.1.zip)
 
 <br/>
 <br/>
