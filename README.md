@@ -87,9 +87,11 @@ Example #4: Al-Fe system <br/>
 
 ## 5. Using GUI (under dev)
 
-The GUI of OC is under development.  
+The graphical user interface (GUI) of OC is under development. An image of the virtual machine with the GUI OC is available for downloads at the following Link: <br/>
+https://www.dropbox.com/s/32onfn56y8hx082/virtualbox-debian-opencalphad-GUI-v1.1.zip?dl=0 
+(md5 checksum: 57ff8cc52de02868de4d255a9c6b140b virtualbox-debian-opencalphad-GUI-v1.1.zip)
 
-Currently, it can be compiled using the GNU C/C++ Compiler.  
+Currently, the GUI can be compiled using the GNU C/C++ Compiler.  
 The "Makefile" allows to compile flopencalphad on Mac, Linux, and BSD/Unix. 
 This project is downloaded on the host machine or Unix/Linux/Mac. 
 The ZIP file needs to be decompressed. It requires the FLTK library and C++ compiler (e.g. CLANG or GCC). 
@@ -101,9 +103,6 @@ The installation is possible with ` make install ` using root access. This will 
 Screenshot of Virtual Machine running the GUI:
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/gui-vm-oc-screenshot-1.png)
 
-A precompiled GUI Virtual image is available at the following Link: <br/>
-https://www.dropbox.com/s/32onfn56y8hx082/virtualbox-debian-opencalphad-GUI-v1.1.zip?dl=0 
-(md5 checksum: 57ff8cc52de02868de4d255a9c6b140b virtualbox-debian-opencalphad-GUI-v1.1.zip)
 
 <br/>
 <br/>
