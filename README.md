@@ -88,9 +88,9 @@ Example #4: Al-Fe system <br/>
 ## 5. Using GUI (under dev)
 
 The graphical user interface (GUI) of OC is under development. An image of the virtual machine with the GUI OC is available for downloads at the following Link: <br/>
-https://www.dropbox.com/s/32onfn56y8hx082/virtualbox-debian-opencalphad-GUI-v1.1.zip?dl=0 
+https://www.dropbox.com/s/32onfn56y8hx082/virtualbox-debian-opencalphad-GUI-v1.1.zip?dl=0    <br/> 
+A mirror for download is available at the following link: https://drive.google.com/file/d/14aJRksYz4pKwuMBolMNSc3sxOllR8QNZ/view?usp=sharing  <br/>
 (md5 checksum: 57ff8cc52de02868de4d255a9c6b140b virtualbox-debian-opencalphad-GUI-v1.1.zip)
-A mirror for download is available at the following link: https://drive.google.com/file/d/14aJRksYz4pKwuMBolMNSc3sxOllR8QNZ/view?usp=sharing
 
 
 Currently, the GUI can be compiled using the GNU C/C++ Compiler.  
