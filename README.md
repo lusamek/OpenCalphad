@@ -88,12 +88,13 @@ Example #4: Al-Fe system <br/>
 ## 5. Using GUI (under dev)
 
 The graphical user interface (GUI) of OC is under development. 
-An image of the virtual machine with the GUI OC is available for download at the following Link: <br/>
-https://www.dropbox.com/s/32onfn56y8hx082/virtualbox-debian-opencalphad-GUI-v1.1.zip?dl=0    <br/> 
+An image of the virtual machine with the GUI OC is available for download at the following Link. 
 <br> 
-A mirror is available at the following link: https://drive.google.com/file/d/14aJRksYz4pKwuMBolMNSc3sxOllR8QNZ/view?usp=sharing  <br/>
-(md5 checksum: 57ff8cc52de02868de4d255a9c6b140b virtualbox-debian-opencalphad-GUI-v1.1.zip)
-
+The image is available at the following link: https://drive.google.com/file/d/14aJRksYz4pKwuMBolMNSc3sxOllR8QNZ/view?usp=sharing  <br/>
+(md5 checksum: 57ff8cc52de02868de4d255a9c6b140b virtualbox-debian-opencalphad-GUI-v1.1.zip) <br/>
+<br>
+Kernel and headers for Virtualbox on Linux Ascii/Stretch: https://www.dropbox.com/sh/p21btpcbt8d0lf6/AABMbmwVGKGjm1LBvjPxgx7Ca?dl=0
+<br/>
 
 Currently, the GUI can be compiled using the GNU C/C++ Compiler.  
 The "Makefile" allows to compile flopencalphad on Mac, Linux, and BSD/Unix. 
