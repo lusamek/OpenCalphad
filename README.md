@@ -142,6 +142,10 @@ The GUI allows to use gnuplot-x11 (or gnuplot-qt) to plot the results. The resul
 This allows to use use the cursor for the position (x,y) as well. An example is shown for the Ag-Cu system:
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Ag-Cu-System-FLOC-gnuplot-x11-1.png)
 
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Ag-Cu-System-FLOC-gnuplot-x11-det1.png)
+
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Ag-Cu-System-FLOC-gnuplot-x11-det2.png)
+
 
 # Tutorial
 
