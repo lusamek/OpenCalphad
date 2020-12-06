@@ -813,6 +813,8 @@ static void cb_Close2(Fl_Button*, void*) {
 static void cb_Clear(Fl_Button*, void*) {
   /// this might be modified for windows/mac ...
 nsystem( "  rm  ocgnu.plt " );
+nsystem( "  rm  advocgnu.plt " );
+nsystem( "  rm  macro2.ocm " );
 
 flplot_preview_browser->clear();
 }
@@ -848,6 +850,7 @@ static void cb_Plot1(Fl_Button*, void*) {
   printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
   
   redraw();
+
   
   if ( plot_gnuplot_term_driver_force->value( ) == 0 )  
   {
@@ -936,6 +939,8 @@ static void cb_Adv(Fl_Button*, void*) {
   flplot_preview_browser->clear();
   //void_plot_preview_plotfile(  "advocgnu.plt" );
   
+  nsystem( "  rm  ocgnu.plt " );
+  nsystem( "  rm  advocgnu.plt " );
   
   if ( checkbutton_xterm_console->value( ) == 1 ) 
      nsystem(  "  screen -d  -m   xterm -e   oc   macro2.ocm " );
@@ -1010,6 +1015,27 @@ static void cb_Adv1(Fl_Button*, void*) {
       void_plot_preview_plotfile(  "advocgnu.plt" );
       
       nsystem(  "  screen -d  -m  gnuplot advocgnu.plt  " );
+}
+
+static void cb_Compute(Fl_Button*, void*) {
+  nsystem( "  rm  ocgnu.plt " );
+  nsystem( "  rm  advocgnu.plt " );
+
+  char mydirnow[2500];
+  printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
+  redraw();
+  
+  form_plot_statusline->value( "Compute ocgnu.plt in progress..." );
+  flplot_preview_browser->clear();
+  
+  if ( checkbutton_xterm_console->value( ) == 1 ) 
+     nsystem(  "  screen -d  -m   xterm -e   oc   macro.ocm " );
+     
+  else if ( checkbutton_single_console->value( ) == 1 ) 
+     nsystem(  "  oc   macro.ocm " );
+     
+  // oc6 bug 
+  // gnuplot ocgnu.plt  &;
 }
 
 static void cb_Close3(Fl_Button*, void*) {
@@ -1688,13 +1714,13 @@ Fl_Double_Window* make_window() {
       o->box(FL_ENGRAVED_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
     } // Fl_Box* o
-    { Fl_Group* o = new Fl_Group(15, 100, 860, 385, "Advanced Plot");
+    { Fl_Group* o = new Fl_Group(15, 100, 880, 385, "Advanced Plot");
       o->box(FL_DOWN_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
-      { Fl_Button* o = new Fl_Button(590, 110, 135, 25, "Close all &plots");
+      { Fl_Button* o = new Fl_Button(735, 110, 135, 25, "Close all &plots");
         o->callback((Fl_Callback*)cb_Close2);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(450, 110, 130, 25, "Clear GnuPlot plt");
+      { Fl_Button* o = new Fl_Button(360, 170, 130, 25, "Clear GnuPlot plt");
         o->callback((Fl_Callback*)cb_Clear);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(25, 110, 130, 25, "View Plot File");
@@ -1703,7 +1729,7 @@ Fl_Double_Window* make_window() {
       { Fl_Button* o = new Fl_Button(165, 110, 130, 25, "Edit Plot File");
         o->callback((Fl_Callback*)cb_Edit3);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(735, 110, 135, 25, "Plot!");
+      { Fl_Button* o = new Fl_Button(590, 110, 135, 25, "Plot!");
         o->labelfont(1);
         o->callback((Fl_Callback*)cb_Plot1);
       } // Fl_Button* o
@@ -1747,6 +1773,9 @@ Fl_Double_Window* make_window() {
       } // Fl_Check_Button* plot_adv_computer_skipint
       { Fl_Button* o = new Fl_Button(590, 140, 135, 25, "Adv. Plot");
         o->callback((Fl_Callback*)cb_Adv1);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(450, 110, 130, 25, "Compute");
+        o->callback((Fl_Callback*)cb_Compute);
       } // Fl_Button* o
       o->end();
       Fl_Group::current()->resizable(o);
