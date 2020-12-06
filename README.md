@@ -84,7 +84,7 @@ Example #4: Al-Fe system <br/>
 <br/>
 
 
-
+ 
 ## 5. Using GUI (under dev)
 
 The graphical user interface (GUI) of OC is under development. 
@@ -155,6 +155,7 @@ This allows to use use the cursor for the position (x,y) as well. An example is 
 
 
 
+<br/>
 # 6. Advanced Plot for Chemistry and Thermodynamics
 
 <br/>
@@ -168,7 +169,7 @@ Example of OC macro file for RE-W system (M. Palumbo, S.G. Fried, T. Hammerschmi
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Gui-Advanced-Plots-Chemistry-pic03.png)
 
 
-
+<br/>
 # 7. Tutorial
 
 <br/>
