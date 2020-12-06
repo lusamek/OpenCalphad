@@ -141,9 +141,9 @@ The panel for "Set-Condition" allows to give the initial parameters.
 The GUI allows to use gnuplot-x11 (or gnuplot-qt) to plot the results. The results can be viewed and there is a zoom option with gnuplot-x11.
 This allows to use use the cursor for the position (x,y) as well. An example is shown for the Ag-Cu system:
 
-![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Ag-Cu-System-FLOC-gnuplot-x11-prev-3.png)
-
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Ag-Cu-System-FLOC-gnuplot-x11-prev-4.png)
+
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Ag-Cu-System-FLOC-gnuplot-x11-prev-5.png)
 
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Ag-Cu-System-FLOC-gnuplot-x11-1.png)
 
