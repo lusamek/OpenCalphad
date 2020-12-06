@@ -124,6 +124,13 @@ Frontend for Fe-C system:<br/>
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/flopencalphad-2.png)
 <br/>
 
+
+<br/>
+Plot the metastable Fe-C diagram and overlay the stable:
+<br/>
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Gui-Advanced-Plots-Fe-C-2Types-01.png)
+<br/>
+
 Frontend/GUI: <br/>
 ` flopencalphad ~/macros/ ` 
 (Click on "Macro" button) <br/>
