@@ -154,7 +154,19 @@ This allows to use use the cursor for the position (x,y) as well. An example is 
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Ag-Cu-System-FLOC-gnuplot-x11-det2.png)
 
 
-# Tutorial
+
+# 6. Advanced Plot for Chemistry and Thermodynamics
+
+<br/>
+The diagram shows the use of advanced plot for specific examples. <br/>
+
+Example of calculating speciation in a gas and plot y, H and Cp.
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Gui-Advanced-Plots-Chemistry-pic01.png)
+
+
+
+
+# 7. Tutorial
 
 <br/>
 The diagram for the Fe-C system can be achieved as follows. <br/>
@@ -166,8 +178,6 @@ The diagram for the Fe-C system can be achieved as follows. <br/>
 
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/flopencalphad-5.png)
 <br/>
-
-
 
 <br/>
 The diagram for the Fe-Si system can be achieved as follows. <br/>
@@ -192,8 +202,8 @@ The diagram for the Fe-Mn system can be achieved as follows. <br/>
 <br/>
 
 
-## 6. Contribution
-
+## 8. Contribution
+<br/>
 The graphical user interface (GUI) of OC is under development. The database of OC are available on this webpage under the directory "macros" (https://github.com/lusamek/OpenCalphad/tree/master/macros). The GUI allows users to login to a platform on IRC for scientific exchanges and sharing experiences. This is avaiable in the window "Option" using the button "Development and Support".
 
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Ag-Cu-System-FLOC-gnuplot-x11-prev-7.png)
