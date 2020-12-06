@@ -198,6 +198,11 @@ Example of OC macro file for RE-W system (M. Palumbo, S.G. Fried, T. Hammerschmi
 Example of plot showing the property diagram for a High Speed Steel (HSS):
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Gui-Advanced-Plots-Chemistry-pic04.png)
 
+
+Example of plot showing the calculation of phase fractions and property diagram for SAF2507:
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Gui-Advanced-Plots-Chemistry-pic08.png)
+
+
 Example of ternary, calculating the isothermal section at 1200K for the Cr-Fe-Ni system:
 ![](https://github.com/lusamek/OpenCalphad/blob/master/Gui-Advanced-Plots-Chemistry-pic05.png)
 
