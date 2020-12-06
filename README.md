@@ -181,7 +181,7 @@ Fe-C phase diagram (metastable) with GUI:
 
 
 <br/>
-The possibility to overlay different diagrams is possible.
+The possibility to overlay different diagrams is given.
 Plot the metastable Fe-C diagram and overlay the stable: <br/>
 
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Gui-Advanced-Plots-Fe-C-2Types-01.png)
