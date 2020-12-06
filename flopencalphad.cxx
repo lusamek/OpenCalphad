@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "ccode.h"
+static int plot_adv_computer_skipint_int = 0; 
 #include <FL/Fl_Output.H>
 #include "flopencalphad_def.h"
 
@@ -349,7 +350,7 @@ static void cb_3(Fl_Button*, void*) {
   char mydirnow[2500];
   printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
 
-  void_plot_preview_plotfile();
+  void_plot_preview_plotfile(   "ocgnu.plt"   );
 
   redraw();
   
@@ -686,6 +687,19 @@ static void cb_dos2unix(Fl_Button*, void*) {
 
 Fl_Input *form_database_fetch_url=(Fl_Input *)0;
 
+static void cb_Edit2(Fl_Button*, void*) {
+  redraw();
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  fledit  " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , var_tdb_database , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );
+}
+
 Fl_Double_Window *win3=(Fl_Double_Window *)0;
 
 static void cb_ls1(Fl_Button*, void*) {
@@ -793,7 +807,7 @@ static void cb_Clear(Fl_Button*, void*) {
   /// this might be modified for windows/mac ...
 nsystem( "  rm  ocgnu.plt " );
 
-void_plot_preview_plotfile();
+flplot_preview_browser->clear();
 }
 
 static void cb_View1(Fl_Button*, void*) {
@@ -809,7 +823,7 @@ static void cb_View1(Fl_Button*, void*) {
   nsystem(  charo );
 }
 
-static void cb_Edit2(Fl_Button*, void*) {
+static void cb_Edit3(Fl_Button*, void*) {
   redraw();
   
   char charo[PATH_MAX];
@@ -831,6 +845,8 @@ static void cb_Plot1(Fl_Button*, void*) {
   if ( plot_gnuplot_term_driver_force->value( ) == 0 )  
   {
       ncp( "advocgnu.plt" , "ocgnu.plt" );
+      form_plot_statusline->value("ocgnu.plt");
+      void_plot_preview_plotfile(  "ocgnu.plt" );
       nsystem(  "  screen -d  -m  gnuplot ocgnu.plt     " );
   }   
   
@@ -838,7 +854,10 @@ static void cb_Plot1(Fl_Button*, void*) {
   { 
       ncp(           "advocgnu.plt" , "ocgnu.plt" );
       ncopysetterm(  "advocgnu.plt" ,  "ocgnu.plt" ,  plot_gnuplot_term_drivername->value()   );
+      form_plot_statusline->value( "advocgnu.plt" );
+      void_plot_preview_plotfile(  "advocgnu.plt" );
       nsystem(  "  screen -d  -m  gnuplot advocgnu.plt  " );
+      
   }  
      
   // oc6 bug 
@@ -846,7 +865,8 @@ static void cb_Plot1(Fl_Button*, void*) {
 }
 
 static void cb_Refresh1(Fl_Button*, void*) {
-  void_plot_preview_plotfile();
+  form_plot_statusline->value("ocgnu.plt");
+  void_plot_preview_plotfile(  "ocgnu.plt" );
 }
 
 Fl_Browser *flplot_preview_browser=(Fl_Browser *)0;
@@ -886,7 +906,7 @@ static void cb_(Fl_Button*, void*) {
       nsystem( " screen -d -m flview help.txt " );
 }
 
-static void cb_Edit3(Fl_Button*, void*) {
+static void cb_Edit4(Fl_Button*, void*) {
   redraw();
   
   char charo[PATH_MAX];
@@ -903,7 +923,6 @@ static void cb_Adv(Fl_Button*, void*) {
   char mydirnow[2500];
   printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
 
-  void_plot_preview_plotfile();
   redraw();
   ncpadvmac( "macro2.ocm" , "advmacro.ocm" );
   
@@ -917,7 +936,7 @@ static void cb_Adv(Fl_Button*, void*) {
   // gnuplot ocgnu.plt  &;
 }
 
-static void cb_Edit4(Fl_Button*, void*) {
+static void cb_Edit5(Fl_Button*, void*) {
   redraw();
   
   char charo[PATH_MAX];
@@ -932,15 +951,14 @@ static void cb_Edit4(Fl_Button*, void*) {
 
 static void cb_Dup(Fl_Button*, void*) {
   redraw();
-
   ncp( "advmacro.ocm" , "macro.ocm" );
 }
 
 static void cb_View2(Fl_Button*, void*) {
-  void_plot_preview_plotfile();
-  
   redraw();
   ncpadvmac( "macro2.ocm" , "advmacro.ocm" );
+
+  ncat( "macro2.ocm" );
 
   
   char charo[PATH_MAX];
@@ -951,6 +969,15 @@ static void cb_View2(Fl_Button*, void*) {
   strncat( charo , "macro2.ocm"   , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "\" " , PATH_MAX -  strlen( charo ) -1 );
   nsystem(  charo );
+}
+
+Fl_Check_Button *plot_adv_computer_skipint=(Fl_Check_Button *)0;
+
+static void cb_plot_adv_computer_skipint(Fl_Check_Button*, void*) {
+  plot_adv_computer_skipint_int = plot_adv_computer_skipint->value();
+
+printf( "%d\n", plot_adv_computer_skipint->value() );
+printf( "%d\n", plot_adv_computer_skipint_int );
 }
 
 static void cb_Close3(Fl_Button*, void*) {
@@ -1085,7 +1112,7 @@ static void cb_Cat1(Fl_Button*, void*) {
   ncat( input_var_macro_filename->value() );
 }
 
-static void cb_Edit5(Fl_Button*, void*) {
+static void cb_Edit6(Fl_Button*, void*) {
   redraw();
   
   char charo[PATH_MAX];
@@ -1537,11 +1564,14 @@ Fl_Double_Window* make_window() {
       { Fl_Button* o = new Fl_Button(430, 105, 75, 25, "Fetch!");
         o->callback((Fl_Callback*)cb_Fetch);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(430, 135, 75, 30, "dos2unix");
+      { Fl_Button* o = new Fl_Button(430, 140, 75, 25, "dos2unix");
         o->callback((Fl_Callback*)cb_dos2unix);
       } // Fl_Button* o
       { form_database_fetch_url = new Fl_Input(540, 105, 315, 25, "Url");
       } // Fl_Input* form_database_fetch_url
+      { Fl_Button* o = new Fl_Button(518, 140, 80, 25, "&Edit");
+        o->callback((Fl_Callback*)cb_Edit2);
+      } // Fl_Button* o
       o->end();
     } // Fl_Group* o
     win2->end();
@@ -1621,12 +1651,12 @@ Fl_Double_Window* make_window() {
     win3->end();
     win3->resizable(win3);
   } // Fl_Double_Window* win3
-  { win4 = new Fl_Double_Window(830, 530, "Graphics Plot");
-    { Fl_Box* o = new Fl_Box(15, 25, 800, 35, "FLTK OpenCalphad -- Plot");
+  { win4 = new Fl_Double_Window(890, 545, "Graphics Plot");
+    { Fl_Box* o = new Fl_Box(15, 25, 860, 35, "FLTK OpenCalphad -- Plot");
       o->box(FL_ENGRAVED_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
     } // Fl_Box* o
-    { Fl_Group* o = new Fl_Group(15, 100, 855, 385, "Advanced Plot");
+    { Fl_Group* o = new Fl_Group(15, 100, 860, 385, "Advanced Plot");
       o->box(FL_DOWN_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
       { Fl_Button* o = new Fl_Button(590, 110, 135, 25, "Close all &plots");
@@ -1639,7 +1669,7 @@ Fl_Double_Window* make_window() {
         o->callback((Fl_Callback*)cb_View1);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(165, 110, 130, 25, "Edit Plot File");
-        o->callback((Fl_Callback*)cb_Edit2);
+        o->callback((Fl_Callback*)cb_Edit3);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(590, 140, 135, 25, "Plot!");
         o->labelfont(1);
@@ -1648,30 +1678,30 @@ Fl_Double_Window* make_window() {
       { Fl_Button* o = new Fl_Button(25, 170, 130, 25, "Refresh Preview");
         o->callback((Fl_Callback*)cb_Refresh1);
       } // Fl_Button* o
-      { flplot_preview_browser = new Fl_Browser(25, 220, 780, 250);
+      { flplot_preview_browser = new Fl_Browser(25, 215, 840, 255);
         Fl_Group::current()->resizable(flplot_preview_browser);
         flplot_preview_browser->type( FL_HOLD_BROWSER );
       } // Fl_Browser* flplot_preview_browser
       { Fl_Button* o = new Fl_Button(165, 170, 190, 25, "Automatic Term Driver");
         o->callback((Fl_Callback*)cb_Automatic);
       } // Fl_Button* o
-      { plot_gnuplot_term_drivername = new Fl_Input(445, 170, 130, 25, "Term Driver");
+      { plot_gnuplot_term_drivername = new Fl_Input(575, 170, 130, 25, "Term Driver");
         plot_gnuplot_term_drivername->value( "x11" );
       } // Fl_Input* plot_gnuplot_term_drivername
-      { plot_gnuplot_term_driver_force = new Fl_Check_Button(610, 170, 25, 25, "Active User Driver");
+      { plot_gnuplot_term_driver_force = new Fl_Check_Button(735, 170, 25, 25, "Active Driver");
         plot_gnuplot_term_driver_force->down_box(FL_DOWN_BOX);
       } // Fl_Check_Button* plot_gnuplot_term_driver_force
-      { Fl_Button* o = new Fl_Button(575, 170, 25, 25, "&?");
+      { Fl_Button* o = new Fl_Button(705, 170, 25, 25, "&?");
         o->callback((Fl_Callback*)cb_);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(305, 110, 135, 25, "Edit Adv. Plot");
-        o->callback((Fl_Callback*)cb_Edit3);
+        o->callback((Fl_Callback*)cb_Edit4);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(450, 140, 130, 25, "Adv. Compute");
         o->callback((Fl_Callback*)cb_Adv);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(165, 140, 130, 25, "Edit Adv. Macro");
-        o->callback((Fl_Callback*)cb_Edit4);
+        o->callback((Fl_Callback*)cb_Edit5);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(25, 140, 130, 25, "Dup. Adv. Macro");
         o->callback((Fl_Callback*)cb_Dup);
@@ -1679,13 +1709,17 @@ Fl_Double_Window* make_window() {
       { Fl_Button* o = new Fl_Button(305, 140, 135, 25, "View Res. Macro.");
         o->callback((Fl_Callback*)cb_View2);
       } // Fl_Button* o
+      { plot_adv_computer_skipint = new Fl_Check_Button(735, 140, 25, 25, "Skip Keypress");
+        plot_adv_computer_skipint->down_box(FL_DOWN_BOX);
+        plot_adv_computer_skipint->callback((Fl_Callback*)cb_plot_adv_computer_skipint);
+      } // Fl_Check_Button* plot_adv_computer_skipint
       o->end();
       Fl_Group::current()->resizable(o);
     } // Fl_Group* o
-    { Fl_Button* o = new Fl_Button(705, 495, 110, 25, "Close Frame");
+    { Fl_Button* o = new Fl_Button(765, 495, 110, 25, "Close Frame");
       o->callback((Fl_Callback*)cb_Close3);
     } // Fl_Button* o
-    { form_plot_statusline = new Fl_Output(15, 495, 680, 25);
+    { form_plot_statusline = new Fl_Output(15, 495, 740, 25);
       form_plot_statusline->color(FL_BACKGROUND_COLOR);
       form_plot_statusline->value("ocgnu.plt");
     } // Fl_Output* form_plot_statusline
@@ -1726,7 +1760,7 @@ Fl_Double_Window* make_window() {
         o->callback((Fl_Callback*)cb_Cat1);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(320, 135, 50, 25, "&Edit");
-        o->callback((Fl_Callback*)cb_Edit5);
+        o->callback((Fl_Callback*)cb_Edit6);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(145, 105, 95, 25, "Browse ocl");
         o->callback((Fl_Callback*)cb_Browse2);
@@ -1902,11 +1936,11 @@ void void_flfront_preview_browser1_refresh() {
    }
 }
 
-void void_plot_preview_plotfile() {
+void void_plot_preview_plotfile( const  char *foopatfile  ) {
   flplot_preview_browser->clear();    
     
     char filein[PATH_MAX];
-    strncpy( filein, "ocgnu.plt"  , PATH_MAX );
+    strncpy( filein, foopatfile  , PATH_MAX );
          
     
     int fetchi;

@@ -29,6 +29,7 @@ extern Fl_Double_Window *win4;
 extern Fl_Browser *flplot_preview_browser;
 extern Fl_Input *plot_gnuplot_term_drivername;
 extern Fl_Check_Button *plot_gnuplot_term_driver_force;
+extern Fl_Check_Button *plot_adv_computer_skipint;
 extern Fl_Output *form_plot_statusline;
 extern Fl_Double_Window *win5;
 extern Fl_Browser *browser2;
@@ -47,6 +48,6 @@ Fl_Double_Window* make_window();
 void addkeypress( int keypress );
 int main( int argc, char *argv[] );
 void void_flfront_preview_browser1_refresh();
-void void_plot_preview_plotfile();
+void void_plot_preview_plotfile( const  char *foopatfile  );
 int ncopysetterm( const char *foofileout,  const  char *foofilein, const  char *fooxdriver  );
 #endif

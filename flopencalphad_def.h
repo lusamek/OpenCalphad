@@ -117,6 +117,9 @@ void ncat( const char* pattern )
 
 
 
+
+
+
 void nls()
 { 
 	DIR *dirp;
@@ -367,6 +370,7 @@ void ncpadvmac( const char *filetarget,  const char *  filesource )
   int  gameover = 0; 
   int  lineskip = 0;
   int  commentarymode = 0;
+  // plot_adv_computer_skipint_int
     
   if ( fexist( filesource ) == 1 )
   {
@@ -383,6 +387,15 @@ void ncpadvmac( const char *filetarget,  const char *  filesource )
             if ( fetchlinetmp[ fetchi ] != '\n' )
                  fetchline[fetchi]=fetchlinetmp[fetchi];
 
+                // plot_adv_computer_skipint_int
+                if ( gameover == 0 )
+                if ( plot_adv_computer_skipint_int == 1 )
+		if ( fetchline[ 0 ] == '@'  )   
+		if ( fetchline[ 1 ] == '&'  )   
+		{
+		    lineskip = 1;
+		}
+
                 if ( gameover == 0 )
 		if ( fetchline[ 0 ] == '/'  )   
 		if ( fetchline[ 1 ] == '*'  )   
@@ -390,6 +403,7 @@ void ncpadvmac( const char *filetarget,  const char *  filesource )
                     commentarymode = 1;
 		    lineskip = 1;
 		}
+
 
                 if ( gameover == 0 )
 		if ( fetchline[ 0 ] == '*'  )   
