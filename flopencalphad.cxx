@@ -455,10 +455,10 @@ static void cb_Condition(Fl_Button*, void*) {
 
 static void cb_Help(Fl_Button*, void*) {
   if ( fexist( "/usr/bin/chromium" ) == 1) 
-   nsystem(  " screen -d -m chromium http://github.com/lusamek/opencalphad " );
+   nsystem(  " screen -d -m chromium  --new-window  http://github.com/lusamek/opencalphad " );
    
 else if ( fexist( "/usr/bin/chromium-browser" ) == 1) 
-   nsystem(  " screen -d -m chromium-browser http://github.com/lusamek/opencalphad " );
+   nsystem(  " screen -d -m chromium-browser   --new-window  http://github.com/lusamek/opencalphad " );
    
 else
    nsystem(  " screen -d -m dillo http://github.com/lusamek/opencalphad " );

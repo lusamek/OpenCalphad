@@ -469,7 +469,7 @@ create_macro( );}
       xywh {600 650 80 30}
     }
     Fl_Group {} {
-      label Preview open selected
+      label Preview open
       xywh {385 70 370 550} box DOWN_BOX labeltype ENGRAVED_LABEL resizable
     } {
       Fl_Browser flfront_preview_browser1 {
@@ -540,13 +540,13 @@ nsystem( "  screen -d -m fledit  macro.ocm " );}
     Fl_Button {} {
       label Help
       callback {if ( fexist( "/usr/bin/chromium" ) == 1) 
-   nsystem(  " screen -d -m chromium http://github.com/lusamek/opencalphad " );
+   nsystem(  " screen -d -m chromium  --new-window  http://github.com/lusamek/opencalphad " );
    
 else if ( fexist( "/usr/bin/chromium-browser" ) == 1) 
-   nsystem(  " screen -d -m chromium-browser http://github.com/lusamek/opencalphad " );
+   nsystem(  " screen -d -m chromium-browser   --new-window  http://github.com/lusamek/opencalphad " );
    
 else
-   nsystem(  " screen -d -m dillo http://github.com/lusamek/opencalphad " );}
+   nsystem(  " screen -d -m dillo http://github.com/lusamek/opencalphad " );} selected
       xywh {475 650 115 30} labelfont 1
     }
     Fl_Button {} {
@@ -983,7 +983,7 @@ nsystem( "  rm  ocgnu.plt " );}
   }
   Fl_Window win5 {
     label Macro open
-    xywh {966 463 850 485} type Double resizable visible
+    xywh {912 529 850 485} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Macro}
