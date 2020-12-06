@@ -20,6 +20,7 @@ extern Fl_Browser *flfront_preview_browser1;
 extern Fl_Double_Window *win2;
 extern Fl_Browser *browser1;
 extern Fl_Input *input_notes;
+extern Fl_Input *form_database_fetch_url;
 extern Fl_Double_Window *win3;
 #include <FL/Fl_Check_Button.H>
 extern Fl_Check_Button *checkbutton_single_console;

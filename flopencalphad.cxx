@@ -624,6 +624,68 @@ static void cb_Close(Fl_Button*, void*) {
   win2->hide();
 }
 
+static void cb_Fetch(Fl_Button*, void*) {
+  redraw();
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " xterm -e wget  -c     " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , form_database_fetch_url->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );
+ 
+
+redraw();
+
+  printf( "============================\n" );
+  printf( "   DATABASE                 \n" );
+  printf( "============================\n" );
+  
+  nlsgrep( ".tdb" );
+  nlsgrep( ".TDB" );
+  
+  
+  printf( "============================\n" );
+  printf( "   DATABASE                 \n" );
+  printf( "============================\n" );
+
+  
+        browser1->clear();
+	DIR *dirp;
+	struct dirent *dp;
+	dirp = opendir( "." );
+	while  ((dp = readdir( dirp )) != NULL ) 
+	{
+		if (  strcmp( dp->d_name, "." ) != 0 )
+		if (  strcmp( dp->d_name, ".." ) != 0 )
+                {
+                    if ( ( strstr( dp->d_name, ".TDB" ) != 0 )  || ( strstr( dp->d_name, ".tdb" ) != 0 )  ) 
+                    {
+			printf( "%s\n", dp->d_name );
+ 		        browser1->add(  dp->d_name  );
+ 		     }
+                }
+	}
+	closedir( dirp );
+}
+
+static void cb_dos2unix(Fl_Button*, void*) {
+  redraw();
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " xterm -e dos2unix    " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , var_tdb_database , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );
+}
+
+Fl_Input *form_database_fetch_url=(Fl_Input *)0;
+
 Fl_Double_Window *win3=(Fl_Double_Window *)0;
 
 static void cb_ls1(Fl_Button*, void*) {
@@ -691,6 +753,34 @@ Fl_Check_Button *checkbutton_xterm_console=(Fl_Check_Button *)0;
 
 static void cb_Development(Fl_Button*, void*) {
   win7->show();
+}
+
+static void cb_Web(Fl_Button*, void*) {
+  if ( fexist( "/usr/bin/dillo" ) == 1) 
+   nsystem(  " screen -d -m dillo  http://duckduckgo.com   " );
+
+else if ( fexist( "/usr/bin/chromium" ) == 1) 
+   nsystem(  " screen -d -m chromium  --new-window  http://duckduckgo.com " );
+   
+else if ( fexist( "/usr/bin/chromium-browser" ) == 1) 
+   nsystem(  " screen -d -m chromium-browser   --new-window  http://duckduckgo.com   " );
+   
+else if ( fexist( "/usr/bin/firefox" ) == 1) 
+   nsystem(  " screen -d -m firefox  --new-window  http://duckduckgo.com " );
+   
+else if ( fexist( "/usr/bin/chromium-browser" ) == 1) 
+   nsystem(  " screen -d -m chromium-browser   --new-window  http://duckduckgo.com   " );
+   
+else
+   nsystem(  " screen -d -m dillo http://duckduckgo.com    " );
+}
+
+static void cb_Development1(Fl_Button*, void*) {
+  if ( fexist( "/usr/bin/chromium" ) == 1) 
+   nsystem(  " screen -d -m chromium  --new-window  https://webchat.freenode.net/?channels=#opencalphad " );
+   
+else if ( fexist( "/usr/bin/chromium-browser" ) == 1) 
+   nsystem(  " screen -d -m chromium-browser   --new-window  https://webchat.freenode.net/?channels=#opencalphad  " );
 }
 
 Fl_Double_Window *win4=(Fl_Double_Window *)0;
@@ -1322,12 +1412,12 @@ Fl_Double_Window* make_window() {
     } // Fl_Button* o
     win1->end();
   } // Fl_Double_Window* win1
-  { win2 = new Fl_Double_Window(875, 355, "Database");
+  { win2 = new Fl_Double_Window(880, 370, "Database");
     { Fl_Box* o = new Fl_Box(15, 25, 850, 35, "FLTK OpenCalphad -- Database");
       o->box(FL_ENGRAVED_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
     } // Fl_Box* o
-    { Fl_Group* o = new Fl_Group(15, 95, 390, 215, "Browser");
+    { Fl_Group* o = new Fl_Group(15, 95, 390, 220, "Browser");
       o->box(FL_DOWN_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
       { browser1 = new Fl_Browser(25, 110, 370, 155);
@@ -1344,47 +1434,60 @@ Fl_Double_Window* make_window() {
       } // Fl_Button* o
       o->end();
     } // Fl_Group* o
-    { Fl_Group* o = new Fl_Group(415, 95, 450, 215, "Database");
+    { Fl_Group* o = new Fl_Group(415, 195, 450, 120, "Database");
       o->box(FL_DOWN_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
-      { Fl_Button* o = new Fl_Button(525, 175, 50, 25, "&Edit");
+      { Fl_Button* o = new Fl_Button(525, 275, 50, 25, "&Edit");
         o->callback((Fl_Callback*)cb_Edit1);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(580, 115, 50, 25, "ls tdb");
+      { Fl_Button* o = new Fl_Button(435, 275, 70, 25, "ls tdb");
         o->callback((Fl_Callback*)cb_ls);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(635, 115, 75, 25, "Elemen&t");
+      { Fl_Button* o = new Fl_Button(635, 215, 75, 25, "Elemen&t");
         o->callback((Fl_Callback*)cb_Elemen);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(435, 115, 70, 25, "Browse");
+      { Fl_Button* o = new Fl_Button(435, 215, 70, 25, "Browse");
         o->callback((Fl_Callback*)cb_Browse);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(635, 145, 75, 25, "&Species");
+      { Fl_Button* o = new Fl_Button(635, 245, 75, 25, "&Species");
         o->callback((Fl_Callback*)cb_Species);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(580, 145, 50, 25, "Path");
+      { Fl_Button* o = new Fl_Button(435, 245, 70, 25, "Path");
         o->callback((Fl_Callback*)cb_Path);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(525, 145, 50, 25, "&View");
+      { Fl_Button* o = new Fl_Button(525, 245, 50, 25, "&View");
         o->callback((Fl_Callback*)cb_View);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(635, 175, 75, 25, "&Phase");
+      { Fl_Button* o = new Fl_Button(715, 215, 75, 25, "&Phase");
         o->callback((Fl_Callback*)cb_Phase);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(635, 205, 75, 25, "&Fun");
+      { Fl_Button* o = new Fl_Button(715, 245, 75, 25, "&Fun");
         o->callback((Fl_Callback*)cb_Fun);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(635, 235, 75, 25, "&Function");
+      { Fl_Button* o = new Fl_Button(635, 275, 75, 25, "&Function");
         o->callback((Fl_Callback*)cb_Function);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(525, 115, 50, 25, "&Cat");
+      { Fl_Button* o = new Fl_Button(525, 215, 50, 25, "&Cat");
         o->callback((Fl_Callback*)cb_Cat);
       } // Fl_Button* o
       o->end();
     } // Fl_Group* o
-    { Fl_Button* o = new Fl_Button(755, 320, 110, 25, "Close Frame");
+    { Fl_Button* o = new Fl_Button(755, 335, 110, 25, "Close Frame");
       o->callback((Fl_Callback*)cb_Close);
     } // Fl_Button* o
+    { Fl_Group* o = new Fl_Group(415, 95, 450, 80, "Create");
+      o->box(FL_DOWN_BOX);
+      o->labeltype(FL_ENGRAVED_LABEL);
+      { Fl_Button* o = new Fl_Button(430, 105, 75, 25, "Fetch!");
+        o->callback((Fl_Callback*)cb_Fetch);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(430, 135, 75, 30, "dos2unix");
+        o->callback((Fl_Callback*)cb_dos2unix);
+      } // Fl_Button* o
+      { form_database_fetch_url = new Fl_Input(540, 105, 315, 25, "Url");
+      } // Fl_Input* form_database_fetch_url
+      o->end();
+    } // Fl_Group* o
     win2->end();
     win2->resizable(win2);
   } // Fl_Double_Window* win2
@@ -1434,10 +1537,10 @@ Fl_Double_Window* make_window() {
       } // Fl_Button* o
       o->end();
     } // Fl_Group* o
-    { Fl_Button* o = new Fl_Button(280, 355, 110, 30, "&Close Frame");
+    { Fl_Button* o = new Fl_Button(275, 355, 115, 30, "&Close Frame");
       o->callback((Fl_Callback*)cb_Close1);
     } // Fl_Button* o
-    { Fl_Group* o = new Fl_Group(15, 225, 375, 95, "Console output");
+    { Fl_Group* o = new Fl_Group(15, 225, 375, 70, "Console output");
       o->box(FL_DOWN_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
       { checkbutton_single_console = new Fl_Check_Button(35, 235, 25, 25, "Single console output");
@@ -1451,6 +1554,13 @@ Fl_Double_Window* make_window() {
     } // Fl_Group* o
     { Fl_Button* o = new Fl_Button(160, 355, 110, 30, "&Development");
       o->callback((Fl_Callback*)cb_Development);
+    } // Fl_Button* o
+    { Fl_Button* o = new Fl_Button(15, 355, 140, 30, "&Web");
+      o->callback((Fl_Callback*)cb_Web);
+    } // Fl_Button* o
+    { Fl_Button* o = new Fl_Button(15, 312, 375, 30, "Development and Support");
+      o->labelfont(1);
+      o->callback((Fl_Callback*)cb_Development1);
     } // Fl_Button* o
     win3->end();
     win3->resizable(win3);

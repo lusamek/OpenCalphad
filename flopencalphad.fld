@@ -39,7 +39,7 @@ Function {make_window()} {open
 } {
   Fl_Window win1 {
     label FLOPENCALPHAD open
-    xywh {110 208 785 695} type Double resizable visible
+    xywh {113 211 785 695} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad}
@@ -533,7 +533,7 @@ else
   }
   Fl_Window win2 {
     label Database open
-    xywh {364 195 875 355} type Double resizable visible
+    xywh {349 184 880 370} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Database}
@@ -541,7 +541,7 @@ else
     }
     Fl_Group {} {
       label Browser open
-      xywh {15 95 390 215} box DOWN_BOX labeltype ENGRAVED_LABEL
+      xywh {15 95 390 220} box DOWN_BOX labeltype ENGRAVED_LABEL
     } {
       Fl_Browser browser1 {
         callback {printf( "Click\\n" );
@@ -569,7 +569,7 @@ redraw();}
     }
     Fl_Group {} {
       label Database open
-      xywh {415 95 450 215} box DOWN_BOX labeltype ENGRAVED_LABEL
+      xywh {415 195 450 120} box DOWN_BOX labeltype ENGRAVED_LABEL
     } {
       Fl_Button {} {
         label {&Edit}
@@ -583,7 +583,7 @@ redraw();}
   strncat( charo , var_tdb_database , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
   nsystem(  charo );}
-        xywh {525 175 50 25}
+        xywh {525 275 50 25}
       }
       Fl_Button {} {
         label {ls tdb}
@@ -595,7 +595,7 @@ redraw();}
   
   nlsgrep( ".tdb" );
   nlsgrep( ".TDB" );}
-        xywh {580 115 50 25}
+        xywh {435 275 70 25}
       }
       Fl_Button {} {
         label {Elemen&t}
@@ -609,7 +609,7 @@ redraw();}
   
   
   filegrep( var_tdb_database , "ELEM" );}
-        xywh {635 115 75 25}
+        xywh {635 215 75 25}
       }
       Fl_Button {} {
         label Browse
@@ -645,7 +645,7 @@ redraw();}
                 }
 	}
 	closedir( dirp );}
-        xywh {435 115 70 25}
+        xywh {435 215 70 25}
       }
       Fl_Button {} {
         label {&Species}
@@ -659,7 +659,7 @@ redraw();}
   
   
   filegrep( var_tdb_database , "SPECIE" );}
-        xywh {635 145 75 25}
+        xywh {635 245 75 25}
       }
       Fl_Button {} {
         label Path
@@ -671,7 +671,7 @@ redraw();}
   
     char mydirnow[2500];
   printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );}
-        xywh {580 145 50 25}
+        xywh {435 245 70 25}
       }
       Fl_Button {} {
         label {&View}
@@ -685,7 +685,7 @@ redraw();}
   strncat( charo , var_tdb_database , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
   nsystem(  charo );}
-        xywh {525 145 50 25}
+        xywh {525 245 50 25}
       }
       Fl_Button {} {
         label {&Phase}
@@ -699,7 +699,7 @@ redraw();}
   
   
   filegrep( var_tdb_database , "PHASE " );}
-        xywh {635 175 75 25}
+        xywh {715 215 75 25}
       }
       Fl_Button {} {
         label {&Fun}
@@ -713,7 +713,7 @@ redraw();}
   
   
   filegrep( var_tdb_database , "FUN " );}
-        xywh {635 205 75 25}
+        xywh {715 245 75 25}
       }
       Fl_Button {} {
         label {&Function}
@@ -727,24 +727,95 @@ redraw();}
   
   
   filegrep( var_tdb_database , "FUNCTION " );}
-        xywh {635 235 75 25}
+        xywh {635 275 75 25}
       }
       Fl_Button {} {
         label {&Cat}
         callback {redraw();
   ncat( var_tdb_database );}
-        xywh {525 115 50 25}
+        xywh {525 215 50 25}
       }
     }
     Fl_Button {} {
       label {Close Frame}
       callback {win2->hide();}
-      xywh {755 320 110 25}
+      xywh {755 335 110 25}
+    }
+    Fl_Group {} {
+      label Create open
+      xywh {415 95 450 80} box DOWN_BOX labeltype ENGRAVED_LABEL
+    } {
+      Fl_Button {} {
+        label {Fetch!}
+        callback {redraw();
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " xterm -e wget  -c     " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , form_database_fetch_url->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );
+ 
+
+redraw();
+
+  printf( "============================\\n" );
+  printf( "   DATABASE                 \\n" );
+  printf( "============================\\n" );
+  
+  nlsgrep( ".tdb" );
+  nlsgrep( ".TDB" );
+  
+  
+  printf( "============================\\n" );
+  printf( "   DATABASE                 \\n" );
+  printf( "============================\\n" );
+
+  
+        browser1->clear();
+	DIR *dirp;
+	struct dirent *dp;
+	dirp = opendir( "." );
+	while  ((dp = readdir( dirp )) != NULL ) 
+	{
+		if (  strcmp( dp->d_name, "." ) != 0 )
+		if (  strcmp( dp->d_name, ".." ) != 0 )
+                {
+                    if ( ( strstr( dp->d_name, ".TDB" ) != 0 )  || ( strstr( dp->d_name, ".tdb" ) != 0 )  ) 
+                    {
+			printf( "%s\\n", dp->d_name );
+ 		        browser1->add(  dp->d_name  );
+ 		     }
+                }
+	}
+	closedir( dirp );}
+        xywh {430 105 75 25}
+      }
+      Fl_Button {} {
+        label dos2unix
+        callback {redraw();
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " xterm -e dos2unix    " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , var_tdb_database , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );}
+        xywh {430 135 75 30}
+      }
+      Fl_Input form_database_fetch_url {
+        label Url
+        xywh {540 105 315 25}
+      }
     }
   }
   Fl_Window win3 {
     label Option open
-    xywh {1486 244 405 410} type Double resizable visible
+    xywh {1348 150 405 410} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Option}
@@ -825,11 +896,11 @@ redraw();}
     Fl_Button {} {
       label {&Close Frame}
       callback {win3->hide();}
-      xywh {280 355 110 30}
+      xywh {275 355 115 30}
     }
     Fl_Group {} {
       label {Console output} open
-      xywh {15 225 375 95} box DOWN_BOX labeltype ENGRAVED_LABEL
+      xywh {15 225 375 70} box DOWN_BOX labeltype ENGRAVED_LABEL
     } {
       Fl_Check_Button checkbutton_single_console {
         label {Single console output}
@@ -846,10 +917,40 @@ redraw();}
       callback {win7->show();}
       xywh {160 355 110 30}
     }
+    Fl_Button {} {
+      label {&Web}
+      callback {if ( fexist( "/usr/bin/dillo" ) == 1) 
+   nsystem(  " screen -d -m dillo  http://duckduckgo.com   " );
+
+else if ( fexist( "/usr/bin/chromium" ) == 1) 
+   nsystem(  " screen -d -m chromium  --new-window  http://duckduckgo.com " );
+   
+else if ( fexist( "/usr/bin/chromium-browser" ) == 1) 
+   nsystem(  " screen -d -m chromium-browser   --new-window  http://duckduckgo.com   " );
+   
+else if ( fexist( "/usr/bin/firefox" ) == 1) 
+   nsystem(  " screen -d -m firefox  --new-window  http://duckduckgo.com " );
+   
+else if ( fexist( "/usr/bin/chromium-browser" ) == 1) 
+   nsystem(  " screen -d -m chromium-browser   --new-window  http://duckduckgo.com   " );
+   
+else
+   nsystem(  " screen -d -m dillo http://duckduckgo.com    " );}
+      xywh {15 355 140 30}
+    }
+    Fl_Button {} {
+      label {Development and Support}
+      callback {if ( fexist( "/usr/bin/chromium" ) == 1) 
+   nsystem(  " screen -d -m chromium  --new-window  https://webchat.freenode.net/?channels=\#opencalphad " );
+   
+else if ( fexist( "/usr/bin/chromium-browser" ) == 1) 
+   nsystem(  " screen -d -m chromium-browser   --new-window  https://webchat.freenode.net/?channels=\#opencalphad  " );} selected
+      xywh {15 312 375 30} labelfont 1
+    }
   }
   Fl_Window win4 {
     label {Graphics Plot} open
-    xywh {692 406 830 485} type Double resizable visible
+    xywh {695 409 830 485} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Plot}
@@ -986,7 +1087,7 @@ void_plot_preview_plotfile();}
   strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "advocgnu.plt"   , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
-  nsystem(  charo );} selected
+  nsystem(  charo );}
         xywh {720 110 65 25}
       }
     }
@@ -998,7 +1099,7 @@ void_plot_preview_plotfile();}
   }
   Fl_Window win5 {
     label Macro open
-    xywh {1070 157 850 485} type Double resizable visible
+    xywh {919 136 850 485} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Macro}
@@ -1222,7 +1323,7 @@ void_plot_preview_plotfile();}
   }
   Fl_Window win6 {
     label Condition open
-    xywh {1370 630 655 465} type Double resizable visible
+    xywh {1094 559 655 465} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Condition}
@@ -1271,7 +1372,7 @@ void_plot_preview_plotfile();}
   }
   Fl_Window win7 {
     label Development open
-    xywh {1571 348 395 480} type Double resizable visible
+    xywh {1058 231 395 480} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Development}
