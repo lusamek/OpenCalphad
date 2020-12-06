@@ -168,6 +168,17 @@ This allows to use use the cursor for the position (x,y) as well. An example is 
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Ag-Cu-System-FLOC-gnuplot-x11-det2.png)
 
 
+<br/>
+
+Fe-C phase diagram (metastable): 
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Gui-Advanced-Plots-Fe-C-(metastable)-01.png)
+
+Fe-C phase diagram (metastable) with GUI:
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Gui-Advanced-Plots-Fe-C-(metastable)-01-GScr.png)
+
+
+
+
 
 <br/>
 The possibility to overlay different diagrams is possible.
