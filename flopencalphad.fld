@@ -32,13 +32,14 @@ strncpy( var_system ,      output_system->value() , PATH_MAX );
 // output_system->value( var_system  );
 
 // input_var_set_condition->value( "t=1000 p=1e5 n=1 x(c)=0.2 " );} {}
+  code {printf("Hello, World!\\n");} {}
 }
 
 Function {make_window()} {open
 } {
   Fl_Window win1 {
     label FLOPENCALPHAD open
-    xywh {92 209 785 695} type Double resizable visible
+    xywh {109 207 785 695} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad}
@@ -444,7 +445,10 @@ nsystem( "  screen -d -m fledit  macro.ocm " );}
 clear_plot();
 
 
-create_macro( );}
+create_macro( );
+
+
+void_flfront_preview_browser1_refresh();} selected
         xywh {130 470 145 25}
       }
       Fl_Button {} {
@@ -478,35 +482,7 @@ create_macro( );}
       }
       Fl_Button {} {
         label {Refresh Preview}
-        callback {flfront_preview_browser1->clear();    
-  
-  char filein[PATH_MAX];
-  strncpy( filein, "macro.ocm"  , PATH_MAX );
-       
-  
-  int fetchi;
-  FILE *fp5;
-  FILE *fp6;
-  char fetchline[PATH_MAX];
-  char fetchlinetmp[PATH_MAX];
-  
-  if ( fexist( filein ) == 1 )
-  {
-    fp6 = fopen( filein , "rb");
-    while( !feof(fp6) ) 
-    {
-          fgets(fetchlinetmp, PATH_MAX, fp6); 
-          strncpy( fetchline, "" , PATH_MAX );
-          for( fetchi = 0 ; ( fetchi <= strlen( fetchlinetmp ) ); fetchi++ )
-            if ( fetchlinetmp[ fetchi ] != '\\n' )
-              fetchline[fetchi]=fetchlinetmp[fetchi];
-              
-          if ( !feof(fp6)  )
-              flfront_preview_browser1->add( fetchline );    
-
-     }
-     fclose( fp6 );
- }}
+        callback {void_flfront_preview_browser1_refresh();}
         xywh {395 590 130 25}
       }
       Fl_Button {} {
@@ -546,7 +522,7 @@ else if ( fexist( "/usr/bin/chromium-browser" ) == 1)
    nsystem(  " screen -d -m chromium-browser   --new-window  http://github.com/lusamek/opencalphad " );
    
 else
-   nsystem(  " screen -d -m dillo http://github.com/lusamek/opencalphad " );} selected
+   nsystem(  " screen -d -m dillo http://github.com/lusamek/opencalphad " );}
       xywh {475 650 115 30} labelfont 1
     }
     Fl_Button {} {
@@ -557,7 +533,7 @@ else
   }
   Fl_Window win2 {
     label Database open
-    xywh {362 193 875 355} type Double resizable visible
+    xywh {363 194 875 355} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Database}
@@ -768,7 +744,7 @@ redraw();}
   }
   Fl_Window win3 {
     label Option open
-    xywh {600 125 405 410} type Double resizable visible
+    xywh {601 126 405 410} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Option}
@@ -873,7 +849,7 @@ redraw();}
   }
   Fl_Window win4 {
     label {Graphics Plot} open
-    xywh {495 142 830 485} type Double resizable visible
+    xywh {752 147 830 485} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Plot}
@@ -983,7 +959,7 @@ nsystem( "  rm  ocgnu.plt " );}
   }
   Fl_Window win5 {
     label Macro open
-    xywh {912 529 850 485} type Double resizable visible
+    xywh {913 530 850 485} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Macro}
@@ -1205,7 +1181,7 @@ nsystem( "  rm  ocgnu.plt " );}
   }
   Fl_Window win6 {
     label Condition open
-    xywh {1216 601 655 465} type Double resizable visible
+    xywh {1217 602 655 465} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Condition}
@@ -1254,7 +1230,7 @@ nsystem( "  rm  ocgnu.plt " );}
   }
   Fl_Window win7 {
     label Development open
-    xywh {1567 294 395 415} type Double resizable visible
+    xywh {1525 295 395 415} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Development}
@@ -1411,4 +1387,37 @@ Function {main( int argc, char *argv[])} {open return_type int
   win1->show();
 
   Fl::run();} {}
+}
+
+Function {void_flfront_preview_browser1_refresh()} {open
+} {
+  code {flfront_preview_browser1->clear();    
+  
+  char filein[PATH_MAX];
+  strncpy( filein, "macro.ocm"  , PATH_MAX );
+       
+  
+  int fetchi;
+  FILE *fp5;
+  FILE *fp6;
+  char fetchline[PATH_MAX];
+  char fetchlinetmp[PATH_MAX];
+  
+  if ( fexist( filein ) == 1 )
+  {
+    fp6 = fopen( filein , "rb");
+    while( !feof(fp6) ) 
+    {
+          fgets(fetchlinetmp, PATH_MAX, fp6); 
+          strncpy( fetchline, "" , PATH_MAX );
+          for( fetchi = 0 ; ( fetchi <= strlen( fetchlinetmp ) ); fetchi++ )
+            if ( fetchlinetmp[ fetchi ] != '\\n' )
+              fetchline[fetchi]=fetchlinetmp[fetchi];
+              
+          if ( !feof(fp6)  )
+              flfront_preview_browser1->add( fetchline );    
+
+     }
+     fclose( fp6 );
+ }} {}
 }

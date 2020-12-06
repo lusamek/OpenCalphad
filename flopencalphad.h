@@ -41,4 +41,5 @@ extern Fl_Double_Window *win7;
 Fl_Double_Window* make_window();
 void addkeypress( int keypress );
 int main( int argc, char *argv[]);
+void void_flfront_preview_browser1_refresh();
 #endif

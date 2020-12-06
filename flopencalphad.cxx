@@ -22,6 +22,7 @@ void redraw() {
   // output_system->value( var_system  );
   
   // input_var_set_condition->value( "t=1000 p=1e5 n=1 x(c)=0.2 " );
+  printf("Hello, World!\n");
 }
 
 Fl_Double_Window *win1=(Fl_Double_Window *)0;
@@ -377,6 +378,9 @@ clear_plot();
 
 
 create_macro( );
+
+
+void_flfront_preview_browser1_refresh();
 }
 
 static void cb_4(Fl_Button*, void*) {
@@ -400,35 +404,7 @@ static void cb_Option(Fl_Button*, void*) {
 Fl_Browser *flfront_preview_browser1=(Fl_Browser *)0;
 
 static void cb_Refresh(Fl_Button*, void*) {
-  flfront_preview_browser1->clear();    
-  
-  char filein[PATH_MAX];
-  strncpy( filein, "macro.ocm"  , PATH_MAX );
-       
-  
-  int fetchi;
-  FILE *fp5;
-  FILE *fp6;
-  char fetchline[PATH_MAX];
-  char fetchlinetmp[PATH_MAX];
-  
-  if ( fexist( filein ) == 1 )
-  {
-    fp6 = fopen( filein , "rb");
-    while( !feof(fp6) ) 
-    {
-          fgets(fetchlinetmp, PATH_MAX, fp6); 
-          strncpy( fetchline, "" , PATH_MAX );
-          for( fetchi = 0 ; ( fetchi <= strlen( fetchlinetmp ) ); fetchi++ )
-            if ( fetchlinetmp[ fetchi ] != '\n' )
-              fetchline[fetchi]=fetchlinetmp[fetchi];
-              
-          if ( !feof(fp6)  )
-              flfront_preview_browser1->add( fetchline );    
-
-     }
-     fclose( fp6 );
- };
+  void_flfront_preview_browser1_refresh();
 }
 
 static void cb_Edit(Fl_Button*, void*) {
@@ -1639,4 +1615,36 @@ int main( int argc, char *argv[]) {
     win1->show();
   
     Fl::run();
+}
+
+void void_flfront_preview_browser1_refresh() {
+  flfront_preview_browser1->clear();    
+    
+    char filein[PATH_MAX];
+    strncpy( filein, "macro.ocm"  , PATH_MAX );
+         
+    
+    int fetchi;
+    FILE *fp5;
+    FILE *fp6;
+    char fetchline[PATH_MAX];
+    char fetchlinetmp[PATH_MAX];
+    
+    if ( fexist( filein ) == 1 )
+    {
+      fp6 = fopen( filein , "rb");
+      while( !feof(fp6) ) 
+      {
+            fgets(fetchlinetmp, PATH_MAX, fp6); 
+            strncpy( fetchline, "" , PATH_MAX );
+            for( fetchi = 0 ; ( fetchi <= strlen( fetchlinetmp ) ); fetchi++ )
+              if ( fetchlinetmp[ fetchi ] != '\n' )
+                fetchline[fetchi]=fetchlinetmp[fetchi];
+                
+            if ( !feof(fp6)  )
+                flfront_preview_browser1->add( fetchline );    
+  
+       }
+       fclose( fp6 );
+   }
 }
