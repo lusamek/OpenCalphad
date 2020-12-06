@@ -201,6 +201,13 @@ Example of plot showing the property diagram for a High Speed Steel (HSS):
 Example of ternary, calculating the isothermal section at 1200K for the Cr-Fe-Ni system:
 ![](https://github.com/lusamek/OpenCalphad/blob/master/Gui-Advanced-Plots-Chemistry-pic05.png)
 
+
+Example of calculating G curves for the Ag-Cu system at 1000K:
+![](https://github.com/lusamek/OpenCalphad/blob/master/Gui-Advanced-Plots-Chemistry-pic07.png)
+
+
+
+
 Example of calculating G curves for the Fe-Mo system at 1400K:
 ![](https://github.com/lusamek/OpenCalphad/blob/master/Gui-Advanced-Plots-Chemistry-pic06.png)
 
