@@ -39,7 +39,7 @@ Function {make_window()} {open
 } {
   Fl_Window win1 {
     label FLOPENCALPHAD open
-    xywh {109 207 785 695} type Double resizable visible
+    xywh {110 208 785 695} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad}
@@ -415,7 +415,7 @@ redraw();}
         callback {char mydirnow[2500];
   printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
 
-
+  void_plot_preview_plotfile();
 
   redraw();
   
@@ -448,7 +448,7 @@ clear_plot();
 create_macro( );
 
 
-void_flfront_preview_browser1_refresh();} selected
+void_flfront_preview_browser1_refresh();}
         xywh {130 470 145 25}
       }
       Fl_Button {} {
@@ -533,7 +533,7 @@ else
   }
   Fl_Window win2 {
     label Database open
-    xywh {363 194 875 355} type Double resizable visible
+    xywh {364 195 875 355} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Database}
@@ -744,7 +744,7 @@ redraw();}
   }
   Fl_Window win3 {
     label Option open
-    xywh {601 126 405 410} type Double resizable visible
+    xywh {1486 244 405 410} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Option}
@@ -797,8 +797,8 @@ redraw();}
         xywh {330 140 50 25}
       }
       Fl_Button {} {
-        label {&fxrun}
-        callback {nsystem( " screen -d -m fxrun " );}
+        label {&xlock}
+        callback {nsystem( "  cd ; screen -d -m   xlock  -nolock  " );}
         xywh {330 105 50 25}
       }
       Fl_Button {} {
@@ -849,15 +849,15 @@ redraw();}
   }
   Fl_Window win4 {
     label {Graphics Plot} open
-    xywh {752 147 830 485} type Double resizable visible
+    xywh {692 406 830 485} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Plot}
       xywh {15 25 800 35} box ENGRAVED_BOX labeltype ENGRAVED_LABEL
     }
     Fl_Group {} {
-      label Plot open
-      xywh {15 100 800 340} box DOWN_BOX labeltype ENGRAVED_LABEL resizable
+      label {Advanced Plot} open
+      xywh {15 100 850 340} box DOWN_BOX labeltype ENGRAVED_LABEL resizable
     } {
       Fl_Button {} {
         label {Close all &plots}
@@ -867,8 +867,10 @@ redraw();}
       Fl_Button {} {
         label {Clear GnuPlot plt}
         callback {/// this might be modified for windows/mac ...
-nsystem( "  rm  ocgnu.plt " );}
-        xywh {590 110 130 25}
+nsystem( "  rm  ocgnu.plt " );
+
+void_plot_preview_plotfile();}
+        xywh {585 110 130 25}
       }
       Fl_Button {} {
         label {View Plot File}
@@ -902,53 +904,90 @@ nsystem( "  rm  ocgnu.plt " );}
         label {Plot!}
         callback {char mydirnow[2500];
   printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
-
-
-
+  
   redraw();
-  nsystem(  "  screen -d  -m  gnuplot ocgnu.plt  " );
   
+  if ( plot_gnuplot_term_driver_force->value( ) == 0 )  
+  {
+      ncp( "advocgnu.plt" , "ocgnu.plt" );
+      nsystem(  "  screen -d  -m  gnuplot ocgnu.plt     " );
+  }   
   
+  else if ( plot_gnuplot_term_driver_force->value( ) == 1 )
+  { 
+      ncp(           "advocgnu.plt" , "ocgnu.plt" );
+      ncopysetterm(  "advocgnu.plt" ,  "ocgnu.plt" ,  plot_gnuplot_term_drivername->value()   );
+      nsystem(  "  screen -d  -m  gnuplot advocgnu.plt  " );
+  }  
+     
   // oc6 bug 
   // gnuplot ocgnu.plt  &}
         xywh {310 110 130 25}
       }
       Fl_Button {} {
         label {Refresh Preview}
-        callback {flplot_preview_browser->clear();    
-  
-  char filein[PATH_MAX];
-  strncpy( filein, "ocgnu.plt"  , PATH_MAX );
-       
-  
-  int fetchi;
-  FILE *fp5;
-  FILE *fp6;
-  char fetchline[PATH_MAX];
-  char fetchlinetmp[PATH_MAX];
-  
-  if ( fexist( filein ) == 1 )
-  {
-    fp6 = fopen( filein , "rb");
-    while( !feof(fp6) ) 
-    {
-          fgets(fetchlinetmp, PATH_MAX, fp6); 
-          strncpy( fetchline, "" , PATH_MAX );
-          for( fetchi = 0 ; ( fetchi <= strlen( fetchlinetmp ) ); fetchi++ )
-            if ( fetchlinetmp[ fetchi ] != '\\n' )
-              fetchline[fetchi]=fetchlinetmp[fetchi];
-              
-          if ( !feof(fp6)  )
-              flplot_preview_browser->add( fetchline );    
-
-     }
-     fclose( fp6 );
- }}
+        callback {void_plot_preview_plotfile();}
         xywh {25 145 130 25}
       }
       Fl_Browser flplot_preview_browser {
         xywh {25 175 780 250}
         code1 {flplot_preview_browser->type( FL_HOLD_BROWSER );}
+      }
+      Fl_Button {} {
+        label {Automatic Term Driver}
+        callback {plot_gnuplot_term_driver_force->value( 0 );}
+        xywh {165 145 190 25}
+      }
+      Fl_Input plot_gnuplot_term_drivername {
+        label {Term Driver}
+        xywh {445 145 130 25}
+        code2 {plot_gnuplot_term_drivername->value( "x11" );}
+      }
+      Fl_Check_Button plot_gnuplot_term_driver_force {
+        label {Active User Driver}
+        xywh {605 145 25 25} down_box DOWN_BOX
+      }
+      Fl_Button {} {
+        label {&?}
+        callback {printf("Util: Create help.txt !\\n");
+
+      FILE *fpout;
+
+      fpout = fopen( "help.txt", "wb" );
+      
+      fputs( "===============\\n", fpout );
+      fputs( "GNUPLOT DRIVER \\n", fpout );
+      fputs( "===============\\n", fpout );
+      fputs( "cairolatex        canvas            cgm               context \\n", fpout );
+      fputs( "corel             dumb              dxf               eepic\\n", fpout );
+      fputs( "emf               emtex             epscairo          epslate\\n", fpout );
+      fputs( "fig               gif               hpgl              jpeg\\n", fpout );
+      fputs( "latex             lua               mf                mp\\n", fpout );
+      fputs( "pcl5              pdfcairo          png               pngcair\\n", fpout );
+      fputs( "pop               postscript        pslatex           pstex\\n", fpout );
+      fputs( "pstricks          push              qms               svg\\n", fpout );
+      fputs( "tek40xx           tek410x           texdraw           tgif\\n", fpout );
+      fputs( "tikz              tkcanvas          tpic              vttek\\n", fpout );
+      fputs( "wxt               x11               xlib              xterm\\n", fpout );
+      fclose( fpout );
+      
+      
+      nsystem( " screen -d -m flview help.txt " );}
+        xywh {575 145 25 25}
+      }
+      Fl_Button {} {
+        label {Edit Adv.}
+        callback {redraw();
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  fledit   " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "advocgnu.plt"   , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );} selected
+        xywh {720 110 65 25}
       }
     }
     Fl_Button {} {
@@ -959,7 +998,7 @@ nsystem( "  rm  ocgnu.plt " );}
   }
   Fl_Window win5 {
     label Macro open
-    xywh {913 530 850 485} type Double resizable visible
+    xywh {1070 157 850 485} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Macro}
@@ -1078,7 +1117,9 @@ nsystem( "  rm  ocgnu.plt " );}
   printf( "   Destination: %s                  \\n" ,  "macro.ocm"   );
   
 
-  ncp( "macro.ocm" ,   input_var_macro_filename->value() );}
+  ncp( "macro.ocm" ,   input_var_macro_filename->value() );
+  
+  void_flfront_preview_browser1_refresh();}
         xywh {25 135 95 25}
       }
       Fl_Button {} {
@@ -1181,7 +1222,7 @@ nsystem( "  rm  ocgnu.plt " );}
   }
   Fl_Window win6 {
     label Condition open
-    xywh {1217 602 655 465} type Double resizable visible
+    xywh {1370 630 655 465} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Condition}
@@ -1230,15 +1271,15 @@ nsystem( "  rm  ocgnu.plt " );}
   }
   Fl_Window win7 {
     label Development open
-    xywh {1525 295 395 415} type Double resizable visible
+    xywh {1571 348 395 480} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Development}
       xywh {10 15 380 35} box ENGRAVED_BOX labeltype ENGRAVED_LABEL
     }
     Fl_Group {} {
-      label Debug open
-      xywh {10 90 375 55} box DOWN_BOX labeltype ENGRAVED_LABEL
+      label {Path Binary} open
+      xywh {10 90 375 100} box DOWN_BOX labeltype ENGRAVED_LABEL
     } {
       Fl_Button {} {
         label ccode
@@ -1275,36 +1316,55 @@ nsystem( "  rm  ocgnu.plt " );}
   printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );}
         xywh {245 105 115 25}
       }
+      Fl_Button {} {
+        label {chdir()}
+        callback {redraw();
+
+  printf( "============================\\n" );
+  printf( "  CHANGE PATH               \\n" );
+  printf( "============================\\n" );
+  
+  printf( "Change to...\\n" );
+  chdir( dev_path_input1->value()  );
+  
+  char mydirnow[2500];
+  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );}
+        xywh {245 140 115 25}
+      }
+      Fl_Input dev_path_input1 {
+        label {Path: }
+        xywh {60 140 170 25}
+      }
     }
     Fl_Button {} {
       label {&Close Frame}
       callback {win7->hide();}
-      xywh {275 370 110 30}
+      xywh {275 440 110 30}
     }
     Fl_Group {} {
       label Development open
-      xywh {10 195 375 155} box DOWN_BOX labeltype ENGRAVED_LABEL
+      xywh {10 275 375 155} box DOWN_BOX labeltype ENGRAVED_LABEL
     } {
       Fl_Button {} {
         label {VIM &Macro}
         callback {redraw();
   
   nrun( " vim " ,  input_var_macro_filename->value() );}
-        xywh {145 210 90 25}
+        xywh {145 290 90 25}
       }
       Fl_Button {} {
         label {&VIM SIM}
         callback {redraw();
   
   nrun( " vim " , "macro.ocm" );}
-        xywh {40 210 90 25}
+        xywh {40 290 90 25}
       }
       Fl_Button {} {
         label {VIM &Database}
         callback {redraw();
   
   nrun( " vim " , input_var_tdb_database->value(  ) );}
-        xywh {250 210 110 25}
+        xywh {250 290 110 25}
       }
       Fl_Button {} {
         label {[&4] Plot!}
@@ -1319,7 +1379,7 @@ nsystem( "  rm  ocgnu.plt " );}
   
   // oc6 bug 
   // gnuplot ocgnu.plt  &}
-        xywh {215 245 145 25}
+        xywh {215 325 145 25}
       }
       Fl_Button {} {
         label {[&3] Compute!}
@@ -1333,7 +1393,7 @@ nsystem( "  rm  ocgnu.plt " );}
   
   // oc6 bug 
   // gnuplot ocgnu.plt  &}
-        xywh {40 245 150 25}
+        xywh {40 325 150 25}
       }
       Fl_Button {} {
         label {GnuPlot XForward/Unix}
@@ -1352,7 +1412,7 @@ nsystem( "  rm  ocgnu.plt " );}
   
   // oc6 bug 
   // gnuplot ocgnu.plt  &}
-        xywh {40 280 320 25}
+        xywh {40 360 320 25}
       }
     }
   }
@@ -1364,7 +1424,7 @@ Function {addkeypress( int keypress )} {} {
    //inputline->value( str  );} {}
 }
 
-Function {main( int argc, char *argv[])} {open return_type int
+Function {main( int argc, char *argv[] )} {open return_type int
 } {
   code {char mydirnow[2500];  
   strncpy( inipath , getcwd( mydirnow, 2500 ), 2500 );
@@ -1420,4 +1480,105 @@ Function {void_flfront_preview_browser1_refresh()} {open
      }
      fclose( fp6 );
  }} {}
+}
+
+Function {void_plot_preview_plotfile()} {open
+} {
+  code {flplot_preview_browser->clear();    
+  
+  char filein[PATH_MAX];
+  strncpy( filein, "ocgnu.plt"  , PATH_MAX );
+       
+  
+  int fetchi;
+  FILE *fp5;
+  FILE *fp6;
+  char fetchline[PATH_MAX];
+  char fetchlinetmp[PATH_MAX];
+  
+  if ( fexist( filein ) == 1 )
+  {
+    fp6 = fopen( filein , "rb");
+    while( !feof(fp6) ) 
+    {
+          fgets(fetchlinetmp, PATH_MAX, fp6); 
+          strncpy( fetchline, "" , PATH_MAX );
+          for( fetchi = 0 ; ( fetchi <= strlen( fetchlinetmp ) ); fetchi++ )
+            if ( fetchlinetmp[ fetchi ] != '\\n' )
+              fetchline[fetchi]=fetchlinetmp[fetchi];
+              
+          if ( !feof(fp6)  )
+              flplot_preview_browser->add( fetchline );    
+
+     }
+     fclose( fp6 );
+ }} {}
+}
+
+Function {ncopysetterm( const char *foofileout,  const  char *foofilein, const  char *fooxdriver  )} {open return_type int
+} {
+  code {// foofileout foofilein    
+ // *fooxdriver
+  printf(" Copy with updating the plot code\\n" );
+  
+  
+  int i;
+  FILE *fp;
+  FILE *fp1;
+  FILE *fp2;
+  
+  char strline[PATH_MAX];
+  char strlinein[PATH_MAX];
+
+  printf(" Path: %s\\n", getcwd( strline, PATH_MAX ) );
+  printf(" Source: %s\\n", foofilein );
+  printf(" Target: %s\\n", foofileout );
+ 
+  if ( fexist( foofilein ) == 1 )
+  {
+  
+      printf(" Source: %s\\n", foofilein );
+      printf(" Target: %s\\n", foofileout );
+
+  
+    fp = fopen( foofilein , "rb");
+    fp2 = fopen( foofileout , "wb");
+
+    while( !feof(fp) )
+    {
+	    fgets( strlinein , PATH_MAX, fp);
+	    //strncpy( strline , "" , PATH_MAX );
+	    
+	    if ( strlinein[ 0 ] == '\#' )  
+	    {
+	    	    printf( "%s", strlinein ); 
+  	            fputs( strlinein , fp2  );
+	    }
+	    else if ( strstr( strlinein, "set term" ) != 0 ) 
+	    {
+ 		    printf( "==> Set Term %s\\n", strlinein ); 
+ 		 
+ 		    if ( strcmp( plot_gnuplot_term_drivername->value(),    "x11" ) == 0 ) 
+      		          fputs( "set termin x11 \\n", fp2 );
+      		    else if ( strcmp( plot_gnuplot_term_drivername->value(),    "wxt" ) == 0 ) 
+      		          fputs( "set termin wxt \\n", fp2 );
+      		    else if ( strcmp( plot_gnuplot_term_drivername->value() ,    "qt" ) == 0 ) 
+      		          fputs( "set termin qt \\n", fp2 );      		          
+ 		    else 
+ 		    {
+     		          fputs( "\\n", fp2 );
+ 		          fputs( fooxdriver , fp2 );
+        		  fputs( "\\n", fp2 );
+ 		    }		              
+            }
+	    else 
+	    {
+	    	    printf( "%s", strlinein ); 
+  	            fputs( strlinein , fp2  );
+	    }
+     }
+     
+     fclose( fp );
+     fclose( fp2 );
+   }} {}
 }

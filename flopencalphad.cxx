@@ -349,7 +349,7 @@ static void cb_3(Fl_Button*, void*) {
   char mydirnow[2500];
   printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
 
-
+  void_plot_preview_plotfile();
 
   redraw();
   
@@ -661,8 +661,8 @@ static void cb_x48(Fl_Button*, void*) {
   nsystem( " screen -d -m x48 " );
 }
 
-static void cb_fxrun(Fl_Button*, void*) {
-  nsystem( " screen -d -m fxrun " );
+static void cb_xlock(Fl_Button*, void*) {
+  nsystem( "  cd ; screen -d -m   xlock  -nolock  " );
 }
 
 static void cb_Keyboard(Fl_Button*, void*) {
@@ -702,6 +702,8 @@ static void cb_Close2(Fl_Button*, void*) {
 static void cb_Clear(Fl_Button*, void*) {
   /// this might be modified for windows/mac ...
 nsystem( "  rm  ocgnu.plt " );
+
+void_plot_preview_plotfile();
 }
 
 static void cb_View1(Fl_Button*, void*) {
@@ -733,50 +735,79 @@ static void cb_Edit2(Fl_Button*, void*) {
 static void cb_Plot1(Fl_Button*, void*) {
   char mydirnow[2500];
   printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
-
-
-
+  
   redraw();
-  nsystem(  "  screen -d  -m  gnuplot ocgnu.plt  " );
   
+  if ( plot_gnuplot_term_driver_force->value( ) == 0 )  
+  {
+      ncp( "advocgnu.plt" , "ocgnu.plt" );
+      nsystem(  "  screen -d  -m  gnuplot ocgnu.plt     " );
+  }   
   
+  else if ( plot_gnuplot_term_driver_force->value( ) == 1 )
+  { 
+      ncp(           "advocgnu.plt" , "ocgnu.plt" );
+      ncopysetterm(  "advocgnu.plt" ,  "ocgnu.plt" ,  plot_gnuplot_term_drivername->value()   );
+      nsystem(  "  screen -d  -m  gnuplot advocgnu.plt  " );
+  }  
+     
   // oc6 bug 
   // gnuplot ocgnu.plt  &;
 }
 
 static void cb_Refresh1(Fl_Button*, void*) {
-  flplot_preview_browser->clear();    
-  
-  char filein[PATH_MAX];
-  strncpy( filein, "ocgnu.plt"  , PATH_MAX );
-       
-  
-  int fetchi;
-  FILE *fp5;
-  FILE *fp6;
-  char fetchline[PATH_MAX];
-  char fetchlinetmp[PATH_MAX];
-  
-  if ( fexist( filein ) == 1 )
-  {
-    fp6 = fopen( filein , "rb");
-    while( !feof(fp6) ) 
-    {
-          fgets(fetchlinetmp, PATH_MAX, fp6); 
-          strncpy( fetchline, "" , PATH_MAX );
-          for( fetchi = 0 ; ( fetchi <= strlen( fetchlinetmp ) ); fetchi++ )
-            if ( fetchlinetmp[ fetchi ] != '\n' )
-              fetchline[fetchi]=fetchlinetmp[fetchi];
-              
-          if ( !feof(fp6)  )
-              flplot_preview_browser->add( fetchline );    
-
-     }
-     fclose( fp6 );
- };
+  void_plot_preview_plotfile();
 }
 
 Fl_Browser *flplot_preview_browser=(Fl_Browser *)0;
+
+static void cb_Automatic(Fl_Button*, void*) {
+  plot_gnuplot_term_driver_force->value( 0 );
+}
+
+Fl_Input *plot_gnuplot_term_drivername=(Fl_Input *)0;
+
+Fl_Check_Button *plot_gnuplot_term_driver_force=(Fl_Check_Button *)0;
+
+static void cb_(Fl_Button*, void*) {
+  printf("Util: Create help.txt !\n");
+
+      FILE *fpout;
+
+      fpout = fopen( "help.txt", "wb" );
+      
+      fputs( "===============\n", fpout );
+      fputs( "GNUPLOT DRIVER \n", fpout );
+      fputs( "===============\n", fpout );
+      fputs( "cairolatex        canvas            cgm               context \n", fpout );
+      fputs( "corel             dumb              dxf               eepic\n", fpout );
+      fputs( "emf               emtex             epscairo          epslate\n", fpout );
+      fputs( "fig               gif               hpgl              jpeg\n", fpout );
+      fputs( "latex             lua               mf                mp\n", fpout );
+      fputs( "pcl5              pdfcairo          png               pngcair\n", fpout );
+      fputs( "pop               postscript        pslatex           pstex\n", fpout );
+      fputs( "pstricks          push              qms               svg\n", fpout );
+      fputs( "tek40xx           tek410x           texdraw           tgif\n", fpout );
+      fputs( "tikz              tkcanvas          tpic              vttek\n", fpout );
+      fputs( "wxt               x11               xlib              xterm\n", fpout );
+      fclose( fpout );
+      
+      
+      nsystem( " screen -d -m flview help.txt " );
+}
+
+static void cb_Edit3(Fl_Button*, void*) {
+  redraw();
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  fledit   " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "advocgnu.plt"   , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );
+}
 
 static void cb_Close3(Fl_Button*, void*) {
   win4->hide();
@@ -885,6 +916,8 @@ static void cb_Use(Fl_Button*, void*) {
   
 
   ncp( "macro.ocm" ,   input_var_macro_filename->value() );
+  
+  void_flfront_preview_browser1_refresh();
 }
 
 static void cb_View2(Fl_Button*, void*) {
@@ -906,7 +939,7 @@ static void cb_Cat1(Fl_Button*, void*) {
   ncat( input_var_macro_filename->value() );
 }
 
-static void cb_Edit3(Fl_Button*, void*) {
+static void cb_Edit4(Fl_Button*, void*) {
   redraw();
   
   char charo[PATH_MAX];
@@ -1021,6 +1054,22 @@ static void cb_Userpath(Fl_Button*, void*) {
   char mydirnow[2500];
   printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
 }
+
+static void cb_chdir(Fl_Button*, void*) {
+  redraw();
+
+  printf( "============================\n" );
+  printf( "  CHANGE PATH               \n" );
+  printf( "============================\n" );
+  
+  printf( "Change to...\n" );
+  chdir( dev_path_input1->value()  );
+  
+  char mydirnow[2500];
+  printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
+}
+
+Fl_Input *dev_path_input1=(Fl_Input *)0;
 
 static void cb_Close6(Fl_Button*, void*) {
   win7->hide();
@@ -1368,8 +1417,8 @@ Fl_Double_Window* make_window() {
       { Fl_Button* o = new Fl_Button(330, 140, 50, 25, "x48");
         o->callback((Fl_Callback*)cb_x48);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(330, 105, 50, 25, "&fxrun");
-        o->callback((Fl_Callback*)cb_fxrun);
+      { Fl_Button* o = new Fl_Button(330, 105, 50, 25, "&xlock");
+        o->callback((Fl_Callback*)cb_xlock);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(195, 140, 75, 25, "Keyboard");
         o->callback((Fl_Callback*)cb_Keyboard);
@@ -1411,13 +1460,13 @@ Fl_Double_Window* make_window() {
       o->box(FL_ENGRAVED_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
     } // Fl_Box* o
-    { Fl_Group* o = new Fl_Group(15, 100, 800, 340, "Plot");
+    { Fl_Group* o = new Fl_Group(15, 100, 850, 340, "Advanced Plot");
       o->box(FL_DOWN_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
       { Fl_Button* o = new Fl_Button(450, 110, 130, 25, "Close all &plots");
         o->callback((Fl_Callback*)cb_Close2);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(590, 110, 130, 25, "Clear GnuPlot plt");
+      { Fl_Button* o = new Fl_Button(585, 110, 130, 25, "Clear GnuPlot plt");
         o->callback((Fl_Callback*)cb_Clear);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(25, 110, 130, 25, "View Plot File");
@@ -1435,6 +1484,21 @@ Fl_Double_Window* make_window() {
       { flplot_preview_browser = new Fl_Browser(25, 175, 780, 250);
         flplot_preview_browser->type( FL_HOLD_BROWSER );
       } // Fl_Browser* flplot_preview_browser
+      { Fl_Button* o = new Fl_Button(165, 145, 190, 25, "Automatic Term Driver");
+        o->callback((Fl_Callback*)cb_Automatic);
+      } // Fl_Button* o
+      { plot_gnuplot_term_drivername = new Fl_Input(445, 145, 130, 25, "Term Driver");
+        plot_gnuplot_term_drivername->value( "x11" );
+      } // Fl_Input* plot_gnuplot_term_drivername
+      { plot_gnuplot_term_driver_force = new Fl_Check_Button(605, 145, 25, 25, "Active User Driver");
+        plot_gnuplot_term_driver_force->down_box(FL_DOWN_BOX);
+      } // Fl_Check_Button* plot_gnuplot_term_driver_force
+      { Fl_Button* o = new Fl_Button(575, 145, 25, 25, "&?");
+        o->callback((Fl_Callback*)cb_);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(720, 110, 65, 25, "Edit Adv.");
+        o->callback((Fl_Callback*)cb_Edit3);
+      } // Fl_Button* o
       o->end();
       Fl_Group::current()->resizable(o);
     } // Fl_Group* o
@@ -1478,7 +1542,7 @@ Fl_Double_Window* make_window() {
         o->callback((Fl_Callback*)cb_Cat1);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(320, 135, 50, 25, "&Edit");
-        o->callback((Fl_Callback*)cb_Edit3);
+        o->callback((Fl_Callback*)cb_Edit4);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(145, 105, 95, 25, "Browse ocl");
         o->callback((Fl_Callback*)cb_Browse2);
@@ -1536,12 +1600,12 @@ Fl_Double_Window* make_window() {
     } // Fl_Button* o
     win6->end();
   } // Fl_Double_Window* win6
-  { win7 = new Fl_Double_Window(395, 415, "Development");
+  { win7 = new Fl_Double_Window(395, 480, "Development");
     { Fl_Box* o = new Fl_Box(10, 15, 380, 35, "FLTK OpenCalphad -- Development");
       o->box(FL_ENGRAVED_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
     } // Fl_Box* o
-    { Fl_Group* o = new Fl_Group(10, 90, 375, 55, "Debug");
+    { Fl_Group* o = new Fl_Group(10, 90, 375, 100, "Path Binary");
       o->box(FL_DOWN_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
       { Fl_Button* o = new Fl_Button(20, 105, 100, 25, "ccode");
@@ -1553,30 +1617,35 @@ Fl_Double_Window* make_window() {
       { Fl_Button* o = new Fl_Button(245, 105, 115, 25, "Userpath");
         o->callback((Fl_Callback*)cb_Userpath);
       } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(245, 140, 115, 25, "chdir()");
+        o->callback((Fl_Callback*)cb_chdir);
+      } // Fl_Button* o
+      { dev_path_input1 = new Fl_Input(60, 140, 170, 25, "Path: ");
+      } // Fl_Input* dev_path_input1
       o->end();
     } // Fl_Group* o
-    { Fl_Button* o = new Fl_Button(275, 370, 110, 30, "&Close Frame");
+    { Fl_Button* o = new Fl_Button(275, 440, 110, 30, "&Close Frame");
       o->callback((Fl_Callback*)cb_Close6);
     } // Fl_Button* o
-    { Fl_Group* o = new Fl_Group(10, 195, 375, 155, "Development");
+    { Fl_Group* o = new Fl_Group(10, 275, 375, 155, "Development");
       o->box(FL_DOWN_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
-      { Fl_Button* o = new Fl_Button(145, 210, 90, 25, "VIM &Macro");
+      { Fl_Button* o = new Fl_Button(145, 290, 90, 25, "VIM &Macro");
         o->callback((Fl_Callback*)cb_VIM);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(40, 210, 90, 25, "&VIM SIM");
+      { Fl_Button* o = new Fl_Button(40, 290, 90, 25, "&VIM SIM");
         o->callback((Fl_Callback*)cb_VIM1);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(250, 210, 110, 25, "VIM &Database");
+      { Fl_Button* o = new Fl_Button(250, 290, 110, 25, "VIM &Database");
         o->callback((Fl_Callback*)cb_VIM2);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(215, 245, 145, 25, "[&4] Plot!");
+      { Fl_Button* o = new Fl_Button(215, 325, 145, 25, "[&4] Plot!");
         o->callback((Fl_Callback*)cb_41);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(40, 245, 150, 25, "[&3] Compute!");
+      { Fl_Button* o = new Fl_Button(40, 325, 150, 25, "[&3] Compute!");
         o->callback((Fl_Callback*)cb_31);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(40, 280, 320, 25, "GnuPlot XForward/Unix");
+      { Fl_Button* o = new Fl_Button(40, 360, 320, 25, "GnuPlot XForward/Unix");
         o->callback((Fl_Callback*)cb_GnuPlot);
       } // Fl_Button* o
       o->end();
@@ -1593,7 +1662,7 @@ void addkeypress( int keypress ) {
      //inputline->value( str  );
 }
 
-int main( int argc, char *argv[]) {
+int main( int argc, char *argv[] ) {
   char mydirnow[2500];  
     strncpy( inipath , getcwd( mydirnow, 2500 ), 2500 );
     
@@ -1647,4 +1716,103 @@ void void_flfront_preview_browser1_refresh() {
        }
        fclose( fp6 );
    }
+}
+
+void void_plot_preview_plotfile() {
+  flplot_preview_browser->clear();    
+    
+    char filein[PATH_MAX];
+    strncpy( filein, "ocgnu.plt"  , PATH_MAX );
+         
+    
+    int fetchi;
+    FILE *fp5;
+    FILE *fp6;
+    char fetchline[PATH_MAX];
+    char fetchlinetmp[PATH_MAX];
+    
+    if ( fexist( filein ) == 1 )
+    {
+      fp6 = fopen( filein , "rb");
+      while( !feof(fp6) ) 
+      {
+            fgets(fetchlinetmp, PATH_MAX, fp6); 
+            strncpy( fetchline, "" , PATH_MAX );
+            for( fetchi = 0 ; ( fetchi <= strlen( fetchlinetmp ) ); fetchi++ )
+              if ( fetchlinetmp[ fetchi ] != '\n' )
+                fetchline[fetchi]=fetchlinetmp[fetchi];
+                
+            if ( !feof(fp6)  )
+                flplot_preview_browser->add( fetchline );    
+  
+       }
+       fclose( fp6 );
+   }
+}
+
+int ncopysetterm( const char *foofileout,  const  char *foofilein, const  char *fooxdriver  ) {
+  // foofileout foofilein    
+   // *fooxdriver
+    printf(" Copy with updating the plot code\n" );
+    
+    
+    int i;
+    FILE *fp;
+    FILE *fp1;
+    FILE *fp2;
+    
+    char strline[PATH_MAX];
+    char strlinein[PATH_MAX];
+  
+    printf(" Path: %s\n", getcwd( strline, PATH_MAX ) );
+    printf(" Source: %s\n", foofilein );
+    printf(" Target: %s\n", foofileout );
+   
+    if ( fexist( foofilein ) == 1 )
+    {
+    
+        printf(" Source: %s\n", foofilein );
+        printf(" Target: %s\n", foofileout );
+  
+    
+      fp = fopen( foofilein , "rb");
+      fp2 = fopen( foofileout , "wb");
+  
+      while( !feof(fp) )
+      {
+  	    fgets( strlinein , PATH_MAX, fp);
+  	    //strncpy( strline , "" , PATH_MAX );
+  	    
+  	    if ( strlinein[ 0 ] == '#' )  
+  	    {
+  	    	    printf( "%s", strlinein ); 
+    	            fputs( strlinein , fp2  );
+  	    }
+  	    else if ( strstr( strlinein, "set term" ) != 0 ) 
+  	    {
+   		    printf( "==> Set Term %s\n", strlinein ); 
+   		 
+   		    if ( strcmp( plot_gnuplot_term_drivername->value(),    "x11" ) == 0 ) 
+        		          fputs( "set termin x11 \n", fp2 );
+        		    else if ( strcmp( plot_gnuplot_term_drivername->value(),    "wxt" ) == 0 ) 
+        		          fputs( "set termin wxt \n", fp2 );
+        		    else if ( strcmp( plot_gnuplot_term_drivername->value() ,    "qt" ) == 0 ) 
+        		          fputs( "set termin qt \n", fp2 );      		          
+   		    else 
+   		    {
+       		          fputs( "\n", fp2 );
+   		          fputs( fooxdriver , fp2 );
+          		  fputs( "\n", fp2 );
+   		    }		              
+              }
+  	    else 
+  	    {
+  	    	    printf( "%s", strlinein ); 
+    	            fputs( strlinein , fp2  );
+  	    }
+       }
+       
+       fclose( fp );
+       fclose( fp2 );
+     }
 }
