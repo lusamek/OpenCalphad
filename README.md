@@ -148,7 +148,7 @@ The panel for "Set-Condition" allows to give the initial parameters.
 
 <br/>
 
-# Graphical Plot of Phase Diagram
+# Plot of Phase Diagram
 
 <br/>
 
