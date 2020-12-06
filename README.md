@@ -125,11 +125,7 @@ Frontend for Fe-C system:<br/>
 <br/>
 
 
-<br/>
-Plot the metastable Fe-C diagram and overlay the stable:
-<br/>
-![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Gui-Advanced-Plots-Fe-C-2Types-01.png)
-<br/>
+
 
 Frontend/GUI: <br/>
 ` flopencalphad ~/macros/ ` 
@@ -171,6 +167,17 @@ This allows to use use the cursor for the position (x,y) as well. An example is 
 
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Ag-Cu-System-FLOC-gnuplot-x11-det2.png)
 
+
+
+<br/>
+The possibility to overlay different diagrams is possible.
+Plot the metastable Fe-C diagram and overlay the stable: <br/>
+
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Gui-Advanced-Plots-Fe-C-2Types-01.png)
+
+
+
+<br/>
 
 
 
