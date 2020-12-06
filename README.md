@@ -147,8 +147,6 @@ This allows to use use the cursor for the position (x,y) as well. An example is 
 
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Ag-Cu-System-FLOC-gnuplot-x11-prev-6.png)
 
-![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Ag-Cu-System-FLOC-gnuplot-x11-prev-7.png)
-
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Ag-Cu-System-FLOC-gnuplot-x11-1.png)
 
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Ag-Cu-System-FLOC-gnuplot-x11-det1.png)
@@ -193,6 +191,13 @@ The diagram for the Fe-Mn system can be achieved as follows. <br/>
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/flopencalphad-7.png)
 <br/>
 
+
+## 6. Contribution
+
+The graphical user interface (GUI) of OC is under development. The database of OC are available on this webpage under the directory ~/macros.  
+The GUI allows users to login to a platform on IRC for scientific exchanges and sharing experiences.
+
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Ag-Cu-System-FLOC-gnuplot-x11-prev-7.png)
 
 
 --
