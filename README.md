@@ -162,6 +162,7 @@ The diagram shows the use of advanced plot for specific examples. <br/>
 
 Example of calculating speciation in a gas and plot y, H and Cp.
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Gui-Advanced-Plots-Chemistry-pic01.png)
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Gui-Advanced-Plots-Chemistry-pic02.png)
 
 
 
