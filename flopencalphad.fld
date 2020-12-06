@@ -42,7 +42,7 @@ Function {make_window()} {open
 } {
   Fl_Window win1 {
     label FLOPENCALPHAD open
-    xywh {131 222 785 695} type Double resizable visible
+    xywh {133 224 785 695} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad}
@@ -536,7 +536,7 @@ else
   }
   Fl_Window win2 {
     label Database open
-    xywh {333 412 880 370} type Double resizable visible
+    xywh {335 414 880 370} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Database}
@@ -561,7 +561,7 @@ else
   filegrep( input_var_tdb_database->value() , "ELEM" );
 
 
- redraw();} selected
+ redraw();}
         xywh {25 110 370 155} resizable
         code1 {browser1->type(FL_HOLD_BROWSER);}
       }
@@ -839,7 +839,7 @@ redraw();
   }
   Fl_Window win3 {
     label Option open
-    xywh {1353 155 405 410} type Double resizable visible
+    xywh {1355 157 405 410} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Option}
@@ -974,7 +974,7 @@ else if ( fexist( "/usr/bin/chromium-browser" ) == 1)
   }
   Fl_Window win4 {
     label {Graphics Plot} open
-    xywh {826 444 890 545} type Double resizable visible
+    xywh {353 429 890 545} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Plot}
@@ -1047,12 +1047,11 @@ flplot_preview_browser->clear();}
       form_plot_statusline->value( "advocgnu.plt" );
       void_plot_preview_plotfile(  "advocgnu.plt" );
       nsystem(  "  screen -d  -m  gnuplot advocgnu.plt  " );
-      
   }  
      
   // oc6 bug 
   // gnuplot ocgnu.plt  &}
-        xywh {590 140 135 25} labelfont 1
+        xywh {735 110 135 25} labelfont 1
       }
       Fl_Button {} {
         label {Refresh Preview}
@@ -1071,7 +1070,7 @@ flplot_preview_browser->clear();}
       }
       Fl_Input plot_gnuplot_term_drivername {
         label {Term Driver}
-        xywh {575 170 130 25}
+        xywh {590 170 110 25}
         code2 {plot_gnuplot_term_drivername->value( "x11" );}
       }
       Fl_Check_Button plot_gnuplot_term_driver_force {
@@ -1104,7 +1103,7 @@ flplot_preview_browser->clear();}
       
       
       nsystem( " screen -d -m flview help.txt " );}
-        xywh {705 170 25 25}
+        xywh {700 170 25 25}
       }
       Fl_Button {} {
         label {Edit Adv. Plot}
@@ -1128,6 +1127,11 @@ flplot_preview_browser->clear();}
   redraw();
   ncpadvmac( "macro2.ocm" , "advmacro.ocm" );
   
+  form_plot_statusline->value( "Compute advocgnu.plt in progress..." );
+  flplot_preview_browser->clear();
+  //void_plot_preview_plotfile(  "advocgnu.plt" );
+  
+  
   if ( checkbutton_xterm_console->value( ) == 1 ) 
      nsystem(  "  screen -d  -m   xterm -e   oc   macro2.ocm " );
      
@@ -1141,6 +1145,9 @@ flplot_preview_browser->clear();}
       Fl_Button {} {
         label {Edit Adv. Macro}
         callback {redraw();
+
+
+  form_plot_statusline->value( "Edit advmacro.ocm in progress..." );
   
   char charo[PATH_MAX];
   strncpy( charo, "", PATH_MAX );
@@ -1149,7 +1156,7 @@ flplot_preview_browser->clear();}
   strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "advmacro.ocm"   , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
-  nsystem(  charo );}
+  nsystem(  charo );} selected
         xywh {165 140 130 25}
       }
       Fl_Button {} {
@@ -1165,6 +1172,7 @@ flplot_preview_browser->clear();}
 
   ncat( "macro2.ocm" );
 
+  form_plot_statusline->value( "View macro2.ocm in progress..." );
   
   char charo[PATH_MAX];
   strncpy( charo, "", PATH_MAX );
@@ -1184,6 +1192,24 @@ printf( "%d\\n", plot_adv_computer_skipint->value() );
 printf( "%d\\n", plot_adv_computer_skipint_int );}
         xywh {735 140 25 25} down_box DOWN_BOX
       }
+      Fl_Button {} {
+        label {Adv. Plot}
+        callback {char mydirnow[2500];
+  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
+  
+  redraw();
+  
+ 
+      ncp(           "advocgnu.plt" , "ocgnu.plt" );
+      ncopysetterm(  "advocgnu.plt" ,  "ocgnu.plt" ,  plot_gnuplot_term_drivername->value()   );
+      
+      
+      form_plot_statusline->value( "Plot of advocgnu.plt in progress..." );
+      void_plot_preview_plotfile(  "advocgnu.plt" );
+      
+      nsystem(  "  screen -d  -m  gnuplot advocgnu.plt  " );}
+        xywh {590 140 135 25}
+      }
     }
     Fl_Button {} {
       label {Close Frame}
@@ -1197,7 +1223,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
   }
   Fl_Window win5 {
     label Macro open
-    xywh {1029 -12 850 485} type Double resizable visible
+    xywh {1031 22 850 485} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Macro}
@@ -1421,7 +1447,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
   }
   Fl_Window win6 {
     label Condition open
-    xywh {1112 569 655 465} type Double resizable visible
+    xywh {1114 571 655 465} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Condition}
@@ -1470,7 +1496,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
   }
   Fl_Window win7 {
     label Development open
-    xywh {1063 236 395 480} type Double resizable visible
+    xywh {1065 238 395 480} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Development}

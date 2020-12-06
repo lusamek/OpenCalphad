@@ -864,7 +864,6 @@ static void cb_Plot1(Fl_Button*, void*) {
       form_plot_statusline->value( "advocgnu.plt" );
       void_plot_preview_plotfile(  "advocgnu.plt" );
       nsystem(  "  screen -d  -m  gnuplot advocgnu.plt  " );
-      
   }  
      
   // oc6 bug 
@@ -933,6 +932,11 @@ static void cb_Adv(Fl_Button*, void*) {
   redraw();
   ncpadvmac( "macro2.ocm" , "advmacro.ocm" );
   
+  form_plot_statusline->value( "Compute advocgnu.plt in progress..." );
+  flplot_preview_browser->clear();
+  //void_plot_preview_plotfile(  "advocgnu.plt" );
+  
+  
   if ( checkbutton_xterm_console->value( ) == 1 ) 
      nsystem(  "  screen -d  -m   xterm -e   oc   macro2.ocm " );
      
@@ -945,6 +949,9 @@ static void cb_Adv(Fl_Button*, void*) {
 
 static void cb_Edit5(Fl_Button*, void*) {
   redraw();
+
+
+  form_plot_statusline->value( "Edit advmacro.ocm in progress..." );
   
   char charo[PATH_MAX];
   strncpy( charo, "", PATH_MAX );
@@ -967,6 +974,7 @@ static void cb_View2(Fl_Button*, void*) {
 
   ncat( "macro2.ocm" );
 
+  form_plot_statusline->value( "View macro2.ocm in progress..." );
   
   char charo[PATH_MAX];
   strncpy( charo, "", PATH_MAX );
@@ -985,6 +993,23 @@ static void cb_plot_adv_computer_skipint(Fl_Check_Button*, void*) {
 
 printf( "%d\n", plot_adv_computer_skipint->value() );
 printf( "%d\n", plot_adv_computer_skipint_int );
+}
+
+static void cb_Adv1(Fl_Button*, void*) {
+  char mydirnow[2500];
+  printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
+  
+  redraw();
+  
+ 
+      ncp(           "advocgnu.plt" , "ocgnu.plt" );
+      ncopysetterm(  "advocgnu.plt" ,  "ocgnu.plt" ,  plot_gnuplot_term_drivername->value()   );
+      
+      
+      form_plot_statusline->value( "Plot of advocgnu.plt in progress..." );
+      void_plot_preview_plotfile(  "advocgnu.plt" );
+      
+      nsystem(  "  screen -d  -m  gnuplot advocgnu.plt  " );
 }
 
 static void cb_Close3(Fl_Button*, void*) {
@@ -1678,7 +1703,7 @@ Fl_Double_Window* make_window() {
       { Fl_Button* o = new Fl_Button(165, 110, 130, 25, "Edit Plot File");
         o->callback((Fl_Callback*)cb_Edit3);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(590, 140, 135, 25, "Plot!");
+      { Fl_Button* o = new Fl_Button(735, 110, 135, 25, "Plot!");
         o->labelfont(1);
         o->callback((Fl_Callback*)cb_Plot1);
       } // Fl_Button* o
@@ -1692,13 +1717,13 @@ Fl_Double_Window* make_window() {
       { Fl_Button* o = new Fl_Button(165, 170, 190, 25, "Automatic Term Driver");
         o->callback((Fl_Callback*)cb_Automatic);
       } // Fl_Button* o
-      { plot_gnuplot_term_drivername = new Fl_Input(575, 170, 130, 25, "Term Driver");
+      { plot_gnuplot_term_drivername = new Fl_Input(590, 170, 110, 25, "Term Driver");
         plot_gnuplot_term_drivername->value( "x11" );
       } // Fl_Input* plot_gnuplot_term_drivername
       { plot_gnuplot_term_driver_force = new Fl_Check_Button(735, 170, 25, 25, "Active Driver");
         plot_gnuplot_term_driver_force->down_box(FL_DOWN_BOX);
       } // Fl_Check_Button* plot_gnuplot_term_driver_force
-      { Fl_Button* o = new Fl_Button(705, 170, 25, 25, "&?");
+      { Fl_Button* o = new Fl_Button(700, 170, 25, 25, "&?");
         o->callback((Fl_Callback*)cb_);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(305, 110, 135, 25, "Edit Adv. Plot");
@@ -1720,6 +1745,9 @@ Fl_Double_Window* make_window() {
         plot_adv_computer_skipint->down_box(FL_DOWN_BOX);
         plot_adv_computer_skipint->callback((Fl_Callback*)cb_plot_adv_computer_skipint);
       } // Fl_Check_Button* plot_adv_computer_skipint
+      { Fl_Button* o = new Fl_Button(590, 140, 135, 25, "Adv. Plot");
+        o->callback((Fl_Callback*)cb_Adv1);
+      } // Fl_Button* o
       o->end();
       Fl_Group::current()->resizable(o);
     } // Fl_Group* o
