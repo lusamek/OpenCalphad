@@ -183,7 +183,7 @@ Plot the metastable Fe-C diagram and overlay the stable: <br/>
 
 <br/>
 
-# Advanced Plot for Chemistry, Thermodynamics, and Alloying Development
+# Advanced Plot
 
 <br/>
 The diagram shows the use of advanced plot for specific examples. <br/>
