@@ -140,6 +140,12 @@ The "Macro" panel allows to edit and run a list of commands. The button "use mac
 The panel for "Set-Condition" allows to give the initial parameters.
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/flopencalphad-5.png)
 
+
+
+<br/>
+# Graphical Plot of Phase Diagram
+<br/>
+
 The GUI allows to use gnuplot-x11 (or gnuplot-qt) to plot the results. The results can be viewed and there is a zoom option with gnuplot-x11.
 This allows to use use the cursor for the position (x,y) as well. An example is shown for the Ag-Cu system:
 
@@ -154,6 +160,7 @@ This allows to use use the cursor for the position (x,y) as well. An example is 
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Ag-Cu-System-FLOC-gnuplot-x11-det1.png)
 
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Ag-Cu-System-FLOC-gnuplot-x11-det2.png)
+
 
 
 
