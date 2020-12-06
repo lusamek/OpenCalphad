@@ -160,10 +160,12 @@ This allows to use use the cursor for the position (x,y) as well. An example is 
 <br/>
 The diagram shows the use of advanced plot for specific examples. <br/>
 
-Example of calculating speciation in a gas and plot y, H and Cp.
+Example of calculating speciation in a gas and plot y, H and Cp:
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Gui-Advanced-Plots-Chemistry-pic01.png)
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Gui-Advanced-Plots-Chemistry-pic02.png)
 
+Example of OC macro file for RE-W system (M. Palumbo, S.G. Fried, T. Hammerschmidt et al.):
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Gui-Advanced-Plots-Chemistry-pic03.png)
 
 
 
