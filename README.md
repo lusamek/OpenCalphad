@@ -168,6 +168,9 @@ Example of calculating speciation in a gas and plot y, H and Cp:
 Example of OC macro file for RE-W system (M. Palumbo, S.G. Fried, T. Hammerschmidt et al.):
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Gui-Advanced-Plots-Chemistry-pic03.png)
 
+Example of plot showing the property diagram for a High Speed Steel (HSS):
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Gui-Advanced-Plots-Chemistry-pic04.png)
+
 
 <br/>
 # 7. Tutorial
