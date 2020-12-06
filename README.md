@@ -5,6 +5,7 @@ This website gives the possibility to use OpenCalphad using a virtual machine. I
 
 Screenshot #1: ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/OC-Screen1.jpg)
 
+
 # Installation
 ## 1. Virtualbox
 Download the software virtualbox corresponding to your architecture. https://www.virtualbox.org/wiki/Downloads
@@ -143,7 +144,9 @@ The panel for "Set-Condition" allows to give the initial parameters.
 
 
 <br/>
+
 # Graphical Plot of Phase Diagram
+
 <br/>
 
 The GUI allows to use gnuplot-x11 (or gnuplot-qt) to plot the results. The results can be viewed and there is a zoom option with gnuplot-x11.
@@ -165,6 +168,7 @@ This allows to use use the cursor for the position (x,y) as well. An example is 
 
 
 <br/>
+
 # Advanced Plot for Chemistry, Thermodynamics, and Alloying Development
 
 <br/>
@@ -182,6 +186,7 @@ Example of plot showing the property diagram for a High Speed Steel (HSS):
 
 
 <br/>
+
 # Tutorial
 
 <br/>
@@ -219,6 +224,7 @@ The diagram for the Fe-Mn system can be achieved as follows. <br/>
 
 
 # Contribution
+
 <br/>
 The graphical user interface (GUI) of OC is under development. The database of OC are available on this webpage under the directory "macros" (https://github.com/lusamek/OpenCalphad/tree/master/macros). The GUI allows users to login to a platform on IRC for scientific exchanges and sharing experiences. This is avaiable in the window "Option" using the button "Development and Support".
 
