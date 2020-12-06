@@ -29,6 +29,7 @@ extern Fl_Double_Window *win4;
 extern Fl_Browser *flplot_preview_browser;
 extern Fl_Input *plot_gnuplot_term_drivername;
 extern Fl_Check_Button *plot_gnuplot_term_driver_force;
+extern Fl_Output *form_plot_statusline;
 extern Fl_Double_Window *win5;
 extern Fl_Browser *browser2;
 extern Fl_Input *input_var_macro_filename;

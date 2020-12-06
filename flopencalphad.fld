@@ -39,7 +39,7 @@ Function {make_window()} {open
 } {
   Fl_Window win1 {
     label FLOPENCALPHAD open
-    xywh {113 211 785 695} type Double resizable visible
+    xywh {114 212 785 695} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad}
@@ -533,7 +533,7 @@ else
   }
   Fl_Window win2 {
     label Database open
-    xywh {349 184 880 370} type Double resizable visible
+    xywh {350 185 880 370} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Database}
@@ -815,7 +815,7 @@ redraw();
   }
   Fl_Window win3 {
     label Option open
-    xywh {1348 150 405 410} type Double resizable visible
+    xywh {1349 151 405 410} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Option}
@@ -944,13 +944,13 @@ else
    nsystem(  " screen -d -m chromium  --new-window  https://webchat.freenode.net/?channels=\#opencalphad " );
    
 else if ( fexist( "/usr/bin/chromium-browser" ) == 1) 
-   nsystem(  " screen -d -m chromium-browser   --new-window  https://webchat.freenode.net/?channels=\#opencalphad  " );} selected
+   nsystem(  " screen -d -m chromium-browser   --new-window  https://webchat.freenode.net/?channels=\#opencalphad  " );}
       xywh {15 312 375 30} labelfont 1
     }
   }
   Fl_Window win4 {
     label {Graphics Plot} open
-    xywh {695 409 830 485} type Double resizable visible
+    xywh {890 510 830 530} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Plot}
@@ -958,12 +958,12 @@ else if ( fexist( "/usr/bin/chromium-browser" ) == 1)
     }
     Fl_Group {} {
       label {Advanced Plot} open
-      xywh {15 100 850 340} box DOWN_BOX labeltype ENGRAVED_LABEL resizable
+      xywh {15 100 855 385} box DOWN_BOX labeltype ENGRAVED_LABEL resizable
     } {
       Fl_Button {} {
         label {Close all &plots}
         callback {nsystem( " pkill gnuplot " );}
-        xywh {450 110 130 25}
+        xywh {590 110 135 25}
       }
       Fl_Button {} {
         label {Clear GnuPlot plt}
@@ -971,7 +971,7 @@ else if ( fexist( "/usr/bin/chromium-browser" ) == 1)
 nsystem( "  rm  ocgnu.plt " );
 
 void_plot_preview_plotfile();}
-        xywh {585 110 130 25}
+        xywh {450 110 130 25}
       }
       Fl_Button {} {
         label {View Plot File}
@@ -1023,30 +1023,30 @@ void_plot_preview_plotfile();}
      
   // oc6 bug 
   // gnuplot ocgnu.plt  &}
-        xywh {310 110 130 25}
+        xywh {590 140 135 25} labelfont 1
       }
       Fl_Button {} {
         label {Refresh Preview}
         callback {void_plot_preview_plotfile();}
-        xywh {25 145 130 25}
+        xywh {25 170 130 25}
       }
       Fl_Browser flplot_preview_browser {
-        xywh {25 175 780 250}
+        xywh {25 220 780 250} resizable
         code1 {flplot_preview_browser->type( FL_HOLD_BROWSER );}
       }
       Fl_Button {} {
         label {Automatic Term Driver}
         callback {plot_gnuplot_term_driver_force->value( 0 );}
-        xywh {165 145 190 25}
+        xywh {165 170 190 25}
       }
       Fl_Input plot_gnuplot_term_drivername {
         label {Term Driver}
-        xywh {445 145 130 25}
+        xywh {445 170 130 25}
         code2 {plot_gnuplot_term_drivername->value( "x11" );}
       }
       Fl_Check_Button plot_gnuplot_term_driver_force {
         label {Active User Driver}
-        xywh {605 145 25 25} down_box DOWN_BOX
+        xywh {610 170 25 25} down_box DOWN_BOX
       }
       Fl_Button {} {
         label {&?}
@@ -1074,10 +1074,10 @@ void_plot_preview_plotfile();}
       
       
       nsystem( " screen -d -m flview help.txt " );}
-        xywh {575 145 25 25}
+        xywh {575 170 25 25}
       }
       Fl_Button {} {
-        label {Edit Adv.}
+        label {Edit Adv. Plot}
         callback {redraw();
   
   char charo[PATH_MAX];
@@ -1088,18 +1088,80 @@ void_plot_preview_plotfile();}
   strncat( charo , "advocgnu.plt"   , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
   nsystem(  charo );}
-        xywh {720 110 65 25}
+        xywh {305 110 135 25}
+      }
+      Fl_Button {} {
+        label {Adv. Compute}
+        callback {char mydirnow[2500];
+  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
+
+  void_plot_preview_plotfile();
+  redraw();
+  ncpadvmac( "macro2.ocm" , "advmacro.ocm" );
+  
+  if ( checkbutton_xterm_console->value( ) == 1 ) 
+     nsystem(  "  screen -d  -m   xterm -e   oc   macro2.ocm " );
+     
+  else if ( checkbutton_single_console->value( ) == 1 ) 
+     nsystem(  "  oc   macro2.ocm " );
+     
+  // oc6 bug 
+  // gnuplot ocgnu.plt  &}
+        xywh {450 140 130 25}
+      }
+      Fl_Button {} {
+        label {Edit Adv. Macro}
+        callback {redraw();
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  fledit   " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "advmacro.ocm"   , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );}
+        xywh {165 140 130 25}
+      }
+      Fl_Button {} {
+        label {Dup. Adv. Macro}
+        callback {redraw();
+
+  ncp( "advmacro.ocm" , "macro.ocm" );}
+        xywh {25 140 130 25}
+      }
+      Fl_Button {} {
+        label {View Res. Macro.}
+        callback {void_plot_preview_plotfile();
+  
+  redraw();
+  ncpadvmac( "macro2.ocm" , "advmacro.ocm" );
+
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  flview    " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "macro2.ocm"   , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );} selected
+        xywh {305 140 135 25}
       }
     }
     Fl_Button {} {
       label {Close Frame}
       callback {win4->hide();}
-      xywh {705 450 110 25}
+      xywh {705 495 110 25}
+    }
+    Fl_Output form_plot_statusline {
+      xywh {15 495 680 25} color 49
+      code1 {form_plot_statusline->value("ocgnu.plt");}
     }
   }
   Fl_Window win5 {
     label Macro open
-    xywh {919 136 850 485} type Double resizable visible
+    xywh {920 137 850 485} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Macro}
@@ -1323,7 +1385,7 @@ void_plot_preview_plotfile();}
   }
   Fl_Window win6 {
     label Condition open
-    xywh {1094 559 655 465} type Double resizable visible
+    xywh {1095 560 655 465} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Condition}
@@ -1372,7 +1434,7 @@ void_plot_preview_plotfile();}
   }
   Fl_Window win7 {
     label Development open
-    xywh {1058 231 395 480} type Double resizable visible
+    xywh {1059 232 395 480} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Development}

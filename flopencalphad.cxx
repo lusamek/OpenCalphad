@@ -899,9 +899,65 @@ static void cb_Edit3(Fl_Button*, void*) {
   nsystem(  charo );
 }
 
+static void cb_Adv(Fl_Button*, void*) {
+  char mydirnow[2500];
+  printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
+
+  void_plot_preview_plotfile();
+  redraw();
+  ncpadvmac( "macro2.ocm" , "advmacro.ocm" );
+  
+  if ( checkbutton_xterm_console->value( ) == 1 ) 
+     nsystem(  "  screen -d  -m   xterm -e   oc   macro2.ocm " );
+     
+  else if ( checkbutton_single_console->value( ) == 1 ) 
+     nsystem(  "  oc   macro2.ocm " );
+     
+  // oc6 bug 
+  // gnuplot ocgnu.plt  &;
+}
+
+static void cb_Edit4(Fl_Button*, void*) {
+  redraw();
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  fledit   " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "advmacro.ocm"   , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );
+}
+
+static void cb_Dup(Fl_Button*, void*) {
+  redraw();
+
+  ncp( "advmacro.ocm" , "macro.ocm" );
+}
+
+static void cb_View2(Fl_Button*, void*) {
+  void_plot_preview_plotfile();
+  
+  redraw();
+  ncpadvmac( "macro2.ocm" , "advmacro.ocm" );
+
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  flview    " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "macro2.ocm"   , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );
+}
+
 static void cb_Close3(Fl_Button*, void*) {
   win4->hide();
 }
+
+Fl_Output *form_plot_statusline=(Fl_Output *)0;
 
 Fl_Double_Window *win5=(Fl_Double_Window *)0;
 
@@ -1010,7 +1066,7 @@ static void cb_Use(Fl_Button*, void*) {
   void_flfront_preview_browser1_refresh();
 }
 
-static void cb_View2(Fl_Button*, void*) {
+static void cb_View3(Fl_Button*, void*) {
   redraw();
   
   char charo[PATH_MAX];
@@ -1029,7 +1085,7 @@ static void cb_Cat1(Fl_Button*, void*) {
   ncat( input_var_macro_filename->value() );
 }
 
-static void cb_Edit4(Fl_Button*, void*) {
+static void cb_Edit5(Fl_Button*, void*) {
   redraw();
   
   char charo[PATH_MAX];
@@ -1565,18 +1621,18 @@ Fl_Double_Window* make_window() {
     win3->end();
     win3->resizable(win3);
   } // Fl_Double_Window* win3
-  { win4 = new Fl_Double_Window(830, 485, "Graphics Plot");
+  { win4 = new Fl_Double_Window(830, 530, "Graphics Plot");
     { Fl_Box* o = new Fl_Box(15, 25, 800, 35, "FLTK OpenCalphad -- Plot");
       o->box(FL_ENGRAVED_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
     } // Fl_Box* o
-    { Fl_Group* o = new Fl_Group(15, 100, 850, 340, "Advanced Plot");
+    { Fl_Group* o = new Fl_Group(15, 100, 855, 385, "Advanced Plot");
       o->box(FL_DOWN_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
-      { Fl_Button* o = new Fl_Button(450, 110, 130, 25, "Close all &plots");
+      { Fl_Button* o = new Fl_Button(590, 110, 135, 25, "Close all &plots");
         o->callback((Fl_Callback*)cb_Close2);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(585, 110, 130, 25, "Clear GnuPlot plt");
+      { Fl_Button* o = new Fl_Button(450, 110, 130, 25, "Clear GnuPlot plt");
         o->callback((Fl_Callback*)cb_Clear);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(25, 110, 130, 25, "View Plot File");
@@ -1585,36 +1641,54 @@ Fl_Double_Window* make_window() {
       { Fl_Button* o = new Fl_Button(165, 110, 130, 25, "Edit Plot File");
         o->callback((Fl_Callback*)cb_Edit2);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(310, 110, 130, 25, "Plot!");
+      { Fl_Button* o = new Fl_Button(590, 140, 135, 25, "Plot!");
+        o->labelfont(1);
         o->callback((Fl_Callback*)cb_Plot1);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(25, 145, 130, 25, "Refresh Preview");
+      { Fl_Button* o = new Fl_Button(25, 170, 130, 25, "Refresh Preview");
         o->callback((Fl_Callback*)cb_Refresh1);
       } // Fl_Button* o
-      { flplot_preview_browser = new Fl_Browser(25, 175, 780, 250);
+      { flplot_preview_browser = new Fl_Browser(25, 220, 780, 250);
+        Fl_Group::current()->resizable(flplot_preview_browser);
         flplot_preview_browser->type( FL_HOLD_BROWSER );
       } // Fl_Browser* flplot_preview_browser
-      { Fl_Button* o = new Fl_Button(165, 145, 190, 25, "Automatic Term Driver");
+      { Fl_Button* o = new Fl_Button(165, 170, 190, 25, "Automatic Term Driver");
         o->callback((Fl_Callback*)cb_Automatic);
       } // Fl_Button* o
-      { plot_gnuplot_term_drivername = new Fl_Input(445, 145, 130, 25, "Term Driver");
+      { plot_gnuplot_term_drivername = new Fl_Input(445, 170, 130, 25, "Term Driver");
         plot_gnuplot_term_drivername->value( "x11" );
       } // Fl_Input* plot_gnuplot_term_drivername
-      { plot_gnuplot_term_driver_force = new Fl_Check_Button(605, 145, 25, 25, "Active User Driver");
+      { plot_gnuplot_term_driver_force = new Fl_Check_Button(610, 170, 25, 25, "Active User Driver");
         plot_gnuplot_term_driver_force->down_box(FL_DOWN_BOX);
       } // Fl_Check_Button* plot_gnuplot_term_driver_force
-      { Fl_Button* o = new Fl_Button(575, 145, 25, 25, "&?");
+      { Fl_Button* o = new Fl_Button(575, 170, 25, 25, "&?");
         o->callback((Fl_Callback*)cb_);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(720, 110, 65, 25, "Edit Adv.");
+      { Fl_Button* o = new Fl_Button(305, 110, 135, 25, "Edit Adv. Plot");
         o->callback((Fl_Callback*)cb_Edit3);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(450, 140, 130, 25, "Adv. Compute");
+        o->callback((Fl_Callback*)cb_Adv);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(165, 140, 130, 25, "Edit Adv. Macro");
+        o->callback((Fl_Callback*)cb_Edit4);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(25, 140, 130, 25, "Dup. Adv. Macro");
+        o->callback((Fl_Callback*)cb_Dup);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(305, 140, 135, 25, "View Res. Macro.");
+        o->callback((Fl_Callback*)cb_View2);
       } // Fl_Button* o
       o->end();
       Fl_Group::current()->resizable(o);
     } // Fl_Group* o
-    { Fl_Button* o = new Fl_Button(705, 450, 110, 25, "Close Frame");
+    { Fl_Button* o = new Fl_Button(705, 495, 110, 25, "Close Frame");
       o->callback((Fl_Callback*)cb_Close3);
     } // Fl_Button* o
+    { form_plot_statusline = new Fl_Output(15, 495, 680, 25);
+      form_plot_statusline->color(FL_BACKGROUND_COLOR);
+      form_plot_statusline->value("ocgnu.plt");
+    } // Fl_Output* form_plot_statusline
     win4->end();
   } // Fl_Double_Window* win4
   { win5 = new Fl_Double_Window(850, 485, "Macro");
@@ -1646,13 +1720,13 @@ Fl_Double_Window* make_window() {
         o->callback((Fl_Callback*)cb_Use);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(320, 105, 50, 25, "&View");
-        o->callback((Fl_Callback*)cb_View2);
+        o->callback((Fl_Callback*)cb_View3);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(265, 105, 50, 25, "&Cat");
         o->callback((Fl_Callback*)cb_Cat1);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(320, 135, 50, 25, "&Edit");
-        o->callback((Fl_Callback*)cb_Edit4);
+        o->callback((Fl_Callback*)cb_Edit5);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(145, 105, 95, 25, "Browse ocl");
         o->callback((Fl_Callback*)cb_Browse2);
