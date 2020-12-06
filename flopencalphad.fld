@@ -42,7 +42,7 @@ Function {make_window()} {open
 } {
   Fl_Window win1 {
     label FLOPENCALPHAD open
-    xywh {130 221 785 695} type Double resizable visible
+    xywh {131 222 785 695} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad}
@@ -536,7 +536,7 @@ else
   }
   Fl_Window win2 {
     label Database open
-    xywh {589 97 880 370} type Double resizable visible
+    xywh {333 412 880 370} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Database}
@@ -553,8 +553,15 @@ else
 
  input_var_tdb_database->value(  browser1->text(   browser1->value() ) ); 
  
+  
+  printf( "============================\\n" );
+  printf( "   ELEMENT                  \\n" );
+  printf( "============================\\n" );
+  
+  filegrep( input_var_tdb_database->value() , "ELEM" );
 
-redraw();}
+
+ redraw();} selected
         xywh {25 110 370 155} resizable
         code1 {browser1->type(FL_HOLD_BROWSER);}
       }
@@ -832,7 +839,7 @@ redraw();
   }
   Fl_Window win3 {
     label Option open
-    xywh {1352 154 405 410} type Double resizable visible
+    xywh {1353 155 405 410} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Option}
@@ -967,14 +974,14 @@ else if ( fexist( "/usr/bin/chromium-browser" ) == 1)
   }
   Fl_Window win4 {
     label {Graphics Plot} open
-    xywh {782 452 890 545} type Double resizable visible
+    xywh {826 444 890 545} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Plot}
       xywh {15 25 860 35} box ENGRAVED_BOX labeltype ENGRAVED_LABEL
     }
     Fl_Group {} {
-      label {Advanced Plot} open selected
+      label {Advanced Plot} open
       xywh {15 100 860 385} box DOWN_BOX labeltype ENGRAVED_LABEL resizable
     } {
       Fl_Button {} {
@@ -1190,7 +1197,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
   }
   Fl_Window win5 {
     label Macro open
-    xywh {923 140 850 485} type Double resizable visible
+    xywh {1029 -12 850 485} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Macro}
@@ -1414,7 +1421,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
   }
   Fl_Window win6 {
     label Condition open
-    xywh {1111 568 655 465} type Double resizable visible
+    xywh {1112 569 655 465} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Condition}
@@ -1463,7 +1470,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
   }
   Fl_Window win7 {
     label Development open
-    xywh {1062 235 395 480} type Double resizable visible
+    xywh {1063 236 395 480} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Development}

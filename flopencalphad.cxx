@@ -456,8 +456,15 @@ static void cb_browser1(Fl_Browser*, void*) {
 
  input_var_tdb_database->value(  browser1->text(   browser1->value() ) ); 
  
+  
+  printf( "============================\n" );
+  printf( "   ELEMENT                  \n" );
+  printf( "============================\n" );
+  
+  filegrep( input_var_tdb_database->value() , "ELEM" );
 
-redraw();
+
+ redraw();
 }
 
 Fl_Input *input_notes=(Fl_Input *)0;
