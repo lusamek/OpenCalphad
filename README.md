@@ -85,7 +85,9 @@ Example #4: Al-Fe system <br/>
 
 
  
-## 5. Using GUI (under dev)
+ 
+ 
+# Using GUI (under dev)
 
 The graphical user interface (GUI) of OC is under development. 
 An image of the virtual machine with the GUI OC is available for download at the following Link. 
@@ -156,7 +158,7 @@ This allows to use use the cursor for the position (x,y) as well. An example is 
 
 
 <br/>
-# 6. Advanced Plot for Chemistry and Thermodynamics
+# Advanced Plot for Chemistry, Thermodynamics, and Alloying Development
 
 <br/>
 The diagram shows the use of advanced plot for specific examples. <br/>
@@ -173,7 +175,7 @@ Example of plot showing the property diagram for a High Speed Steel (HSS):
 
 
 <br/>
-# 7. Tutorial
+# Tutorial
 
 <br/>
 The diagram for the Fe-C system can be achieved as follows. <br/>
@@ -209,7 +211,7 @@ The diagram for the Fe-Mn system can be achieved as follows. <br/>
 <br/>
 
 
-## 8. Contribution
+# Contribution
 <br/>
 The graphical user interface (GUI) of OC is under development. The database of OC are available on this webpage under the directory "macros" (https://github.com/lusamek/OpenCalphad/tree/master/macros). The GUI allows users to login to a platform on IRC for scientific exchanges and sharing experiences. This is avaiable in the window "Option" using the button "Development and Support".
 
