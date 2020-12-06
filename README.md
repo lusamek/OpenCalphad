@@ -231,7 +231,9 @@ The graphical user interface (GUI) of OC is under development. The database of O
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Ag-Cu-System-FLOC-gnuplot-x11-prev-7.png)
 
 <br/>
+
 --
+
 # Support 
 
 IRC on Freenode
