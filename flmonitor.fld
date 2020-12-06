@@ -1,0 +1,75 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0304
+header_name {.h}
+code_name {.cxx}
+decl {\#include <stdio.h>} {private local
+}
+
+decl {\#include <stdlib.h>} {private local
+}
+
+decl {\#include "headerf.h"} {private local
+}
+
+Function {make_window()} {open
+} {
+  Fl_Window win1 {
+    label Screen open
+    xywh {167 436 315 195} type Double resizable visible
+  } {
+    Fl_Button {} {
+      label {&Quit}
+      callback {exit( 0 );}
+      xywh {5 170 305 20} labelfont 1
+    }
+    Fl_Group {} {open
+      xywh {5 35 305 125} box DOWN_BOX
+    } {
+      Fl_Button {} {
+        label {&1: 640x480}
+        callback {system( " screen -d -m  xrandr -s 640x480   "  );}
+        xywh {10 45 120 20}
+      }
+      Fl_Button {} {
+        label {&2: 800x600}
+        callback {system( " screen -d -m  xrandr -s 800x600   "  );} selected
+        xywh {10 70 120 20}
+      }
+      Fl_Button {} {
+        label {&4: 1680x1050}
+        callback {system( " screen -d -m  xrandr -s 1680x1050   "  );}
+        xywh {185 70 120 20}
+      }
+      Fl_Button {} {
+        label {&3: 1366x768}
+        callback {system( " screen -d -m  xrandr -s   1366x768     "  );}
+        xywh {185 45 120 20}
+      }
+    }
+    Fl_Box {} {
+      label FLMONITOR
+      xywh {5 5 305 25} box ENGRAVED_BOX labelfont 1
+    }
+  }
+}
+
+Function {main( int argc, char *argv[])} {open return_type int
+} {
+  code {printf( " == FLTK == \\n" );
+
+////////////////////////////////////////////////////////
+  if ( argc == 2)
+  if ( strcmp( argv[1] , "" ) !=  0 )
+  {
+          chdir( argv[ 1 ] );
+  }
+
+  char mydirnow[2500];
+  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
+
+
+  make_window();
+  win1->show();
+
+  Fl::run();} {}
+}

@@ -15,8 +15,9 @@ extern Fl_Output *output_system;
 extern Fl_Input *input_var_calc_x;
 extern Fl_Input *input_var_calc_y;
 extern Fl_Input *input_var_tdb_database;
-extern Fl_Double_Window *win2;
 #include <FL/Fl_Browser.H>
+extern Fl_Browser *flfront_preview_browser1;
+extern Fl_Double_Window *win2;
 extern Fl_Browser *browser1;
 extern Fl_Input *input_notes;
 extern Fl_Double_Window *win3;
@@ -24,6 +25,7 @@ extern Fl_Double_Window *win3;
 extern Fl_Check_Button *checkbutton_single_console;
 extern Fl_Check_Button *checkbutton_xterm_console;
 extern Fl_Double_Window *win4;
+extern Fl_Browser *flplot_preview_browser;
 extern Fl_Double_Window *win5;
 extern Fl_Browser *browser2;
 extern Fl_Input *input_var_macro_filename;

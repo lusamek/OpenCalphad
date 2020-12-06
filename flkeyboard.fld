@@ -1,0 +1,79 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0304
+header_name {.h}
+code_name {.cxx}
+decl {\#include "headerf.h"} {private local
+}
+
+Function {addkeys()} {open
+} {
+  code {keylist->clear();
+
+keylist->add( "us" );
+keylist->add( "uk" );
+keylist->add( "it" );
+keylist->add( "de" );
+keylist->add( "es" );
+keylist->add( "sp" );
+keylist->add( "br" );
+keylist->add( "fr" );
+
+
+keylist->add( "pl" );
+keylist->add( "at" );
+keylist->add( "ru" );
+keylist->add( "ch" );
+keylist->add( "jp" );} {}
+}
+
+Function {make_window()} {open
+} {
+  Fl_Window win {open
+    xywh {154 54 400 435} type Double
+    code2 {addkeys();} visible
+  } {
+    Fl_Group {} {
+      label {Keyboard Layout} open
+      xywh {10 30 260 365} box UP_FRAME
+    } {
+      Fl_Browser keylist {
+        callback {selection->value( keylist->text( keylist->value() ));} selected
+        xywh {20 40 240 340}
+        code1 {keylist->type( FL_HOLD_BROWSER);}
+      }
+    }
+    Fl_Group {} {
+      label Modes open
+      xywh {275 30 115 365} box UP_BOX
+    } {
+      Fl_Button {} {
+        label {&Apply}
+        callback {char str[2500];  
+              
+    snprintf( str, sizeof(str), "  setxkbmap  %s  ",  selection->value()  );
+
+         system( str );}
+        xywh {285 275 90 45}
+      }
+      Fl_Clock {} {
+        xywh {285 40 92 85}
+      }
+      Fl_Button {} {
+        label {&Quit}
+        callback {exit( 0 );}
+        xywh {285 340 90 45}
+      }
+    }
+    Fl_Input selection {
+      xywh {10 400 380 25} color 49
+    }
+  }
+  code {win->show();} {}
+}
+
+Function {main()} {open return_type int
+} {
+  code {make_window();
+  Fl::run();
+  return 0;} {}
+}
