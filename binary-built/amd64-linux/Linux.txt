@@ -1,0 +1,6 @@
+
+Binary Built for Linux:
+
+> AMD64
+- Requires the packages gfortran, libfltk1.3-dev, gcc, make, and g++.
+
