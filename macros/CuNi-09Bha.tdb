@@ -1,0 +1,57 @@
+$ CUNI
+$
+$ -----------------------------------------------------------------------------
+$ 2007.2.5
+$ 
+$ TDB file created by K.Hashimoto and T.Abe,
+$
+$ Particle Simulation and Thermodynamics Group, National Institute for 
+$ Materials Science. 1-2-1 Sengen, Tsukuba, Ibaraki 305-0047, Japan
+$ 
+$ e-mail: abe.taichi@nims.go.jp
+$
+$ Copyright (C) NIMS 2007
+$ -----------------------------------------------------------------------------
+$
+$ Parameters for liquid are taken from 
+$ R.C.Sharma, Trans. Indian Inst. Met., 35 (1982) 372-375.
+$
+$ Lattice stability is different from SGTE-Pure database.
+$
+$ No magnetic transition 
+$
+$ -----------------------------------------------------------------------------
+$
+$ 
+                
+ ELEMENT /-   ELECTRON_GAS              0.0000E+00  0.0000E+00  0.0000E+00!
+ ELEMENT VA   VACUUM                    0.0000E+00  0.0000E+00  0.0000E+00!
+ ELEMENT CU   FCC_A1                    6.3546E+01  5.0041E+03  3.3150E+01!
+ ELEMENT NI   FCC_A1                    5.8690E+01  4.7870E+03  2.9796E+01!
+  
+ FUNCTION GHSERCU    2.98150E+02  -17472.0+10.12*T;                3200 N !
+ FUNCTION GHSERNI    2.98150E+02  -13045.0+9.623*T;                3000 N !
+ FUNCTION UN_ASS     298.15       +0;                              3000 N !
+ 
+ TYPE_DEFINITION % SEQ *!
+ DEFINE_SYSTEM_DEFAULT ELEMENT 2 !
+ DEFAULT_COMMAND DEF_SYS_ELEMENT VA /- !
+
+ PHASE LIQUID:L %  1  1.0  !
+   CONSTITUENT LIQUID:L :CU,NI :  !
+   PARAMETER G(LIQUID,CU;0)  2.98150E+02  +0;                      3200 N !
+   PARAMETER G(LIQUID,NI;0)  2.98150E+02  +0;                      3000 N !
+   PARAMETER G(LIQUID,CU,NI;0)        2.98150E+02 +11681;          6000 N !
+   PARAMETER G(LIQUID,CU,NI;1)        2.98150E+02 -932.5;          6000 N !
+
+ PHASE FCC_A1  %  2 1   1 !
+   CONSTITUENT FCC_A1  :CU%,NI% : VA% :  !
+   PARAMETER G(FCC_A1,CU:VA;0)        2.98150E+02 +GHSERCU#;       3200 N !
+   PARAMETER G(FCC_A1,NI:VA;0)        2.98150E+02 +GHSERNI#;       3000 N !
+   PARAMETER G(FCC_A1,CU,NI:VA;0)     2.98150E+02 +7067+2.4663*T;  6000 N !
+   PARAMETER G(FCC_A1,CU,NI:VA;1)     2.98150E+02 -4573+2.328*T;   6000 N !
+
+
+
+ 
+
