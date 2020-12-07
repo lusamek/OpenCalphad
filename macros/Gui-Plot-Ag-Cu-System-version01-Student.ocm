@@ -1,0 +1,36 @@
+
+
+new Y
+
+
+set echo
+
+
+r t agcu.TDB
+cu ag 
+
+
+ set cond  t=1000 p=1e5 n=1  x(ag)=0.01  
+c e
+
+l r 1
+
+set ax 1 x(ag) 0 1 ,,,
+
+set ax 2 T 500 3000 10
+
+l ax
+
+l sh
+
+
+map
+
+
+plot
+w%(*,ag)
+T_C
+title map 1 fig 1
+render
+
+
