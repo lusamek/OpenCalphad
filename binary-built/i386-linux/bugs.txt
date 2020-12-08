@@ -1,0 +1,9 @@
+
+
+Bugs:
+
+The plot of Ag-Cu differs from the AMD64 results.
+Needs more bug reports.
+
+... 
+
