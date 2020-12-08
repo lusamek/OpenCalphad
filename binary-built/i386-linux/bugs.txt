@@ -2,7 +2,7 @@
 
 Bugs:
 
-The plot of Ag-Cu differs from the AMD64 results.
+The plot of Ag-Cu may differ from the AMD64 results.
 Needs more bug reports.
 
 ... 
