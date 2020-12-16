@@ -93,11 +93,12 @@ Example #4: Al-Fe system <br/>
 The graphical user interface (GUI) of OC is under development. 
 An image of the virtual machine with the GUI OC is available for download at the following Link. 
 <br> 
+<br>
 The image of first release v0.1 is available at the following link: https://drive.google.com/file/d/14aJRksYz4pKwuMBolMNSc3sxOllR8QNZ/view?usp=sharing  <br/>
 (md5 checksum: 57ff8cc52de02868de4d255a9c6b140b virtualbox-debian-opencalphad-GUI-v1.1.zip) <br/>
 <br>
 <br>
-The image of second release v0.2 is available at the following link: 
+The image of second release v0.2 is available at the following link: https://drive.google.com/file/d/1QpcMUm6gPCDYn_kI7C0EAm74955F71OJ/view?usp=sharing
  <br/>
 (md5 checksum: 453a7bd35393a1ef615c903c7526a20c  virtualbox-debian-opencalphad-GUI-release-0.2.zip) <br/>
 <br><br>
