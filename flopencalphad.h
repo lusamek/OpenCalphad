@@ -18,6 +18,11 @@ extern Fl_Input *input_var_tdb_database;
 #include <FL/Fl_Browser.H>
 extern Fl_Browser *flfront_preview_browser1;
 extern Fl_Double_Window *win2;
+#include <FL/Fl_Tabs.H>
+#include <FL/Fl_File_Browser.H>
+extern Fl_File_Browser *form_database_tab1_filebrowser1;
+extern Fl_Output *form_database_tab1_currentfile;
+extern Fl_Input *form_database_tab1_filter;
 extern Fl_Browser *browser1;
 extern Fl_Input *input_notes;
 extern Fl_Input *form_database_fetch_url;
@@ -44,10 +49,15 @@ extern Fl_Input *input_var_calc_xmin;
 extern Fl_Input *input_var_calc_xmax;
 extern Fl_Double_Window *win7;
 extern Fl_Input *dev_path_input1;
+extern Fl_Double_Window *form_element_pse;
+extern Fl_Double_Window *form1_periodic_information;
+extern Fl_Browser *form_content_browser1;
 Fl_Double_Window* make_window();
 void addkeypress( int keypress );
 int main( int argc, char *argv[] );
 void void_flfront_preview_browser1_refresh();
 void void_plot_preview_plotfile( const  char *foopatfile  );
 int ncopysetterm( const char *foofileout,  const  char *foofilein, const  char *fooxdriver  );
+void load_content( int fooz );
+void void_form_add_new_element( const char *foonew );
 #endif

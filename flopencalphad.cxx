@@ -23,7 +23,7 @@ void redraw() {
   // output_system->value( var_system  );
   
   // input_var_set_condition->value( "t=1000 p=1e5 n=1 x(c)=0.2 " );
-  printf("Hello, World!\n");
+  printf("Conditions\n");
 }
 
 Fl_Double_Window *win1=(Fl_Double_Window *)0;
@@ -36,11 +36,8 @@ static void cb_Fe(Fl_Button*, void*) {
   strncat( var_system , "fe" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " ,  PATH_MAX -  strlen( var_system ) -1 );
   output_system->value( var_system );
-  
   var_calc_number_element++;
-  
   add_new_element( "fe" );
-  
   redraw();
 }
 
@@ -288,6 +285,10 @@ static void cb_W(Fl_Button*, void*) {
 redraw();
 }
 
+static void cb_(Fl_Button*, void*) {
+  form_element_pse->show();
+}
+
 Fl_Output *output_system=(Fl_Output *)0;
 
 static void cb_CA(Fl_Button*, void*) {
@@ -446,6 +447,78 @@ static void cb_Periodic(Fl_Button*, void*) {
 }
 
 Fl_Double_Window *win2=(Fl_Double_Window *)0;
+
+static void cb_Close(Fl_Button*, void*) {
+  win2->hide();
+}
+
+Fl_File_Browser *form_database_tab1_filebrowser1=(Fl_File_Browser *)0;
+
+static void cb_form_database_tab1_filebrowser1(Fl_File_Browser*, void*) {
+  printf( " Click 1\n" );
+ 
+if ( form_database_tab1_filebrowser1->value() >= 1 )
+if ( fexist( form_database_tab1_filebrowser1->text( form_database_tab1_filebrowser1->value() ) ) == 2 ) 
+{
+  
+   
+    
+}
+
+else 
+{
+   printf( "File: %s\n",   form_database_tab1_filebrowser1->text( form_database_tab1_filebrowser1->value() ) ); 
+   form_database_tab1_currentfile->value(     form_database_tab1_filebrowser1->text( form_database_tab1_filebrowser1->value() )  );
+
+
+  printf( "Click\n" );
+
+
+
+ input_var_tdb_database->value(  form_database_tab1_filebrowser1->text(   form_database_tab1_filebrowser1->value() ) ); 
+ 
+  
+  printf( "============================\n" );
+  printf( "   ELEMENT                  \n" );
+  printf( "============================\n" );
+  
+  filegrep( input_var_tdb_database->value() , "ELEM" );
+
+ redraw();
+ 
+};
+}
+
+Fl_Output *form_database_tab1_currentfile=(Fl_Output *)0;
+
+Fl_Input *form_database_tab1_filter=(Fl_Input *)0;
+
+static void cb_form_database_tab1_filter(Fl_Input*, void*) {
+  printf( " Press Enter\n" );
+ 
+
+if ( strcmp( form_database_tab1_filter->value(  ) , "" ) == 0 ) 
+{
+      form_database_tab1_filebrowser1->filter(  0  ); 
+      
+ }
+  else 
+ {
+         form_database_tab1_filebrowser1->filter(  form_database_tab1_filter->value(  )  );
+
+ 
+ } 
+  
+  
+   printf( " Path \n" );
+   char cwd[PATH_MAX];
+   printf( "Path %s\n" ,  getcwd( cwd, PATH_MAX ) );
+   
+   
+   form_database_tab1_currentfile->value();
+   
+   form_database_tab1_filebrowser1->load( "." );
+}
 
 Fl_Browser *browser1=(Fl_Browser *)0;
 
@@ -626,10 +699,6 @@ static void cb_Function(Fl_Button*, void*) {
 static void cb_Cat(Fl_Button*, void*) {
   redraw();
   ncat( var_tdb_database );
-}
-
-static void cb_Close(Fl_Button*, void*) {
-  win2->hide();
 }
 
 static void cb_Fetch(Fl_Button*, void*) {
@@ -888,7 +957,7 @@ Fl_Input *plot_gnuplot_term_drivername=(Fl_Input *)0;
 
 Fl_Check_Button *plot_gnuplot_term_driver_force=(Fl_Check_Button *)0;
 
-static void cb_(Fl_Button*, void*) {
+static void cb_5(Fl_Button*, void*) {
   printf("Util: Create help.txt !\n");
 
       FILE *fpout;
@@ -1369,6 +1438,492 @@ static void cb_GnuPlot(Fl_Button*, void*) {
   // gnuplot ocgnu.plt  &;
 }
 
+Fl_Double_Window *form_element_pse=(Fl_Double_Window *)0;
+
+static void cb_Close7(Fl_Button*, void*) {
+  form_element_pse->hide();
+}
+
+static void cb_H(Fl_Button*, void*) {
+  load_content( 1 );
+}
+
+static void cb_Li(Fl_Button*, void*) {
+  load_content( 3 );
+}
+
+static void cb_Na(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_K(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Rb(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Cs(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Fr(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Be(Fl_Button*, void*) {
+  void_form_add_new_element( "be" );
+}
+
+static void cb_Mg(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Ca(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Sr(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Ba(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Ra(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Sc(Fl_Button*, void*) {
+  void_form_add_new_element( "sc" );
+}
+
+static void cb_Y(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Lu(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Lr(Fl_Button*, void*) {
+  void_form_add_new_element( "lr" );
+}
+
+static void cb_Ti1(Fl_Button*, void*) {
+  void_form_add_new_element( "ti" );
+}
+
+static void cb_Zr(Fl_Button*, void*) {
+  void_form_add_new_element( "zr" );
+}
+
+static void cb_Hf(Fl_Button*, void*) {
+  void_form_add_new_element( "hf" );
+}
+
+static void cb_Rf(Fl_Button*, void*) {
+  void_form_add_new_element( "rf" );
+}
+
+static void cb_V1(Fl_Button*, void* v) {
+  void_form_add_new_element( "v" );
+}
+
+static void cb_Nb1(Fl_Button*, void*) {
+  void_form_add_new_element( "nb" );
+}
+
+static void cb_Ta(Fl_Button*, void*) {
+  void_form_add_new_element( "ta" );
+}
+
+static void cb_Db(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Cr1(Fl_Button*, void*) {
+  void_form_add_new_element( "cr" );
+}
+
+static void cb_Mo1(Fl_Button*, void*) {
+  void_form_add_new_element( "mo" );
+}
+
+static void cb_W1(Fl_Button*, void*) {
+  void_form_add_new_element( "w" );
+}
+
+static void cb_Sg(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Mn1(Fl_Button*, void*) {
+  void_form_add_new_element( "mn" );
+}
+
+static void cb_Tc(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Re(Fl_Button*, void*) {
+  void_form_add_new_element( "re" );
+}
+
+static void cb_Bh(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Fe1(Fl_Button*, void*) {
+  void_form_add_new_element( "fe" );
+}
+
+static void cb_Ru(Fl_Button*, void*) {
+  void_form_add_new_element( "ru" );
+}
+
+static void cb_Os(Fl_Button*, void*) {
+  void_form_add_new_element( "os" );
+}
+
+static void cb_Hs(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Co(Fl_Button*, void*) {
+  void_form_add_new_element( "co" );
+}
+
+static void cb_Rh(Fl_Button*, void*) {
+  void_form_add_new_element( "rh" );
+}
+
+static void cb_Ir(Fl_Button*, void*) {
+  void_form_add_new_element( "ir" );
+}
+
+static void cb_Mt(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Ni1(Fl_Button*, void*) {
+  void_form_add_new_element( "ni" );
+}
+
+static void cb_Pd(Fl_Button*, void*) {
+  void_form_add_new_element( "pd" );
+}
+
+static void cb_Pt(Fl_Button*, void*) {
+  void_form_add_new_element( "pt" );
+}
+
+static void cb_Ds(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Cu1(Fl_Button*, void*) {
+  void_form_add_new_element( "cu" );
+}
+
+static void cb_Ag1(Fl_Button*, void*) {
+  void_form_add_new_element( "ag" );
+}
+
+static void cb_Au(Fl_Button*, void*) {
+  void_form_add_new_element( "au" );
+}
+
+static void cb_Rg(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Zn1(Fl_Button*, void*) {
+  void_form_add_new_element( "zn" );
+}
+
+static void cb_Cd(Fl_Button*, void*) {
+  void_form_add_new_element( "cd" );
+}
+
+static void cb_Hg(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Cn(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_B(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Al1(Fl_Button*, void*) {
+  void_form_add_new_element( "al" );
+}
+
+static void cb_Ga(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_In(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_TI(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Uut(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_C1(Fl_Button*, void*) {
+  void_form_add_new_element( "c" );
+}
+
+static void cb_Si1(Fl_Button*, void*) {
+  void_form_add_new_element( "si" );
+}
+
+static void cb_Ge(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Sn(Fl_Button*, void*) {
+  void_form_add_new_element( "sn" );
+}
+
+static void cb_Pb(Fl_Button*, void*) {
+  void_form_add_new_element( "pb" );
+}
+
+static void cb_Uuq(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_N(Fl_Button*, void*) {
+  void_form_add_new_element( "n" );
+}
+
+static void cb_P(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_As(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Sb(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Bi(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Uup(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_O(Fl_Button* o, void*) {
+  void_form_add_new_element( "o" );
+}
+
+static void cb_S(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Se(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Te(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Po(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Uuh(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_F(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Cl(Fl_Button*, void*) {
+  void_form_add_new_element( "cl" );
+}
+
+static void cb_Br(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_I(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_At(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Uus(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Ne(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Ar(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Kr(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Xe(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Rn(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Uuo(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_He(Fl_Button*, void*) {
+  load_content( 2 );
+}
+
+static void cb_La(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Ac(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Ce(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Th(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Pr(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Pa(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Nd(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_U(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Pm(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Np(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Sm(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Pu(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Eu(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Am(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Gd(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Cm(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Tb(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Bk(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Dy(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Cf(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Ho(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Es(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Er(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Fm(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Tm(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Md(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_Yb(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+static void cb_No(Fl_Button*, void*) {
+  system( " xterm   "  );
+}
+
+Fl_Double_Window *form1_periodic_information=(Fl_Double_Window *)0;
+
+static void cb_Close8(Fl_Button*, void*) {
+  form1_periodic_information->hide();
+}
+
+Fl_Browser *form_content_browser1=(Fl_Browser *)0;
+
 Fl_Double_Window* make_window() {
   { win1 = new Fl_Double_Window(785, 695, "FLOPENCALPHAD");
     { Fl_Box* o = new Fl_Box(25, 10, 730, 30, "FLTK OpenCalphad");
@@ -1452,6 +2007,9 @@ Fl_Double_Window* make_window() {
         o->labelfont(1);
         o->labelsize(12);
         o->callback((Fl_Callback*)cb_W);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(330, 170, 40, 35, "...");
+        o->callback((Fl_Callback*)cb_);
       } // Fl_Button* o
       o->end();
     } // Fl_Group* o
@@ -1553,85 +2111,108 @@ Fl_Double_Window* make_window() {
     } // Fl_Button* o
     win1->end();
   } // Fl_Double_Window* win1
-  { win2 = new Fl_Double_Window(880, 370, "Database");
-    { Fl_Box* o = new Fl_Box(15, 25, 850, 35, "FLTK OpenCalphad -- Database");
+  { win2 = new Fl_Double_Window(905, 460, "Database");
+    { Fl_Box* o = new Fl_Box(15, 10, 880, 35, "FLTK OpenCalphad -- Database");
       o->box(FL_ENGRAVED_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
     } // Fl_Box* o
-    { Fl_Group* o = new Fl_Group(15, 95, 390, 220, "Browser");
-      o->box(FL_DOWN_BOX);
-      o->labeltype(FL_ENGRAVED_LABEL);
-      { browser1 = new Fl_Browser(25, 110, 370, 155);
-        browser1->callback((Fl_Callback*)cb_browser1);
-        Fl_Group::current()->resizable(browser1);
-        browser1->type(FL_HOLD_BROWSER);
-      } // Fl_Browser* browser1
-      { input_notes = new Fl_Input(75, 275, 165, 25, "Notes");
-        input_notes->tooltip("Demo");
-        input_notes->color((Fl_Color)55);
-      } // Fl_Input* input_notes
-      { Fl_Button* o = new Fl_Button(245, 275, 45, 25, "&Add");
-        o->callback((Fl_Callback*)cb_Add);
-      } // Fl_Button* o
-      o->end();
-    } // Fl_Group* o
-    { Fl_Group* o = new Fl_Group(415, 195, 450, 120, "Database");
-      o->box(FL_DOWN_BOX);
-      o->labeltype(FL_ENGRAVED_LABEL);
-      { Fl_Button* o = new Fl_Button(525, 275, 50, 25, "&Edit");
-        o->callback((Fl_Callback*)cb_Edit1);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(435, 275, 70, 25, "ls tdb");
-        o->callback((Fl_Callback*)cb_ls);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(635, 215, 75, 25, "Elemen&t");
-        o->callback((Fl_Callback*)cb_Elemen);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(435, 215, 70, 25, "Browse");
-        o->callback((Fl_Callback*)cb_Browse);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(635, 245, 75, 25, "&Species");
-        o->callback((Fl_Callback*)cb_Species);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(435, 245, 70, 25, "Path");
-        o->callback((Fl_Callback*)cb_Path);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(525, 245, 50, 25, "&View");
-        o->callback((Fl_Callback*)cb_View);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(715, 215, 75, 25, "&Phase");
-        o->callback((Fl_Callback*)cb_Phase);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(715, 245, 75, 25, "&Fun");
-        o->callback((Fl_Callback*)cb_Fun);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(635, 275, 75, 25, "&Function");
-        o->callback((Fl_Callback*)cb_Function);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(525, 215, 50, 25, "&Cat");
-        o->callback((Fl_Callback*)cb_Cat);
-      } // Fl_Button* o
-      o->end();
-    } // Fl_Group* o
-    { Fl_Button* o = new Fl_Button(755, 335, 110, 25, "Close Frame");
+    { Fl_Button* o = new Fl_Button(780, 425, 110, 25, "Close Frame");
       o->callback((Fl_Callback*)cb_Close);
     } // Fl_Button* o
-    { Fl_Group* o = new Fl_Group(415, 95, 450, 80, "Create");
-      o->box(FL_DOWN_BOX);
-      o->labeltype(FL_ENGRAVED_LABEL);
-      { Fl_Button* o = new Fl_Button(430, 105, 75, 25, "Fetch!");
-        o->callback((Fl_Callback*)cb_Fetch);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(430, 140, 75, 25, "dos2unix");
-        o->callback((Fl_Callback*)cb_dos2unix);
-      } // Fl_Button* o
-      { form_database_fetch_url = new Fl_Input(540, 105, 315, 25, "Url");
-      } // Fl_Input* form_database_fetch_url
-      { Fl_Button* o = new Fl_Button(518, 140, 80, 25, "&Edit");
-        o->callback((Fl_Callback*)cb_Edit2);
-      } // Fl_Button* o
+    { Fl_Tabs* o = new Fl_Tabs(15, 70, 875, 345, "File browser");
+      { Fl_Group* o = new Fl_Group(35, 95, 850, 315, "File browser");
+        { form_database_tab1_filebrowser1 = new Fl_File_Browser(35, 110, 465, 265);
+          form_database_tab1_filebrowser1->callback((Fl_Callback*)cb_form_database_tab1_filebrowser1);
+          form_database_tab1_filebrowser1->load( "." );
+          form_database_tab1_filebrowser1->type(FL_HOLD_BROWSER);
+        } // Fl_File_Browser* form_database_tab1_filebrowser1
+        { form_database_tab1_currentfile = new Fl_Output(340, 380, 540, 25, "TDB Selection");
+          form_database_tab1_currentfile->color(FL_BACKGROUND_COLOR);
+        } // Fl_Output* form_database_tab1_currentfile
+        { form_database_tab1_filter = new Fl_Input(70, 380, 155, 25, "Filter");
+          form_database_tab1_filter->callback((Fl_Callback*)cb_form_database_tab1_filter);
+          form_database_tab1_filter->when(FL_WHEN_ENTER_KEY);
+          form_database_tab1_filter->value( "*" );
+        } // Fl_Input* form_database_tab1_filter
+        o->end();
+      } // Fl_Group* o
+      { Fl_Group* o = new Fl_Group(30, 95, 860, 320, "Advanced browser");
+        o->hide();
+        { Fl_Group* o = new Fl_Group(30, 130, 390, 220, "Browser");
+          o->box(FL_DOWN_BOX);
+          o->labeltype(FL_ENGRAVED_LABEL);
+          { browser1 = new Fl_Browser(40, 145, 370, 155);
+            browser1->callback((Fl_Callback*)cb_browser1);
+            Fl_Group::current()->resizable(browser1);
+            browser1->type(FL_HOLD_BROWSER);
+          } // Fl_Browser* browser1
+          { input_notes = new Fl_Input(90, 310, 165, 25, "Notes");
+            input_notes->tooltip("Demo");
+            input_notes->color((Fl_Color)55);
+          } // Fl_Input* input_notes
+          { Fl_Button* o = new Fl_Button(260, 310, 45, 25, "&Add");
+            o->callback((Fl_Callback*)cb_Add);
+          } // Fl_Button* o
+          o->end();
+        } // Fl_Group* o
+        { Fl_Group* o = new Fl_Group(430, 230, 450, 120, "Database");
+          o->box(FL_DOWN_BOX);
+          o->labeltype(FL_ENGRAVED_LABEL);
+          { Fl_Button* o = new Fl_Button(540, 310, 50, 25, "&Edit");
+            o->callback((Fl_Callback*)cb_Edit1);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(450, 310, 70, 25, "ls tdb");
+            o->callback((Fl_Callback*)cb_ls);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(650, 250, 75, 25, "Elemen&t");
+            o->callback((Fl_Callback*)cb_Elemen);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(450, 250, 70, 25, "Browse");
+            o->callback((Fl_Callback*)cb_Browse);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(650, 280, 75, 25, "&Species");
+            o->callback((Fl_Callback*)cb_Species);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(450, 280, 70, 25, "Path");
+            o->callback((Fl_Callback*)cb_Path);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(540, 280, 50, 25, "&View");
+            o->callback((Fl_Callback*)cb_View);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(730, 250, 75, 25, "&Phase");
+            o->callback((Fl_Callback*)cb_Phase);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(730, 280, 75, 25, "&Fun");
+            o->callback((Fl_Callback*)cb_Fun);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(650, 310, 75, 25, "&Function");
+            o->callback((Fl_Callback*)cb_Function);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(540, 250, 50, 25, "&Cat");
+            o->callback((Fl_Callback*)cb_Cat);
+          } // Fl_Button* o
+          o->end();
+        } // Fl_Group* o
+        { Fl_Group* o = new Fl_Group(430, 130, 450, 80, "Create");
+          o->box(FL_DOWN_BOX);
+          o->labeltype(FL_ENGRAVED_LABEL);
+          { Fl_Button* o = new Fl_Button(445, 140, 75, 25, "Fetch!");
+            o->callback((Fl_Callback*)cb_Fetch);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(445, 175, 75, 25, "dos2unix");
+            o->callback((Fl_Callback*)cb_dos2unix);
+          } // Fl_Button* o
+          { form_database_fetch_url = new Fl_Input(555, 140, 315, 25, "Url");
+          } // Fl_Input* form_database_fetch_url
+          { Fl_Button* o = new Fl_Button(533, 175, 80, 25, "&Edit");
+            o->callback((Fl_Callback*)cb_Edit2);
+          } // Fl_Button* o
+          o->end();
+        } // Fl_Group* o
+        o->end();
+      } // Fl_Group* o
       o->end();
-    } // Fl_Group* o
+    } // Fl_Tabs* o
     win2->end();
     win2->resizable(win2);
   } // Fl_Double_Window* win2
@@ -1750,7 +2331,7 @@ Fl_Double_Window* make_window() {
         plot_gnuplot_term_driver_force->down_box(FL_DOWN_BOX);
       } // Fl_Check_Button* plot_gnuplot_term_driver_force
       { Fl_Button* o = new Fl_Button(700, 170, 25, 25, "&?");
-        o->callback((Fl_Callback*)cb_);
+        o->callback((Fl_Callback*)cb_5);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(305, 110, 135, 25, "Edit Adv. Plot");
         o->callback((Fl_Callback*)cb_Edit4);
@@ -1935,7 +2516,475 @@ Fl_Double_Window* make_window() {
     win7->end();
     win7->resizable(win7);
   } // Fl_Double_Window* win7
-  return win7;
+  { form_element_pse = new Fl_Double_Window(680, 435, "Periodic");
+    { Fl_Button* o = new Fl_Button(15, 400, 650, 25, "&Close frame");
+      o->labelfont(1);
+      o->callback((Fl_Callback*)cb_Close7);
+    } // Fl_Button* o
+    { Fl_Group* o = new Fl_Group(15, 55, 650, 335);
+      o->box(FL_DOWN_BOX);
+      { Fl_Button* o = new Fl_Button(25, 65, 30, 25, "H");
+        o->color((Fl_Color)190);
+        o->callback((Fl_Callback*)cb_H);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(25, 95, 30, 25, "Li");
+        o->color((Fl_Color)180);
+        o->callback((Fl_Callback*)cb_Li);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(25, 125, 30, 25, "Na");
+        o->color((Fl_Color)180);
+        o->callback((Fl_Callback*)cb_Na);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(25, 155, 30, 25, "K");
+        o->color((Fl_Color)180);
+        o->callback((Fl_Callback*)cb_K);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(25, 185, 30, 25, "Rb");
+        o->color((Fl_Color)180);
+        o->callback((Fl_Callback*)cb_Rb);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(25, 215, 30, 25, "Cs");
+        o->color((Fl_Color)180);
+        o->callback((Fl_Callback*)cb_Cs);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(25, 245, 30, 25, "Fr");
+        o->color((Fl_Color)180);
+        o->callback((Fl_Callback*)cb_Fr);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(60, 95, 30, 25, "Be");
+        o->color((Fl_Color)90);
+        o->callback((Fl_Callback*)cb_Be);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(60, 125, 30, 25, "Mg");
+        o->color((Fl_Color)90);
+        o->callback((Fl_Callback*)cb_Mg);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(60, 155, 30, 25, "Ca");
+        o->color((Fl_Color)90);
+        o->callback((Fl_Callback*)cb_Ca);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(60, 185, 30, 25, "Sr");
+        o->color((Fl_Color)90);
+        o->callback((Fl_Callback*)cb_Sr);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(60, 215, 30, 25, "Ba");
+        o->color((Fl_Color)90);
+        o->callback((Fl_Callback*)cb_Ba);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(60, 245, 30, 25, "Ra");
+        o->color((Fl_Color)90);
+        o->callback((Fl_Callback*)cb_Ra);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(95, 155, 30, 25, "Sc");
+        o->color((Fl_Color)174);
+        o->callback((Fl_Callback*)cb_Sc);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(95, 185, 30, 25, "Y");
+        o->color((Fl_Color)174);
+        o->callback((Fl_Callback*)cb_Y);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(95, 215, 30, 25, "Lu");
+        o->color((Fl_Color)174);
+        o->callback((Fl_Callback*)cb_Lu);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(95, 245, 30, 25, "Lr");
+        o->callback((Fl_Callback*)cb_Lr);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(130, 155, 30, 25, "Ti");
+        o->color((Fl_Color)174);
+        o->callback((Fl_Callback*)cb_Ti1);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(130, 185, 30, 25, "Zr");
+        o->color((Fl_Color)174);
+        o->callback((Fl_Callback*)cb_Zr);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(130, 215, 30, 25, "Hf");
+        o->color((Fl_Color)174);
+        o->callback((Fl_Callback*)cb_Hf);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(130, 245, 30, 25, "Rf");
+        o->callback((Fl_Callback*)cb_Rf);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(165, 155, 30, 25, "V");
+        o->color((Fl_Color)174);
+        o->callback((Fl_Callback*)cb_V1);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(165, 185, 30, 25, "Nb");
+        o->color((Fl_Color)174);
+        o->callback((Fl_Callback*)cb_Nb1);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(165, 215, 30, 25, "Ta");
+        o->color((Fl_Color)174);
+        o->callback((Fl_Callback*)cb_Ta);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(165, 245, 30, 25, "Db");
+        o->callback((Fl_Callback*)cb_Db);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(200, 155, 30, 25, "Cr");
+        o->color((Fl_Color)174);
+        o->callback((Fl_Callback*)cb_Cr1);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(200, 185, 30, 25, "Mo");
+        o->color((Fl_Color)174);
+        o->callback((Fl_Callback*)cb_Mo1);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(200, 215, 30, 25, "W");
+        o->color((Fl_Color)174);
+        o->callback((Fl_Callback*)cb_W1);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(200, 245, 30, 25, "Sg");
+        o->callback((Fl_Callback*)cb_Sg);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(235, 155, 30, 25, "Mn");
+        o->color((Fl_Color)174);
+        o->callback((Fl_Callback*)cb_Mn1);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(235, 185, 30, 25, "Tc");
+        o->color((Fl_Color)174);
+        o->callback((Fl_Callback*)cb_Tc);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(235, 215, 30, 25, "Re");
+        o->color((Fl_Color)174);
+        o->callback((Fl_Callback*)cb_Re);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(235, 245, 30, 25, "Bh");
+        o->callback((Fl_Callback*)cb_Bh);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(270, 155, 30, 25, "Fe");
+        o->color((Fl_Color)174);
+        o->callback((Fl_Callback*)cb_Fe1);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(270, 185, 30, 25, "Ru");
+        o->color((Fl_Color)174);
+        o->callback((Fl_Callback*)cb_Ru);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(270, 215, 30, 25, "Os");
+        o->color((Fl_Color)174);
+        o->callback((Fl_Callback*)cb_Os);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(270, 245, 30, 25, "Hs");
+        o->callback((Fl_Callback*)cb_Hs);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(305, 155, 30, 25, "Co");
+        o->color((Fl_Color)174);
+        o->callback((Fl_Callback*)cb_Co);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(305, 185, 30, 25, "Rh");
+        o->color((Fl_Color)174);
+        o->callback((Fl_Callback*)cb_Rh);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(305, 215, 30, 25, "Ir");
+        o->color((Fl_Color)174);
+        o->callback((Fl_Callback*)cb_Ir);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(305, 245, 30, 25, "Mt");
+        o->callback((Fl_Callback*)cb_Mt);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(340, 155, 30, 25, "Ni");
+        o->color((Fl_Color)174);
+        o->callback((Fl_Callback*)cb_Ni1);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(340, 185, 30, 25, "Pd");
+        o->color((Fl_Color)174);
+        o->callback((Fl_Callback*)cb_Pd);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(340, 215, 30, 25, "Pt");
+        o->color((Fl_Color)174);
+        o->callback((Fl_Callback*)cb_Pt);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(340, 245, 30, 25, "Ds");
+        o->callback((Fl_Callback*)cb_Ds);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(375, 155, 30, 25, "Cu");
+        o->color((Fl_Color)174);
+        o->callback((Fl_Callback*)cb_Cu1);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(375, 185, 30, 25, "Ag");
+        o->color((Fl_Color)174);
+        o->callback((Fl_Callback*)cb_Ag1);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(375, 215, 30, 25, "Au");
+        o->color((Fl_Color)174);
+        o->callback((Fl_Callback*)cb_Au);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(375, 245, 30, 25, "Rg");
+        o->callback((Fl_Callback*)cb_Rg);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(410, 155, 30, 25, "Zn");
+        o->color((Fl_Color)174);
+        o->callback((Fl_Callback*)cb_Zn1);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(410, 185, 30, 25, "Cd");
+        o->color((Fl_Color)174);
+        o->callback((Fl_Callback*)cb_Cd);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(410, 215, 30, 25, "Hg");
+        o->color((Fl_Color)174);
+        o->callback((Fl_Callback*)cb_Hg);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(410, 245, 30, 25, "Cn");
+        o->callback((Fl_Callback*)cb_Cn);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(445, 95, 30, 25, "B");
+        o->color((Fl_Color)252);
+        o->callback((Fl_Callback*)cb_B);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(445, 125, 30, 25, "Al");
+        o->color((Fl_Color)237);
+        o->callback((Fl_Callback*)cb_Al1);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(445, 155, 30, 25, "Ga");
+        o->color((Fl_Color)237);
+        o->callback((Fl_Callback*)cb_Ga);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(445, 185, 30, 25, "In");
+        o->color((Fl_Color)237);
+        o->callback((Fl_Callback*)cb_In);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(445, 215, 30, 25, "TI");
+        o->color((Fl_Color)237);
+        o->callback((Fl_Callback*)cb_TI);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(445, 245, 30, 25, "Uut");
+        o->callback((Fl_Callback*)cb_Uut);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(480, 95, 30, 25, "C");
+        o->color((Fl_Color)70);
+        o->callback((Fl_Callback*)cb_C1);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(480, 125, 30, 25, "Si");
+        o->color((Fl_Color)252);
+        o->callback((Fl_Callback*)cb_Si1);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(480, 155, 30, 25, "Ge");
+        o->color((Fl_Color)252);
+        o->callback((Fl_Callback*)cb_Ge);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(480, 185, 30, 25, "Sn");
+        o->color((Fl_Color)237);
+        o->callback((Fl_Callback*)cb_Sn);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(480, 215, 30, 25, "Pb");
+        o->color((Fl_Color)237);
+        o->callback((Fl_Callback*)cb_Pb);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(480, 245, 30, 25, "Uuq");
+        o->callback((Fl_Callback*)cb_Uuq);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(515, 95, 30, 25, "N");
+        o->color((Fl_Color)70);
+        o->callback((Fl_Callback*)cb_N);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(515, 125, 30, 25, "P");
+        o->color((Fl_Color)70);
+        o->callback((Fl_Callback*)cb_P);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(515, 155, 30, 25, "As");
+        o->color((Fl_Color)252);
+        o->callback((Fl_Callback*)cb_As);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(515, 185, 30, 25, "Sb");
+        o->color((Fl_Color)252);
+        o->callback((Fl_Callback*)cb_Sb);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(515, 215, 30, 25, "Bi");
+        o->color((Fl_Color)237);
+        o->callback((Fl_Callback*)cb_Bi);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(515, 245, 30, 25, "Uup");
+        o->callback((Fl_Callback*)cb_Uup);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(550, 95, 30, 25, "O");
+        o->color((Fl_Color)70);
+        o->callback((Fl_Callback*)cb_O);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(550, 125, 30, 25, "S");
+        o->color((Fl_Color)70);
+        o->callback((Fl_Callback*)cb_S);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(550, 155, 30, 25, "Se");
+        o->color((Fl_Color)70);
+        o->callback((Fl_Callback*)cb_Se);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(550, 185, 30, 25, "Te");
+        o->color((Fl_Color)252);
+        o->callback((Fl_Callback*)cb_Te);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(550, 215, 30, 25, "Po");
+        o->color((Fl_Color)252);
+        o->callback((Fl_Callback*)cb_Po);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(550, 245, 30, 25, "Uuh");
+        o->callback((Fl_Callback*)cb_Uuh);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(585, 95, 30, 25, "F");
+        o->color((Fl_Color)252);
+        o->callback((Fl_Callback*)cb_F);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(585, 125, 30, 25, "Cl");
+        o->color((Fl_Color)252);
+        o->callback((Fl_Callback*)cb_Cl);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(585, 155, 30, 25, "Br");
+        o->color((Fl_Color)252);
+        o->callback((Fl_Callback*)cb_Br);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(585, 185, 30, 25, "I");
+        o->color((Fl_Color)252);
+        o->callback((Fl_Callback*)cb_I);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(585, 215, 30, 25, "At");
+        o->color((Fl_Color)252);
+        o->callback((Fl_Callback*)cb_At);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(585, 245, 30, 25, "Uus");
+        o->callback((Fl_Callback*)cb_Uus);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(620, 95, 30, 25, "Ne");
+        o->color((Fl_Color)9);
+        o->labelfont(1);
+        o->callback((Fl_Callback*)cb_Ne);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(620, 125, 30, 25, "Ar");
+        o->color((Fl_Color)9);
+        o->labelfont(1);
+        o->callback((Fl_Callback*)cb_Ar);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(620, 155, 30, 25, "Kr");
+        o->color((Fl_Color)9);
+        o->labelfont(1);
+        o->callback((Fl_Callback*)cb_Kr);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(620, 185, 30, 25, "Xe");
+        o->color((Fl_Color)9);
+        o->labelfont(1);
+        o->callback((Fl_Callback*)cb_Xe);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(620, 215, 30, 25, "Rn");
+        o->color((Fl_Color)9);
+        o->labelfont(1);
+        o->callback((Fl_Callback*)cb_Rn);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(620, 245, 30, 25, "Uuo");
+        o->callback((Fl_Callback*)cb_Uuo);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(620, 65, 30, 25, "He");
+        o->color((Fl_Color)9);
+        o->labelfont(1);
+        o->callback((Fl_Callback*)cb_He);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(95, 310, 30, 25, "La");
+        o->callback((Fl_Callback*)cb_La);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(95, 340, 30, 25, "Ac");
+        o->callback((Fl_Callback*)cb_Ac);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(130, 310, 30, 25, "Ce");
+        o->callback((Fl_Callback*)cb_Ce);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(130, 340, 30, 25, "Th");
+        o->callback((Fl_Callback*)cb_Th);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(165, 310, 30, 25, "Pr");
+        o->callback((Fl_Callback*)cb_Pr);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(165, 340, 30, 25, "Pa");
+        o->callback((Fl_Callback*)cb_Pa);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(200, 310, 30, 25, "Nd");
+        o->callback((Fl_Callback*)cb_Nd);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(200, 340, 30, 25, "U");
+        o->callback((Fl_Callback*)cb_U);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(235, 310, 30, 25, "Pm");
+        o->callback((Fl_Callback*)cb_Pm);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(235, 340, 30, 25, "Np");
+        o->callback((Fl_Callback*)cb_Np);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(270, 310, 30, 25, "Sm");
+        o->callback((Fl_Callback*)cb_Sm);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(270, 340, 30, 25, "Pu");
+        o->callback((Fl_Callback*)cb_Pu);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(305, 310, 30, 25, "Eu");
+        o->callback((Fl_Callback*)cb_Eu);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(305, 340, 30, 25, "Am");
+        o->callback((Fl_Callback*)cb_Am);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(340, 310, 30, 25, "Gd");
+        o->callback((Fl_Callback*)cb_Gd);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(340, 340, 30, 25, "Cm");
+        o->callback((Fl_Callback*)cb_Cm);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(375, 310, 30, 25, "Tb");
+        o->callback((Fl_Callback*)cb_Tb);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(375, 340, 30, 25, "Bk");
+        o->callback((Fl_Callback*)cb_Bk);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(410, 310, 30, 25, "Dy");
+        o->callback((Fl_Callback*)cb_Dy);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(410, 340, 30, 25, "Cf");
+        o->callback((Fl_Callback*)cb_Cf);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(445, 310, 30, 25, "Ho");
+        o->callback((Fl_Callback*)cb_Ho);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(445, 340, 30, 25, "Es");
+        o->callback((Fl_Callback*)cb_Es);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(480, 310, 30, 25, "Er");
+        o->callback((Fl_Callback*)cb_Er);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(480, 340, 30, 25, "Fm");
+        o->callback((Fl_Callback*)cb_Fm);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(515, 310, 30, 25, "Tm");
+        o->callback((Fl_Callback*)cb_Tm);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(515, 340, 30, 25, "Md");
+        o->callback((Fl_Callback*)cb_Md);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(550, 310, 30, 25, "Yb");
+        o->callback((Fl_Callback*)cb_Yb);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(550, 340, 30, 25, "No");
+        o->callback((Fl_Callback*)cb_No);
+      } // Fl_Button* o
+      o->end();
+      Fl_Group::current()->resizable(o);
+    } // Fl_Group* o
+    { Fl_Box* o = new Fl_Box(15, 5, 650, 35, "PERIODIC TABLE");
+      o->box(FL_ENGRAVED_BOX);
+      o->labelfont(1);
+    } // Fl_Box* o
+    form_element_pse->end();
+  } // Fl_Double_Window* form_element_pse
+  { form1_periodic_information = new Fl_Double_Window(780, 535, "Periodic -- Information");
+    { Fl_Button* o = new Fl_Button(20, 495, 740, 25, "&Close frame");
+      o->labelfont(1);
+      o->callback((Fl_Callback*)cb_Close8);
+    } // Fl_Button* o
+    { Fl_Group* o = new Fl_Group(20, 50, 740, 440);
+      o->box(FL_DOWN_BOX);
+      { form_content_browser1 = new Fl_Browser(30, 60, 720, 420);
+      } // Fl_Browser* form_content_browser1
+      o->end();
+      Fl_Group::current()->resizable(o);
+    } // Fl_Group* o
+    { Fl_Box* o = new Fl_Box(20, 10, 740, 30, "ELEMENT INFORMATION");
+      o->box(FL_ENGRAVED_BOX);
+      o->labelfont(1);
+    } // Fl_Box* o
+    form1_periodic_information->end();
+  } // Fl_Double_Window* form1_periodic_information
+  return form1_periodic_information;
 }
 
 void addkeypress( int keypress ) {
@@ -2097,4 +3146,16 @@ int ncopysetterm( const char *foofileout,  const  char *foofilein, const  char *
        fclose( fp );
        fclose( fp2 );
      }
+}
+
+void load_content( int fooz ) {
+}
+
+void void_form_add_new_element( const char *foonew ) {
+  strncat( var_system , foonew , PATH_MAX - strlen( var_system ) -1 );
+    strncat( var_system , " " ,  PATH_MAX -  strlen( var_system ) -1 );
+    output_system->value( var_system );
+    var_calc_number_element++;
+    add_new_element( foonew  );
+    redraw();
 }

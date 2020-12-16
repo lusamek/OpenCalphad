@@ -35,14 +35,14 @@ strncpy( var_system ,      output_system->value() , PATH_MAX );
 // output_system->value( var_system  );
 
 // input_var_set_condition->value( "t=1000 p=1e5 n=1 x(c)=0.2 " );} {}
-  code {printf("Hello, World!\\n");} {}
+  code {printf("Conditions\\n");} {}
 }
 
 Function {make_window()} {open
 } {
   Fl_Window win1 {
     label FLOPENCALPHAD open
-    xywh {135 226 785 695} type Double resizable visible
+    xywh {563 243 785 695} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad}
@@ -61,11 +61,8 @@ Function {make_window()} {open
   strncat( var_system , "fe" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " ,  PATH_MAX -  strlen( var_system ) -1 );
   output_system->value( var_system );
-  
   var_calc_number_element++;
-  
   add_new_element( "fe" );
-  
   redraw();}
         xywh {35 80 45 35} labelfont 1 labelsize 12
       }
@@ -327,6 +324,11 @@ redraw();}
 redraw();}
         xywh {215 170 45 35} labelfont 1 labelsize 12
       }
+      Fl_Button {} {
+        label {...}
+        callback {form_element_pse->show();}
+        xywh {330 170 40 35}
+      }
     }
     Fl_Group {} {
       label {2. Compute} open
@@ -536,18 +538,106 @@ else
   }
   Fl_Window win2 {
     label Database open
-    xywh {337 416 880 370} type Double resizable visible
+    xywh {134 187 905 460} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Database}
-      xywh {15 25 850 35} box ENGRAVED_BOX labeltype ENGRAVED_LABEL
+      xywh {15 10 880 35} box ENGRAVED_BOX labeltype ENGRAVED_LABEL
     }
-    Fl_Group {} {
-      label Browser open
-      xywh {15 95 390 220} box DOWN_BOX labeltype ENGRAVED_LABEL
+    Fl_Button {} {
+      label {Close Frame}
+      callback {win2->hide();}
+      xywh {780 425 110 25}
+    }
+    Fl_Tabs {} {
+      label {File browser} open
+      xywh {15 70 875 345}
     } {
-      Fl_Browser browser1 {
-        callback {printf( "Click\\n" );
+      Fl_Group {} {
+        label {File browser} open
+        xywh {35 95 850 315}
+      } {
+        Fl_File_Browser form_database_tab1_filebrowser1 {
+          callback {printf( " Click 1\\n" );
+ 
+if ( form_database_tab1_filebrowser1->value() >= 1 )
+if ( fexist( form_database_tab1_filebrowser1->text( form_database_tab1_filebrowser1->value() ) ) == 2 ) 
+{
+  
+   
+    
+}
+
+else 
+{
+   printf( "File: %s\\n",   form_database_tab1_filebrowser1->text( form_database_tab1_filebrowser1->value() ) ); 
+   form_database_tab1_currentfile->value(     form_database_tab1_filebrowser1->text( form_database_tab1_filebrowser1->value() )  );
+
+
+  printf( "Click\\n" );
+
+
+
+ input_var_tdb_database->value(  form_database_tab1_filebrowser1->text(   form_database_tab1_filebrowser1->value() ) ); 
+ 
+  
+  printf( "============================\\n" );
+  printf( "   ELEMENT                  \\n" );
+  printf( "============================\\n" );
+  
+  filegrep( input_var_tdb_database->value() , "ELEM" );
+
+ redraw();
+ 
+}}
+          xywh {35 110 465 265}
+          code1 {form_database_tab1_filebrowser1->load( "." );}
+          code2 {form_database_tab1_filebrowser1->type(FL_HOLD_BROWSER);}
+        }
+        Fl_Output form_database_tab1_currentfile {
+          label {TDB Selection}
+          xywh {340 380 540 25} color 49
+        }
+        Fl_Input form_database_tab1_filter {
+          label Filter
+          callback {printf( " Press Enter\\n" );
+ 
+
+if ( strcmp( form_database_tab1_filter->value(  ) , "" ) == 0 ) 
+{
+      form_database_tab1_filebrowser1->filter(  0  ); 
+      
+ }
+  else 
+ {
+         form_database_tab1_filebrowser1->filter(  form_database_tab1_filter->value(  )  );
+
+ 
+ } 
+  
+  
+   printf( " Path \\n" );
+   char cwd[PATH_MAX];
+   printf( "Path %s\\n" ,  getcwd( cwd, PATH_MAX ) );
+   
+   
+   form_database_tab1_currentfile->value();
+   
+   form_database_tab1_filebrowser1->load( "." );}
+          xywh {70 380 155 25} when 8
+          code2 {form_database_tab1_filter->value( "*" );}
+        }
+      }
+      Fl_Group {} {
+        label {Advanced browser} open
+        xywh {30 95 860 320} hide
+      } {
+        Fl_Group {} {
+          label Browser open
+          xywh {30 130 390 220} box DOWN_BOX labeltype ENGRAVED_LABEL
+        } {
+          Fl_Browser browser1 {
+            callback {printf( "Click\\n" );
 
 
 
@@ -562,28 +652,28 @@ else
 
 
  redraw();}
-        xywh {25 110 370 155} resizable
-        code1 {browser1->type(FL_HOLD_BROWSER);}
-      }
-      Fl_Input input_notes {
-        label Notes
-        tooltip Demo xywh {75 275 165 25} color 55
-      }
-      Fl_Button {} {
-        label {&Add}
-        callback {browser1->add(   input_notes->value()  );
+            xywh {40 145 370 155} resizable
+            code1 {browser1->type(FL_HOLD_BROWSER);}
+          }
+          Fl_Input input_notes {
+            label Notes
+            tooltip Demo xywh {90 310 165 25} color 55
+          }
+          Fl_Button {} {
+            label {&Add}
+            callback {browser1->add(   input_notes->value()  );
 
 // if (  browser1->value() >= 1 )  printf( "%s\\n" ,   browser1->text(  browser1->value() )  )  ;}
-        xywh {245 275 45 25}
-      }
-    }
-    Fl_Group {} {
-      label Database open
-      xywh {415 195 450 120} box DOWN_BOX labeltype ENGRAVED_LABEL
-    } {
-      Fl_Button {} {
-        label {&Edit}
-        callback {redraw();
+            xywh {260 310 45 25}
+          }
+        }
+        Fl_Group {} {
+          label Database open
+          xywh {430 230 450 120} box DOWN_BOX labeltype ENGRAVED_LABEL
+        } {
+          Fl_Button {} {
+            label {&Edit}
+            callback {redraw();
   
   char charo[PATH_MAX];
   strncpy( charo, "", PATH_MAX );
@@ -593,11 +683,11 @@ else
   strncat( charo , var_tdb_database , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
   nsystem(  charo );}
-        xywh {525 275 50 25}
-      }
-      Fl_Button {} {
-        label {ls tdb}
-        callback {redraw();
+            xywh {540 310 50 25}
+          }
+          Fl_Button {} {
+            label {ls tdb}
+            callback {redraw();
 
   printf( "============================\\n" );
   printf( "   DATABASE                 \\n" );
@@ -605,11 +695,11 @@ else
   
   nlsgrep( ".tdb" );
   nlsgrep( ".TDB" );}
-        xywh {435 275 70 25}
-      }
-      Fl_Button {} {
-        label {Elemen&t}
-        callback {redraw();
+            xywh {450 310 70 25}
+          }
+          Fl_Button {} {
+            label {Elemen&t}
+            callback {redraw();
   
   
   printf( "============================\\n" );
@@ -619,11 +709,11 @@ else
   
   
   filegrep( var_tdb_database , "ELEM" );}
-        xywh {635 215 75 25}
-      }
-      Fl_Button {} {
-        label Browse
-        callback {redraw();
+            xywh {650 250 75 25}
+          }
+          Fl_Button {} {
+            label Browse
+            callback {redraw();
 
   printf( "============================\\n" );
   printf( "   DATABASE                 \\n" );
@@ -655,11 +745,11 @@ else
                 }
 	}
 	closedir( dirp );}
-        xywh {435 215 70 25}
-      }
-      Fl_Button {} {
-        label {&Species}
-        callback {redraw();
+            xywh {450 250 70 25}
+          }
+          Fl_Button {} {
+            label {&Species}
+            callback {redraw();
   
   
   printf( "============================\\n" );
@@ -669,11 +759,11 @@ else
   
   
   filegrep( var_tdb_database , "SPECIE" );}
-        xywh {635 245 75 25}
-      }
-      Fl_Button {} {
-        label Path
-        callback {redraw();
+            xywh {650 280 75 25}
+          }
+          Fl_Button {} {
+            label Path
+            callback {redraw();
 
   printf( "============================\\n" );
   printf( "   PATH                     \\n" );
@@ -681,11 +771,11 @@ else
   
     char mydirnow[2500];
   printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );}
-        xywh {435 245 70 25}
-      }
-      Fl_Button {} {
-        label {&View}
-        callback {redraw();
+            xywh {450 280 70 25}
+          }
+          Fl_Button {} {
+            label {&View}
+            callback {redraw();
   
   char charo[PATH_MAX];
   strncpy( charo, "", PATH_MAX );
@@ -695,11 +785,11 @@ else
   strncat( charo , var_tdb_database , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
   nsystem(  charo );}
-        xywh {525 245 50 25}
-      }
-      Fl_Button {} {
-        label {&Phase}
-        callback {redraw();
+            xywh {540 280 50 25}
+          }
+          Fl_Button {} {
+            label {&Phase}
+            callback {redraw();
   
   
   printf( "============================\\n" );
@@ -709,11 +799,11 @@ else
   
   
   filegrep( var_tdb_database , "PHASE " );}
-        xywh {715 215 75 25}
-      }
-      Fl_Button {} {
-        label {&Fun}
-        callback {redraw();
+            xywh {730 250 75 25}
+          }
+          Fl_Button {} {
+            label {&Fun}
+            callback {redraw();
   
   
   printf( "============================\\n" );
@@ -723,11 +813,11 @@ else
   
   
   filegrep( var_tdb_database , "FUN " );}
-        xywh {715 245 75 25}
-      }
-      Fl_Button {} {
-        label {&Function}
-        callback {redraw();
+            xywh {730 280 75 25}
+          }
+          Fl_Button {} {
+            label {&Function}
+            callback {redraw();
   
   
   printf( "============================\\n" );
@@ -737,27 +827,22 @@ else
   
   
   filegrep( var_tdb_database , "FUNCTION " );}
-        xywh {635 275 75 25}
-      }
-      Fl_Button {} {
-        label {&Cat}
-        callback {redraw();
+            xywh {650 310 75 25}
+          }
+          Fl_Button {} {
+            label {&Cat}
+            callback {redraw();
   ncat( var_tdb_database );}
-        xywh {525 215 50 25}
-      }
-    }
-    Fl_Button {} {
-      label {Close Frame}
-      callback {win2->hide();}
-      xywh {755 335 110 25}
-    }
-    Fl_Group {} {
-      label Create open
-      xywh {415 95 450 80} box DOWN_BOX labeltype ENGRAVED_LABEL
-    } {
-      Fl_Button {} {
-        label {Fetch!}
-        callback {redraw();
+            xywh {540 250 50 25}
+          }
+        }
+        Fl_Group {} {
+          label Create open
+          xywh {430 130 450 80} box DOWN_BOX labeltype ENGRAVED_LABEL
+        } {
+          Fl_Button {} {
+            label {Fetch!}
+            callback {redraw();
   
   char charo[PATH_MAX];
   strncpy( charo, "", PATH_MAX );
@@ -801,11 +886,11 @@ redraw();
                 }
 	}
 	closedir( dirp );}
-        xywh {430 105 75 25}
-      }
-      Fl_Button {} {
-        label dos2unix
-        callback {redraw();
+            xywh {445 140 75 25}
+          }
+          Fl_Button {} {
+            label dos2unix
+            callback {redraw();
   
   char charo[PATH_MAX];
   strncpy( charo, "", PATH_MAX );
@@ -815,15 +900,15 @@ redraw();
   strncat( charo , var_tdb_database , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
   nsystem(  charo );}
-        xywh {430 140 75 25}
-      }
-      Fl_Input form_database_fetch_url {
-        label Url
-        xywh {540 105 315 25}
-      }
-      Fl_Button {} {
-        label {&Edit}
-        callback {redraw();
+            xywh {445 175 75 25}
+          }
+          Fl_Input form_database_fetch_url {
+            label Url
+            xywh {555 140 315 25}
+          }
+          Fl_Button {} {
+            label {&Edit}
+            callback {redraw();
   
   char charo[PATH_MAX];
   strncpy( charo, "", PATH_MAX );
@@ -833,13 +918,15 @@ redraw();
   strncat( charo , var_tdb_database , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
   nsystem(  charo );}
-        xywh {518 140 80 25}
+            xywh {533 175 80 25}
+          }
+        }
       }
     }
   }
   Fl_Window win3 {
     label Option open
-    xywh {1357 159 405 410} type Double resizable visible
+    xywh {1323 343 405 410} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Option}
@@ -974,7 +1061,7 @@ else if ( fexist( "/usr/bin/chromium-browser" ) == 1)
   }
   Fl_Window win4 {
     label {Graphics Plot} open
-    xywh {144 443 890 545} type Double resizable visible
+    xywh {95 460 890 545} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Plot}
@@ -1234,7 +1321,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
      nsystem(  "  oc   macro.ocm " );
      
   // oc6 bug 
-  // gnuplot ocgnu.plt  &} selected
+  // gnuplot ocgnu.plt  &}
         xywh {450 110 130 25}
       }
     }
@@ -1250,7 +1337,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
   }
   Fl_Window win5 {
     label Macro open
-    xywh {1033 24 850 485} type Double resizable visible
+    xywh {1070 371 850 485} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Macro}
@@ -1474,7 +1561,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
   }
   Fl_Window win6 {
     label Condition open
-    xywh {1116 573 655 465} type Double resizable visible
+    xywh {1127 584 655 465} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Condition}
@@ -1523,7 +1610,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
   }
   Fl_Window win7 {
     label Development open
-    xywh {1067 240 395 480} type Double resizable visible
+    xywh {1523 483 395 480} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Development}
@@ -1666,6 +1753,635 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
   // gnuplot ocgnu.plt  &}
         xywh {40 360 320 25}
       }
+    }
+  }
+  Fl_Window form_element_pse {
+    label Periodic open
+    xywh {864 452 680 435} type Double resizable visible
+  } {
+    Fl_Button {} {
+      label {&Close frame}
+      callback {form_element_pse->hide();}
+      xywh {15 400 650 25} labelfont 1
+    }
+    Fl_Group {} {open
+      xywh {15 55 650 335} box DOWN_BOX resizable
+    } {
+      Fl_Button {} {
+        label H
+        callback {load_content( 1 );}
+        xywh {25 65 30 25} color 190
+      }
+      Fl_Button {} {
+        label Li
+        callback {load_content( 3 );}
+        xywh {25 95 30 25} color 180
+      }
+      Fl_Button {} {
+        label Na
+        callback {system( " xterm   "  );}
+        xywh {25 125 30 25} color 180
+      }
+      Fl_Button {} {
+        label K
+        callback {system( " xterm   "  );}
+        xywh {25 155 30 25} color 180
+      }
+      Fl_Button {} {
+        label Rb
+        callback {system( " xterm   "  );}
+        xywh {25 185 30 25} color 180
+      }
+      Fl_Button {} {
+        label Cs
+        callback {system( " xterm   "  );}
+        xywh {25 215 30 25} color 180
+      }
+      Fl_Button {} {
+        label Fr
+        callback {system( " xterm   "  );}
+        xywh {25 245 30 25} color 180
+      }
+      Fl_Button {} {
+        label Be
+        callback {void_form_add_new_element( "be" );}
+        xywh {60 95 30 25} color 90
+      }
+      Fl_Button {} {
+        label Mg
+        callback {system( " xterm   "  );}
+        xywh {60 125 30 25} color 90
+      }
+      Fl_Button {} {
+        label Ca
+        callback {system( " xterm   "  );}
+        xywh {60 155 30 25} color 90
+      }
+      Fl_Button {} {
+        label Sr
+        callback {system( " xterm   "  );}
+        xywh {60 185 30 25} color 90
+      }
+      Fl_Button {} {
+        label Ba
+        callback {system( " xterm   "  );}
+        xywh {60 215 30 25} color 90
+      }
+      Fl_Button {} {
+        label Ra
+        callback {system( " xterm   "  );}
+        xywh {60 245 30 25} color 90
+      }
+      Fl_Button {} {
+        label Sc
+        callback {void_form_add_new_element( "sc" );}
+        xywh {95 155 30 25} color 174
+      }
+      Fl_Button {} {
+        label Y
+        callback {system( " xterm   "  );}
+        xywh {95 185 30 25} color 174
+      }
+      Fl_Button {} {
+        label Lu
+        callback {system( " xterm   "  );}
+        xywh {95 215 30 25} color 174
+      }
+      Fl_Button {} {
+        label Lr
+        callback {void_form_add_new_element( "lr" );}
+        xywh {95 245 30 25}
+      }
+      Fl_Button {} {
+        label Ti
+        callback {void_form_add_new_element( "ti" );}
+        xywh {130 155 30 25} color 174
+      }
+      Fl_Button {} {
+        label Zr
+        callback {void_form_add_new_element( "zr" );}
+        xywh {130 185 30 25} color 174
+      }
+      Fl_Button {} {
+        label Hf
+        callback {void_form_add_new_element( "hf" );}
+        xywh {130 215 30 25} color 174
+      }
+      Fl_Button {} {
+        label Rf
+        callback {void_form_add_new_element( "rf" );} selected
+        xywh {130 245 30 25}
+      }
+      Fl_Button {} {
+        label V
+        callback {void_form_add_new_element( "v" );}
+        xywh {165 155 30 25} color 174
+      }
+      Fl_Button {} {
+        label Nb
+        callback {void_form_add_new_element( "nb" );}
+        xywh {165 185 30 25} color 174
+      }
+      Fl_Button {} {
+        label Ta
+        callback {void_form_add_new_element( "ta" );}
+        xywh {165 215 30 25} color 174
+      }
+      Fl_Button {} {
+        label Db
+        callback {system( " xterm   "  );}
+        xywh {165 245 30 25}
+      }
+      Fl_Button {} {
+        label Cr
+        callback {void_form_add_new_element( "cr" );}
+        xywh {200 155 30 25} color 174
+      }
+      Fl_Button {} {
+        label Mo
+        callback {void_form_add_new_element( "mo" );}
+        xywh {200 185 30 25} color 174
+      }
+      Fl_Button {} {
+        label W
+        callback {void_form_add_new_element( "w" );}
+        xywh {200 215 30 25} color 174
+      }
+      Fl_Button {} {
+        label Sg
+        callback {system( " xterm   "  );}
+        xywh {200 245 30 25}
+      }
+      Fl_Button {} {
+        label Mn
+        callback {void_form_add_new_element( "mn" );}
+        xywh {235 155 30 25} color 174
+      }
+      Fl_Button {} {
+        label Tc
+        callback {system( " xterm   "  );}
+        xywh {235 185 30 25} color 174
+      }
+      Fl_Button {} {
+        label Re
+        callback {void_form_add_new_element( "re" );}
+        xywh {235 215 30 25} color 174
+      }
+      Fl_Button {} {
+        label Bh
+        callback {system( " xterm   "  );}
+        xywh {235 245 30 25}
+      }
+      Fl_Button {} {
+        label Fe
+        callback {void_form_add_new_element( "fe" );}
+        xywh {270 155 30 25} color 174
+      }
+      Fl_Button {} {
+        label Ru
+        callback {void_form_add_new_element( "ru" );}
+        xywh {270 185 30 25} color 174
+      }
+      Fl_Button {} {
+        label Os
+        callback {void_form_add_new_element( "os" );}
+        xywh {270 215 30 25} color 174
+      }
+      Fl_Button {} {
+        label Hs
+        callback {system( " xterm   "  );}
+        xywh {270 245 30 25}
+      }
+      Fl_Button {} {
+        label Co
+        callback {void_form_add_new_element( "co" );}
+        xywh {305 155 30 25} color 174
+      }
+      Fl_Button {} {
+        label Rh
+        callback {void_form_add_new_element( "rh" );}
+        xywh {305 185 30 25} color 174
+      }
+      Fl_Button {} {
+        label Ir
+        callback {void_form_add_new_element( "ir" );}
+        xywh {305 215 30 25} color 174
+      }
+      Fl_Button {} {
+        label Mt
+        callback {system( " xterm   "  );}
+        xywh {305 245 30 25}
+      }
+      Fl_Button {} {
+        label Ni
+        callback {void_form_add_new_element( "ni" );}
+        xywh {340 155 30 25} color 174
+      }
+      Fl_Button {} {
+        label Pd
+        callback {void_form_add_new_element( "pd" );}
+        xywh {340 185 30 25} color 174
+      }
+      Fl_Button {} {
+        label Pt
+        callback {void_form_add_new_element( "pt" );}
+        xywh {340 215 30 25} color 174
+      }
+      Fl_Button {} {
+        label Ds
+        callback {system( " xterm   "  );}
+        xywh {340 245 30 25}
+      }
+      Fl_Button {} {
+        label Cu
+        callback {void_form_add_new_element( "cu" );}
+        xywh {375 155 30 25} color 174
+      }
+      Fl_Button {} {
+        label Ag
+        callback {void_form_add_new_element( "ag" );}
+        xywh {375 185 30 25} color 174
+      }
+      Fl_Button {} {
+        label Au
+        callback {void_form_add_new_element( "au" );}
+        xywh {375 215 30 25} color 174
+      }
+      Fl_Button {} {
+        label Rg
+        callback {system( " xterm   "  );}
+        xywh {375 245 30 25}
+      }
+      Fl_Button {} {
+        label Zn
+        callback {void_form_add_new_element( "zn" );}
+        xywh {410 155 30 25} color 174
+      }
+      Fl_Button {} {
+        label Cd
+        callback {void_form_add_new_element( "cd" );}
+        xywh {410 185 30 25} color 174
+      }
+      Fl_Button {} {
+        label Hg
+        callback {system( " xterm   "  );}
+        xywh {410 215 30 25} color 174
+      }
+      Fl_Button {} {
+        label Cn
+        callback {system( " xterm   "  );}
+        xywh {410 245 30 25}
+      }
+      Fl_Button {} {
+        label B
+        callback {system( " xterm   "  );}
+        xywh {445 95 30 25} color 252
+      }
+      Fl_Button {} {
+        label Al
+        callback {void_form_add_new_element( "al" );}
+        xywh {445 125 30 25} color 237
+      }
+      Fl_Button {} {
+        label Ga
+        callback {system( " xterm   "  );}
+        xywh {445 155 30 25} color 237
+      }
+      Fl_Button {} {
+        label In
+        callback {system( " xterm   "  );}
+        xywh {445 185 30 25} color 237
+      }
+      Fl_Button {} {
+        label TI
+        callback {system( " xterm   "  );}
+        xywh {445 215 30 25} color 237
+      }
+      Fl_Button {} {
+        label Uut
+        callback {system( " xterm   "  );}
+        xywh {445 245 30 25}
+      }
+      Fl_Button {} {
+        label C
+        callback {void_form_add_new_element( "c" );}
+        xywh {480 95 30 25} color 70
+      }
+      Fl_Button {} {
+        label Si
+        callback {void_form_add_new_element( "si" );}
+        xywh {480 125 30 25} color 252
+      }
+      Fl_Button {} {
+        label Ge
+        callback {system( " xterm   "  );}
+        xywh {480 155 30 25} color 252
+      }
+      Fl_Button {} {
+        label Sn
+        callback {void_form_add_new_element( "sn" );}
+        xywh {480 185 30 25} color 237
+      }
+      Fl_Button {} {
+        label Pb
+        callback {void_form_add_new_element( "pb" );}
+        xywh {480 215 30 25} color 237
+      }
+      Fl_Button {} {
+        label Uuq
+        callback {system( " xterm   "  );}
+        xywh {480 245 30 25}
+      }
+      Fl_Button {} {
+        label N
+        callback {void_form_add_new_element( "n" );}
+        xywh {515 95 30 25} color 70
+      }
+      Fl_Button {} {
+        label P
+        callback {system( " xterm   "  );}
+        xywh {515 125 30 25} color 70
+      }
+      Fl_Button {} {
+        label As
+        callback {system( " xterm   "  );}
+        xywh {515 155 30 25} color 252
+      }
+      Fl_Button {} {
+        label Sb
+        callback {system( " xterm   "  );}
+        xywh {515 185 30 25} color 252
+      }
+      Fl_Button {} {
+        label Bi
+        callback {system( " xterm   "  );}
+        xywh {515 215 30 25} color 237
+      }
+      Fl_Button {} {
+        label Uup
+        callback {system( " xterm   "  );}
+        xywh {515 245 30 25}
+      }
+      Fl_Button {} {
+        label O
+        callback {void_form_add_new_element( "o" );}
+        xywh {550 95 30 25} color 70
+      }
+      Fl_Button {} {
+        label S
+        callback {system( " xterm   "  );}
+        xywh {550 125 30 25} color 70
+      }
+      Fl_Button {} {
+        label Se
+        callback {system( " xterm   "  );}
+        xywh {550 155 30 25} color 70
+      }
+      Fl_Button {} {
+        label Te
+        callback {system( " xterm   "  );}
+        xywh {550 185 30 25} color 252
+      }
+      Fl_Button {} {
+        label Po
+        callback {system( " xterm   "  );}
+        xywh {550 215 30 25} color 252
+      }
+      Fl_Button {} {
+        label Uuh
+        callback {system( " xterm   "  );}
+        xywh {550 245 30 25}
+      }
+      Fl_Button {} {
+        label F
+        callback {system( " xterm   "  );}
+        xywh {585 95 30 25} color 252
+      }
+      Fl_Button {} {
+        label Cl
+        callback {void_form_add_new_element( "cl" );}
+        xywh {585 125 30 25} color 252
+      }
+      Fl_Button {} {
+        label Br
+        callback {system( " xterm   "  );}
+        xywh {585 155 30 25} color 252
+      }
+      Fl_Button {} {
+        label I
+        callback {system( " xterm   "  );}
+        xywh {585 185 30 25} color 252
+      }
+      Fl_Button {} {
+        label At
+        callback {system( " xterm   "  );}
+        xywh {585 215 30 25} color 252
+      }
+      Fl_Button {} {
+        label Uus
+        callback {system( " xterm   "  );}
+        xywh {585 245 30 25}
+      }
+      Fl_Button {} {
+        label Ne
+        callback {system( " xterm   "  );}
+        xywh {620 95 30 25} color 9 labelfont 1
+      }
+      Fl_Button {} {
+        label Ar
+        callback {system( " xterm   "  );}
+        xywh {620 125 30 25} color 9 labelfont 1
+      }
+      Fl_Button {} {
+        label Kr
+        callback {system( " xterm   "  );}
+        xywh {620 155 30 25} color 9 labelfont 1
+      }
+      Fl_Button {} {
+        label Xe
+        callback {system( " xterm   "  );}
+        xywh {620 185 30 25} color 9 labelfont 1
+      }
+      Fl_Button {} {
+        label Rn
+        callback {system( " xterm   "  );}
+        xywh {620 215 30 25} color 9 labelfont 1
+      }
+      Fl_Button {} {
+        label Uuo
+        callback {system( " xterm   "  );}
+        xywh {620 245 30 25}
+      }
+      Fl_Button {} {
+        label He
+        callback {load_content( 2 );}
+        xywh {620 65 30 25} color 9 labelfont 1
+      }
+      Fl_Button {} {
+        label La
+        callback {system( " xterm   "  );}
+        xywh {95 310 30 25}
+      }
+      Fl_Button {} {
+        label Ac
+        callback {system( " xterm   "  );}
+        xywh {95 340 30 25}
+      }
+      Fl_Button {} {
+        label Ce
+        callback {system( " xterm   "  );}
+        xywh {130 310 30 25}
+      }
+      Fl_Button {} {
+        label Th
+        callback {system( " xterm   "  );}
+        xywh {130 340 30 25}
+      }
+      Fl_Button {} {
+        label Pr
+        callback {system( " xterm   "  );}
+        xywh {165 310 30 25}
+      }
+      Fl_Button {} {
+        label Pa
+        callback {system( " xterm   "  );}
+        xywh {165 340 30 25}
+      }
+      Fl_Button {} {
+        label Nd
+        callback {system( " xterm   "  );}
+        xywh {200 310 30 25}
+      }
+      Fl_Button {} {
+        label U
+        callback {system( " xterm   "  );}
+        xywh {200 340 30 25}
+      }
+      Fl_Button {} {
+        label Pm
+        callback {system( " xterm   "  );}
+        xywh {235 310 30 25}
+      }
+      Fl_Button {} {
+        label Np
+        callback {system( " xterm   "  );}
+        xywh {235 340 30 25}
+      }
+      Fl_Button {} {
+        label Sm
+        callback {system( " xterm   "  );}
+        xywh {270 310 30 25}
+      }
+      Fl_Button {} {
+        label Pu
+        callback {system( " xterm   "  );}
+        xywh {270 340 30 25}
+      }
+      Fl_Button {} {
+        label Eu
+        callback {system( " xterm   "  );}
+        xywh {305 310 30 25}
+      }
+      Fl_Button {} {
+        label Am
+        callback {system( " xterm   "  );}
+        xywh {305 340 30 25}
+      }
+      Fl_Button {} {
+        label Gd
+        callback {system( " xterm   "  );}
+        xywh {340 310 30 25}
+      }
+      Fl_Button {} {
+        label Cm
+        callback {system( " xterm   "  );}
+        xywh {340 340 30 25}
+      }
+      Fl_Button {} {
+        label Tb
+        callback {system( " xterm   "  );}
+        xywh {375 310 30 25}
+      }
+      Fl_Button {} {
+        label Bk
+        callback {system( " xterm   "  );}
+        xywh {375 340 30 25}
+      }
+      Fl_Button {} {
+        label Dy
+        callback {system( " xterm   "  );}
+        xywh {410 310 30 25}
+      }
+      Fl_Button {} {
+        label Cf
+        callback {system( " xterm   "  );}
+        xywh {410 340 30 25}
+      }
+      Fl_Button {} {
+        label Ho
+        callback {system( " xterm   "  );}
+        xywh {445 310 30 25}
+      }
+      Fl_Button {} {
+        label Es
+        callback {system( " xterm   "  );}
+        xywh {445 340 30 25}
+      }
+      Fl_Button {} {
+        label Er
+        callback {system( " xterm   "  );}
+        xywh {480 310 30 25}
+      }
+      Fl_Button {} {
+        label Fm
+        callback {system( " xterm   "  );}
+        xywh {480 340 30 25}
+      }
+      Fl_Button {} {
+        label Tm
+        callback {system( " xterm   "  );}
+        xywh {515 310 30 25}
+      }
+      Fl_Button {} {
+        label Md
+        callback {system( " xterm   "  );}
+        xywh {515 340 30 25}
+      }
+      Fl_Button {} {
+        label Yb
+        callback {system( " xterm   "  );}
+        xywh {550 310 30 25}
+      }
+      Fl_Button {} {
+        label No
+        callback {system( " xterm   "  );}
+        xywh {550 340 30 25}
+      }
+    }
+    Fl_Box {} {
+      label {PERIODIC TABLE}
+      xywh {15 5 650 35} box ENGRAVED_BOX labelfont 1
+    }
+  }
+  Fl_Window form1_periodic_information {
+    label {Periodic -- Information} open
+    xywh {996 517 780 535} type Double resizable visible
+  } {
+    Fl_Button {} {
+      label {&Close frame}
+      callback {form1_periodic_information->hide();}
+      xywh {20 495 740 25} labelfont 1
+    }
+    Fl_Group {} {open
+      xywh {20 50 740 440} box DOWN_BOX resizable
+    } {
+      Fl_Browser form_content_browser1 {
+        xywh {30 60 720 420}
+      }
+    }
+    Fl_Box {} {
+      label {ELEMENT INFORMATION}
+      xywh {20 10 740 30} box ENGRAVED_BOX labelfont 1
     }
   }
 }
@@ -1833,4 +2549,19 @@ Function {ncopysetterm( const char *foofileout,  const  char *foofilein, const  
      fclose( fp );
      fclose( fp2 );
    }} {}
+}
+
+Function {load_content( int fooz )} {open
+} {
+  code {} {}
+}
+
+Function {void_form_add_new_element( const char *foonew )} {open
+} {
+  code {strncat( var_system , foonew , PATH_MAX - strlen( var_system ) -1 );
+  strncat( var_system , " " ,  PATH_MAX -  strlen( var_system ) -1 );
+  output_system->value( var_system );
+  var_calc_number_element++;
+  add_new_element( foonew  );
+  redraw();} {}
 }
