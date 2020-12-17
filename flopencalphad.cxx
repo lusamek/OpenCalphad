@@ -873,6 +873,10 @@ else if ( fexist( "/usr/bin/chromium-browser" ) == 1)
    nsystem(  " screen -d -m chromium-browser   --new-window  https://webchat.freenode.net/?channels=#opencalphad  " );
 }
 
+static void cb_Fetch1(Fl_Button*, void*) {
+  system( " screen -d -m xterm -e ' wget -c --no-check-certificate   https://raw.githubusercontent.com/lusamek/OpenCalphad/master/macros.zip -O   ~/macros.zip ; cd ; unzip macros.zip ;  flopencalphad ~/macros ' " );
+}
+
 Fl_Double_Window *win4=(Fl_Double_Window *)0;
 
 static void cb_Close2(Fl_Button*, void*) {
@@ -2116,7 +2120,7 @@ Fl_Double_Window* make_window() {
       o->box(FL_ENGRAVED_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
     } // Fl_Box* o
-    { Fl_Button* o = new Fl_Button(780, 425, 110, 25, "Close Frame");
+    { Fl_Button* o = new Fl_Button(780, 425, 110, 25, "&Close Frame");
       o->callback((Fl_Callback*)cb_Close);
     } // Fl_Button* o
     { Fl_Tabs* o = new Fl_Tabs(15, 70, 875, 345, "File browser");
@@ -2216,7 +2220,7 @@ Fl_Double_Window* make_window() {
     win2->end();
     win2->resizable(win2);
   } // Fl_Double_Window* win2
-  { win3 = new Fl_Double_Window(405, 410, "Option");
+  { win3 = new Fl_Double_Window(405, 510, "Option");
     { Fl_Box* o = new Fl_Box(15, 15, 380, 35, "FLTK OpenCalphad -- Option");
       o->box(FL_ENGRAVED_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
@@ -2262,30 +2266,38 @@ Fl_Double_Window* make_window() {
       } // Fl_Button* o
       o->end();
     } // Fl_Group* o
-    { Fl_Button* o = new Fl_Button(275, 355, 115, 30, "&Close Frame");
+    { Fl_Button* o = new Fl_Button(275, 475, 115, 30, "&Close Frame");
       o->callback((Fl_Callback*)cb_Close1);
     } // Fl_Button* o
-    { Fl_Group* o = new Fl_Group(15, 225, 375, 70, "Console output");
+    { Fl_Group* o = new Fl_Group(15, 205, 375, 95, "Console output");
       o->box(FL_DOWN_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
-      { checkbutton_single_console = new Fl_Check_Button(35, 235, 25, 25, "Single console output");
+      { checkbutton_single_console = new Fl_Check_Button(35, 225, 25, 25, "Single console output");
         checkbutton_single_console->down_box(FL_DOWN_BOX);
       } // Fl_Check_Button* checkbutton_single_console
-      { checkbutton_xterm_console = new Fl_Check_Button(35, 265, 25, 25, "xterm console output");
+      { checkbutton_xterm_console = new Fl_Check_Button(35, 255, 25, 25, "xterm console output");
         checkbutton_xterm_console->down_box(FL_DOWN_BOX);
         checkbutton_xterm_console->value( 1 );
       } // Fl_Check_Button* checkbutton_xterm_console
       o->end();
     } // Fl_Group* o
-    { Fl_Button* o = new Fl_Button(160, 355, 110, 30, "&Development");
+    { Fl_Button* o = new Fl_Button(160, 475, 110, 30, "&Development");
       o->callback((Fl_Callback*)cb_Development);
     } // Fl_Button* o
-    { Fl_Button* o = new Fl_Button(15, 355, 140, 30, "&Web");
+    { Fl_Button* o = new Fl_Button(15, 475, 140, 30, "&Web");
       o->callback((Fl_Callback*)cb_Web);
     } // Fl_Button* o
-    { Fl_Button* o = new Fl_Button(15, 312, 375, 30, "Development and Support");
+    { Fl_Button* o = new Fl_Button(15, 432, 375, 30, "Development and Support");
       o->labelfont(1);
       o->callback((Fl_Callback*)cb_Development1);
+    } // Fl_Button* o
+    { Fl_Group* o = new Fl_Group(15, 335, 375, 70, "Online Repository");
+      o->box(FL_DOWN_BOX);
+      o->labeltype(FL_ENGRAVED_LABEL);
+      o->end();
+    } // Fl_Group* o
+    { Fl_Button* o = new Fl_Button(30, 355, 340, 30, "&Fetch online ~/macros directory");
+      o->callback((Fl_Callback*)cb_Fetch1);
     } // Fl_Button* o
     win3->end();
     win3->resizable(win3);
@@ -2415,7 +2427,7 @@ Fl_Double_Window* make_window() {
       } // Fl_Button* o
       o->end();
     } // Fl_Group* o
-    { Fl_Button* o = new Fl_Button(725, 450, 110, 25, "Close Frame");
+    { Fl_Button* o = new Fl_Button(725, 450, 110, 25, "&Close Frame");
       o->callback((Fl_Callback*)cb_Close4);
     } // Fl_Button* o
     { Fl_Group* o = new Fl_Group(405, 80, 430, 365, "File description");

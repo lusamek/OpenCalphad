@@ -42,7 +42,7 @@ Function {make_window()} {open
 } {
   Fl_Window win1 {
     label FLOPENCALPHAD open
-    xywh {563 243 785 695} type Double resizable visible
+    xywh {1 398 785 695} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad}
@@ -538,15 +538,15 @@ else
   }
   Fl_Window win2 {
     label Database open
-    xywh {134 187 905 460} type Double resizable visible
+    xywh {560 675 905 460} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Database}
       xywh {15 10 880 35} box ENGRAVED_BOX labeltype ENGRAVED_LABEL
     }
     Fl_Button {} {
-      label {Close Frame}
-      callback {win2->hide();}
+      label {&Close Frame}
+      callback {win2->hide();} selected
       xywh {780 425 110 25}
     }
     Fl_Tabs {} {
@@ -926,7 +926,7 @@ redraw();
   }
   Fl_Window win3 {
     label Option open
-    xywh {1323 343 405 410} type Double resizable visible
+    xywh {403 236 405 510} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Option}
@@ -1007,26 +1007,26 @@ redraw();
     Fl_Button {} {
       label {&Close Frame}
       callback {win3->hide();}
-      xywh {275 355 115 30}
+      xywh {275 475 115 30}
     }
     Fl_Group {} {
       label {Console output} open
-      xywh {15 225 375 70} box DOWN_BOX labeltype ENGRAVED_LABEL
+      xywh {15 205 375 95} box DOWN_BOX labeltype ENGRAVED_LABEL
     } {
       Fl_Check_Button checkbutton_single_console {
         label {Single console output}
-        xywh {35 235 25 25} down_box DOWN_BOX
+        xywh {35 225 25 25} down_box DOWN_BOX
       }
       Fl_Check_Button checkbutton_xterm_console {
         label {xterm console output}
-        xywh {35 265 25 25} down_box DOWN_BOX
+        xywh {35 255 25 25} down_box DOWN_BOX
         code2 {checkbutton_xterm_console->value( 1 );}
       }
     }
     Fl_Button {} {
       label {&Development}
       callback {win7->show();}
-      xywh {160 355 110 30}
+      xywh {160 475 110 30}
     }
     Fl_Button {} {
       label {&Web}
@@ -1047,7 +1047,7 @@ else if ( fexist( "/usr/bin/chromium-browser" ) == 1)
    
 else
    nsystem(  " screen -d -m dillo http://duckduckgo.com    " );}
-      xywh {15 355 140 30}
+      xywh {15 475 140 30}
     }
     Fl_Button {} {
       label {Development and Support}
@@ -1056,12 +1056,21 @@ else
    
 else if ( fexist( "/usr/bin/chromium-browser" ) == 1) 
    nsystem(  " screen -d -m chromium-browser   --new-window  https://webchat.freenode.net/?channels=\#opencalphad  " );}
-      xywh {15 312 375 30} labelfont 1
+      xywh {15 432 375 30} labelfont 1
+    }
+    Fl_Group {} {
+      label {Online Repository} open
+      xywh {15 335 375 70} box DOWN_BOX labeltype ENGRAVED_LABEL
+    } {}
+    Fl_Button {} {
+      label {&Fetch online ~/macros directory}
+      callback {system( " screen -d -m xterm -e ' wget -c --no-check-certificate   https://raw.githubusercontent.com/lusamek/OpenCalphad/master/macros.zip -O   ~/macros.zip ; cd ; unzip macros.zip ;  flopencalphad ~/macros ' " );}
+      xywh {30 355 340 30}
     }
   }
   Fl_Window win4 {
     label {Graphics Plot} open
-    xywh {95 460 890 545} type Double resizable visible
+    xywh {254 547 890 545} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Plot}
@@ -1337,7 +1346,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
   }
   Fl_Window win5 {
     label Macro open
-    xywh {1070 371 850 485} type Double resizable visible
+    xywh {77 596 850 485} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Macro}
@@ -1545,7 +1554,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
       }
     }
     Fl_Button {} {
-      label {Close Frame}
+      label {&Close Frame}
       callback {win5->hide();}
       xywh {725 450 110 25}
     }
@@ -1610,7 +1619,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
   }
   Fl_Window win7 {
     label Development open
-    xywh {1523 483 395 480} type Double resizable visible
+    xywh {1433 529 395 480} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Development}
@@ -1869,7 +1878,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
       }
       Fl_Button {} {
         label Rf
-        callback {void_form_add_new_element( "rf" );} selected
+        callback {void_form_add_new_element( "rf" );}
         xywh {130 245 30 25}
       }
       Fl_Button {} {
