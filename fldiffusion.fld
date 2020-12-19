@@ -1,0 +1,348 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0304
+header_name {.h}
+code_name {.cxx}
+decl {\#include <stdio.h>} {private local
+}
+
+decl {\#include <stdlib.h>} {private local
+}
+
+decl {\#include <string.h>} {private local
+}
+
+decl {\#include "tinymath.h"} {private local
+}
+
+Function {make_window()} {open
+} {
+  Fl_Window win1 {
+    label FLTK open
+    xywh {440 241 835 750} type Double box DOWN_BOX resizable visible
+  } {
+    Fl_Box {} {
+      label {Bulk Diffusion}
+      xywh {20 15 800 40} box ENGRAVED_BOX labelfont 1
+    }
+    Fl_Tabs {} {
+      label {User Parameter} open
+      xywh {20 80 800 630}
+    } {
+      Fl_Group {} {
+        label Database open
+        xywh {45 105 775 605} hide
+      } {
+        Fl_Group {} {
+          label Database open
+          xywh {75 155 385 265} box DOWN_BOX
+        } {
+          Fl_Input form1_tab1_diffusion_filesource {
+            label {Source file: }
+            xywh {185 190 230 25}
+          }
+          Fl_Button {} {
+            label {Edit database}
+            callback {if ( fexist( form1_tab1_diffusion_filesource->value() ) == 1 )
+  {
+        // form1_tab1_diffusion_filesource->value() 
+        char cmdi[PATH_MAX];
+        strncpy( cmdi , " screen -d -m flnotepad  "  , PATH_MAX );
+        strncat( cmdi , " " , PATH_MAX - strlen( cmdi ) -1 );
+        strncat( cmdi , " \\""  , PATH_MAX - strlen( cmdi ) -1 );
+        strncat( cmdi , form1_tab1_diffusion_filesource->value() , PATH_MAX - strlen( cmdi ) -1 );
+        strncat( cmdi , "\\" "  , PATH_MAX - strlen( cmdi ) -1 );
+        strncat( cmdi , " " , PATH_MAX - strlen( cmdi ) -1 );
+        system( cmdi ); 
+   }}
+            xywh {100 240 315 65}
+          }
+        }
+      }
+      Fl_Group {} {
+        label {Table single calc} open
+        xywh {45 120 775 590}
+      } {
+        Fl_Button {} {
+          label Calculate
+          callback {char buffer_all[PATH_MAX];
+  strncpy( buffer_all, "", PATH_MAX );
+  char charo[PATH_MAX];
+  char strcol1[PATH_MAX];
+  char strcol2[PATH_MAX];
+
+        FILE *fp5;
+	FILE *fp6;
+	char fetchline[PATH_MAX];
+	char fetchlinetmp[PATH_MAX];
+	char cmdi[PATH_MAX];
+        char cmdix[PATH_MAX];
+        int fetchi = 0; 
+	double myfloat[ 9 ];
+	int   varn = 1; 
+	int ii; 
+
+  if ( fexist( form1_tab1_diffusion_filesource->value() ) == 1 )
+  {
+        fp6 = fopen( form1_tab1_diffusion_filesource->value() , "rb");
+	while( !feof(fp6) ) 
+	{
+		fgets(fetchlinetmp, PATH_MAX, fp6); 
+		strncpy( fetchline, "" , PATH_MAX );
+		fetchi = 0; 
+		for( fetchi = 0 ; ( fetchi <= strlen( fetchlinetmp ) ); fetchi++ )
+			if ( fetchlinetmp[ fetchi ] != '\\n' )
+				fetchline[fetchi]=fetchlinetmp[fetchi];
+
+		if ( !feof(fp6) )
+		if ( fetchline[0] == '\#' )
+		{
+                        strncat( buffer_all , fetchline , PATH_MAX - strlen( buffer_all ) -1 );
+                        strncat( buffer_all , "\\n" ,  PATH_MAX - strlen( buffer_all ) -1 );  	
+		}
+		else if ( strcmp( fetchline, "" ) != 0 ) 
+		{
+		    varn = 1;
+		    for ( ii = 1 ; ii <= 5 ; ii++ ) 
+		    {
+	                if ( varn == 1 ) 
+	  		   strncpy(  strcol1 , strsplit( fetchline , ';', varn ) , PATH_MAX );
+  		 
+  			   
+                        else if ( varn == 2 ) 	
+  			   strncpy(  strcol2 , strsplit( fetchline , ';', varn ) , PATH_MAX );	    
+			    
+		       else if ( varn >= 3 ) 	
+		       {
+		           myfloat[ varn ]  = atof( strsplit( fetchline , ';', varn ) );   //  bug fix 
+                           myfloat[ varn ]  = atof( strsplit( fetchline , ';', varn ) );
+		       }
+	                
+			varn++;
+			     
+
+			if ( varn == 4+2 ) 
+			{
+				strncpy(  cmdi, "", PATH_MAX );
+
+				snprintf( cmdi , sizeof( cmdi ), " %g * exp( -%g*1e3 / ( 8.314 * ( %g +273.16) ) )  ", myfloat[ 1+2 ], myfloat[ 2 +2 ], myfloat[ 3+2 ] );
+				
+				snprintf( cmdix , sizeof( cmdix ), " 1000 / ( %g + 273.16  )  ", myfloat[ 3+2 ] );
+				
+				printf( "LineCalc Str: %s\\n",  cmdi  );
+				printf( "LineCalc: %f ; ", te_interp( cmdi , 0 ) );
+				printf( "Engineering: %.3E \\n", te_interp( cmdi , 0 ) );
+			
+ 			        snprintf( charo , sizeof( charo ) , "| %s | %s |  D0: %.3E | Q: %.3E | T: %g | T_fx: %.3E | D: %.3E \\n", strcol1 , strcol2, 
+       			        myfloat[ 3 ], 
+                                myfloat[ 4 ], 
+ 			        myfloat[ 5 ], 
+ 			        te_interp( cmdix , 0 ), 	
+ 			        te_interp( cmdi , 0 ) );	
+ 			        
+                                strncat( buffer_all , charo , PATH_MAX - strlen( buffer_all ) -1 );
+                                strncat( buffer_all , "\\n" ,  PATH_MAX - strlen( buffer_all ) -1 );     
+
+				varn = 1; 
+				myfloat[ 1 ]  = 0;
+				myfloat[ 2 ]  = 0;
+				myfloat[ 3 ]  = 0;
+				myfloat[ 4 ]  = 0;
+				myfloat[ 5 ]  = 0;
+
+			}
+		     
+		     
+		   }  
+		}
+	}
+	fclose( fp6 );
+	
+	
+	
+     Fl_Text_Buffer *buff = new Fl_Text_Buffer(); 
+     textdisplay1->buffer(buff);
+     buff->text( buffer_all  );	
+     textdisplay1->textfont(FL_COURIER);
+     textdisplay1->textsize(12);
+	
+}} selected
+          xywh {55 640 725 45}
+        }
+        Fl_Text_Display textdisplay1 {
+          xywh {55 145 725 485}
+        }
+      }
+    }
+    Fl_Button {} {
+      label {&Close}
+      callback {exit( 0 );}
+      xywh {705 715 115 25} labelfont 1
+    }
+    Fl_Output win1_statusbar_content {
+      xywh {20 715 680 25} color 49
+      code1 {win1_statusbar_content->value( "" );}
+    }
+  }
+  Fl_Window form2 {open
+    xywh {1297 335 545 420} type Double visible
+  } {
+    Fl_Group {} {
+      label Plot open
+      xywh {40 75 375 160} box DOWN_BOX
+    } {
+      Fl_Input form1_tab1_diffusion_plot_filesource {
+        label {Source file: }
+        xywh {155 90 225 25}
+        code1 {form1_tab1_diffusion_plot_filesource->value( "diffusion.plt" );}
+      }
+      Fl_Button {} {
+        label {Create Plot}
+        callback {char buffer_all[PATH_MAX];
+  strncpy( buffer_all, "", PATH_MAX );
+  char charo[PATH_MAX];
+  char strcol1[PATH_MAX];
+  char strcol2[PATH_MAX];
+  char fxname[PATH_MAX];
+  int fxfunc_var = 1;
+  FILE *fp5;
+  FILE *fp6;
+  FILE *fp9;
+  char fetchline[PATH_MAX];
+  char fetchlinetmp[PATH_MAX];
+  char cmdi[PATH_MAX];
+  int fetchi = 0; 
+  double myfloat[ 9 ];
+  int   varn = 1; 
+  int ii; 
+  
+  
+  
+  
+
+  if ( fexist( form1_tab1_diffusion_filesource->value() ) == 1 )
+  {
+  
+        fp9 = fopen( "/tmp/diffusion.plt" , "wb+");
+        
+        fputs( "\\n" , fp9);
+        fputs( "      " , fp9);
+        fputs( "\\n" , fp9);
+
+  
+        fp6 = fopen( form1_tab1_diffusion_filesource->value() , "rb");
+	while( !feof(fp6) ) 
+	{
+		fgets(fetchlinetmp, PATH_MAX, fp6); 
+		strncpy( fetchline, "" , PATH_MAX );
+		fetchi = 0; 
+		for( fetchi = 0 ; ( fetchi <= strlen( fetchlinetmp ) ); fetchi++ )
+			if ( fetchlinetmp[ fetchi ] != '\\n' )
+				fetchline[fetchi]=fetchlinetmp[fetchi];
+
+		if ( !feof(fp6) )
+		if ( strcmp( fetchline, "" ) != 0 ) 
+		{
+		    varn = 1;
+		    for ( ii = 1 ; ii <= 5 ; ii++ ) 
+		    {
+	                if ( varn == 1 ) 
+	  		   strncpy(  strcol1 , strsplit( fetchline , ';', varn ) , PATH_MAX );
+  		 
+  			   
+                        else if ( varn == 2 ) 	
+  			   strncpy(  strcol2 , strsplit( fetchline , ';', varn ) , PATH_MAX );	    
+			    
+		       else if ( varn >= 3 ) 	
+		       {
+		           myfloat[ varn ]  = atof( strsplit( fetchline , ';', varn ) );   //  bug fix 
+                           myfloat[ varn ]  = atof( strsplit( fetchline , ';', varn ) );
+		       }
+	                
+			varn++;
+			     
+
+			if ( varn == 4+2 ) 
+			{
+				strncpy(  cmdi, "", PATH_MAX );
+				snprintf( cmdi , sizeof( cmdi ), " %g * exp( -%g*1e3 / ( 8.314 * ( %g +273.16) ) )  ", myfloat[ 1+2 ], myfloat[ 2 +2 ], myfloat[ 3+2 ] );
+				
+				printf( "LineCalc Str: %s\\n",  cmdi  );
+				printf( "LineCalc: %f ; ", te_interp( cmdi , 0 ) );
+				printf( "Engineering: %.3E \\n", te_interp( cmdi , 0 ) );
+			
+ 			        snprintf( charo , sizeof( charo ) , "| %s | %s | T: %g | D: %.3E \\n", strcol1 , strcol2, myfloat[ 5 ], te_interp( cmdi , 0 ) );	
+ 			        
+                                //strncat( buffer_all , charo , PATH_MAX - strlen( buffer_all ) -1 );
+                                //strncat( buffer_all , "\\n" ,  PATH_MAX - strlen( buffer_all ) -1 );     
+                                 
+                                if ( fxfunc_var == 1 )
+                                {
+                                     strncpy( fxname , " f(x) = " , PATH_MAX );
+                                     snprintf( cmdi , sizeof( cmdi ), "  %g * exp( -%g*1e3 / ( 8.314 * ( x ) ) ) ;\\n", fxname ,  myfloat[ 1+2 ], myfloat[ 2 +2 ]  );
+ 	                             fputs( cmdi , fp9 );
+        	                     fputs( " , " , fp9 );
+        	                }
+
+				varn = 1; 
+				myfloat[ 1 ]  = 0;
+				myfloat[ 2 ]  = 0;
+				myfloat[ 3 ]  = 0;
+				myfloat[ 4 ]  = 0;
+				myfloat[ 5 ]  = 0;
+
+			}
+		     }
+		}
+	}
+	
+	
+	fclose( fp6 );
+	
+
+        fputs( "\\n" , fp9);
+        fputs( "  plot f(1000/x); \\n" , fp9);
+        fputs( "\\n" , fp9);	
+       
+        fputs( "\\n" , fp9);
+        fputs( "   pause -1  \\n" , fp9);
+        fputs( "\\n" , fp9);
+	
+	
+	
+	fclose( fp9 );
+}}
+        xywh {70 140 310 45}
+      }
+    }
+  }
+}
+
+Function {main( int argc, char *argv[])} {open return_type int
+} {
+  code {printf( " == FLTK == \\n" );
+
+ 
+
+
+  
+
+  make_window();
+  form1_tab1_diffusion_filesource->value( "diffusion.dat" ); 
+
+
+  
+  if ( argc == 2)
+  if ( strcmp( argv[1] , "" ) !=  0 )
+  {
+     if ( fexist( argv[ 1 ] )  == 1 ) 
+         form1_tab1_diffusion_filesource->value( argv[ 1 ] ); 
+     else
+         chdir( argv[ 1 ] );
+  }
+
+ 
+   
+  win1->show();
+
+  Fl::run();} {}
+}

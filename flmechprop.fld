@@ -63,8 +63,8 @@ as grain size, dislocation density, ... composition...
 Function {make_window()} {open
 } {
   Fl_Window win1 {
-    label FLTK
-    xywh {688 121 835 750} type Double box DOWN_BOX resizable visible
+    label FLTK open
+    xywh {689 122 835 750} type Double box DOWN_BOX resizable visible
   } {
     Fl_Box {} {
       label {Mech. Prop. Estimation}
@@ -75,7 +75,7 @@ Function {make_window()} {open
       xywh {20 80 800 630}
     } {
       Fl_Group {} {
-        label {Setup Constituents} open selected
+        label {Setup Constituents} open
         xywh {45 120 775 590}
       } {
         Fl_Group {} {open
@@ -729,8 +729,8 @@ for ( foop = 0 ;  foop<=  atoi(form1_max_pct_f_const->value())  ; foop = foop+ i
       }
     }
     Fl_Button {} {
-      label {&Quit}
-      callback {exit( 0 );}
+      label {&Close}
+      callback {exit( 0 );} selected
       xywh {705 715 115 25} labelfont 1
     }
     Fl_Output win1_statusbar_content {

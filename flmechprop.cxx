@@ -505,7 +505,7 @@ Fl_Check_Button *form1_tab2_frac_checker_value_f7_fixed=(Fl_Check_Button *)0;
 
 Fl_Check_Button *form1_tab2_frac_checker_value_f8_fixed=(Fl_Check_Button *)0;
 
-static void cb_Quit(Fl_Button*, void*) {
+static void cb_Close(Fl_Button*, void*) {
   exit( 0 );
 }
 
@@ -784,9 +784,9 @@ Fl_Double_Window* make_window() {
       } // Fl_Group* o
       o->end();
     } // Fl_Tabs* o
-    { Fl_Button* o = new Fl_Button(705, 715, 115, 25, "&Quit");
+    { Fl_Button* o = new Fl_Button(705, 715, 115, 25, "&Close");
       o->labelfont(1);
-      o->callback((Fl_Callback*)cb_Quit);
+      o->callback((Fl_Callback*)cb_Close);
     } // Fl_Button* o
     { win1_statusbar_content = new Fl_Output(20, 715, 680, 25);
       win1_statusbar_content->color(FL_BACKGROUND_COLOR);

@@ -1,0 +1,20 @@
+
+
+# Specie, Host metal, parameters Diffusion
+
+fe ; fe bcc ;  2.8e-4 ; 251 ; 500
+
+fe ; fe bcc ;  2.8e-4 ; 251; 900
+
+fe ; fe fcc ;  5.0e-5 ; 284 ; 900
+
+fe ; fe fcc ;  5.0e-5 ; 284 ; 1100
+
+c ; fe bcc ;  6.2e-7 ;  80 ; 500
+
+c ; fe bcc ;  6.2e-7 ;  80 ; 900
+
+c ; fe fcc ;  2.3e-5 ; 148 ; 900
+
+c ; fe fcc ;  2.3e-5 ; 148 ; 1100
+

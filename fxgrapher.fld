@@ -1,0 +1,1035 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0304
+header_name {.h}
+code_name {.cxx}
+decl {\#include <stdio.h>} {private local
+}
+
+decl {\#include <stdlib.h>} {private local
+}
+
+decl {\#include <string.h>} {private local
+}
+
+decl {\#include "tinymath.h"} {private local
+}
+
+Function {make_window()} {open
+} {
+  Fl_Window win1 {
+    label FLTK open
+    xywh {463 262 835 750} type Double box DOWN_BOX resizable visible
+  } {
+    Fl_Box {} {
+      label FxGrapher
+      xywh {20 15 800 40} box ENGRAVED_BOX labelfont 1
+    }
+    Fl_Tabs {} {
+      label {User Parameter} open
+      xywh {20 80 800 630}
+    } {
+      Fl_Group {} {
+        label {Fx Grapher} open selected
+        xywh {40 105 780 605}
+      } {
+        Fl_Group {} {
+          label {Plot file} open
+          xywh {450 495 340 180} box DOWN_BOX labeltype ENGRAVED_LABEL
+        } {
+          Fl_Input form1_tab1_grapher_plot_filesource {
+            label {Plot file:}
+            xywh {540 510 225 25}
+            code1 {form1_tab1_grapher_plot_filesource->value( "fxgrapher.plt" );}
+          }
+          Fl_Button {} {
+            label {Edit Plot}
+            callback {// form1_tab1_grapher_plot_filesource
+
+if ( fexist( form1_tab1_grapher_plot_filesource->value() ) == 1 )
+  {
+        // form1_tab1_diffusion_filesource->value() 
+        char cmdi[PATH_MAX];
+        strncpy( cmdi , " screen -d -m flnotepad  "  , PATH_MAX );
+        strncat( cmdi , " " , PATH_MAX - strlen( cmdi ) -1 );
+        strncat( cmdi , " \\""  , PATH_MAX - strlen( cmdi ) -1 );
+        strncat( cmdi , form1_tab1_grapher_plot_filesource->value() , PATH_MAX - strlen( cmdi ) -1 );
+        strncat( cmdi , "\\" "  , PATH_MAX - strlen( cmdi ) -1 );
+        strncat( cmdi , " " , PATH_MAX - strlen( cmdi ) -1 );
+        system( cmdi ); 
+   }
+   
+ //   plot [-10:10] [-5:5]  x**2, x**3, x , 0}
+            xywh {480 555 120 30}
+          }
+          Fl_Button {} {
+            label {View Plot}
+            callback {if ( fexist( form1_tab1_grapher_plot_filesource->value() ) == 1 )
+  {
+        // form1_tab1_diffusion_filesource->value() 
+        char cmdi[PATH_MAX];
+        strncpy( cmdi , "  screen -d -m  gnuplot  -p    "  , PATH_MAX );
+        strncat( cmdi , " " , PATH_MAX - strlen( cmdi ) -1 );
+        strncat( cmdi , " \\""  , PATH_MAX - strlen( cmdi ) -1 );
+        strncat( cmdi , form1_tab1_grapher_plot_filesource->value() , PATH_MAX - strlen( cmdi ) -1 );
+        strncat( cmdi , "\\" "  , PATH_MAX - strlen( cmdi ) -1 );
+        strncat( cmdi , " " , PATH_MAX - strlen( cmdi ) -1 );
+        system( cmdi ); 
+   }}
+            xywh {480 590 120 30}
+          }
+          Fl_Button {} {
+            label {Close all plots}
+            callback {// form1_tab1_diffusion_filesource->value() 
+        char cmdi[PATH_MAX];
+     
+        system( " pkill gnuplot " );}
+            xywh {480 625 120 30}
+          }
+        }
+        Fl_Group {} {
+          label Graph open
+          xywh {45 155 750 280} box DOWN_BOX labeltype ENGRAVED_LABEL
+        } {
+          Fl_Button {} {
+            label {&Plot Graphs}
+            callback {FILE *fp6;
+
+fp6 = fopen( form1_tab1_grapher_plot_filesource->value() , "wb+");
+
+  fputs( "\\n" , fp6);
+  //fputs( "   plot [-10:10] [-5:5]  x**2, x**3, x , 0 ;\\n" , fp6);
+  //  fputs( "   plot [-10:10] [-5:5]  " , fp6);
+  
+  if ( fxgrapher_mode_x11_driver_on->value( ) == 1 ) 
+  {
+        fputs( "   set termin x11   " , fp6);
+        fputs( "  \\n   " , fp6);
+        // x11 wxt and qt 
+  }
+  
+  
+  fputs( "   plot   " , fp6);
+  fputs( form1_tab1_grapher_xrange->value(), fp6 );
+  fputs( " " , fp6);
+  fputs( form1_tab1_grapher_yrange->value(), fp6 );
+  fputs( " " , fp6);
+
+
+  if ( fx_check_active_fx->value(  ) == 1 )
+  {
+     fputs( form1_tab1_grapher_function_fx->value( ) , fp6);
+  }
+  
+  if ( fx_check_active_gx->value(  ) == 1 )
+  {
+     if ( fx_check_active_fx->value(  ) == 1 )  fputs( " , " , fp6);
+     fputs( form1_tab1_grapher_function_gx->value( ) , fp6);
+  }
+
+  if ( fx_check_active_hx->value(  ) == 1 )
+  {
+      if ( fx_check_active_gx->value(  ) == 1 )  fputs( " , " , fp6);
+      fputs( form1_tab1_grapher_function_hx->value( ) , fp6);
+  }
+  fputs( " ;\\n " , fp6);
+  
+  fputs( "\\n" , fp6);
+  fputs( "   pause -1 ;\\n" , fp6);
+  fputs( "\\n" , fp6);
+
+fclose( fp6 );
+ 
+
+if ( fexist( form1_tab1_grapher_plot_filesource->value() ) == 1 )
+  {
+        // form1_tab1_diffusion_filesource->value() 
+        char cmdi[PATH_MAX];
+        strncpy( cmdi , "  screen -d -m  gnuplot  -p    "  , PATH_MAX );
+        strncat( cmdi , " " , PATH_MAX - strlen( cmdi ) -1 );
+        strncat( cmdi , " \\""  , PATH_MAX - strlen( cmdi ) -1 );
+        strncat( cmdi , form1_tab1_grapher_plot_filesource->value() , PATH_MAX - strlen( cmdi ) -1 );
+        strncat( cmdi , "\\" "  , PATH_MAX - strlen( cmdi ) -1 );
+        strncat( cmdi , " " , PATH_MAX - strlen( cmdi ) -1 );
+        system( cmdi ); 
+   }}
+            xywh {55 380 595 45} labelfont 1
+          }
+          Fl_Input form1_tab1_grapher_function_fx {
+            label {f(x)}
+            xywh {85 175 660 25}
+            code2 {form1_tab1_grapher_function_fx->value( "x**2" );}
+          }
+          Fl_Input form1_tab1_grapher_function_gx {
+            label {g(x)}
+            xywh {85 215 660 25}
+            code2 {form1_tab1_grapher_function_gx->value( "x**3" );}
+          }
+          Fl_Input form1_tab1_grapher_function_hx {
+            label {h(x)}
+            xywh {85 255 660 25}
+            code2 {form1_tab1_grapher_function_hx->value( "0" );}
+          }
+          Fl_Check_Button fx_check_active_fx {
+            xywh {755 175 25 25} down_box DOWN_BOX
+          }
+          Fl_Check_Button fx_check_active_gx {
+            xywh {755 215 25 25} down_box DOWN_BOX
+          }
+          Fl_Check_Button fx_check_active_hx {
+            xywh {755 255 25 25} down_box DOWN_BOX
+          }
+          Fl_Button {} {
+            label {Reset funcs}
+            callback {FILE *fp6;
+
+fp6 = fopen( form1_tab1_grapher_plot_filesource->value() , "wb+");
+
+  fputs( "\\n" , fp6);
+  fputs( "   plot [-10:10] [-5:5]  x**2, x**3, x , 0 ;\\n" , fp6);
+  fputs( "\\n" , fp6);
+
+  fputs( "\\n" , fp6);
+  fputs( "   pause -1 ;\\n" , fp6);
+  fputs( "\\n" , fp6);
+
+fclose( fp6 );
+
+form1_tab1_grapher_function_fx->value( " x**2" );
+form1_tab1_grapher_function_gx->value( " x**3" );
+form1_tab1_grapher_function_hx->value( " 0" );}
+            xywh {680 380 105 45}
+          }
+          Fl_Box {} {
+            label {Gnu math formalism}
+            xywh {115 350 25 25}
+          }
+        }
+        Fl_Group {} {
+          label Range open
+          xywh {45 495 395 180} box DOWN_BOX labeltype ENGRAVED_LABEL
+        } {
+          Fl_Input form1_tab1_grapher_xrange {
+            label {X range}
+            xywh {135 510 225 25}
+            code1 {form1_tab1_grapher_xrange->value( "[-10:10]" );}
+          }
+          Fl_Input form1_tab1_grapher_yrange {
+            label {Y range}
+            xywh {135 545 225 25}
+            code1 {form1_tab1_grapher_yrange->value( "[-5:5]" );}
+          }
+          Fl_Button {} {
+            label CA
+            callback {form1_tab1_grapher_xrange->value( " " );
+
+form1_tab1_grapher_yrange->value( " " );}
+            xywh {55 595 90 25}
+          }
+          Fl_Button {} {
+            label Default
+            callback {form1_tab1_grapher_xrange->value( "[-10:10]" );
+
+form1_tab1_grapher_yrange->value( "[-5:5]" );}
+            xywh {150 595 90 25}
+          }
+          Fl_Button {} {
+            label {[-10:10]}
+            callback {form1_tab1_grapher_xrange->value( "[-10:10]" );
+
+form1_tab1_grapher_yrange->value( "[-10:10]" );}
+            xywh {245 595 90 25}
+          }
+          Fl_Button {} {
+            label {X [0:1000]}
+            callback {form1_tab1_grapher_xrange->value( "[0:1000]" );
+form1_tab1_grapher_yrange->value( " " );}
+            xywh {340 595 90 25}
+          }
+          Fl_Button {} {
+            label CA
+            callback {form1_tab1_grapher_xrange->value( " " );}
+            xywh {360 510 30 25}
+          }
+          Fl_Button {} {
+            label CA
+            callback {form1_tab1_grapher_yrange->value( " " );}
+            xywh {360 545 30 25}
+          }
+          Fl_Check_Button fxgrapher_mode_x11_driver_on {
+            label {Plot driver with X11 Library}
+            xywh {55 635 25 25} down_box DOWN_BOX
+            code1 {fxgrapher_mode_x11_driver_on->value( 0 );}
+          }
+        }
+      }
+      Fl_Group {} {
+        label eCALC open
+        xywh {40 105 780 605} hide
+      } {
+        Fl_Browser browser1 {
+          label { }
+          xywh {40 225 770 430}
+          code1 {browser1->type( FL_HOLD_BROWSER  );}
+        }
+        Fl_Input fxgrapher_calcpad_formula1 {
+          callback {calc_ecalc_enter();}
+          xywh {40 165 720 45} when 8
+        }
+        Fl_Box {} {
+          label {Calculation:}
+          xywh {380 130 25 25} labeltype ENGRAVED_LABEL
+        }
+        Fl_Button {} {
+          label {[CA] Clear}
+          callback {browser1->clear();}
+          xywh {40 665 120 25}
+        }
+        Fl_Button {} {
+          label {Cop&y Fx}
+          callback {if ( browser1->value() >= 1) 
+     form1_tab1_grapher_function_fx->value(  browser1->text( browser1->value()) );}
+          xywh {165 665 120 25}
+        }
+        Fl_Button {} {
+          label {Edit log}
+          callback {system( " screen -d -m flnotepad /tmp/fxgrapher.log " );}
+          xywh {415 665 120 25}
+        }
+        Fl_Button {} {
+          label Enter
+          callback {calc_ecalc_enter();}
+          xywh {770 165 40 45}
+        }
+        Fl_Button {} {
+          label {Cop&y eCalc}
+          callback {if ( browser1->value() >= 1) 
+     fxgrapher_calcpad_formula1->value(  browser1->text( browser1->value()) );}
+          xywh {290 665 120 25}
+        }
+        Fl_Box {} {
+          label {Tiny math formalism}
+          xywh {720 660 25 25}
+        }
+      }
+      Fl_Group {} {
+        label Notes open
+        xywh {35 105 785 605} hide
+      } {
+        Fl_Group {} {
+          label Browser open
+          xywh {45 260 370 280} box DOWN_BOX labeltype ENGRAVED_LABEL
+        } {
+          Fl_Browser browser2 {
+            callback {printf( "Click\\n" );
+
+
+if (  browser2->value() >= 1)
+{
+
+  input_var_macro_filename->value(  browser2->text(   browser2->value() ) ); 
+ 
+  browser_macro_filecontent->clear();
+
+  int fetchi;
+  FILE *fp5;
+  FILE *fp6;
+  char fetchline[PATH_MAX];
+  char fetchlinetmp[PATH_MAX];
+  char filein[PATH_MAX];
+  strncpy( filein,   input_var_macro_filename->value(), PATH_MAX );
+  
+         
+    fp6 = fopen( filein , "rb");
+    while( !feof(fp6) ) 
+    {
+          fgets(fetchlinetmp, PATH_MAX, fp6); 
+          strncpy( fetchline, "" , PATH_MAX );
+          for( fetchi = 0 ; ( fetchi <= strlen( fetchlinetmp ) ); fetchi++ )
+            if ( fetchlinetmp[ fetchi ] != '\\n' )
+                 fetchline[fetchi]=fetchlinetmp[fetchi];
+                 
+                if ( !feof( fp6 ) ) 
+                {
+                    browser_macro_filecontent->add( fetchline );    
+                }
+
+     }
+     fclose( fp6 );
+}}
+            xywh {65 300 330 230}
+            code1 {browser2->type(FL_HOLD_BROWSER);}
+          }
+          Fl_Input input_var_macro_filename {
+            label Filename
+            xywh {130 270 265 25}
+          }
+        }
+        Fl_Group {} {
+          label {File operation} open
+          xywh {45 140 370 95} box DOWN_BOX labeltype ENGRAVED_LABEL
+        } {
+          Fl_Button {} {
+            label Browse
+            callback {browser2->clear();
+	DIR *dirp;
+	struct dirent *dp;
+	dirp = opendir( "." );
+	while  ((dp = readdir( dirp )) != NULL ) 
+	{
+		if (  strcmp( dp->d_name, "." ) != 0 )
+		if (  strcmp( dp->d_name, ".." ) != 0 )
+                {
+                    if ( ( strstr( dp->d_name, ".txt" ) != 0 )
+                    || ( strstr( dp->d_name, ".ini" ) != 0 )   
+                      || ( strstr( dp->d_name, ".ddb" ) != 0 )     //tdb
+                        || ( strstr( dp->d_name, ".log" ) != 0 )  ) 
+                    {
+			printf( "%s\\n", dp->d_name );
+ 		        browser2->add(  dp->d_name  );
+ 		     }
+                }
+	}
+	closedir( dirp );}
+            xywh {55 160 120 25}
+          }
+          Fl_Button {} {
+            label {&New}
+            callback {char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  flnotepad  " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
+  system(  charo );}
+            xywh {270 160 75 25}
+          }
+          Fl_Button {} {
+            label {&View}
+            callback {char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  flview   " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
+  system(  charo );}
+            xywh {350 160 50 25}
+          }
+          Fl_Button {} {
+            label {&Edit}
+            callback {char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  fledit  " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
+  system(  charo );}
+            xywh {350 190 50 25}
+          }
+          Fl_Button {} {
+            label dos2unix
+            callback {char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " dos2unix   " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
+  system(  charo );}
+            xywh {270 190 75 25}
+          }
+        }
+        Fl_Group {} {
+          label {File description} open
+          xywh {430 140 335 400} box DOWN_BOX labeltype ENGRAVED_LABEL resizable
+        } {
+          Fl_Browser browser_macro_filecontent {
+            xywh {445 155 305 345}
+            code0 {browser_macro_filecontent->type(FL_HOLD_BROWSER);}
+          }
+          Fl_Button {} {
+            label {Copy to eCalc}
+            callback {printf( "Click\\n" );
+
+
+if (  browser2->value() >= 1)
+{
+
+  input_var_macro_filename->value(  browser2->text(   browser2->value() ) ); 
+ 
+  browser1->clear();
+
+  int fetchi;
+  FILE *fp5;
+  FILE *fp6;
+  char fetchline[PATH_MAX];
+  char fetchlinetmp[PATH_MAX];
+  char filein[PATH_MAX];
+  strncpy( filein,   input_var_macro_filename->value(), PATH_MAX );
+  
+         
+    fp6 = fopen( filein , "rb");
+    while( !feof(fp6) ) 
+    {
+          fgets(fetchlinetmp, PATH_MAX, fp6); 
+          strncpy( fetchline, "" , PATH_MAX );
+          for( fetchi = 0 ; ( fetchi <= strlen( fetchlinetmp ) ); fetchi++ )
+            if ( fetchlinetmp[ fetchi ] != '\\n' )
+                 fetchline[fetchi]=fetchlinetmp[fetchi];
+                 
+                if ( !feof( fp6 ) ) 
+                {
+                    browser1->add( fetchline );    
+                }
+
+     }
+     fclose( fp6 );
+}}
+            xywh {445 505 120 25}
+          }
+        }
+      }
+      Fl_Group {} {
+        label {Data Plot} open
+        xywh {45 105 775 605} hide
+      } {
+        Fl_Group {} {
+          label Browser open
+          xywh {45 265 370 240} box DOWN_BOX labeltype ENGRAVED_LABEL
+        } {
+          Fl_Browser tab5_browser2 {
+            callback {printf( "Click\\n" );
+
+
+if (  tab5_browser2->value() >= 1)
+{
+
+  tab5_input_var_macro_filename->value(  tab5_browser2->text(   tab5_browser2->value() ) ); 
+ 
+  tab5_browser_macro_filecontent->clear();
+
+  int fetchi;
+  FILE *fp5;
+  FILE *fp6;
+  char fetchline[PATH_MAX];
+  char fetchlinetmp[PATH_MAX];
+  char filein[PATH_MAX];
+  strncpy( filein,   tab5_input_var_macro_filename->value(), PATH_MAX );
+  
+         
+    fp6 = fopen( filein , "rb");
+    while( !feof(fp6) ) 
+    {
+          fgets(fetchlinetmp, PATH_MAX, fp6); 
+          strncpy( fetchline, "" , PATH_MAX );
+          for( fetchi = 0 ; ( fetchi <= strlen( fetchlinetmp ) ); fetchi++ )
+            if ( fetchlinetmp[ fetchi ] != '\\n' )
+                 fetchline[fetchi]=fetchlinetmp[fetchi];
+                 
+                if ( !feof( fp6 ) ) 
+                {
+                    tab5_browser_macro_filecontent->add( fetchline );    
+                }
+
+     }
+     fclose( fp6 );
+}}
+            xywh {65 305 330 190}
+            code1 {tab5_browser2->type(FL_HOLD_BROWSER);}
+          }
+          Fl_Input tab5_input_var_macro_filename {
+            label Filename
+            xywh {130 275 265 25}
+          }
+        }
+        Fl_Group {} {
+          label {File operation} open
+          xywh {45 145 370 95} box DOWN_BOX labeltype ENGRAVED_LABEL
+        } {
+          Fl_Button {} {
+            label Browse
+            callback {tab5_browser2->clear();
+	DIR *dirp;
+	struct dirent *dp;
+	dirp = opendir( "." );
+	while  ((dp = readdir( dirp )) != NULL ) 
+	{
+		if (  strcmp( dp->d_name, "." ) != 0 )
+		if (  strcmp( dp->d_name, ".." ) != 0 )
+                {
+                    if ( ( strstr( dp->d_name, ".txt" ) != 0 )
+                    || ( strstr( dp->d_name, ".ini" ) != 0 )   
+                    || ( strstr( dp->d_name, ".dat" ) != 0 )   
+                    || ( strstr( dp->d_name, "Makefile" ) != 0 )  
+                    || ( strstr( dp->d_name, ".csv" ) != 0 ) 
+                      || ( strstr( dp->d_name, ".ddb" ) != 0 )     //tdb
+                        || ( strstr( dp->d_name, ".log" ) != 0 )  ) 
+                    {
+			printf( "%s\\n", dp->d_name );
+ 		        tab5_browser2->add(  dp->d_name  );
+ 		     }
+                }
+	}
+	closedir( dirp );}
+            xywh {55 165 95 25}
+          }
+          Fl_Button {} {
+            label {&New}
+            callback {char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  flnotepad  " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , tab5_input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
+  system(  charo );}
+            xywh {270 165 75 25}
+          }
+          Fl_Button {} {
+            label {&View}
+            callback {char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  flview   " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , tab5_input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
+  system(  charo );}
+            xywh {350 165 50 25}
+          }
+          Fl_Button {} {
+            label {&Edit}
+            callback {char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  fledit  " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , tab5_input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
+  system(  charo );}
+            xywh {350 195 50 25}
+          }
+          Fl_Button {} {
+            label dos2unix
+            callback {char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " dos2unix   " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , tab5_input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
+  system(  charo );}
+            xywh {270 195 75 25}
+          }
+        }
+        Fl_Group {} {
+          label {File description} open
+          xywh {430 145 335 360} box DOWN_BOX labeltype ENGRAVED_LABEL resizable
+        } {
+          Fl_Browser tab5_browser_macro_filecontent {
+            xywh {445 160 305 330}
+            code0 {tab5_browser_macro_filecontent->type(FL_HOLD_BROWSER);}
+          }
+        }
+        Fl_Group {} {
+          label {Default plot} open
+          xywh {45 530 720 165} box DOWN_BOX labeltype ENGRAVED_LABEL
+        } {
+          Fl_Button {} {
+            label {Plot data file}
+            callback {// gnuplot ... file:  plot "5h-Loesung.csv" u 1:4
+
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , "    gnuplot -p  -e    " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " '  "  , PATH_MAX -  strlen( charo ) -1 ); 
+  
+  if ( tab5_dataplot_mode_x11_driver_on->value( ) == 1 )
+  {
+     strncat( charo , "  set termin x11 ;  " , PATH_MAX -  strlen( charo ) -1 );
+  }
+  
+  strncat( charo , "  plot " , PATH_MAX -  strlen( charo ) -1 );
+  
+  strncat( charo , tab6_form1_tab1_grapher_xrange->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+
+  strncat( charo , tab6_form1_tab1_grapher_yrange->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  
+  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , tab5_input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\\"  u   " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , tab5_dataplot_colx->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , ":"  , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , tab5_dataplot_coly->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " ;   "  , PATH_MAX -  strlen( charo ) -1 ); 
+  strncat( charo , " '  "  , PATH_MAX -  strlen( charo ) -1 ); 
+  
+  printf( "Command: %s \\n" , charo );
+     
+  system(  charo );}
+            xywh {55 540 120 35}
+          }
+          Fl_Input tab5_dataplot_colx {
+            label {Col X}
+            xywh {230 545 35 25}
+            code1 {tab5_dataplot_colx->value( "2" );}
+          }
+          Fl_Input tab5_dataplot_coly {
+            label {Col Y}
+            xywh {315 545 35 25}
+            code0 {tab5_dataplot_coly->value( "3" );}
+          }
+          Fl_Check_Button tab5_dataplot_mode_x11_driver_on {
+            label {Plot driver with X11 Library}
+            xywh {460 625 25 25} down_box DOWN_BOX
+            code1 {tab5_dataplot_mode_x11_driver_on->value( 0 );}
+          }
+          Fl_Button {} {
+            label {Close all plots}
+            callback {// form1_tab1_diffusion_filesource->value() 
+        char cmdi[PATH_MAX];
+     
+        system( " pkill gnuplot " );}
+            xywh {55 590 120 35}
+          }
+          Fl_Input tab6_form1_tab1_grapher_xrange {
+            label {X range}
+            xywh {515 545 225 25}
+            code1 {tab6_form1_tab1_grapher_xrange->value( "[-10:10]" );}
+          }
+          Fl_Input tab6_form1_tab1_grapher_yrange {
+            label {Y range}
+            xywh {515 580 225 25}
+            code1 {tab6_form1_tab1_grapher_yrange->value( "[-10:10]" );}
+          }
+        }
+      }
+      Fl_Group {} {
+        label {Make Plot} open
+        xywh {45 105 775 605} hide
+      } {
+        Fl_Group {} {
+          label {Advanced data plot} open
+          xywh {55 150 725 465} box DOWN_BOX labeltype ENGRAVED_LABEL
+        } {
+          Fl_Button {} {
+            label {Create data and plot}
+            callback {// gnuplot ... file:  plot "5h-Loesung.csv" u 1:4
+
+
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , "   calctwocol    " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , "    "  , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , tab7_form1_x_min->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , tab7_form1_x_max->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , tab7_form1_x_step->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  
+  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , tab7_form1_func_f1->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
+
+  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , tab7_form1_func_f2->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\\"   >  " , PATH_MAX -  strlen( charo ) -1 );
+
+  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , tab7_input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\\"    " , PATH_MAX -  strlen( charo ) -1 );
+ 
+  printf( "Command: %s \\n" , charo );
+  system(  charo );
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , "    gnuplot -p  -e    " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " '  "  , PATH_MAX -  strlen( charo ) -1 ); 
+  
+  if ( tab7_dataplot_mode_x11_driver_on->value( ) == 1 )
+  {
+     strncat( charo , "  set termin x11 ;  " , PATH_MAX -  strlen( charo ) -1 );
+  }
+  
+  //tab7_form1_tab1_grapher_plot_header
+  strncat( charo , tab7_form1_tab1_grapher_plot_header->value()  , PATH_MAX -  strlen( charo ) -1 );
+  
+  strncat( charo , "  plot " , PATH_MAX -  strlen( charo ) -1 );
+  
+  strncat( charo , tab7_form1_tab1_grapher_xrange->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+
+  strncat( charo , tab7_form1_tab1_grapher_yrange->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  
+  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , tab7_input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\\"  u   " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , tab7_dataplot_colx->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , ":"  , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , tab7_dataplot_coly->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " ;   "  , PATH_MAX -  strlen( charo ) -1 ); 
+  strncat( charo , " '  "  , PATH_MAX -  strlen( charo ) -1 ); 
+  
+  printf( "Command: %s \\n" , charo );
+     
+  system(  charo );}
+            xywh {405 440 160 35}
+          }
+          Fl_Input tab7_dataplot_colx {
+            label {Col X}
+            xywh {150 515 35 25}
+            code1 {tab7_dataplot_colx->value( "1" );}
+          }
+          Fl_Input tab7_dataplot_coly {
+            label {Col Y}
+            xywh {235 515 35 25}
+            code0 {tab7_dataplot_coly->value( "2" );}
+          }
+          Fl_Button {} {
+            label {Close all plots}
+            callback {// form1_tab1_diffusion_filesource->value() 
+        char cmdi[PATH_MAX];
+     
+        system( " pkill gnuplot " );}
+            xywh {405 520 160 35}
+          }
+          Fl_Input tab7_form1_x_min {
+            label {T min}
+            xywh {150 170 225 25}
+          }
+          Fl_Input tab7_form1_x_max {
+            label {T max}
+            xywh {150 205 225 25}
+          }
+          Fl_Input tab7_form1_x_step {
+            label {T step}
+            xywh {150 240 225 25}
+          }
+          Fl_Input tab7_form1_func_f1 {
+            label {Func f(T)}
+            xywh {150 280 605 25}
+          }
+          Fl_Input tab7_form1_func_f2 {
+            label {Func g(T)}
+            xywh {150 315 605 25}
+          }
+          Fl_Check_Button tab7_dataplot_mode_x11_driver_on {
+            label {Plot driver with X11 Library}
+            xywh {150 545 25 25} down_box DOWN_BOX
+            code1 {tab7_dataplot_mode_x11_driver_on->value( 0 );}
+          }
+          Fl_Input tab7_form1_tab1_grapher_xrange {
+            label {X range}
+            xywh {150 445 225 25}
+            code1 {tab7_form1_tab1_grapher_xrange->value( "[-10:10]" );}
+          }
+          Fl_Input tab7_form1_tab1_grapher_yrange {
+            label {Y range}
+            xywh {150 480 225 25}
+            code1 {tab7_form1_tab1_grapher_yrange->value( "[-10:10]" );}
+          }
+          Fl_Input tab7_input_var_macro_filename {
+            label Data
+            xywh {150 395 495 25}
+            code1 {tab7_input_var_macro_filename->value( "fxgrapher.dat" );}
+          }
+          Fl_Button {} {
+            label {&View}
+            callback {char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  flview   " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , tab7_input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
+  system(  charo );}
+            xywh {650 395 50 25}
+          }
+          Fl_Button {} {
+            label {&Edit}
+            callback {char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  fledit  " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , tab7_input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
+  system(  charo );}
+            xywh {705 395 50 25}
+          }
+          Fl_Button {} {
+            label {View Plot}
+            callback {char charo[PATH_MAX];
+  
+  
+ 
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , "    gnuplot -p  -e    " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " '  "  , PATH_MAX -  strlen( charo ) -1 ); 
+  
+  if ( tab7_dataplot_mode_x11_driver_on->value( ) == 1 )
+  {
+     strncat( charo , "  set termin x11 ;  " , PATH_MAX -  strlen( charo ) -1 );
+  }
+  
+  strncat( charo , "  plot " , PATH_MAX -  strlen( charo ) -1 );
+  
+  strncat( charo , tab7_form1_tab1_grapher_xrange->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+
+  strncat( charo , tab7_form1_tab1_grapher_yrange->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  
+  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , tab7_input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\\"  u   " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , tab7_dataplot_colx->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , ":"  , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , tab7_dataplot_coly->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " ;   "  , PATH_MAX -  strlen( charo ) -1 ); 
+  strncat( charo , " '  "  , PATH_MAX -  strlen( charo ) -1 ); 
+  
+  printf( "Command: %s \\n" , charo );
+     
+  system(  charo );}
+            xywh {405 480 160 35}
+          }
+          Fl_Input tab7_form1_tab1_grapher_plot_header {
+            label {Plot header}
+            xywh {150 575 610 25}
+          }
+          Fl_Input tab7_form1_func_f3 {
+            label {Func h(T)}
+            xywh {150 350 605 25}
+          }
+        }
+        Fl_Box {} {
+          label {Tiny math formalism}
+          xywh {730 670 25 25}
+        }
+      }
+      Fl_Group {} {
+        label Const open
+        xywh {45 105 775 605} hide
+      } {
+        Fl_Browser tab3_browser2 {
+          label Constant
+          xywh {65 220 705 305} labeltype ENGRAVED_LABEL
+          code1 {tab3_browser2->type( FL_HOLD_BROWSER  );}
+        }
+        Fl_Button {} {
+          label Physics
+          callback {char str[PATH_MAX];
+  
+  tab3_browser2->clear();
+
+  //snprintf( str , sizeof( str ), "PI   Eng: %.3E   Frac:%f", te_interp(  "PI" , 0 ), te_interp(  "PI" , 0 ) ); 
+  //browser2->add( str );
+
+
+
+  snprintf( str , sizeof( str ), "R    Eng: %.3E   Frac:%g J.K^-1.mol^-1", 8.31446261815324, 8.31446261815324  );
+  tab3_browser2->add( str );
+  
+  snprintf( str , sizeof( str ), "PI   Eng: %.3E   Frac:%g", M_PI, M_PI  );
+  tab3_browser2->add( str );
+  
+//  [°C] + 273.16 = [K] 
+
+  tab3_browser2->add( "[°C] + 273.16 = [K] " );}
+          xywh {65 145 115 40}
+        }
+        Fl_Button {} {
+          label {Cop&y to eCalc}
+          callback {if ( tab3_browser2->value() >= 1) 
+
+     fxgrapher_calcpad_formula1->value(  tab3_browser2->text( tab3_browser2->value()) );}
+          xywh {65 530 120 25}
+        }
+      }
+    }
+    Fl_Button {} {
+      label {&Close}
+      callback {exit( 0 );}
+      xywh {705 715 115 25} labelfont 1
+    }
+    Fl_Output win1_statusbar_content {
+      xywh {20 715 680 25} color 49
+      code1 {win1_statusbar_content->value( "" );}
+    }
+  }
+}
+
+Function {main( int argc, char *argv[])} {open return_type int
+} {
+  code {printf( " == FLTK == \\n" );
+
+  
+  if ( argc == 2)
+  if ( strcmp( argv[1] , "" ) !=  0 )
+  {
+          chdir( argv[ 1 ] );
+  }
+
+
+
+
+  
+
+  make_window();
+  
+ 	browser1->type(FL_HOLD_BROWSER);
+	browser1->add("============");  
+	browser1->add(" CALCULATOR ");    
+	browser1->add("============");
+	
+	fx_check_active_fx->value( 1 );
+	fx_check_active_gx->value( 1 );
+	fx_check_active_hx->value( 1 );
+	
+   
+  win1->show();
+
+  Fl::run();} {}
+}
+
+Function {calc_ecalc_enter()} {open
+} {
+  code {char str[PATH_MAX]; 
+
+        FILE *fp;
+ 	
+        fp = fopen( "/tmp/fxgrapher.log" , "ab+" );
+
+        fputs( fxgrapher_calcpad_formula1->value()  , fp);
+        	
+        fputs( "\\n"  , fp);
+	browser1->add( fxgrapher_calcpad_formula1->value() );
+	
+	snprintf( str , sizeof( str ), "Approx: %f", te_interp(  fxgrapher_calcpad_formula1->value(), 0 ) ); 
+	browser1->add( str );
+        fputs( str  , fp);	
+        fputs( "\\n"  , fp);
+	
+        snprintf( str , sizeof( str ), "Eng: %.3E", te_interp(  fxgrapher_calcpad_formula1->value(), 0 ) ); 
+	browser1->add( str );
+        fputs( str  , fp);	
+        fputs( "\\n"  , fp);
+	
+        fclose( fp );} {}
+}
