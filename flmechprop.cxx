@@ -512,7 +512,7 @@ static void cb_Quit(Fl_Button*, void*) {
 Fl_Output *win1_statusbar_content=(Fl_Output *)0;
 
 Fl_Double_Window* make_window() {
-  { win1 = new Fl_Double_Window(835, 750, "FLWORKER");
+  { win1 = new Fl_Double_Window(835, 750, "FLTK");
     win1->box(FL_DOWN_BOX);
     { Fl_Box* o = new Fl_Box(20, 15, 800, 40, "Mech. Prop. Estimation");
       o->box(FL_ENGRAVED_BOX);

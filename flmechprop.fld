@@ -63,7 +63,7 @@ as grain size, dislocation density, ... composition...
 Function {make_window()} {open
 } {
   Fl_Window win1 {
-    label FLWORKER
+    label FLTK
     xywh {688 121 835 750} type Double box DOWN_BOX resizable visible
   } {
     Fl_Box {} {
