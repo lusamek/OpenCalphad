@@ -1,0 +1,923 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0304
+header_name {.h}
+code_name {.cxx}
+decl {\#include <stdio.h>} {private local
+}
+
+decl {\#include <stdlib.h>} {private local
+}
+
+decl {\#include <string.h>} {private local
+}
+
+decl {\#include <time.h>} {private local
+}
+
+decl {\#include <stdlib.h>} {private local
+}
+
+decl {\#include <unistd.h>} {private local
+}
+
+decl {\#include <dirent.h>} {private local
+}
+
+decl {\#include <limits.h>} {private local
+}
+
+decl {\#include <stdio.h>} {private local
+}
+
+decl {\#include <stdlib.h>} {private local
+}
+
+decl {\#include "headerf.h"} {private local
+}
+
+decl {double max_ys = 0;} {private local
+}
+
+decl {double max_rm = 0;} {private local
+}
+
+decl {double max_au = 0;} {private local
+}
+
+Function {mycomment()} {open
+} {
+  comment {
+Comment:
+========
+For Edu
+
+This model is destined to use the mixture law.
+
+The model does not include material parameters, such 
+as grain size, dislocation density, ... composition...
+
+} {in_source in_header
+  }
+}
+
+Function {make_window()} {open
+} {
+  Fl_Window win1 {
+    label FLWORKER
+    xywh {688 121 835 750} type Double box DOWN_BOX resizable visible
+  } {
+    Fl_Box {} {
+      label {Mech. Prop. Estimation}
+      xywh {20 15 800 40} box ENGRAVED_BOX labelfont 1
+    }
+    Fl_Tabs {} {
+      label {Mixture Law: User Parameter}
+      xywh {20 80 800 630}
+    } {
+      Fl_Group {} {
+        label {Setup Constituents} open selected
+        xywh {45 120 775 590}
+      } {
+        Fl_Group {} {open
+          xywh {45 140 750 365} box DOWN_BOX
+        } {
+          Fl_Input cell_mech_1_1 {
+            label {Ferrit (20ppm)}
+            xywh {250 205 95 25}
+          }
+          Fl_Input cell_mech_1_2 {
+            xywh {355 205 95 25}
+          }
+          Fl_Input cell_mech_1_3 {
+            xywh {460 205 95 25}
+          }
+          Fl_Input cell_mech_3_1 {
+            label {Ferrit (Fe-Mn)}
+            xywh {250 275 95 25}
+          }
+          Fl_Input cell_mech_3_2 {
+            xywh {355 275 95 25}
+          }
+          Fl_Input cell_mech_3_3 {
+            xywh {460 275 95 25}
+          }
+          Fl_Input cell_mech_4_1 {
+            label Pearlite
+            xywh {250 310 95 25}
+          }
+          Fl_Input cell_mech_4_2 {
+            xywh {355 310 95 25}
+          }
+          Fl_Input cell_mech_4_3 {
+            xywh {460 310 95 25}
+          }
+          Fl_Input cell_mech_5_1 {
+            label {Bainit (0,1%C)}
+            xywh {250 345 95 25}
+          }
+          Fl_Input cell_mech_5_2 {
+            xywh {355 345 95 25}
+          }
+          Fl_Input cell_mech_5_3 {
+            xywh {460 345 95 25}
+          }
+          Fl_Input cell_mech_6_1 {
+            label Austenite
+            xywh {250 380 95 25}
+          }
+          Fl_Input cell_mech_6_2 {
+            xywh {355 380 95 25}
+          }
+          Fl_Input cell_mech_6_3 {
+            xywh {460 380 95 25}
+          }
+          Fl_Input cell_mech_7_1 {
+            label {Martensit (0,1%C)}
+            xywh {250 415 95 25}
+          }
+          Fl_Input cell_mech_7_2 {
+            xywh {355 415 95 25}
+          }
+          Fl_Input cell_mech_7_3 {
+            xywh {460 415 95 25}
+          }
+          Fl_Input cell_mech_8_2 {
+            xywh {355 450 95 25}
+          }
+          Fl_Input cell_mech_8_3 {
+            xywh {460 450 95 25}
+          }
+          Fl_Input cell_mech_8_1 {
+            label {Martensit (0,4%C)}
+            xywh {250 450 95 25}
+          }
+          Fl_Input cell_mech_2_1 {
+            label {Ferrit (0.2 %C)}
+            xywh {250 240 95 25}
+          }
+          Fl_Input cell_mech_2_2 {
+            xywh {355 240 95 25}
+          }
+          Fl_Input cell_mech_2_3 {
+            xywh {460 240 95 25}
+          }
+          Fl_Input cell_fraction_3 {
+            xywh {580 275 95 25}
+          }
+          Fl_Input cell_fraction_4 {
+            xywh {580 310 95 25}
+          }
+          Fl_Input cell_fraction_1 {
+            xywh {580 205 95 25}
+          }
+          Fl_Input cell_fraction_2 {
+            xywh {580 240 95 25}
+          }
+          Fl_Input cell_fraction_7 {
+            xywh {580 415 95 25}
+          }
+          Fl_Input cell_fraction_8 {
+            xywh {580 450 95 25}
+          }
+          Fl_Input cell_fraction_5 {
+            xywh {580 345 95 25}
+          }
+          Fl_Input cell_fraction_6 {
+            xywh {580 380 95 25}
+          }
+          Fl_Box {} {
+            label {YS, MPa}
+            xywh {280 184 32 16}
+          }
+          Fl_Box {} {
+            label {TS, MPa}
+            xywh {385 184 32 16}
+          }
+          Fl_Box {} {
+            label {Au, %}
+            xywh {485 184 32 16}
+          }
+          Fl_Box {} {
+            label {f, % (constituent)}
+            xywh {605 184 32 16}
+          }
+          Fl_Button {} {
+            label CA
+            callback {cell_fraction_2->value( "0" );
+void_user_calc_start1();}
+            xywh {680 240 30 25}
+          }
+          Fl_Button {} {
+            label CA
+            callback {cell_fraction_1->value( "0" );
+void_user_calc_start1();}
+            xywh {680 205 30 25}
+          }
+          Fl_Button {} {
+            label CA
+            callback {cell_fraction_3->value( "0" );
+void_user_calc_start1();}
+            xywh {680 275 30 25}
+          }
+          Fl_Button {} {
+            label CA
+            callback {cell_fraction_4->value( "0" );
+void_user_calc_start1();}
+            xywh {680 310 30 25}
+          }
+          Fl_Button {} {
+            label CA
+            callback {cell_fraction_5->value( "0" );
+void_user_calc_start1();}
+            xywh {680 345 30 25}
+          }
+          Fl_Button {} {
+            label CA
+            callback {cell_fraction_6->value( "0" );
+void_user_calc_start1();}
+            xywh {680 380 30 25}
+          }
+          Fl_Button {} {
+            label CA
+            callback {cell_fraction_7->value( "0" );
+void_user_calc_start1();}
+            xywh {680 415 30 25}
+          }
+          Fl_Button {} {
+            label CA
+            callback {cell_fraction_8->value( "0" );
+void_user_calc_start1();}
+            xywh {680 450 30 25}
+          }
+          Fl_Button {} {
+            label {+}
+            callback {int myvalue = atoi( cell_fraction_1->value( )); 
+char stringfoo[PATH_MAX]; 
+snprintf( stringfoo , sizeof( stringfoo ), "%d", myvalue + 5 );
+cell_fraction_1->value( stringfoo );
+
+
+
+void_user_calc_start1();}
+            xywh {715 205 30 25}
+          }
+          Fl_Button {} {
+            label {-}
+            callback {int myvalue = atoi( cell_fraction_1->value( )); 
+char stringfoo[PATH_MAX]; 
+snprintf( stringfoo , sizeof( stringfoo ), "%d", myvalue - 5 );
+cell_fraction_1->value( stringfoo );
+
+
+
+void_user_calc_start1();}
+            xywh {750 205 30 25}
+          }
+          Fl_Button {} {
+            label {+}
+            callback {int myvalue = atoi( cell_fraction_2->value( )); 
+char stringfoo[PATH_MAX]; 
+snprintf( stringfoo , sizeof( stringfoo ), "%d", myvalue + 5 );
+cell_fraction_2->value( stringfoo );
+
+
+
+void_user_calc_start1();}
+            xywh {715 240 30 25}
+          }
+          Fl_Button {} {
+            label {-}
+            callback {int myvalue = atoi( cell_fraction_2->value( )); 
+char stringfoo[PATH_MAX]; 
+snprintf( stringfoo , sizeof( stringfoo ), "%d", myvalue - 5 );
+cell_fraction_2->value( stringfoo );
+
+
+
+void_user_calc_start1();}
+            xywh {750 240 30 25}
+          }
+          Fl_Button {} {
+            label {+}
+            callback {int myvalue = atoi( cell_fraction_3->value( )); 
+char stringfoo[PATH_MAX]; 
+snprintf( stringfoo , sizeof( stringfoo ), "%d", myvalue + 5 );
+cell_fraction_3->value( stringfoo );
+
+void_user_calc_start1();}
+            xywh {715 275 30 25}
+          }
+          Fl_Button {} {
+            label {-}
+            callback {int myvalue = atoi( cell_fraction_3->value( )); 
+char stringfoo[PATH_MAX]; 
+snprintf( stringfoo , sizeof( stringfoo ), "%d", myvalue - 5 );
+cell_fraction_3->value( stringfoo );
+
+void_user_calc_start1();}
+            xywh {750 275 30 25}
+          }
+          Fl_Button {} {
+            label {+}
+            callback {int myvalue = atoi( cell_fraction_4->value( )); 
+char stringfoo[PATH_MAX]; 
+snprintf( stringfoo , sizeof( stringfoo ), "%d", myvalue + 5 );
+cell_fraction_4->value( stringfoo );
+
+void_user_calc_start1();}
+            xywh {715 310 30 25}
+          }
+          Fl_Button {} {
+            label {-}
+            callback {int myvalue = atoi( cell_fraction_4->value( )); 
+char stringfoo[PATH_MAX]; 
+snprintf( stringfoo , sizeof( stringfoo ), "%d", myvalue - 5 );
+cell_fraction_4->value( stringfoo );
+
+void_user_calc_start1();}
+            xywh {750 310 30 25}
+          }
+          Fl_Button {} {
+            label {+}
+            callback {int myvalue = atoi( cell_fraction_5->value( )); 
+char stringfoo[PATH_MAX]; 
+snprintf( stringfoo , sizeof( stringfoo ), "%d", myvalue + 5 );
+cell_fraction_5->value( stringfoo );
+
+void_user_calc_start1();}
+            xywh {715 345 30 25}
+          }
+          Fl_Button {} {
+            label {-}
+            callback {int myvalue = atoi( cell_fraction_5->value( )); 
+char stringfoo[PATH_MAX]; 
+snprintf( stringfoo , sizeof( stringfoo ), "%d", myvalue - 5 );
+cell_fraction_5->value( stringfoo );
+
+void_user_calc_start1();}
+            xywh {750 345 30 25}
+          }
+          Fl_Button {} {
+            label {+}
+            callback {int myvalue = atoi( cell_fraction_6->value( )); 
+char stringfoo[PATH_MAX]; 
+snprintf( stringfoo , sizeof( stringfoo ), "%d", myvalue + 5 );
+cell_fraction_6->value( stringfoo );
+
+void_user_calc_start1();}
+            xywh {715 380 30 25}
+          }
+          Fl_Button {} {
+            label {-}
+            callback {int myvalue = atoi( cell_fraction_6->value( )); 
+char stringfoo[PATH_MAX]; 
+snprintf( stringfoo , sizeof( stringfoo ), "%d", myvalue - 5 );
+cell_fraction_6->value( stringfoo );
+
+void_user_calc_start1();}
+            xywh {750 380 30 25}
+          }
+          Fl_Button {} {
+            label {+}
+            callback {int myvalue = atoi( cell_fraction_7->value( )); 
+char stringfoo[PATH_MAX]; 
+snprintf( stringfoo , sizeof( stringfoo ), "%d", myvalue + 5 );
+cell_fraction_7->value( stringfoo );
+
+void_user_calc_start1();}
+            xywh {715 415 30 25}
+          }
+          Fl_Button {} {
+            label {-}
+            callback {int myvalue = atoi( cell_fraction_7->value( )); 
+char stringfoo[PATH_MAX]; 
+snprintf( stringfoo , sizeof( stringfoo ), "%d", myvalue - 5 );
+cell_fraction_7->value( stringfoo );
+
+void_user_calc_start1();}
+            xywh {750 415 30 25}
+          }
+          Fl_Button {} {
+            label {+}
+            callback {int myvalue = atoi( cell_fraction_8->value( )); 
+char stringfoo[PATH_MAX]; 
+snprintf( stringfoo , sizeof( stringfoo ), "%d", myvalue + 5 );
+cell_fraction_8->value( stringfoo );
+
+void_user_calc_start1();}
+            xywh {715 450 30 25}
+          }
+          Fl_Button {} {
+            label {-}
+            callback {int myvalue = atoi( cell_fraction_8->value( )); 
+char stringfoo[PATH_MAX]; 
+snprintf( stringfoo , sizeof( stringfoo ), "%d", myvalue - 5 );
+cell_fraction_8->value( stringfoo );
+
+void_user_calc_start1();}
+            xywh {750 450 30 25}
+          }
+        }
+        Fl_Group {} {open
+          xywh {45 520 750 165} box DOWN_BOX
+        } {
+          Fl_Input form1_calc1_output1 {
+            xywh {340 545 155 30}
+          }
+          Fl_Input form1_calc1_output2 {
+            xywh {340 585 155 30}
+          }
+          Fl_Button {} {
+            label Start
+            callback {void_user_calc_start1();}
+            xywh {75 545 155 105} labelfont 1
+          }
+          Fl_Input form1_calc1_output3 {
+            xywh {340 625 155 30}
+          }
+          Fl_Box {} {
+            label {YS, MPa}
+            xywh {290 549 32 16}
+          }
+          Fl_Box {} {
+            label {TS, MPa}
+            xywh {295 594 32 16}
+          }
+          Fl_Box {} {
+            label {Au, %}
+            xywh {300 634 32 16}
+          }
+          Fl_Input form1_calc1_output1_f {
+            xywh {515 545 235 30}
+          }
+          Fl_Input form1_calc1_output2_f {
+            xywh {515 585 235 30}
+          }
+          Fl_Input form1_calc1_output3_f {
+            xywh {515 625 235 30}
+          }
+        }
+      }
+      Fl_Group {} {
+        label {Test \#1} open
+        xywh {45 125 715 335} hide
+      } {
+        Fl_Button {} {
+          label Start
+          callback {char cell_fraction_pred_fixed_1[PATH_MAX];
+char cell_fraction_pred_fixed_2[PATH_MAX];
+char cell_fraction_pred_fixed_3[PATH_MAX];
+char cell_fraction_pred_fixed_4[PATH_MAX];  
+char cell_fraction_pred_fixed_5[PATH_MAX];
+char cell_fraction_pred_fixed_6[PATH_MAX];
+char cell_fraction_pred_fixed_7[PATH_MAX];
+char cell_fraction_pred_fixed_8[PATH_MAX];  
+  
+  
+   win1_statusbar_content->value( "Init..." );
+
+
+   if ( form1_tab2_frac_checker_value_f1_fixed->value( ) == 1 )  strncpy( cell_fraction_pred_fixed_1 , cell_fraction_1_pred->value(), PATH_MAX);
+   if ( form1_tab2_frac_checker_value_f2_fixed->value( ) == 1 )  strncpy( cell_fraction_pred_fixed_2 , cell_fraction_2_pred->value(), PATH_MAX);
+   if ( form1_tab2_frac_checker_value_f3_fixed->value( ) == 1 )  strncpy( cell_fraction_pred_fixed_3 , cell_fraction_3_pred->value(), PATH_MAX);
+   if ( form1_tab2_frac_checker_value_f4_fixed->value( ) == 1 )  strncpy( cell_fraction_pred_fixed_4 , cell_fraction_4_pred->value(), PATH_MAX);
+   if ( form1_tab2_frac_checker_value_f5_fixed->value( ) == 1 )  strncpy( cell_fraction_pred_fixed_5 , cell_fraction_5_pred->value(), PATH_MAX);
+   if ( form1_tab2_frac_checker_value_f6_fixed->value( ) == 1 )  strncpy( cell_fraction_pred_fixed_6 , cell_fraction_6_pred->value(), PATH_MAX);
+   if ( form1_tab2_frac_checker_value_f7_fixed->value( ) == 1 )  strncpy( cell_fraction_pred_fixed_7 , cell_fraction_7_pred->value(), PATH_MAX);
+   if ( form1_tab2_frac_checker_value_f8_fixed->value( ) == 1 )  strncpy( cell_fraction_pred_fixed_8 , cell_fraction_8_pred->value(), PATH_MAX);
+
+
+char buffer[PATH_MAX];
+char stringfoo[PATH_MAX]; 
+max_ys = 0; 
+max_rm = 0; 
+max_au = 0; 
+
+   cell_fraction_1_pred->value( ""  ); 
+       cell_fraction_2_pred->value( ""  ); 
+       cell_fraction_3_pred->value( "" ); 
+       cell_fraction_4_pred->value(  ""  ); 
+
+       cell_fraction_5_pred->value(  ""  ); 
+       cell_fraction_6_pred->value( "" ); 
+       cell_fraction_7_pred->value( "" ); 
+       cell_fraction_8_pred->value(""  ); 
+
+
+int fooi = 0;  
+int fooj = 0; 
+int fook = 0;  
+int fool = 0;
+
+int foom = 0;  
+int foon = 0;
+int fooo = 0;  
+int foop = 0;
+
+
+        time_t timer;
+        struct tm* tm_info;
+        srand(time(NULL));
+        time(&timer);
+        tm_info = localtime(&timer);
+        strftime( buffer, PATH_MAX, "Started: %d/%m/%y %H:%M:%S. Please wait.", tm_info);
+        win1_statusbar_content->value( buffer );
+                 
+
+int iteration_step_size = atoi(form1_max_pct_int_step1->value()); 
+
+
+
+for ( fooi = 0 ;  fooi<=  atoi(form1_max_pct_f_const->value())  ; fooi = fooi+ iteration_step_size )
+for ( fooj = 0 ;  fooj<=  atoi(form1_max_pct_f_const->value())  ; fooj = fooj+ iteration_step_size )
+for ( fook = 0 ;  fook<=  atoi(form1_max_pct_f_const->value())  ; fook = fook+ iteration_step_size )
+for ( fool = 0 ;  fool<=  atoi(form1_max_pct_f_const->value())  ; fool = fool+ iteration_step_size )
+for ( foom = 0 ;  foom<=  atoi(form1_max_pct_f_const->value())  ; foom = foom+ iteration_step_size )
+for ( foon = 0 ;  foon<=  atoi(form1_max_pct_f_const->value())  ; foon = foon+ iteration_step_size )
+for ( fooo = 0 ;  fooo<=  atoi(form1_max_pct_f_const->value())  ; fooo = fooo+ iteration_step_size )
+for ( foop = 0 ;  foop<=  atoi(form1_max_pct_f_const->value())  ; foop = foop+ iteration_step_size )
+{
+
+    snprintf( stringfoo , sizeof( stringfoo ), "%d", fooi );
+    cell_fraction_1->value( stringfoo );
+    snprintf( stringfoo , sizeof( stringfoo ), "%d", fooj );
+    cell_fraction_2->value( stringfoo );
+    snprintf( stringfoo , sizeof( stringfoo ), "%d", fook );
+    cell_fraction_3->value( stringfoo );
+    snprintf( stringfoo , sizeof( stringfoo ), "%d", fool );
+    cell_fraction_4->value( stringfoo );
+
+    snprintf( stringfoo , sizeof( stringfoo ), "%d", foom );
+    cell_fraction_5->value( stringfoo );
+    snprintf( stringfoo , sizeof( stringfoo ), "%d", foon );
+    cell_fraction_6->value( stringfoo );
+    snprintf( stringfoo , sizeof( stringfoo ), "%d", fooo );
+    cell_fraction_7->value( stringfoo );
+    snprintf( stringfoo , sizeof( stringfoo ), "%d", foop );
+    cell_fraction_8->value( stringfoo );
+
+   
+   // force fixed
+   if ( form1_tab2_frac_checker_value_f1_fixed->value( ) == 1 )  cell_fraction_1->value(cell_fraction_pred_fixed_1); 
+   if ( form1_tab2_frac_checker_value_f2_fixed->value( ) == 1 )  cell_fraction_2->value(cell_fraction_pred_fixed_2);
+   if ( form1_tab2_frac_checker_value_f3_fixed->value( ) == 1 )  cell_fraction_3->value(cell_fraction_pred_fixed_3);
+   if ( form1_tab2_frac_checker_value_f4_fixed->value( ) == 1 )  cell_fraction_4->value(cell_fraction_pred_fixed_4);
+   if ( form1_tab2_frac_checker_value_f5_fixed->value( ) == 1 )  cell_fraction_5->value(cell_fraction_pred_fixed_5);
+   if ( form1_tab2_frac_checker_value_f6_fixed->value( ) == 1 )  cell_fraction_6->value(cell_fraction_pred_fixed_6);
+   if ( form1_tab2_frac_checker_value_f7_fixed->value( ) == 1 )  cell_fraction_7->value(cell_fraction_pred_fixed_7);
+   if ( form1_tab2_frac_checker_value_f8_fixed->value( ) == 1 )  cell_fraction_8->value(cell_fraction_pred_fixed_8);
+
+
+
+   // set zero
+   if ( form1_tab2_frac_checker_value_f1->value( ) == 0 )  cell_fraction_1->value( "0" );
+   if ( form1_tab2_frac_checker_value_f2->value( ) == 0 )  cell_fraction_2->value( "0" );
+   if ( form1_tab2_frac_checker_value_f3->value( ) == 0 )  cell_fraction_3->value( "0" );
+   if ( form1_tab2_frac_checker_value_f4->value( ) == 0 )  cell_fraction_4->value( "0" );
+   if ( form1_tab2_frac_checker_value_f5->value( ) == 0 )  cell_fraction_5->value( "0" );
+   if ( form1_tab2_frac_checker_value_f6->value( ) == 0 )  cell_fraction_6->value( "0" );
+   if ( form1_tab2_frac_checker_value_f7->value( ) == 0 )  cell_fraction_7->value( "0" );
+   if ( form1_tab2_frac_checker_value_f8->value( ) == 0 )  cell_fraction_8->value( "0" );
+
+
+
+   
+   if ( foom == 10 ) 
+         printf( " Value %d %d \\n", fooi , fooj  ); 
+   else if ( foom == 20 ) 
+        printf( " Value %d %d \\n", fooi , fooj  ); 
+    
+     
+     void_user_calc_start1();
+   
+      
+ }
+ 
+ 
+ printf( "Max YS: %f \\n" ,  max_ys ); 
+ printf( "Max Rm: %f \\n" ,  max_rm );
+ printf( "Max Au: %f \\n",   max_au );
+ 
+ printf( "Product Rm x Au: %f \\n",  max_rm *  max_au );
+ 
+ win1_statusbar_content->value( "Result Found." );
+ 
+ 
+        //time_t timer;
+        //struct tm* tm_info;
+        srand(time(NULL));
+        time(&timer);
+        tm_info = localtime(&timer);
+        strftime( buffer, PATH_MAX, "Completed: %d/%m/%y %H:%M:%S ", tm_info);
+        win1_statusbar_content->value( buffer );}
+          xywh {135 255 155 105} labelfont 1
+        }
+        Fl_Input form1_max_pct_f_const {
+          label {Max Percent Constituent, f%}
+          xywh {290 185 80 25}
+          code2 {form1_max_pct_f_const->value( "100" );}
+        }
+        Fl_Input form1_max_pct_int_step1 {
+          label {Iteration step size, %}
+          xywh {290 215 80 25}
+          code2 {form1_max_pct_int_step1->value( "5" );}
+        }
+        Fl_Input cell_fraction_1_pred {
+          label {Ferrit (20ppm)}
+          xywh {530 150 95 25}
+        }
+        Fl_Input cell_fraction_3_pred {
+          label {Ferrit (Fe-Mn)}
+          xywh {530 220 95 25}
+        }
+        Fl_Input cell_fraction_4_pred {
+          label Pearlite
+          xywh {530 255 95 25}
+        }
+        Fl_Input cell_fraction_5_pred {
+          label {Bainit (0,1%C)}
+          xywh {530 290 95 25}
+        }
+        Fl_Input cell_fraction_6_pred {
+          label Austenite
+          xywh {530 325 95 25}
+        }
+        Fl_Input cell_fraction_7_pred {
+          label {Martensit (0,1%C)}
+          xywh {530 360 95 25}
+        }
+        Fl_Input cell_fraction_8_pred {
+          label {Martensit (0,4%C)}
+          xywh {530 395 95 25}
+        }
+        Fl_Input cell_fraction_2_pred {
+          label {Ferrit (0.2 %C)}
+          xywh {530 185 95 25}
+        }
+        Fl_Check_Button form1_tab2_frac_checker_value_f1 {
+          label Act
+          xywh {635 150 25 25} down_box DOWN_BOX
+          code2 {form1_tab2_frac_checker_value_f1->value( 1 );}
+        }
+        Fl_Check_Button form1_tab2_frac_checker_value_f2 {
+          label Act
+          xywh {635 185 25 25} down_box DOWN_BOX
+          code2 {form1_tab2_frac_checker_value_f2->value( 1 );}
+        }
+        Fl_Check_Button form1_tab2_frac_checker_value_f3 {
+          label Act
+          xywh {635 220 25 25} down_box DOWN_BOX
+          code2 {form1_tab2_frac_checker_value_f3->value( 1 );}
+        }
+        Fl_Check_Button form1_tab2_frac_checker_value_f4 {
+          label Act
+          xywh {635 255 25 25} down_box DOWN_BOX
+          code2 {form1_tab2_frac_checker_value_f4->value( 1 );}
+        }
+        Fl_Check_Button form1_tab2_frac_checker_value_f5 {
+          label Act
+          xywh {635 290 25 25} down_box DOWN_BOX
+          code2 {form1_tab2_frac_checker_value_f5->value( 1 );}
+        }
+        Fl_Check_Button form1_tab2_frac_checker_value_f6 {
+          label Act
+          xywh {635 325 25 25} down_box DOWN_BOX
+          code2 {form1_tab2_frac_checker_value_f6->value( 1 );}
+        }
+        Fl_Check_Button form1_tab2_frac_checker_value_f7 {
+          label Act
+          xywh {635 360 25 25} down_box DOWN_BOX
+          code2 {form1_tab2_frac_checker_value_f7->value( 1 );}
+        }
+        Fl_Check_Button form1_tab2_frac_checker_value_f8 {
+          label Act
+          xywh {635 395 25 25} down_box DOWN_BOX
+          code2 {form1_tab2_frac_checker_value_f8->value( 1 );}
+        }
+        Fl_Check_Button form1_tab2_frac_checker_value_f1_fixed {
+          label Fixed
+          xywh {700 150 25 25} down_box DOWN_BOX
+        }
+        Fl_Check_Button form1_tab2_frac_checker_value_f2_fixed {
+          label Fixed
+          xywh {700 185 25 25} down_box DOWN_BOX
+        }
+        Fl_Check_Button form1_tab2_frac_checker_value_f3_fixed {
+          label Fixed
+          xywh {700 220 25 25} down_box DOWN_BOX
+        }
+        Fl_Check_Button form1_tab2_frac_checker_value_f4_fixed {
+          label Fixed
+          xywh {700 255 25 25} down_box DOWN_BOX
+        }
+        Fl_Check_Button form1_tab2_frac_checker_value_f5_fixed {
+          label Fixed
+          xywh {700 290 25 25} down_box DOWN_BOX
+        }
+        Fl_Check_Button form1_tab2_frac_checker_value_f6_fixed {
+          label Fixed
+          xywh {700 325 25 25} down_box DOWN_BOX
+        }
+        Fl_Check_Button form1_tab2_frac_checker_value_f7_fixed {
+          label Fixed
+          xywh {700 360 25 25} down_box DOWN_BOX
+        }
+        Fl_Check_Button form1_tab2_frac_checker_value_f8_fixed {
+          label Fixed
+          xywh {700 395 25 25} down_box DOWN_BOX
+        }
+      }
+    }
+    Fl_Button {} {
+      label {&Quit}
+      callback {exit( 0 );}
+      xywh {705 715 115 25} labelfont 1
+    }
+    Fl_Output win1_statusbar_content {
+      xywh {20 715 680 25} color 49
+      code1 {win1_statusbar_content->value( "" );}
+    }
+  }
+}
+
+Function {main( int argc, char *argv[])} {open return_type int
+} {
+  code {printf( " == FLTK == \\n" );
+
+  
+  if ( argc == 2)
+  if ( strcmp( argv[1] , "" ) !=  0 )
+  {
+          chdir( argv[ 1 ] );
+  }
+
+
+
+
+  make_window();
+  
+ 
+
+  // let s create a trip steel
+  cell_fraction_1->value( "0" );
+  cell_fraction_2->value( "50" ); // ferrite 
+  cell_fraction_3->value( "0" );
+  cell_fraction_4->value( "0" );
+  cell_fraction_5->value( "40" ); //bainite
+  cell_fraction_6->value( "10" ); //austenite
+  cell_fraction_7->value( "0" );
+  cell_fraction_8->value( "0" );
+  
+  
+  
+  
+  // ferrite 1 ULC 
+  cell_mech_1_1->value( "150" );
+  cell_mech_1_2->value( "260" );
+  cell_mech_1_3->value( "44" );    
+
+  // ferrite 2 LS,Ferrite 0.02
+  cell_mech_2_1->value( "330" );
+  cell_mech_2_2->value( "550" );
+  cell_mech_2_3->value( "35" );    
+  
+  // ferrite 3, LS CMnSi
+  cell_mech_3_1->value( "383" );
+  cell_mech_3_2->value( "489" );
+  cell_mech_3_3->value( "28" );    
+  
+  
+  
+  // Pearlite LS 
+  cell_mech_4_1->value( "900" );
+  cell_mech_4_2->value( "1000" );
+  cell_mech_4_3->value( "10" );    
+
+  // Bainite
+  cell_mech_5_1->value( "502" );
+  cell_mech_5_2->value( "854" );
+  cell_mech_5_3->value( "22" );    
+  
+  // austenite
+  cell_mech_6_1->value( "300" );
+  cell_mech_6_2->value( "600" );
+  cell_mech_6_3->value( "50" );    
+  
+  // martensite 0.1
+  cell_mech_7_1->value( "800" );
+  cell_mech_7_2->value( "1200" );
+  cell_mech_7_3->value( "5" );    
+  
+  // martensite 2400
+  cell_mech_8_1->value( "2400" );
+  cell_mech_8_2->value( "1" );  // set 1 to set model
+  cell_mech_8_3->value( "1" );  // idem   
+
+  
+  win1->show();
+
+  Fl::run();} {}
+}
+
+Function {void_user_calc_start1()} {open
+} {
+  code {char stringfoo[PATH_MAX]; 
+char stringfoo_ys[PATH_MAX]; 
+char stringfoo_rm[PATH_MAX]; 
+char stringfoo_au[PATH_MAX]; 
+char commandcalc[PATH_MAX]; 
+   
+
+
+   snprintf(  commandcalc, sizeof( commandcalc ) , "%s * %s/100 + %s * %s/100    + %s * %s/100  + %s * %s/100  + %s * %s/100  + %s * %s/100  + %s * %s/100  + %s * %s/100   " ,
+         cell_mech_1_1->value()   , cell_fraction_1->value() 
+       , cell_mech_2_1->value()   , cell_fraction_2->value()          
+       , cell_mech_3_1->value()   , cell_fraction_3->value()          
+       , cell_mech_4_1->value()   , cell_fraction_4->value()          
+       , cell_mech_5_1->value()   , cell_fraction_5->value()          
+       , cell_mech_6_1->value()   ,  cell_fraction_6->value()          
+       , cell_mech_7_1->value()   , cell_fraction_7->value()          
+       , cell_mech_8_1->value()   , cell_fraction_8->value()   ) ; 
+
+   snprintf( stringfoo , sizeof( stringfoo ), "%.3E", te_interp(  commandcalc   , 0 ) );   
+   form1_calc1_output1->value( stringfoo  );
+   snprintf( stringfoo , sizeof( stringfoo ), "%f", te_interp(  commandcalc   , 0 ) );   
+   form1_calc1_output1_f->value( stringfoo  );
+   strncpy( stringfoo_ys, stringfoo, PATH_MAX );
+   
+   
+   
+   
+   
+   
+   snprintf(  commandcalc, sizeof( commandcalc ) , "%s * %s/100 + %s * %s/100    + %s * %s/100  + %s * %s/100  + %s * %s/100  + %s * %s/100  + %s * %s/100  + %s * %s/100   " ,
+         cell_mech_1_2->value()   , cell_fraction_1->value() 
+       , cell_mech_2_2->value()   , cell_fraction_2->value()          
+       , cell_mech_3_2->value()   , cell_fraction_3->value()          
+       , cell_mech_4_2->value()   , cell_fraction_4->value()          
+       , cell_mech_5_2->value()   , cell_fraction_5->value()          
+       , cell_mech_6_2->value()   , cell_fraction_6->value()          
+       , cell_mech_7_2->value()   , cell_fraction_7->value()          
+       , cell_mech_8_2->value()   , cell_fraction_8->value()   ) ; 
+
+   snprintf( stringfoo , sizeof( stringfoo ), "%.3E", te_interp(  commandcalc   , 0 ) );   
+   form1_calc1_output2->value( stringfoo  );
+   snprintf( stringfoo , sizeof( stringfoo ), "%f", te_interp(  commandcalc   , 0 ) );   
+   form1_calc1_output2_f->value( stringfoo  );
+   strncpy( stringfoo_rm, stringfoo, PATH_MAX );
+
+
+   
+
+   
+   
+      snprintf(  commandcalc, sizeof( commandcalc ) , "%s * %s/100 + %s * %s/100    + %s * %s/100  + %s * %s/100  + %s * %s/100  + %s * %s/100  + %s * %s/100  + %s * %s/100   " ,
+         cell_mech_1_3->value()   , cell_fraction_1->value() 
+       , cell_mech_2_3->value()   , cell_fraction_2->value()          
+       , cell_mech_3_3->value()   , cell_fraction_3->value()          
+       , cell_mech_4_3->value()   , cell_fraction_4->value()          
+       , cell_mech_5_3->value()   , cell_fraction_5->value()          
+       , cell_mech_6_3->value()   , cell_fraction_6->value()          
+       , cell_mech_7_3->value()   , cell_fraction_7->value()          
+       , cell_mech_8_3->value()   , cell_fraction_8->value()   ) ; 
+
+   snprintf( stringfoo , sizeof( stringfoo ), "%.3E", te_interp(  commandcalc   , 0 ) );   
+   form1_calc1_output3->value( stringfoo  );
+   snprintf( stringfoo , sizeof( stringfoo ), "%f", te_interp(  commandcalc   , 0 ) );   
+   form1_calc1_output3_f->value( stringfoo  );
+   strncpy( stringfoo_au, stringfoo, PATH_MAX );
+   
+
+
+
+
+
+
+   if ( ( atof( cell_fraction_1->value()) 
+   + atof( cell_fraction_2->value()) 
+   + atof( cell_fraction_3->value()) 
+   + atof( cell_fraction_4->value()) 
+   + atof( cell_fraction_5->value()) 
+   + atof( cell_fraction_6->value()) 
+   + atof( cell_fraction_7->value()) 
+   + atof( cell_fraction_8->value()) ) ==  atof( form1_max_pct_f_const->value(  ) )   ) 
+   
+ //  if ( atof( stringfoo_ys  ) * atof( stringfoo_rm  ) * atof( stringfoo_au  )    > (max_rm * max_au * max_ys ) ) 
+   if ( atof( stringfoo_rm  ) * atof( stringfoo_au  )    > (max_rm * max_au  ) ) 
+   {
+       max_rm = atof( stringfoo_rm ); 
+       max_au = atof( stringfoo_au );
+       max_ys = atof( stringfoo_ys ); 
+       
+       cell_fraction_1_pred->value(  cell_fraction_1->value()  ); 
+       cell_fraction_2_pred->value(  cell_fraction_2->value()  ); 
+       cell_fraction_3_pred->value(  cell_fraction_3->value()  ); 
+       cell_fraction_4_pred->value(  cell_fraction_4->value()  ); 
+
+       cell_fraction_5_pred->value(  cell_fraction_5->value()  ); 
+       cell_fraction_6_pred->value(  cell_fraction_6->value()  ); 
+       cell_fraction_7_pred->value(  cell_fraction_7->value()  ); 
+       cell_fraction_8_pred->value(  cell_fraction_8->value()  ); 
+       
+   }} {}
+}

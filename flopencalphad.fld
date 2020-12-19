@@ -42,7 +42,7 @@ Function {make_window()} {open
 } {
   Fl_Window win1 {
     label FLOPENCALPHAD open
-    xywh {1 398 785 695} type Double resizable visible
+    xywh {8 385 785 695} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad}
@@ -538,7 +538,7 @@ else
   }
   Fl_Window win2 {
     label Database open
-    xywh {560 675 905 460} type Double resizable visible
+    xywh {941 479 905 460} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Database}
@@ -546,7 +546,7 @@ else
     }
     Fl_Button {} {
       label {&Close Frame}
-      callback {win2->hide();} selected
+      callback {win2->hide();}
       xywh {780 425 110 25}
     }
     Fl_Tabs {} {
@@ -554,7 +554,7 @@ else
       xywh {15 70 875 345}
     } {
       Fl_Group {} {
-        label {File browser} open
+        label {File browser} open selected
         xywh {35 95 850 315}
       } {
         Fl_File_Browser form_database_tab1_filebrowser1 {
@@ -926,39 +926,51 @@ redraw();
   }
   Fl_Window win3 {
     label Option open
-    xywh {403 236 405 510} type Double resizable visible
+    xywh {655 245 580 475} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Option}
-      xywh {15 15 380 35} box ENGRAVED_BOX labeltype ENGRAVED_LABEL
+      xywh {15 15 550 40} box ENGRAVED_BOX labeltype ENGRAVED_LABEL
     }
-    Fl_Group {} {
-      label {User system call} open
-      xywh {15 95 375 80} box DOWN_BOX labeltype ENGRAVED_LABEL
+    Fl_Button {} {
+      label {&Close Frame}
+      callback {win3->hide();}
+      xywh {450 430 115 30}
+    }
+    Fl_Tabs {} {open
+      xywh {15 75 550 340}
     } {
-      Fl_Button {} {
-        label {&ls}
-        callback {nls();}
-        xywh {25 105 55 25}
-      }
-      Fl_Button {} {
-        label {&xterm}
-        callback {nsystem( " screen -d -m xterm " );}
-        xywh {85 105 50 25}
-      }
-      Fl_Button {} {
-        label {&fl48}
-        callback {nsystem( " screen -d -m fl48 " );}
-        xywh {275 140 50 25}
-      }
-      Fl_Button {} {
-        label {&fledit}
-        callback {nsystem( " screen -d -m fledit " );}
-        xywh {275 105 50 25}
-      }
-      Fl_Button {} {
-        label Path
-        callback {redraw();
+      Fl_Group {} {
+        label {System Utils} open
+        xywh {40 100 525 315}
+      } {
+        Fl_Group {} {
+          label {User system call} open
+          xywh {50 130 375 90} box DOWN_BOX labeltype ENGRAVED_LABEL
+        } {
+          Fl_Button {} {
+            label {&ls}
+            callback {nls();}
+            xywh {60 140 55 25}
+          }
+          Fl_Button {} {
+            label {&xterm}
+            callback {nsystem( " screen -d -m xterm " );}
+            xywh {120 140 50 25}
+          }
+          Fl_Button {} {
+            label {&fl48}
+            callback {nsystem( " screen -d -m fl48 " );}
+            xywh {310 175 50 25}
+          }
+          Fl_Button {} {
+            label {&fledit}
+            callback {nsystem( " screen -d -m fledit " );}
+            xywh {310 140 50 25}
+          }
+          Fl_Button {} {
+            label Path
+            callback {redraw();
 
   printf( "============================\\n" );
   printf( "   PATH                     \\n" );
@@ -966,71 +978,51 @@ redraw();
   
     char mydirnow[2500];
   printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );}
-        xywh {25 140 55 25}
-      }
-      Fl_Button {} {
-        label rox
-        callback {nsystem( " rox " );}
-        xywh {85 140 50 25}
-      }
-      Fl_Button {} {
-        label x48
-        callback {nsystem( " screen -d -m x48 " );}
-        xywh {330 140 50 25}
-      }
-      Fl_Button {} {
-        label {&xlock}
-        callback {nsystem( "  cd ; screen -d -m   xlock  -nolock  " );}
-        xywh {330 105 50 25}
-      }
-      Fl_Button {} {
-        label Keyboard
-        callback {nsystem( " screen -d -m flkeyboard " );}
-        xywh {195 140 75 25}
-      }
-      Fl_Button {} {
-        label Monitor
-        callback {nsystem( " screen -d -m flmonitor " );}
-        xywh {195 105 75 25}
-      }
-      Fl_Button {} {
-        label flm
-        callback {nsystem( " screen -d -m flm  " );}
-        xywh {140 140 50 25}
-      }
-      Fl_Button {} {
-        label flcalc
-        callback {nsystem( " screen -d -m flcalc   " );}
-        xywh {140 105 50 25}
-      }
-    }
-    Fl_Button {} {
-      label {&Close Frame}
-      callback {win3->hide();}
-      xywh {275 475 115 30}
-    }
-    Fl_Group {} {
-      label {Console output} open
-      xywh {15 205 375 95} box DOWN_BOX labeltype ENGRAVED_LABEL
-    } {
-      Fl_Check_Button checkbutton_single_console {
-        label {Single console output}
-        xywh {35 225 25 25} down_box DOWN_BOX
-      }
-      Fl_Check_Button checkbutton_xterm_console {
-        label {xterm console output}
-        xywh {35 255 25 25} down_box DOWN_BOX
-        code2 {checkbutton_xterm_console->value( 1 );}
-      }
-    }
-    Fl_Button {} {
-      label {&Development}
-      callback {win7->show();}
-      xywh {160 475 110 30}
-    }
-    Fl_Button {} {
-      label {&Web}
-      callback {if ( fexist( "/usr/bin/dillo" ) == 1) 
+            xywh {60 175 55 25}
+          }
+          Fl_Button {} {
+            label rox
+            callback {nsystem( " rox " );}
+            xywh {120 175 50 25}
+          }
+          Fl_Button {} {
+            label x48
+            callback {nsystem( " screen -d -m x48 " );}
+            xywh {365 175 50 25}
+          }
+          Fl_Button {} {
+            label {&xlock}
+            callback {nsystem( "  cd ; screen -d -m   xlock  -nolock  " );}
+            xywh {365 140 50 25}
+          }
+          Fl_Button {} {
+            label Keyboard
+            callback {nsystem( " screen -d -m flkeyboard " );}
+            xywh {230 175 75 25}
+          }
+          Fl_Button {} {
+            label Monitor
+            callback {nsystem( " screen -d -m flmonitor " );}
+            xywh {230 140 75 25}
+          }
+          Fl_Button {} {
+            label flm
+            callback {nsystem( " screen -d -m flm  " );}
+            xywh {175 175 50 25}
+          }
+          Fl_Button {} {
+            label flcalc
+            callback {nsystem( " screen -d -m flcalc   " );}
+            xywh {175 140 50 25}
+          }
+        }
+        Fl_Group {} {
+          label {Linux/BSD Software} open
+          xywh {50 290 375 90} box DOWN_BOX labeltype ENGRAVED_LABEL
+        } {
+          Fl_Button {} {
+            label {&Web Browser}
+            callback {if ( fexist( "/usr/bin/dillo" ) == 1) 
    nsystem(  " screen -d -m dillo  http://duckduckgo.com   " );
 
 else if ( fexist( "/usr/bin/chromium" ) == 1) 
@@ -1047,30 +1039,83 @@ else if ( fexist( "/usr/bin/chromium-browser" ) == 1)
    
 else
    nsystem(  " screen -d -m dillo http://duckduckgo.com    " );}
-      xywh {15 475 140 30}
-    }
-    Fl_Button {} {
-      label {Development and Support}
-      callback {if ( fexist( "/usr/bin/chromium" ) == 1) 
+            xywh {60 300 140 30}
+          }
+        }
+      }
+      Fl_Group {} {
+        label {User Help} open
+        xywh {40 100 525 315} hide
+      } {
+        Fl_Button {} {
+          label {OpenCalphad User Support}
+          callback {if ( fexist( "/usr/bin/chromium" ) == 1) 
    nsystem(  " screen -d -m chromium  --new-window  https://webchat.freenode.net/?channels=\#opencalphad " );
    
 else if ( fexist( "/usr/bin/chromium-browser" ) == 1) 
    nsystem(  " screen -d -m chromium-browser   --new-window  https://webchat.freenode.net/?channels=\#opencalphad  " );}
-      xywh {15 432 375 30} labelfont 1
-    }
-    Fl_Group {} {
-      label {Online Repository} open
-      xywh {15 335 375 70} box DOWN_BOX labeltype ENGRAVED_LABEL
-    } {}
-    Fl_Button {} {
-      label {&Fetch online ~/macros directory}
-      callback {system( " screen -d -m xterm -e ' wget -c --no-check-certificate   https://raw.githubusercontent.com/lusamek/OpenCalphad/master/macros.zip -O   ~/macros.zip ; cd ; unzip macros.zip ;  flopencalphad ~/macros ' " );}
-      xywh {30 355 340 30}
+          xywh {50 130 300 55} labelfont 1
+        }
+      }
+      Fl_Group {} {
+        label Development open
+        xywh {40 100 525 315} hide
+      } {
+        Fl_Button {} {
+          label {&Advanced Development Settings}
+          callback {win7->show();}
+          xywh {50 115 375 60}
+        }
+        Fl_Group {} {
+          label {Console output} open
+          xywh {50 215 375 95} box DOWN_BOX labeltype ENGRAVED_LABEL
+        } {
+          Fl_Check_Button checkbutton_single_console {
+            label {Single console output}
+            xywh {70 235 25 25} down_box DOWN_BOX
+          }
+          Fl_Check_Button checkbutton_xterm_console {
+            label {xterm console output}
+            xywh {70 265 25 25} down_box DOWN_BOX
+            code2 {checkbutton_xterm_console->value( 1 );}
+          }
+        }
+      }
+      Fl_Group {} {
+        label Repository open
+        xywh {40 100 525 315} hide
+      } {
+        Fl_Group {} {
+          label {Online Repository} open
+          xywh {50 130 375 70} box DOWN_BOX labeltype ENGRAVED_LABEL
+        } {
+          Fl_Button {} {
+            label {&Fetch online ~/macros directory}
+            callback {system( " screen -d -m xterm -e ' wget -c --no-check-certificate   https://raw.githubusercontent.com/lusamek/OpenCalphad/master/macros.zip -O   ~/macros.zip ; cd ; unzip macros.zip ;  flopencalphad ~/macros ' " );}
+            xywh {65 150 340 30}
+          }
+        }
+      }
+      Fl_Group {} {
+        label {Steel Simulation} open
+        xywh {40 100 525 315} hide
+      } {
+        Fl_Group {} {
+          label {Linux/BSD Software} open
+          xywh {50 135 375 90} box DOWN_BOX labeltype ENGRAVED_LABEL
+        } {
+          Fl_Button {} {
+            label {Mech. Prop.}
+            callback {nsystem(  " screen -d -m  flmechprop    " );}
+            xywh {60 145 140 30}
+          }
+        }
+      }
     }
   }
   Fl_Window win4 {
     label {Graphics Plot} open
-    xywh {254 547 890 545} type Double resizable visible
+    xywh {665 310 890 545} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Plot}
@@ -1346,7 +1391,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
   }
   Fl_Window win5 {
     label Macro open
-    xywh {77 596 850 485} type Double resizable visible
+    xywh {634 227 850 485} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Macro}
@@ -1570,7 +1615,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
   }
   Fl_Window win6 {
     label Condition open
-    xywh {1127 584 655 465} type Double resizable visible
+    xywh {572 392 655 465} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Condition}
@@ -1619,7 +1664,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
   }
   Fl_Window win7 {
     label Development open
-    xywh {1433 529 395 480} type Double resizable visible
+    xywh {684 363 395 480} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Development}
@@ -1766,7 +1811,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
   }
   Fl_Window form_element_pse {
     label Periodic open
-    xywh {864 452 680 435} type Double resizable visible
+    xywh {884 242 680 435} type Double resizable visible
   } {
     Fl_Button {} {
       label {&Close frame}
@@ -2374,7 +2419,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
   }
   Fl_Window form1_periodic_information {
     label {Periodic -- Information} open
-    xywh {996 517 780 535} type Double resizable visible
+    xywh {539 481 780 535} type Double resizable visible
   } {
     Fl_Button {} {
       label {&Close frame}

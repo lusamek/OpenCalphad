@@ -778,6 +778,10 @@ static void cb_Edit2(Fl_Button*, void*) {
 
 Fl_Double_Window *win3=(Fl_Double_Window *)0;
 
+static void cb_Close1(Fl_Button*, void*) {
+  win3->hide();
+}
+
 static void cb_ls1(Fl_Button*, void*) {
   nls();
 }
@@ -833,18 +837,6 @@ static void cb_flcalc(Fl_Button*, void*) {
   nsystem( " screen -d -m flcalc   " );
 }
 
-static void cb_Close1(Fl_Button*, void*) {
-  win3->hide();
-}
-
-Fl_Check_Button *checkbutton_single_console=(Fl_Check_Button *)0;
-
-Fl_Check_Button *checkbutton_xterm_console=(Fl_Check_Button *)0;
-
-static void cb_Development(Fl_Button*, void*) {
-  win7->show();
-}
-
 static void cb_Web(Fl_Button*, void*) {
   if ( fexist( "/usr/bin/dillo" ) == 1) 
    nsystem(  " screen -d -m dillo  http://duckduckgo.com   " );
@@ -865,7 +857,7 @@ else
    nsystem(  " screen -d -m dillo http://duckduckgo.com    " );
 }
 
-static void cb_Development1(Fl_Button*, void*) {
+static void cb_OpenCalphad(Fl_Button*, void*) {
   if ( fexist( "/usr/bin/chromium" ) == 1) 
    nsystem(  " screen -d -m chromium  --new-window  https://webchat.freenode.net/?channels=#opencalphad " );
    
@@ -873,8 +865,20 @@ else if ( fexist( "/usr/bin/chromium-browser" ) == 1)
    nsystem(  " screen -d -m chromium-browser   --new-window  https://webchat.freenode.net/?channels=#opencalphad  " );
 }
 
+static void cb_Advanced(Fl_Button*, void*) {
+  win7->show();
+}
+
+Fl_Check_Button *checkbutton_single_console=(Fl_Check_Button *)0;
+
+Fl_Check_Button *checkbutton_xterm_console=(Fl_Check_Button *)0;
+
 static void cb_Fetch1(Fl_Button*, void*) {
   system( " screen -d -m xterm -e ' wget -c --no-check-certificate   https://raw.githubusercontent.com/lusamek/OpenCalphad/master/macros.zip -O   ~/macros.zip ; cd ; unzip macros.zip ;  flopencalphad ~/macros ' " );
+}
+
+static void cb_Mech(Fl_Button*, void*) {
+  nsystem(  " screen -d -m  flmechprop    " );
 }
 
 Fl_Double_Window *win4=(Fl_Double_Window *)0;
@@ -2220,85 +2224,120 @@ Fl_Double_Window* make_window() {
     win2->end();
     win2->resizable(win2);
   } // Fl_Double_Window* win2
-  { win3 = new Fl_Double_Window(405, 510, "Option");
-    { Fl_Box* o = new Fl_Box(15, 15, 380, 35, "FLTK OpenCalphad -- Option");
+  { win3 = new Fl_Double_Window(580, 475, "Option");
+    { Fl_Box* o = new Fl_Box(15, 15, 550, 40, "FLTK OpenCalphad -- Option");
       o->box(FL_ENGRAVED_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
     } // Fl_Box* o
-    { Fl_Group* o = new Fl_Group(15, 95, 375, 80, "User system call");
-      o->box(FL_DOWN_BOX);
-      o->labeltype(FL_ENGRAVED_LABEL);
-      { Fl_Button* o = new Fl_Button(25, 105, 55, 25, "&ls");
-        o->callback((Fl_Callback*)cb_ls1);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(85, 105, 50, 25, "&xterm");
-        o->callback((Fl_Callback*)cb_xterm);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(275, 140, 50, 25, "&fl48");
-        o->callback((Fl_Callback*)cb_fl48);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(275, 105, 50, 25, "&fledit");
-        o->callback((Fl_Callback*)cb_fledit);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(25, 140, 55, 25, "Path");
-        o->callback((Fl_Callback*)cb_Path1);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(85, 140, 50, 25, "rox");
-        o->callback((Fl_Callback*)cb_rox);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(330, 140, 50, 25, "x48");
-        o->callback((Fl_Callback*)cb_x48);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(330, 105, 50, 25, "&xlock");
-        o->callback((Fl_Callback*)cb_xlock);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(195, 140, 75, 25, "Keyboard");
-        o->callback((Fl_Callback*)cb_Keyboard);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(195, 105, 75, 25, "Monitor");
-        o->callback((Fl_Callback*)cb_Monitor);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(140, 140, 50, 25, "flm");
-        o->callback((Fl_Callback*)cb_flm);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(140, 105, 50, 25, "flcalc");
-        o->callback((Fl_Callback*)cb_flcalc);
-      } // Fl_Button* o
-      o->end();
-    } // Fl_Group* o
-    { Fl_Button* o = new Fl_Button(275, 475, 115, 30, "&Close Frame");
+    { Fl_Button* o = new Fl_Button(450, 430, 115, 30, "&Close Frame");
       o->callback((Fl_Callback*)cb_Close1);
     } // Fl_Button* o
-    { Fl_Group* o = new Fl_Group(15, 205, 375, 95, "Console output");
-      o->box(FL_DOWN_BOX);
-      o->labeltype(FL_ENGRAVED_LABEL);
-      { checkbutton_single_console = new Fl_Check_Button(35, 225, 25, 25, "Single console output");
-        checkbutton_single_console->down_box(FL_DOWN_BOX);
-      } // Fl_Check_Button* checkbutton_single_console
-      { checkbutton_xterm_console = new Fl_Check_Button(35, 255, 25, 25, "xterm console output");
-        checkbutton_xterm_console->down_box(FL_DOWN_BOX);
-        checkbutton_xterm_console->value( 1 );
-      } // Fl_Check_Button* checkbutton_xterm_console
+    { Fl_Tabs* o = new Fl_Tabs(15, 75, 550, 340);
+      { Fl_Group* o = new Fl_Group(40, 100, 525, 315, "System Utils");
+        { Fl_Group* o = new Fl_Group(50, 130, 375, 90, "User system call");
+          o->box(FL_DOWN_BOX);
+          o->labeltype(FL_ENGRAVED_LABEL);
+          { Fl_Button* o = new Fl_Button(60, 140, 55, 25, "&ls");
+            o->callback((Fl_Callback*)cb_ls1);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(120, 140, 50, 25, "&xterm");
+            o->callback((Fl_Callback*)cb_xterm);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(310, 175, 50, 25, "&fl48");
+            o->callback((Fl_Callback*)cb_fl48);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(310, 140, 50, 25, "&fledit");
+            o->callback((Fl_Callback*)cb_fledit);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(60, 175, 55, 25, "Path");
+            o->callback((Fl_Callback*)cb_Path1);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(120, 175, 50, 25, "rox");
+            o->callback((Fl_Callback*)cb_rox);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(365, 175, 50, 25, "x48");
+            o->callback((Fl_Callback*)cb_x48);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(365, 140, 50, 25, "&xlock");
+            o->callback((Fl_Callback*)cb_xlock);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(230, 175, 75, 25, "Keyboard");
+            o->callback((Fl_Callback*)cb_Keyboard);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(230, 140, 75, 25, "Monitor");
+            o->callback((Fl_Callback*)cb_Monitor);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(175, 175, 50, 25, "flm");
+            o->callback((Fl_Callback*)cb_flm);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(175, 140, 50, 25, "flcalc");
+            o->callback((Fl_Callback*)cb_flcalc);
+          } // Fl_Button* o
+          o->end();
+        } // Fl_Group* o
+        { Fl_Group* o = new Fl_Group(50, 290, 375, 90, "Linux/BSD Software");
+          o->box(FL_DOWN_BOX);
+          o->labeltype(FL_ENGRAVED_LABEL);
+          { Fl_Button* o = new Fl_Button(60, 300, 140, 30, "&Web Browser");
+            o->callback((Fl_Callback*)cb_Web);
+          } // Fl_Button* o
+          o->end();
+        } // Fl_Group* o
+        o->end();
+      } // Fl_Group* o
+      { Fl_Group* o = new Fl_Group(40, 100, 525, 315, "User Help");
+        o->hide();
+        { Fl_Button* o = new Fl_Button(50, 130, 300, 55, "OpenCalphad User Support");
+          o->labelfont(1);
+          o->callback((Fl_Callback*)cb_OpenCalphad);
+        } // Fl_Button* o
+        o->end();
+      } // Fl_Group* o
+      { Fl_Group* o = new Fl_Group(40, 100, 525, 315, "Development");
+        o->hide();
+        { Fl_Button* o = new Fl_Button(50, 115, 375, 60, "&Advanced Development Settings");
+          o->callback((Fl_Callback*)cb_Advanced);
+        } // Fl_Button* o
+        { Fl_Group* o = new Fl_Group(50, 215, 375, 95, "Console output");
+          o->box(FL_DOWN_BOX);
+          o->labeltype(FL_ENGRAVED_LABEL);
+          { checkbutton_single_console = new Fl_Check_Button(70, 235, 25, 25, "Single console output");
+            checkbutton_single_console->down_box(FL_DOWN_BOX);
+          } // Fl_Check_Button* checkbutton_single_console
+          { checkbutton_xterm_console = new Fl_Check_Button(70, 265, 25, 25, "xterm console output");
+            checkbutton_xterm_console->down_box(FL_DOWN_BOX);
+            checkbutton_xterm_console->value( 1 );
+          } // Fl_Check_Button* checkbutton_xterm_console
+          o->end();
+        } // Fl_Group* o
+        o->end();
+      } // Fl_Group* o
+      { Fl_Group* o = new Fl_Group(40, 100, 525, 315, "Repository");
+        o->hide();
+        { Fl_Group* o = new Fl_Group(50, 130, 375, 70, "Online Repository");
+          o->box(FL_DOWN_BOX);
+          o->labeltype(FL_ENGRAVED_LABEL);
+          { Fl_Button* o = new Fl_Button(65, 150, 340, 30, "&Fetch online ~/macros directory");
+            o->callback((Fl_Callback*)cb_Fetch1);
+          } // Fl_Button* o
+          o->end();
+        } // Fl_Group* o
+        o->end();
+      } // Fl_Group* o
+      { Fl_Group* o = new Fl_Group(40, 100, 525, 315, "Steel Simulation");
+        o->hide();
+        { Fl_Group* o = new Fl_Group(50, 135, 375, 90, "Linux/BSD Software");
+          o->box(FL_DOWN_BOX);
+          o->labeltype(FL_ENGRAVED_LABEL);
+          { Fl_Button* o = new Fl_Button(60, 145, 140, 30, "Mech. Prop.");
+            o->callback((Fl_Callback*)cb_Mech);
+          } // Fl_Button* o
+          o->end();
+        } // Fl_Group* o
+        o->end();
+      } // Fl_Group* o
       o->end();
-    } // Fl_Group* o
-    { Fl_Button* o = new Fl_Button(160, 475, 110, 30, "&Development");
-      o->callback((Fl_Callback*)cb_Development);
-    } // Fl_Button* o
-    { Fl_Button* o = new Fl_Button(15, 475, 140, 30, "&Web");
-      o->callback((Fl_Callback*)cb_Web);
-    } // Fl_Button* o
-    { Fl_Button* o = new Fl_Button(15, 432, 375, 30, "Development and Support");
-      o->labelfont(1);
-      o->callback((Fl_Callback*)cb_Development1);
-    } // Fl_Button* o
-    { Fl_Group* o = new Fl_Group(15, 335, 375, 70, "Online Repository");
-      o->box(FL_DOWN_BOX);
-      o->labeltype(FL_ENGRAVED_LABEL);
-      o->end();
-    } // Fl_Group* o
-    { Fl_Button* o = new Fl_Button(30, 355, 340, 30, "&Fetch online ~/macros directory");
-      o->callback((Fl_Callback*)cb_Fetch1);
-    } // Fl_Button* o
+    } // Fl_Tabs* o
     win3->end();
     win3->resizable(win3);
   } // Fl_Double_Window* win3
