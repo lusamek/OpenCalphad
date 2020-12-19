@@ -5,8 +5,8 @@
 #include <FL/Fl.H>
 #include <FL/Fl_Double_Window.H>
 extern Fl_Double_Window *win1;
-#include <FL/Fl_Button.H>
 #include <FL/Fl_Group.H>
+#include <FL/Fl_Button.H>
 #include <FL/Fl_Box.H>
 Fl_Double_Window* make_window();
 int main( int argc, char *argv[]);

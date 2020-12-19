@@ -15,15 +15,10 @@ Function {make_window()} {open
 } {
   Fl_Window win1 {
     label Screen open
-    xywh {167 436 315 195} type Double resizable visible
+    xywh {170 439 315 195} type Double resizable visible
   } {
-    Fl_Button {} {
-      label {&Quit}
-      callback {exit( 0 );}
-      xywh {5 170 305 20} labelfont 1
-    }
-    Fl_Group {} {open
-      xywh {5 35 305 125} box DOWN_BOX
+    Fl_Group {} {open selected
+      xywh {5 35 305 120} box DOWN_BOX
     } {
       Fl_Button {} {
         label {&1: 640x480}
@@ -32,7 +27,7 @@ Function {make_window()} {open
       }
       Fl_Button {} {
         label {&2: 800x600}
-        callback {system( " screen -d -m  xrandr -s 800x600   "  );} selected
+        callback {system( " screen -d -m  xrandr -s 800x600   "  );}
         xywh {10 70 120 20}
       }
       Fl_Button {} {
@@ -45,10 +40,20 @@ Function {make_window()} {open
         callback {system( " screen -d -m  xrandr -s   1366x768     "  );}
         xywh {185 45 120 20}
       }
+      Fl_Button {} {
+        label {(...)}
+        callback {system( " cd ; screen -d -m  flmonitor-settings   "  );}
+        xywh {250 125 55 20}
+      }
     }
     Fl_Box {} {
-      label FLMONITOR
-      xywh {5 5 305 25} box ENGRAVED_BOX labelfont 1
+      label { FLMONITOR}
+      image {../../../../nuvola/22x22/actions/window_new.png} xywh {5 5 305 25} box ENGRAVED_BOX labelfont 1 align 256
+    }
+    Fl_Button {} {
+      label { &Cancel}
+      callback {exit( 0 );}
+      image {../../../../nuvola/16x16/actions/exit.png} xywh {5 160 305 25} align 256
     }
   }
 }
