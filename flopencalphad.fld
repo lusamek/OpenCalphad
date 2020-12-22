@@ -42,7 +42,7 @@ Function {make_window()} {open
 } {
   Fl_Window win1 {
     label FLOPENCALPHAD open
-    xywh {38 330 785 695} type Double resizable visible
+    xywh {39 304 785 695} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad}
@@ -514,7 +514,7 @@ nsystem( "  screen -d -m fledit  macro.ocm " );}
       xywh {295 650 80 30}
     }
     Fl_Button {} {
-      label {&Condition}
+      label {Conditio&n}
       callback {win6->show();}
       xywh {115 650 80 30}
     }
@@ -538,7 +538,7 @@ else
   }
   Fl_Window win2 {
     label Database open
-    xywh {1015 565 905 460} type Double resizable visible
+    xywh {1015 573 905 460} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Database}
@@ -926,7 +926,7 @@ redraw();
   }
   Fl_Window win3 {
     label Option open
-    xywh {457 250 580 475} type Double resizable visible
+    xywh {520 364 580 475} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Option}
@@ -941,8 +941,88 @@ redraw();
       xywh {15 75 550 340}
     } {
       Fl_Group {} {
-        label {System Utils} open selected
+        label {&Devices} open selected
         xywh {40 100 525 315}
+      } {
+        Fl_Group {} {
+          label {User device and hardware} open
+          xywh {60 130 395 110} box DOWN_BOX labeltype ENGRAVED_LABEL
+        } {
+          Fl_Button {} {
+            label {&Keyboard}
+            callback {nsystem( " screen -d -m flkeyboard " );}
+            image {../../../../nuvola/32x32/apps/keyboard_layout.png} xywh {180 155 75 55}
+          }
+          Fl_Button {} {
+            label {M&onitor}
+            callback {nsystem( " screen -d -m flmonitor " );}
+            image {../../../../nuvola/32x32/devices/tv.png} xywh {95 155 80 55}
+          }
+          Fl_Button {} {
+            label Sound
+            callback {nsystem( " screen -d -m flsound  " );}
+            image {../../../../nuvola/32x32/apps/amarok.png} xywh {260 155 80 55}
+          }
+          Fl_Button {} {
+            label Printer
+            callback {nsystem( " screen -d -m flprinter  " );}
+            image {../../../../nuvola/32x32/devices/printer.png} xywh {345 155 75 55}
+          }
+        }
+      }
+      Fl_Group {} {
+        label {&Repository} open
+        xywh {40 100 525 315} hide
+      } {
+        Fl_Group {} {
+          label {Online Repository Calphad} open
+          xywh {100 135 375 130} box DOWN_BOX labeltype ENGRAVED_LABEL
+        } {
+          Fl_Button {} {
+            label {&Fetch online ~/macros directory}
+            callback {system( " screen -d -m xterm -e ' wget -c --no-check-certificate   https://raw.githubusercontent.com/lusamek/OpenCalphad/master/macros.zip -O   ~/macros.zip ; cd ; unzip macros.zip ;  flopencalphad ~/macros ' " );}
+            xywh {115 160 340 30}
+          }
+          Fl_Button {} {
+            label {&Fetch online source code OC Gui}
+            callback {// system( " screen -d -m xterm -e ' wget -c --no-check-certificate   https://raw.githubusercontent.com/lusamek/OpenCalphad/master/macros.zip -O   ~/macros.zip ; cd ; unzip macros.zip ;  flopencalphad ~/macros ' " );
+
+
+
+ system( " cd ;  screen -d -m xterm -e ' wget -c --no-check-certificate https://codeload.github.com/lusamek/OpenCalphad/zip/master  -O  OpenCalphad.zip ' ")}
+            xywh {115 205 340 30}
+          }
+        }
+      }
+      Fl_Group {} {
+        label {&User Help} open
+        xywh {40 100 525 315} hide
+      } {
+        Fl_Button {} {
+          label {OpenCalphad User Support}
+          callback {if ( fexist( "/usr/bin/chromium" ) == 1) 
+   nsystem(  " screen -d -m chromium  --new-window  https://webchat.freenode.net/?channels=\#opencalphad " );
+   
+else if ( fexist( "/usr/bin/chromium-browser" ) == 1) 
+   nsystem(  " screen -d -m chromium-browser   --new-window  https://webchat.freenode.net/?channels=\#opencalphad  " );}
+          xywh {140 135 300 55} labelfont 1
+        }
+        Fl_Button {} {
+          label {Tutorial OC Webpage}
+          callback {if ( fexist( "/usr/bin/chromium" ) == 1) 
+   nsystem(  " screen -d -m chromium  --new-window  http://github.com/lusamek/opencalphad " );
+   
+else if ( fexist( "/usr/bin/chromium-browser" ) == 1) 
+   nsystem(  " screen -d -m chromium-browser   --new-window  http://github.com/lusamek/opencalphad " );
+   
+else
+   nsystem(  " screen -d -m dillo http://github.com/lusamek/opencalphad " );}
+          xywh {140 210 300 55} labelfont 1
+        }
+      }
+      Fl_Group {} {
+        label {&System Utils} open
+        xywh {40 100 525 315} hide
       } {
         Fl_Group {} {
           label {User system call} open
@@ -959,13 +1039,16 @@ redraw();
             xywh {120 140 50 25}
           }
           Fl_Button {} {
-            label notepad
+            label {&notepad}
             callback {nsystem( " screen -d -m flnotepad " );}
             xywh {310 175 75 25}
           }
           Fl_Button {} {
-            label {&fledit}
-            callback {nsystem( " screen -d -m fledit " );}
+            label {&xpaint}
+            callback {// nsystem( " screen -d -m xpaint  " );
+
+
+ nsystem( "   screen -d -m  xpaint   -canvas -size 640x480    " );}
             xywh {310 140 75 25}
           }
           Fl_Button {} {
@@ -1006,13 +1089,13 @@ redraw();
             xywh {230 140 75 25}
           }
           Fl_Button {} {
-            label flm
-            callback {nsystem( " screen -d -m flm  " );}
+            label CAS
+            callback {nsystem( " screen -d -m xterm -e mathomatic   " );}
             xywh {175 175 50 25}
           }
           Fl_Button {} {
-            label flcalc
-            callback {nsystem( " screen -d -m flcalc   " );}
+            label calc
+            callback {nsystem( " screen -d -m flcalc    " );}
             xywh {175 140 50 25}
           }
         }
@@ -1039,12 +1122,17 @@ else if ( fexist( "/usr/bin/chromium-browser" ) == 1)
    
 else
    nsystem(  " screen -d -m dillo http://duckduckgo.com    " );}
-            xywh {60 300 355 30}
+            xywh {60 305 380 30}
+          }
+          Fl_Button {} {
+            label {&Webpage Debian}
+            callback {nsystem(  " screen -d -m chromium  --new-window  http://debian.org " );}
+            xywh {60 340 380 30}
           }
         }
       }
       Fl_Group {} {
-        label {Metal Sc. Utils} open
+        label {&Metal Sc. Utils} open
         xywh {40 100 525 315} hide
       } {
         Fl_Group {} {
@@ -1058,28 +1146,28 @@ else
           }
           Fl_Button {} {
             label {Bulk Diffusion}
-            callback {nsystem(  " screen -d -m  fldiffusion    " );}
+            callback {nsystem(  " screen -d -m  fldiffusion  diffusion.dat    " );}
+            xywh {375 145 150 40}
+          }
+          Fl_Button {} {
+            label {&Fx Grapher}
+            callback {nsystem(  " screen -d -m  fxgrapher    " );}
             xywh {55 145 150 40}
           }
           Fl_Button {} {
-            label {Fx Grapher}
-            callback {nsystem(  " screen -d -m  fxgrapher    " );}
-            xywh {375 145 150 40}
+            label {Solubility Product}
+            callback {nsystem(  " screen -d -m  flsolubility    " );}
+            xywh {215 195 150 40}
           }
-        }
-      }
-      Fl_Group {} {
-        label Repository open
-        xywh {40 100 525 315} hide
-      } {
-        Fl_Group {} {
-          label {Online Repository} open
-          xywh {50 130 375 70} box DOWN_BOX labeltype ENGRAVED_LABEL
-        } {
           Fl_Button {} {
-            label {&Fetch online ~/macros directory}
-            callback {system( " screen -d -m xterm -e ' wget -c --no-check-certificate   https://raw.githubusercontent.com/lusamek/OpenCalphad/master/macros.zip -O   ~/macros.zip ; cd ; unzip macros.zip ;  flopencalphad ~/macros ' " );}
-            xywh {65 150 340 30}
+            label {&Periodic Table}
+            callback {nsystem(  " screen -d -m  gperiodic  " );}
+            xywh {375 195 150 40}
+          }
+          Fl_Button {} {
+            label {&JMol Chem. 3D}
+            callback {nsystem(  " screen -d -m jmol   " );}
+            xywh {55 195 150 40}
           }
         }
       }
@@ -1107,25 +1195,11 @@ else
           }
         }
       }
-      Fl_Group {} {
-        label {User Help} open
-        xywh {40 100 525 315} hide
-      } {
-        Fl_Button {} {
-          label {OpenCalphad User Support}
-          callback {if ( fexist( "/usr/bin/chromium" ) == 1) 
-   nsystem(  " screen -d -m chromium  --new-window  https://webchat.freenode.net/?channels=\#opencalphad " );
-   
-else if ( fexist( "/usr/bin/chromium-browser" ) == 1) 
-   nsystem(  " screen -d -m chromium-browser   --new-window  https://webchat.freenode.net/?channels=\#opencalphad  " );}
-          xywh {50 130 300 55} labelfont 1
-        }
-      }
     }
   }
   Fl_Window win4 {
     label {Graphics Plot} open
-    xywh {1030 259 890 545} type Double resizable visible
+    xywh {1030 267 890 545} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Plot}
@@ -1401,7 +1475,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
   }
   Fl_Window win5 {
     label Macro open
-    xywh {1070 110 850 485} type Double resizable visible
+    xywh {1070 118 850 485} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Macro}
@@ -1625,7 +1699,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
   }
   Fl_Window win6 {
     label Condition open
-    xywh {249 601 655 465} type Double resizable visible
+    xywh {693 549 655 465} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Condition}
@@ -1667,14 +1741,14 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
       }
     }
     Fl_Button {} {
-      label {Close Frame}
+      label {&Close Frame}
       callback {win6->hide();}
       xywh {530 430 110 25}
     }
   }
   Fl_Window win7 {
     label Development open
-    xywh {1047 140 395 480} type Double resizable visible
+    xywh {1055 148 395 480} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Development}
@@ -1821,7 +1895,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
   }
   Fl_Window form_element_pse {
     label Periodic open
-    xywh {912 154 680 435} type Double resizable visible
+    xywh {616 158 680 435} type Double resizable visible
   } {
     Fl_Button {} {
       label {&Close frame}
@@ -1833,37 +1907,37 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
     } {
       Fl_Button {} {
         label H
-        callback {load_content( 1 );}
+        callback {void_form_add_new_element( "h" );}
         xywh {25 65 30 25} color 190
       }
       Fl_Button {} {
         label Li
-        callback {load_content( 3 );}
+        callback {void_form_add_new_element( "li" );}
         xywh {25 95 30 25} color 180
       }
       Fl_Button {} {
         label Na
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "na" );}
         xywh {25 125 30 25} color 180
       }
       Fl_Button {} {
         label K
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "k" );}
         xywh {25 155 30 25} color 180
       }
       Fl_Button {} {
         label Rb
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "rb" );}
         xywh {25 185 30 25} color 180
       }
       Fl_Button {} {
         label Cs
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "cs" );}
         xywh {25 215 30 25} color 180
       }
       Fl_Button {} {
         label Fr
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "fr" );}
         xywh {25 245 30 25} color 180
       }
       Fl_Button {} {
@@ -1873,27 +1947,27 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
       }
       Fl_Button {} {
         label Mg
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "mg" );}
         xywh {60 125 30 25} color 90
       }
       Fl_Button {} {
         label Ca
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "ca" );}
         xywh {60 155 30 25} color 90
       }
       Fl_Button {} {
         label Sr
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "sr" );}
         xywh {60 185 30 25} color 90
       }
       Fl_Button {} {
         label Ba
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "ba" );}
         xywh {60 215 30 25} color 90
       }
       Fl_Button {} {
         label Ra
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "ra" );}
         xywh {60 245 30 25} color 90
       }
       Fl_Button {} {
@@ -1903,12 +1977,12 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
       }
       Fl_Button {} {
         label Y
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "y" );}
         xywh {95 185 30 25} color 174
       }
       Fl_Button {} {
         label Lu
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "lu" );}
         xywh {95 215 30 25} color 174
       }
       Fl_Button {} {
@@ -1953,7 +2027,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
       }
       Fl_Button {} {
         label Db
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "db" );}
         xywh {165 245 30 25}
       }
       Fl_Button {} {
@@ -1973,7 +2047,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
       }
       Fl_Button {} {
         label Sg
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "sg" );}
         xywh {200 245 30 25}
       }
       Fl_Button {} {
@@ -1993,7 +2067,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
       }
       Fl_Button {} {
         label Bh
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "bh" );}
         xywh {235 245 30 25}
       }
       Fl_Button {} {
@@ -2013,7 +2087,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
       }
       Fl_Button {} {
         label Hs
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "hs" );}
         xywh {270 245 30 25}
       }
       Fl_Button {} {
@@ -2033,7 +2107,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
       }
       Fl_Button {} {
         label Mt
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "mt" );}
         xywh {305 245 30 25}
       }
       Fl_Button {} {
@@ -2053,7 +2127,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
       }
       Fl_Button {} {
         label Ds
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "ds" );}
         xywh {340 245 30 25}
       }
       Fl_Button {} {
@@ -2073,7 +2147,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
       }
       Fl_Button {} {
         label Rg
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "rg" );}
         xywh {375 245 30 25}
       }
       Fl_Button {} {
@@ -2093,12 +2167,12 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
       }
       Fl_Button {} {
         label Cn
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "cn" );}
         xywh {410 245 30 25}
       }
       Fl_Button {} {
         label B
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "b" );}
         xywh {445 95 30 25} color 252
       }
       Fl_Button {} {
@@ -2108,22 +2182,22 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
       }
       Fl_Button {} {
         label Ga
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "ga" );}
         xywh {445 155 30 25} color 237
       }
       Fl_Button {} {
         label In
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "In" );}
         xywh {445 185 30 25} color 237
       }
       Fl_Button {} {
         label TI
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "tl" );}
         xywh {445 215 30 25} color 237
       }
       Fl_Button {} {
         label Uut
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "uut" );}
         xywh {445 245 30 25}
       }
       Fl_Button {} {
@@ -2138,7 +2212,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
       }
       Fl_Button {} {
         label Ge
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "ge" );}
         xywh {480 155 30 25} color 252
       }
       Fl_Button {} {
@@ -2153,7 +2227,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
       }
       Fl_Button {} {
         label Uuq
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "uuq" );}
         xywh {480 245 30 25}
       }
       Fl_Button {} {
@@ -2163,27 +2237,27 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
       }
       Fl_Button {} {
         label P
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "p" );}
         xywh {515 125 30 25} color 70
       }
       Fl_Button {} {
         label As
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "as" );}
         xywh {515 155 30 25} color 252
       }
       Fl_Button {} {
         label Sb
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "sb" );}
         xywh {515 185 30 25} color 252
       }
       Fl_Button {} {
         label Bi
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "bi" );}
         xywh {515 215 30 25} color 237
       }
       Fl_Button {} {
         label Uup
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "uup" );}
         xywh {515 245 30 25}
       }
       Fl_Button {} {
@@ -2193,32 +2267,32 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
       }
       Fl_Button {} {
         label S
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "s" );}
         xywh {550 125 30 25} color 70
       }
       Fl_Button {} {
         label Se
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "se" );}
         xywh {550 155 30 25} color 70
       }
       Fl_Button {} {
         label Te
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "te" );}
         xywh {550 185 30 25} color 252
       }
       Fl_Button {} {
         label Po
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "po" );}
         xywh {550 215 30 25} color 252
       }
       Fl_Button {} {
         label Uuh
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "uuh" );}
         xywh {550 245 30 25}
       }
       Fl_Button {} {
         label F
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "f" );}
         xywh {585 95 30 25} color 252
       }
       Fl_Button {} {
@@ -2228,57 +2302,57 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
       }
       Fl_Button {} {
         label Br
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "br" );}
         xywh {585 155 30 25} color 252
       }
       Fl_Button {} {
         label I
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "I" );}
         xywh {585 185 30 25} color 252
       }
       Fl_Button {} {
         label At
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "at" );}
         xywh {585 215 30 25} color 252
       }
       Fl_Button {} {
         label Uus
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "uus" );}
         xywh {585 245 30 25}
       }
       Fl_Button {} {
         label Ne
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "ne" );}
         xywh {620 95 30 25} color 9 labelfont 1
       }
       Fl_Button {} {
         label Ar
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "ar" );}
         xywh {620 125 30 25} color 9 labelfont 1
       }
       Fl_Button {} {
         label Kr
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "kr" );}
         xywh {620 155 30 25} color 9 labelfont 1
       }
       Fl_Button {} {
         label Xe
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "xe" );}
         xywh {620 185 30 25} color 9 labelfont 1
       }
       Fl_Button {} {
         label Rn
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "rn" );}
         xywh {620 215 30 25} color 9 labelfont 1
       }
       Fl_Button {} {
         label Uuo
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "uuo" );}
         xywh {620 245 30 25}
       }
       Fl_Button {} {
         label He
-        callback {load_content( 2 );}
+        callback {void_form_add_new_element( "he" );}
         xywh {620 65 30 25} color 9 labelfont 1
       }
       Fl_Button {} {
@@ -2429,7 +2503,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
   }
   Fl_Window form1_periodic_information {
     label {Periodic -- Information} open
-    xywh {1243 159 780 535} type Double resizable visible
+    xywh {1140 167 780 535} type Double resizable visible
   } {
     Fl_Button {} {
       label {&Close frame}

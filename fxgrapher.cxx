@@ -695,6 +695,14 @@ Fl_Input *tab7_form1_tab1_grapher_plot_header=(Fl_Input *)0;
 
 Fl_Input *tab7_form1_func_f3=(Fl_Input *)0;
 
+static void cb_Set(Fl_Button*, void*) {
+  // tab7_form1_tab1_grapher_plot_header
+
+tab7_form1_tab1_grapher_plot_header->value( " set xzeroaxis;  set xtics axis ; set yzeroaxis ; set ytics axis ;  set grid front ; " );
+}
+
+Fl_Check_Button *tab7_form1_func_f3_button_checker=(Fl_Check_Button *)0;
+
 Fl_Browser *tab3_browser2=(Fl_Browser *)0;
 
 static void cb_Physics(Fl_Button*, void*) {
@@ -972,12 +980,13 @@ Fl_Double_Window* make_window() {
         } // Fl_Group* o
         o->end();
       } // Fl_Group* o
-      { Fl_Group* o = new Fl_Group(45, 105, 775, 605, "Make Plot");
+      { Fl_Group* o = new Fl_Group(45, 105, 775, 605, "Adv. Plot");
         o->hide();
         { Fl_Group* o = new Fl_Group(55, 150, 725, 465, "Advanced data plot");
           o->box(FL_DOWN_BOX);
           o->labeltype(FL_ENGRAVED_LABEL);
-          { Fl_Button* o = new Fl_Button(405, 440, 160, 35, "Create data and plot");
+          { Fl_Button* o = new Fl_Button(395, 440, 170, 35, "Create data and plot");
+            o->labelfont(1);
             o->callback((Fl_Callback*)cb_Create);
           } // Fl_Button* o
           { tab7_dataplot_colx = new Fl_Input(150, 515, 35, 25, "Col X");
@@ -986,7 +995,7 @@ Fl_Double_Window* make_window() {
           { tab7_dataplot_coly = new Fl_Input(235, 515, 35, 25, "Col Y");
             tab7_dataplot_coly->value( "2" );
           } // Fl_Input* tab7_dataplot_coly
-          { Fl_Button* o = new Fl_Button(405, 520, 160, 35, "Close all plots");
+          { Fl_Button* o = new Fl_Button(570, 480, 160, 35, "Close all plots");
             o->callback((Fl_Callback*)cb_Close2);
           } // Fl_Button* o
           { tab7_form1_x_min = new Fl_Input(150, 170, 225, 25, "T min");
@@ -1018,13 +1027,20 @@ Fl_Double_Window* make_window() {
           { Fl_Button* o = new Fl_Button(705, 395, 50, 25, "&Edit");
             o->callback((Fl_Callback*)cb_Edit4);
           } // Fl_Button* o
-          { Fl_Button* o = new Fl_Button(405, 480, 160, 35, "View Plot");
+          { Fl_Button* o = new Fl_Button(570, 440, 160, 35, "View Plot");
             o->callback((Fl_Callback*)cb_View4);
           } // Fl_Button* o
           { tab7_form1_tab1_grapher_plot_header = new Fl_Input(150, 575, 610, 25, "Plot header");
           } // Fl_Input* tab7_form1_tab1_grapher_plot_header
-          { tab7_form1_func_f3 = new Fl_Input(150, 350, 605, 25, "Func h(T)");
+          { tab7_form1_func_f3 = new Fl_Input(150, 350, 585, 25, "Func h(T)");
           } // Fl_Input* tab7_form1_func_f3
+          { Fl_Button* o = new Fl_Button(570, 520, 160, 35, "Set origin (0,0)");
+            o->callback((Fl_Callback*)cb_Set);
+          } // Fl_Button* o
+          { tab7_form1_func_f3_button_checker = new Fl_Check_Button(740, 350, 25, 25);
+            tab7_form1_func_f3_button_checker->down_box(FL_DOWN_BOX);
+            tab7_form1_func_f3_button_checker->value( 0 );
+          } // Fl_Check_Button* tab7_form1_func_f3_button_checker
           o->end();
         } // Fl_Group* o
         { new Fl_Box(730, 670, 25, 25, "Tiny math formalism");

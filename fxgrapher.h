@@ -48,6 +48,7 @@ extern Fl_Input *tab7_form1_tab1_grapher_yrange;
 extern Fl_Input *tab7_input_var_macro_filename;
 extern Fl_Input *tab7_form1_tab1_grapher_plot_header;
 extern Fl_Input *tab7_form1_func_f3;
+extern Fl_Check_Button *tab7_form1_func_f3_button_checker;
 extern Fl_Browser *tab3_browser2;
 #include <FL/Fl_Output.H>
 extern Fl_Output *win1_statusbar_content;

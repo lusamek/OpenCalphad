@@ -18,7 +18,7 @@ Function {make_window()} {open
 } {
   Fl_Window win1 {
     label FLTK open
-    xywh {463 262 835 750} type Double box DOWN_BOX resizable visible
+    xywh {766 164 835 750} type Double box DOWN_BOX resizable visible
   } {
     Fl_Box {} {
       label FxGrapher
@@ -709,7 +709,7 @@ if (  tab5_browser2->value() >= 1)
         }
       }
       Fl_Group {} {
-        label {Make Plot} open
+        label {Adv. Plot} open
         xywh {45 105 775 605} hide
       } {
         Fl_Group {} {
@@ -788,7 +788,7 @@ if (  tab5_browser2->value() >= 1)
   printf( "Command: %s \\n" , charo );
      
   system(  charo );}
-            xywh {405 440 160 35}
+            xywh {395 440 170 35} labelfont 1
           }
           Fl_Input tab7_dataplot_colx {
             label {Col X}
@@ -806,7 +806,7 @@ if (  tab5_browser2->value() >= 1)
         char cmdi[PATH_MAX];
      
         system( " pkill gnuplot " );}
-            xywh {405 520 160 35}
+            xywh {570 480 160 35}
           }
           Fl_Input tab7_form1_x_min {
             label {T min}
@@ -907,7 +907,7 @@ if (  tab5_browser2->value() >= 1)
   printf( "Command: %s \\n" , charo );
      
   system(  charo );}
-            xywh {405 480 160 35}
+            xywh {570 440 160 35}
           }
           Fl_Input tab7_form1_tab1_grapher_plot_header {
             label {Plot header}
@@ -915,7 +915,18 @@ if (  tab5_browser2->value() >= 1)
           }
           Fl_Input tab7_form1_func_f3 {
             label {Func h(T)}
-            xywh {150 350 605 25}
+            xywh {150 350 585 25}
+          }
+          Fl_Button {} {
+            label {Set origin (0,0)}
+            callback {// tab7_form1_tab1_grapher_plot_header
+
+tab7_form1_tab1_grapher_plot_header->value( " set xzeroaxis;  set xtics axis ; set yzeroaxis ; set ytics axis ;  set grid front ; " );}
+            xywh {570 520 160 35}
+          }
+          Fl_Check_Button tab7_form1_func_f3_button_checker {
+            xywh {740 350 25 25} down_box DOWN_BOX
+            code2 {tab7_form1_func_f3_button_checker->value( 0 );}
           }
         }
         Fl_Box {} {
