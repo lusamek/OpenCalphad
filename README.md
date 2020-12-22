@@ -239,6 +239,18 @@ Example of calculating G curves for the Fe-Mo system at 1400K:
 
 
 <br/>
+<br/>
+
+
+# Materials
+
+Several utils for materials science are included for modelling diffusion, properties,... 
+
+Example of plot showing the diffusion of elements (C and Fe) in host metal Fe: 
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/GUI-Materials-Diffusion-Plot-01.png)
+
+<br>
+<br>
 
 # Tutorial
 
