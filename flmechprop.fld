@@ -64,7 +64,7 @@ Function {make_window()} {open
 } {
   Fl_Window win1 {
     label FLTK open
-    xywh {689 122 835 750} type Double box DOWN_BOX resizable visible
+    xywh {521 239 835 750} type Double box DOWN_BOX resizable visible
   } {
     Fl_Box {} {
       label {Mech. Prop. Estimation}
@@ -75,7 +75,7 @@ Function {make_window()} {open
       xywh {20 80 800 630}
     } {
       Fl_Group {} {
-        label {Setup Constituents} open
+        label {Setup Constituents} open selected
         xywh {45 120 775 590}
       } {
         Fl_Group {} {open
@@ -726,11 +726,15 @@ for ( foop = 0 ;  foop<=  atoi(form1_max_pct_f_const->value())  ; foop = foop+ i
           label Fixed
           xywh {700 395 25 25} down_box DOWN_BOX
         }
+        Fl_Box {} {
+          label {(Note: Calculation can take several hours)}
+          xywh {190 370 45 25}
+        }
       }
     }
     Fl_Button {} {
       label {&Close}
-      callback {exit( 0 );} selected
+      callback {exit( 0 );}
       xywh {705 715 115 25} labelfont 1
     }
     Fl_Output win1_statusbar_content {

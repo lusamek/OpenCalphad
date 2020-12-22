@@ -780,6 +780,8 @@ Fl_Double_Window* make_window() {
         { form1_tab2_frac_checker_value_f8_fixed = new Fl_Check_Button(700, 395, 25, 25, "Fixed");
           form1_tab2_frac_checker_value_f8_fixed->down_box(FL_DOWN_BOX);
         } // Fl_Check_Button* form1_tab2_frac_checker_value_f8_fixed
+        { new Fl_Box(190, 370, 45, 25, "(Note: Calculation can take several hours)");
+        } // Fl_Box* o
         o->end();
       } // Fl_Group* o
       o->end();

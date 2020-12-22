@@ -1,0 +1,117 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0304
+header_name {.h}
+code_name {.cxx}
+decl {\#include <stdio.h>} {private local
+}
+
+decl {\#include <stdlib.h>} {private local
+}
+
+decl {\#include "headerf.h"} {private local
+}
+
+Function {make_window()} {open
+} {
+  Fl_Window win1 {
+    label Screen open
+    xywh {692 387 335 220} type Double resizable visible
+  } {
+    Fl_Button {} {
+      label {&Close}
+      callback {exit( 0 );}
+      xywh {10 190 315 20} labelfont 1
+    }
+    Fl_Group {} {open
+      xywh {10 40 315 145} box DOWN_BOX
+    } {
+      Fl_Button {} {
+        label {List Printers}
+        callback {system( " cd ; lpstat -a > /tmp/flprinter.log ; flview /tmp/flprinter.log   "  );}
+        xywh {20 160 120 20}
+      }
+      Fl_Button {} {
+        label {List dmesg}
+        callback {system( " cd ; dmesg  > /tmp/flprinter.log ; flview /tmp/flprinter.log   "  );}
+        xywh {210 160 105 20}
+      }
+      Fl_Browser preview_browser {
+        xywh {20 45 295 85} resizable
+        code2 {preview_browser->type( FL_HOLD_BROWSER );}
+      }
+      Fl_Button {} {
+        label {Add...}
+        callback {system( " cd ; xterm -e  system-config-printer     "  );}
+        xywh {145 160 60 20}
+      }
+      Fl_Button {} {
+        label { File&browser and File Print}
+        callback {system( "  screen -d -m flprintfile  "  );} selected
+        image {../../../../nuvola/16x16/devices/hdd_mount.png} xywh {20 135 295 20} align 256
+      }
+    }
+    Fl_Box {} {
+      label { PRINTER}
+      image {../../../../nuvola/16x16/devices/printer.png} xywh {10 5 315 25} box ENGRAVED_BOX labelfont 1 align 256
+    }
+  }
+}
+
+Function {main( int argc, char *argv[])} {open return_type int
+} {
+  code {printf( " == FLTK == \\n" );
+
+////////////////////////////////////////////////////////
+  if ( argc == 2)
+  if ( strcmp( argv[1] , "" ) !=  0 )
+  {
+          chdir( argv[ 1 ] );
+  }
+
+  char mydirnow[2500];
+  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
+
+
+  make_window();
+  
+  preview_browser->clear();    
+  
+  system( " date > /tmp/flprinter.log ; lpstat -a >>   /tmp/flprinter.log  " );
+  
+  char filein[PATH_MAX];
+  strncpy( filein, "/tmp/flprinter.log"  , PATH_MAX );
+       
+  
+  int fetchi;
+  FILE *fp5;
+  FILE *fp6;
+  char fetchline[PATH_MAX];
+  char fetchlinetmp[PATH_MAX];
+  
+  if ( fexist( filein ) == 1 )
+  {
+    fp6 = fopen( filein , "rb");
+    while( !feof(fp6) ) 
+    {
+          fgets(fetchlinetmp, PATH_MAX, fp6); 
+          strncpy( fetchline, "" , PATH_MAX );
+          for( fetchi = 0 ; ( fetchi <= strlen( fetchlinetmp ) ); fetchi++ )
+            if ( fetchlinetmp[ fetchi ] != '\\n' )
+              fetchline[fetchi]=fetchlinetmp[fetchi];
+              
+          if ( !feof(fp6)  )
+              preview_browser->add( fetchline );    
+
+     }
+     fclose( fp6 );
+ }
+ 
+ 
+ 
+  
+  
+  
+  win1->show();
+
+  Fl::run();} {}
+}
