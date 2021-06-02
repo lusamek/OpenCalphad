@@ -359,6 +359,10 @@ void create_macro(  )
 
 
 
+
+
+
+
 void ncpadvmac( const char *filetarget,  const char *  filesource )
 {
   int fetchi;
@@ -566,6 +570,216 @@ void ncpskip( const char *filetarget,  const char *  filesource , const char *pa
      fclose( fp5 );
    }
 }
+
+
+
+
+
+
+
+
+
+
+void ncp_advfix( const char *filetarget,  const char *  filesource, const char * fooxaxis, const char * fooyaxis,  int var_mode_xy_change )
+{
+  int fetchi;
+  FILE *fp5;
+  FILE *fp6;
+  char fetchline[PATH_MAX];
+  char fetchlinetmp[PATH_MAX];
+  char filein[PATH_MAX];
+  int  gameover = 0; 
+  int  lineskip = 0;
+  int  commentarymode = 0;
+
+  printf( "Module ncp advfix \n" ); 
+  printf( "Filesource:%s (%d)\n", filesource, fexist( filesource ) ); 
+    
+  if ( fexist( filesource ) == 1 )
+  {
+    fp6 = fopen( filesource , "rb");
+    fp5 = fopen( filetarget , "wb");
+    while( !feof( fp6 ) )
+    {
+
+          fgets(fetchlinetmp, PATH_MAX, fp6); 
+          strncpy( fetchline, "" , PATH_MAX );
+          lineskip = 0;
+
+          for( fetchi = 0 ; ( fetchi <= strlen( fetchlinetmp ) ); fetchi++ )
+            if ( fetchlinetmp[ fetchi ] != '\n' )
+                 fetchline[fetchi]=fetchlinetmp[fetchi];
+
+                // plot_adv_computer_skipint_int
+                if ( gameover == 0 )
+                if ( plot_adv_computer_skipint_int == 1 )
+		if ( fetchline[ 0 ] == '@'  )   
+		if ( fetchline[ 1 ] == '&'  )   
+		{
+		    lineskip = 1;
+		}
+
+                if ( gameover == 0 )
+		if ( fetchline[ 0 ] == '/'  )   
+		if ( fetchline[ 1 ] == '*'  )   
+		{
+                    commentarymode = 1;
+		    lineskip = 1;
+		}
+
+
+                if ( gameover == 0 )
+		if ( fetchline[ 0 ] == '*'  )   
+		if ( fetchline[ 1 ] == '/'  )   
+		{
+                    commentarymode = 0;
+		    lineskip = 1;
+		}
+
+                if ( gameover == 0 )
+                if ( lineskip == 0 )
+                if ( commentarymode == 1 )
+		{
+		    lineskip = 1;
+		}
+
+                if ( gameover == 0 )
+		if ( fetchline[ 0 ] == '@'  )   
+		if ( fetchline[ 1 ] == '!'  )   
+		if ( fetchline[ 2 ] == 'E'  )   
+		if ( fetchline[ 3 ] == 'O'  )   
+		if ( fetchline[ 4 ] == 'F'  )   
+		{
+                    /// mode debug: @!EOF => end of file  (upper case)
+		    printf( "    => @!EOF detected (end of file).\n");
+		    gameover = 1;
+		}
+
+                if ( gameover == 0 )
+		if ( fetchline[ 0 ] == '!'  )   
+		if ( fetchline[ 1 ] == 'E'  )   
+		if ( fetchline[ 2 ] == 'O'  )   
+		if ( fetchline[ 3 ] == 'F'  )   
+		{
+                    /// mode debug: !EOF => end of file  (upper case)
+		    printf( "    => !EOF detected (end of file).\n");
+		    gameover = 1;
+		}
+
+
+                if ( gameover == 0 )
+		if ( fetchline[ 0 ] == '!'  )   
+		if ( fetchline[ 1 ] == 'e'  )   
+		if ( fetchline[ 2 ] == 'o'  )   
+		if ( fetchline[ 3 ] == 'f'  )   
+		{
+                    /// mode debug: !EOF => end of file  (upper case)
+		    printf( "    => !EOF detected (end of file).\n");
+		    gameover = 1;
+		}
+
+
+                if ( gameover == 0 )
+		if ( fetchline[ 0 ] == '/'  )   
+		if ( fetchline[ 1 ] == '/'  )   
+		{
+                    /// mode debug: !EOF => end of file  (upper case)
+		    //printf( "    => !EOF detected (end of file).\n");
+		    lineskip = 1;
+		}
+
+                if ( gameover == 0 )
+		if ( fetchline[ 0 ] == '!'  )   
+		if ( fetchline[ 1 ] == 'E'  )   
+		if ( fetchline[ 2 ] == 'O'  )   
+		if ( fetchline[ 3 ] == 'F'  )   
+		{
+                    /// mode debug: !EOF => end of file  (upper case)
+		    printf( "    => !EOF detected (end of file).\n");
+		    gameover = 1;
+		}
+
+
+
+                if ( gameover == 0 )
+		if ( strstr( fetchline, "# set xrange") != 0 )
+		{
+		    printf( " ========================= \n");
+		    printf( "    => Comment xrange detected.\n");
+		    printf( "    LINE: %s\n" , fetchline ); 
+		    if ( fetchline[0] == '#' ) 
+		    {
+		      printf( "    => Marked comment.\n");
+		      if ( strstr( fetchline, "[] writeback" ) != 0 ) 
+		      {
+		          printf( "   => Writeback.\n");
+		      }
+		      else if ( strstr( fetchline, "# set xrange [" ) != 0 ) 
+		      {
+		          printf( "   => The range area is detected.\n");
+			  //fputs( " set xrange [ 0 : 1 ]" , fp5 );
+		          printf( "   => New axis: %s\n", fooxaxis );
+			  fputs( fooxaxis , fp5 );
+			  fputs( "\n", fp5 );
+
+                          if ( var_mode_xy_change == 1 ) 
+			  {
+			     fputs( "\n", fp5 );
+			     fputs( fooyaxis , fp5 );
+			     fputs( "\n", fp5 );
+			  }
+			  lineskip = 1; 
+		      }
+		    }
+		}
+
+                if ( gameover == 0 )
+		if ( strstr( fetchline, "# set yrange") != 0 )
+		{
+		    printf( " ========================= \n");
+		    printf( "    => Comment xrange detected.\n");
+		    printf( "    LINE: %s\n" , fetchline ); 
+		    if ( fetchline[0] == '#' ) 
+		    {
+		      printf( "    => Marked comment.\n");
+		      if ( strstr( fetchline, "[] writeback" ) != 0 ) 
+		      {
+		          printf( "   => Writeback.\n");
+		      }
+		      else if ( strstr( fetchline, "# set yrange [" ) != 0 ) 
+		      {
+		          printf( "   => The range area is detected.\n");
+		          printf( "   => New axis: %s\n", fooxaxis );
+			  fputs( fooyaxis , fp5 );
+			  fputs( "\n", fp5 );
+			  lineskip = 1; 
+		      }
+		    }
+		}
+
+
+                 
+                if ( !feof( fp6 ) ) 
+                if ( gameover == 0 )
+		if ( lineskip == 0 )
+                {
+		   //if ( strstr( fetchline, pattern ) == 0 )
+                   if ( lineskip == 0 )  
+		   {
+                    fputs( fetchline, fp5 );
+                    fputs( "\n", fp5 );
+		   }
+                }
+     }
+     fclose( fp6 );
+     fclose( fp5 );
+   }
+}
+
+
+
+
+
 
 
 
