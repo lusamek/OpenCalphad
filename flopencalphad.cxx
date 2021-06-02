@@ -350,6 +350,9 @@ static void cb_Quit(Fl_Button*, void*) {
 static void cb_3(Fl_Button*, void*) {
   char mydirnow[2500];
   printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
+  
+  if ( var_calc_rm_ocgnu->value( ) == 1 ) 
+      system( " rm ocgnu.plt  " ); 
 
   void_plot_preview_plotfile(   "ocgnu.plt"   );
 
@@ -3559,6 +3562,8 @@ static void cb_GnuPlot(Fl_Button*, void*) {
   // gnuplot ocgnu.plt  &;
 }
 
+Fl_Check_Button *var_calc_rm_ocgnu=(Fl_Check_Button *)0;
+
 Fl_Double_Window *form_element_pse=(Fl_Double_Window *)0;
 
 static void cb_Close7(Fl_Button*, void*) {
@@ -4761,6 +4766,10 @@ Fl_Double_Window* make_window() {
       { Fl_Button* o = new Fl_Button(40, 360, 320, 25, "GnuPlot XForward/Unix");
         o->callback((Fl_Callback*)cb_GnuPlot);
       } // Fl_Button* o
+      { var_calc_rm_ocgnu = new Fl_Check_Button(40, 395, 25, 25, "Calculation with previous rm of ocgnu.plt");
+        var_calc_rm_ocgnu->down_box(FL_DOWN_BOX);
+        var_calc_rm_ocgnu->value( 1 );
+      } // Fl_Check_Button* var_calc_rm_ocgnu
       o->end();
     } // Fl_Group* o
     win7->end();

@@ -49,6 +49,7 @@ extern Fl_Input *input_var_calc_xmin;
 extern Fl_Input *input_var_calc_xmax;
 extern Fl_Double_Window *win7;
 extern Fl_Input *dev_path_input1;
+extern Fl_Check_Button *var_calc_rm_ocgnu;
 extern Fl_Double_Window *form_element_pse;
 extern Fl_Double_Window *form1_periodic_information;
 extern Fl_Browser *form_content_browser1;

@@ -42,7 +42,7 @@ Function {make_window()} {open
 } {
   Fl_Window win1 {
     label FLOPENCALPHAD open
-    xywh {57 325 785 695} type Double resizable visible
+    xywh {59 327 785 695} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad}
@@ -419,6 +419,9 @@ redraw();}
         label {[&3] Compute!}
         callback {char mydirnow[2500];
   printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
+  
+  if ( var_calc_rm_ocgnu->value( ) == 1 ) 
+      system( " rm ocgnu.plt  " ); 
 
   void_plot_preview_plotfile(   "ocgnu.plt"   );
 
@@ -538,7 +541,7 @@ else
   }
   Fl_Window win2 {
     label Database open
-    xywh {804 24 905 460} type Double resizable visible
+    xywh {261 289 905 460} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Database}
@@ -926,7 +929,7 @@ redraw();
   }
   Fl_Window win3 {
     label Option open
-    xywh {297 268 580 470} type Double resizable visible
+    xywh {213 320 580 470} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Option}
@@ -1031,7 +1034,7 @@ redraw();
   
   system( "  cd ; xterm -e '  cd ;        wget -c   --no-check-certificate  https://codeload.github.com/lusamek/OpenCalphad/zip/refs/heads/master -O oc.zip ;  unzip -o oc.zip ; cd ;     cp -v  OpenCalphad-master/macros/* macros/  ' ");
   
-  system( "  cd ; sync ; sleep 1 ; screen -d -m  flopencalphad ~/macros  " );} selected
+  system( "  cd ; sync ; sleep 1 ; screen -d -m  flopencalphad ~/macros  " );}
             xywh {115 160 340 30}
           }
           Fl_Button {} {
@@ -1262,7 +1265,7 @@ else
   }
   Fl_Window win4 {
     label {Graphics Plot} open
-    xywh {994 535 890 545} type Double resizable visible
+    xywh {996 535 890 545} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Plot}
@@ -1538,7 +1541,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
   }
   Fl_Window win5 {
     label Macro open
-    xywh {903 24 850 485} type Double resizable visible
+    xywh {199 192 850 485} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Macro}
@@ -1762,7 +1765,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
   }
   Fl_Window win6 {
     label Condition open
-    xywh {1022 381 655 465} type Double resizable visible
+    xywh {722 473 655 465} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Condition}
@@ -1811,7 +1814,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
   }
   Fl_Window win7 {
     label Development open
-    xywh {1010 148 395 480} type Double resizable visible
+    xywh {980 139 395 480} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Development}
@@ -1954,11 +1957,16 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
   // gnuplot ocgnu.plt  &}
         xywh {40 360 320 25}
       }
+      Fl_Check_Button var_calc_rm_ocgnu {
+        label {Calculation with previous rm of ocgnu.plt} selected
+        xywh {40 395 25 25} down_box DOWN_BOX
+        code1 {var_calc_rm_ocgnu->value( 1 );}
+      }
     }
   }
   Fl_Window form_element_pse {
     label Periodic open
-    xywh {628 167 680 435} type Double resizable visible
+    xywh {592 194 680 435} type Double resizable visible
   } {
     Fl_Button {} {
       label {&Close frame}
@@ -2566,7 +2574,7 @@ printf( "%d\\n", plot_adv_computer_skipint_int );}
   }
   Fl_Window form1_periodic_information {
     label {Periodic -- Information} open
-    xywh {747 30 780 535} type Double resizable visible
+    xywh {444 554 780 535} type Double resizable visible
   } {
     Fl_Button {} {
       label {&Close frame}
