@@ -108,6 +108,12 @@ The image of the release v0.31 is available at the following link: https://drive
 (md5 checksum: 1780fa953a0099ea59770c7a31616bf4  virtualbox-debian-opencalphad-GUI-release-0.31.zip) <br/>
 <br>
 
+Release v0.32, 2021/06/06:
+https://gitlab.com/user53/opencalphad/-/blob/main/vers-3.2/virtualbox-debian-opencalphad-GUI-release-0.32.zip
+<br/>
+<br/>
+
+
 Virtualbox on Linux: <br/>
 Kernel and headers for Ascii/Stretch: https://www.dropbox.com/sh/p21btpcbt8d0lf6/AABMbmwVGKGjm1LBvjPxgx7Ca?dl=0
 <br/>
