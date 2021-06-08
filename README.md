@@ -109,7 +109,7 @@ The image of the release v0.31 is available at the following link: https://drive
 <br>
 
 Release v0.32, 2021/06/06:
-https://gitlab.com/lusamek/opencalphad/-/tree/main/version-3.2
+https://gitlab.com/lusamek/opencalphad/-/raw/main/version-3.2/virtualbox-debian-opencalphad-GUI-release-0.32.zip
 <br/>
 <br/>
 
