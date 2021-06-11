@@ -192,6 +192,14 @@ This allows to use use the cursor for the position (x,y) as well. An example is 
 Fe-C phase diagram (metastable): 
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Gui-Advanced-Plots-Fe-C-(metastable)-01.png)
 
+
+X-Scale / Y-Scale using the advanced plot module:
+![](images/1623442950-Fe-C-2pct-metastable-v1.png)
+<br/>
+
+
+
+
 Fe-C phase diagram (metastable) with GUI:
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Gui-Advanced-Plots-Fe-C-(metastable)-01-GScr.png)
 
@@ -206,11 +214,7 @@ Plot the metastable Fe-C diagram and overlay the stable: <br/>
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Gui-Advanced-Plots-Fe-C-2Types-01.png)
 <br/>
 
-X-Scale / Y-Scale using the advanced plot module:
-![](images/1623442950-Fe-C-2pct-metastable-v1.png)
 
-
-<br/>
 
 # Advanced Plot
 
