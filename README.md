@@ -204,11 +204,10 @@ The possibility to overlay different diagrams is given.
 Plot the metastable Fe-C diagram and overlay the stable: <br/>
 
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Gui-Advanced-Plots-Fe-C-2Types-01.png)
-
-
-
 <br/>
 
+X-Scale / Y-Scale using the advanced plot module:
+![](images/1623442950-Fe-C-2pct-metastable-v1.png)
 
 
 <br/>
