@@ -305,7 +305,7 @@ The diagram for the Fe-Mn system can be achieved as follows. <br/>
 # Contribution
 
 <br/>
-The graphical user interface (GUI) of OC is under development. The database of OC are available on this webpage under the directory "macros" (https://github.com/lusamek/OpenCalphad/tree/master/macros). The GUI allows users to login to a platform on IRC for scientific exchanges and sharing experiences. This is avaiable in the window "Option" using the button "Development and Support".
+The opensource graphical user interface using Linux/BSD libraries is under development. The database of OC are available on this webpage under the directory "macros" (https://github.com/lusamek/OpenCalphad/tree/master/macros). The GUI allows users to login to a platform on IRC for scientific exchanges and sharing experiences. This is avaiable in the window "Option" using the button "Development and Support".
 
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Ag-Cu-System-FLOC-gnuplot-x11-prev-7.png)
 
