@@ -35,6 +35,8 @@ extern Fl_Input *tab5_dataplot_coly;
 extern Fl_Check_Button *tab5_dataplot_mode_x11_driver_on;
 extern Fl_Input *tab6_form1_tab1_grapher_xrange;
 extern Fl_Input *tab6_form1_tab1_grapher_yrange;
+extern Fl_Check_Button *tab5_dataplot_mode_console_plot_on;
+extern Fl_Check_Button *tab5_dataplot_mode_console_plot_scale_on;
 extern Fl_Input *tab7_dataplot_colx;
 extern Fl_Input *tab7_dataplot_coly;
 extern Fl_Input *tab7_form1_x_min;

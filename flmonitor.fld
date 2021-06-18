@@ -1,5 +1,5 @@
 # data file for the Fltk User Interface Designer (fluid)
-version 1.0304
+version 1.0305
 header_name {.h}
 code_name {.cxx}
 decl {\#include <stdio.h>} {private local
@@ -15,7 +15,7 @@ Function {make_window()} {open
 } {
   Fl_Window win1 {
     label Screen open
-    xywh {170 439 315 195} type Double resizable visible
+    xywh {175 444 315 195} type Double resizable visible
   } {
     Fl_Group {} {open selected
       xywh {5 35 305 120} box DOWN_BOX
@@ -23,27 +23,52 @@ Function {make_window()} {open
       Fl_Button {} {
         label {&1: 640x480}
         callback {system( " screen -d -m  xrandr -s 640x480   "  );}
-        xywh {10 45 120 20}
+        xywh {10 65 120 20}
       }
       Fl_Button {} {
         label {&2: 800x600}
         callback {system( " screen -d -m  xrandr -s 800x600   "  );}
-        xywh {10 70 120 20}
+        xywh {10 90 120 20}
       }
       Fl_Button {} {
-        label {&4: 1680x1050}
+        label {&6: 1680x1050}
         callback {system( " screen -d -m  xrandr -s 1680x1050   "  );}
-        xywh {185 70 120 20}
+        xywh {185 90 120 20}
       }
       Fl_Button {} {
-        label {&3: 1366x768}
+        label {&5: 1366x768}
         callback {system( " screen -d -m  xrandr -s   1366x768     "  );}
-        xywh {185 45 120 20}
+        xywh {185 65 120 20}
+      }
+      Fl_Button {} {
+        label Settings
+        callback {system( " cd ; screen -d -m  flmonitor-settings   "  );}
+        xywh {235 135 70 15}
+      }
+      Fl_Button {} {
+        label {&3: 1024x768}
+        callback {system( " screen -d -m  xrandr -s 1024x768   "  );}
+        xywh {10 115 120 20}
+      }
+      Fl_Button {} {
+        label {&9: 1920x1080}
+        callback {system( " screen -d -m  xrandr -s 1920x1080  "  );}
+        xywh {185 115 120 20}
+      }
+      Fl_Button {} {
+        label {&0: 320x240}
+        callback {system( " screen -d -m  xrandr -s 320x240   "  );}
+        xywh {10 40 120 20}
+      }
+      Fl_Button {} {
+        label {&4: 1280x720}
+        callback {system( " screen -d -m  xrandr -s   1280x720     "  );}
+        xywh {185 40 120 20}
       }
       Fl_Button {} {
         label {(...)}
-        callback {system( " cd ; screen -d -m  flmonitor-settings   "  );}
-        xywh {250 125 55 20}
+        callback {system( " cd ;  xrandr >  /tmp/xrandr.info   ;     screen -d -m  flview /tmp/xrandr.info    "  );}
+        xywh {185 135 50 15}
       }
     }
     Fl_Box {} {
@@ -52,7 +77,14 @@ Function {make_window()} {open
     }
     Fl_Button {} {
       label { &Cancel}
-      callback {exit( 0 );}
+      callback {exit( 0 );
+
+/*
+default connected 1280x720+0+0 0mm x 0mm
+   1920x1080      0.00  
+   1280x720       0.00*
+   
+   */}
       image {../../../../nuvola/16x16/actions/exit.png} xywh {5 160 305 25} align 256
     }
   }

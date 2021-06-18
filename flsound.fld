@@ -1,0 +1,106 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0304
+header_name {.h}
+code_name {.cxx}
+decl {\#include <stdio.h>} {private local
+}
+
+decl {\#include <stdlib.h>} {private local
+}
+
+decl {\#include "headerf.h"} {private local
+}
+
+Function {make_window()} {open
+} {
+  Fl_Window win1 {
+    label FLSOUND open
+    xywh {515 331 315 195} type Double resizable visible
+  } {
+    Fl_Group {} {open
+      xywh {5 35 305 155} box DOWN_BOX
+    } {
+      Fl_Button {} {
+        label {    Sound  &Up}
+        callback {printf( "=>amixer \\n" );
+   printf( "=>mixerctl Up \\n" );
+   
+   system( "  amixer -c 0 sset PCM 2+ " );  // for tv pi 
+   system( "  mixerctl -w outputs.master=+10 ");
+
+   printf( " New amixer headphone for rpi \\n" );   
+   system( "  amixer  -c 1 sset Headphone  150+  " );
+   
+   
+   
+   
+      system( "  amixer -c 0 sset PCM 100+ " );  // for tv pi}
+        image {../../../../nuvola/22x22/actions/2uparrow.png} xywh {10 50 295 45} align 256
+      }
+      Fl_Button {} {
+        label {  Sound  &Down}
+        callback {printf( "=>amixer \\n" );
+   system( "  amixer -c 0 sset PCM 2- " );  // for tv pi 
+   printf( "=>mixerctl Down \\n" );
+   system( "  mixerctl -w outputs.master=-10 ");
+   
+   printf( " New amixer headphone for rpi \\n" );   
+   system( "  amixer  -c 1 sset Headphone  150-  " );
+   
+   
+   
+      system( "  amixer -c 0 sset PCM 100- " );  // for tv pi} selected
+        image {../../../../nuvola/22x22/actions/2downarrow.png} xywh {10 100 295 45} align 256
+      }
+      Fl_Button {} {
+        label { C-&0}
+        callback {system( " screen -d -m  xterm -e   alsamixer      "  );}
+        image {../../../../nuvola/16x16/apps/amarok.png} xywh {10 160 65 25} align 256
+      }
+      Fl_Button {} {
+        label { C-&1}
+        callback {system( " screen -d -m  xterm -e    alsamixer   -c 1   "  );}
+        image {../../../../nuvola/16x16/apps/amarok.png} xywh {80 160 65 25} align 256
+      }
+      Fl_Button {} {
+        callback {exit( 0 );}
+        image {../../../../nuvola/16x16/actions/exit.png} xywh {270 160 35 25}
+      }
+      Fl_Button {} {
+        label { C-&2}
+        callback {system( " screen -d -m  xterm -e    alsamixer   -c 2   "  );}
+        image {../../../../nuvola/16x16/apps/amarok.png} xywh {150 160 65 25} align 256
+      }
+      Fl_Button {} {
+        label { V}
+        callback {system( " cd ; screen -d -m pavucontrol   "  );}
+        image {../../../../nuvola/16x16/apps/amarok.png} xywh {220 160 45 25} align 256
+      }
+    }
+    Fl_Box {} {
+      label {  FLSOUND}
+      image {../../../../nuvola/22x22/actions/volume.png} xywh {5 5 305 25} box ENGRAVED_BOX labelfont 1 align 256
+    }
+  }
+}
+
+Function {main( int argc, char *argv[])} {open return_type int
+} {
+  code {printf( " == FLTK == \\n" );
+
+////////////////////////////////////////////////////////
+  if ( argc == 2)
+  if ( strcmp( argv[1] , "" ) !=  0 )
+  {
+          chdir( argv[ 1 ] );
+  }
+
+  char mydirnow[2500];
+  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
+
+
+  make_window();
+  win1->show();
+
+  Fl::run();} {}
+}

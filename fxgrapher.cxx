@@ -419,7 +419,10 @@ static void cb_Browse1(Fl_Button*, void*) {
                 {
                     if ( ( strstr( dp->d_name, ".txt" ) != 0 )
                     || ( strstr( dp->d_name, ".ini" ) != 0 )   
-                    || ( strstr( dp->d_name, ".dat" ) != 0 )   
+                    
+                    || ( strstr( dp->d_name, ".dat" ) != 0 )  
+                    || ( strstr( dp->d_name, ".asc" ) != 0 )  
+                     
                     || ( strstr( dp->d_name, "Makefile" ) != 0 )  
                     || ( strstr( dp->d_name, ".csv" ) != 0 ) 
                       || ( strstr( dp->d_name, ".ddb" ) != 0 )     //tdb
@@ -477,22 +480,38 @@ static void cb_dos2unix1(Fl_Button*, void*) {
   system(  charo );
 }
 
+static void cb_rox(Fl_Button*, void*) {
+  system( " rox " );
+}
+
+static void cb_flm(Fl_Button*, void*) {
+  system( " flm " );
+}
+
 Fl_Browser *tab5_browser_macro_filecontent=(Fl_Browser *)0;
 
-static void cb_Plot1(Fl_Button*, void*) {
-  // gnuplot ... file:  plot "5h-Loesung.csv" u 1:4
+static void cb_Single(Fl_Button*, void*) {
+  /*
+ gnuplot -p -e  "  set datafile separator ';' ;  plot 'test.csv'  using 1:2 with points lt 1 pt 1 "
+ */
 
+/// gnuplot ... file:  plot "5h-Loesung.csv" u 1:4
   char charo[PATH_MAX];
   strncpy( charo, "", PATH_MAX );
-  strncat( charo , "    gnuplot -p  -e    " , PATH_MAX - strlen( charo ) -1 );
-  strncat( charo , " '  "  , PATH_MAX -  strlen( charo ) -1 ); 
   
+  if ( tab5_dataplot_mode_console_plot_on->value( ) == 1 ) 
+  {  
+      strncat( charo , "    screen -d -m     xterm -e    " , PATH_MAX - strlen( charo ) -1 ); 
+  }
+    
+  strncat( charo , "    gnuplot -p  -e    " , PATH_MAX - strlen( charo ) -1 );    
+  strncat( charo , " '  "  , PATH_MAX -  strlen( charo ) -1 ); 
   if ( tab5_dataplot_mode_x11_driver_on->value( ) == 1 )
   {
      strncat( charo , "  set termin x11 ;  " , PATH_MAX -  strlen( charo ) -1 );
   }
-  
   strncat( charo , "  plot " , PATH_MAX -  strlen( charo ) -1 );
+
   
   strncat( charo , tab6_form1_tab1_grapher_xrange->value() , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
@@ -509,8 +528,12 @@ static void cb_Plot1(Fl_Button*, void*) {
   strncat( charo , " ;   "  , PATH_MAX -  strlen( charo ) -1 ); 
   strncat( charo , " '  "  , PATH_MAX -  strlen( charo ) -1 ); 
   
+  
+  if ( tab5_dataplot_mode_console_plot_on->value( ) == 1 ) 
+  {  
+      //strncat( charo , "    ;  read keypress   " , PATH_MAX - strlen( charo ) -1 ); 
+  }
   printf( "Command: %s \n" , charo );
-     
   system(  charo );
 }
 
@@ -530,6 +553,84 @@ static void cb_Close1(Fl_Button*, void*) {
 Fl_Input *tab6_form1_tab1_grapher_xrange=(Fl_Input *)0;
 
 Fl_Input *tab6_form1_tab1_grapher_yrange=(Fl_Input *)0;
+
+static void cb_CA4(Fl_Button*, void*) {
+  tab6_form1_tab1_grapher_xrange->value( "" );
+}
+
+static void cb_CA5(Fl_Button*, void*) {
+  tab6_form1_tab1_grapher_yrange->value( "" );
+}
+
+static void cb_1(Fl_Button*, void*) {
+  tab5_dataplot_colx->value( "1" );
+tab5_dataplot_coly->value( "2" );
+}
+
+static void cb_2(Fl_Button*, void*) {
+  tab5_dataplot_colx->value( "2" );
+tab5_dataplot_coly->value( "3" );
+}
+
+static void cb_3(Fl_Button*, void*) {
+  tab5_dataplot_colx->value( "3" );
+tab5_dataplot_coly->value( "4" );
+}
+
+Fl_Check_Button *tab5_dataplot_mode_console_plot_on=(Fl_Check_Button *)0;
+
+static void cb_Adv(Fl_Button*, void*) {
+  /*
+ gnuplot -p -e  "     set datafile separator ';' ;  plot 'test.csv'  using 1:2 with points lt 1 pt 1     "
+ */
+
+/// gnuplot ... file:  plot "5h-Loesung.csv" u 1:4
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  
+  if ( tab5_dataplot_mode_console_plot_on->value( ) == 1 ) 
+  {  
+      strncat( charo , "    screen -d -m     xterm -e    " , PATH_MAX - strlen( charo ) -1 ); 
+  }
+    
+  strncat( charo , "    gnuplot -p  -e    ' " , PATH_MAX - strlen( charo ) -1 );    
+  //strncat( charo , " '  "  , PATH_MAX -  strlen( charo ) -1 ); 
+  
+  
+  if ( tab5_dataplot_mode_x11_driver_on->value( ) == 1 )
+  {
+     strncat( charo , "  set termin x11 ;  " , PATH_MAX -  strlen( charo ) -1 );
+  }
+  strncat( charo , "       set datafile separator \";\" ;  plot  " , PATH_MAX -  strlen( charo ) -1 );
+
+
+  if ( tab5_dataplot_mode_console_plot_scale_on->value(  ) == 1 )
+  {
+    strncat( charo , tab6_form1_tab1_grapher_xrange->value() , PATH_MAX -  strlen( charo ) -1 );
+    strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+    strncat( charo , tab6_form1_tab1_grapher_yrange->value() , PATH_MAX -  strlen( charo ) -1 );
+    strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  }
+  
+  strncat( charo , " \"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , tab5_input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\"  u   " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , tab5_dataplot_colx->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , ":"  , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , tab5_dataplot_coly->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "    with points lt 1 pt 1  ;   "  , PATH_MAX -  strlen( charo ) -1 ); 
+  strncat( charo , " '  "  , PATH_MAX -  strlen( charo ) -1 ); 
+  
+  
+  if ( tab5_dataplot_mode_console_plot_on->value( ) == 1 ) 
+  {  
+      //strncat( charo , "    ;  read keypress   " , PATH_MAX - strlen( charo ) -1 ); 
+  }
+  printf( "Command: %s \n" , charo );
+  system(  charo );
+}
+
+Fl_Check_Button *tab5_dataplot_mode_console_plot_scale_on=(Fl_Check_Button *)0;
 
 static void cb_Create(Fl_Button*, void*) {
   // gnuplot ... file:  plot "5h-Loesung.csv" u 1:4
@@ -747,6 +848,7 @@ Fl_Double_Window* make_window() {
     } // Fl_Box* o
     { Fl_Tabs* o = new Fl_Tabs(20, 80, 800, 630, "User Parameter");
       { Fl_Group* o = new Fl_Group(40, 105, 780, 605, "Fx Grapher");
+        o->hide();
         { Fl_Group* o = new Fl_Group(450, 495, 340, 180, "Plot file");
           o->box(FL_DOWN_BOX);
           o->labeltype(FL_ENGRAVED_LABEL);
@@ -910,7 +1012,6 @@ Fl_Double_Window* make_window() {
         o->end();
       } // Fl_Group* o
       { Fl_Group* o = new Fl_Group(45, 105, 775, 605, "Data Plot");
-        o->hide();
         { Fl_Group* o = new Fl_Group(45, 265, 370, 240, "Browser");
           o->box(FL_DOWN_BOX);
           o->labeltype(FL_ENGRAVED_LABEL);
@@ -928,17 +1029,23 @@ Fl_Double_Window* make_window() {
           { Fl_Button* o = new Fl_Button(55, 165, 95, 25, "Browse");
             o->callback((Fl_Callback*)cb_Browse1);
           } // Fl_Button* o
-          { Fl_Button* o = new Fl_Button(270, 165, 75, 25, "&New");
+          { Fl_Button* o = new Fl_Button(205, 165, 75, 25, "&New");
             o->callback((Fl_Callback*)cb_New1);
           } // Fl_Button* o
-          { Fl_Button* o = new Fl_Button(350, 165, 50, 25, "&View");
+          { Fl_Button* o = new Fl_Button(285, 165, 50, 25, "&View");
             o->callback((Fl_Callback*)cb_View2);
           } // Fl_Button* o
-          { Fl_Button* o = new Fl_Button(350, 195, 50, 25, "&Edit");
+          { Fl_Button* o = new Fl_Button(285, 195, 50, 25, "&Edit");
             o->callback((Fl_Callback*)cb_Edit3);
           } // Fl_Button* o
-          { Fl_Button* o = new Fl_Button(270, 195, 75, 25, "dos2unix");
+          { Fl_Button* o = new Fl_Button(205, 195, 75, 25, "dos2unix");
             o->callback((Fl_Callback*)cb_dos2unix1);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(340, 165, 55, 25, "rox");
+            o->callback((Fl_Callback*)cb_rox);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(340, 195, 55, 25, "flm");
+            o->callback((Fl_Callback*)cb_flm);
           } // Fl_Button* o
           o->end();
         } // Fl_Group* o
@@ -954,28 +1061,54 @@ Fl_Double_Window* make_window() {
         { Fl_Group* o = new Fl_Group(45, 530, 720, 165, "Default plot");
           o->box(FL_DOWN_BOX);
           o->labeltype(FL_ENGRAVED_LABEL);
-          { Fl_Button* o = new Fl_Button(55, 540, 120, 35, "Plot data file");
-            o->callback((Fl_Callback*)cb_Plot1);
+          { Fl_Button* o = new Fl_Button(635, 540, 120, 35, "&Single Plot Data");
+            o->callback((Fl_Callback*)cb_Single);
           } // Fl_Button* o
-          { tab5_dataplot_colx = new Fl_Input(230, 545, 35, 25, "Col X");
+          { tab5_dataplot_colx = new Fl_Input(95, 540, 35, 25, "Col X");
             tab5_dataplot_colx->value( "2" );
           } // Fl_Input* tab5_dataplot_colx
-          { tab5_dataplot_coly = new Fl_Input(315, 545, 35, 25, "Col Y");
+          { tab5_dataplot_coly = new Fl_Input(180, 540, 35, 25, "Col Y");
             tab5_dataplot_coly->value( "3" );
           } // Fl_Input* tab5_dataplot_coly
-          { tab5_dataplot_mode_x11_driver_on = new Fl_Check_Button(460, 625, 25, 25, "Plot driver with X11 Library");
+          { tab5_dataplot_mode_x11_driver_on = new Fl_Check_Button(310, 625, 25, 25, "Plot driver with X11 Library");
             tab5_dataplot_mode_x11_driver_on->down_box(FL_DOWN_BOX);
             tab5_dataplot_mode_x11_driver_on->value( 0 );
           } // Fl_Check_Button* tab5_dataplot_mode_x11_driver_on
-          { Fl_Button* o = new Fl_Button(55, 590, 120, 35, "Close all plots");
+          { Fl_Button* o = new Fl_Button(635, 620, 120, 35, "Close &all plots");
             o->callback((Fl_Callback*)cb_Close1);
           } // Fl_Button* o
-          { tab6_form1_tab1_grapher_xrange = new Fl_Input(515, 545, 225, 25, "X range");
+          { tab6_form1_tab1_grapher_xrange = new Fl_Input(310, 540, 200, 25, "X range");
             tab6_form1_tab1_grapher_xrange->value( "[-10:10]" );
           } // Fl_Input* tab6_form1_tab1_grapher_xrange
-          { tab6_form1_tab1_grapher_yrange = new Fl_Input(515, 580, 225, 25, "Y range");
+          { tab6_form1_tab1_grapher_yrange = new Fl_Input(310, 570, 200, 25, "Y range");
             tab6_form1_tab1_grapher_yrange->value( "[-10:10]" );
           } // Fl_Input* tab6_form1_tab1_grapher_yrange
+          { Fl_Button* o = new Fl_Button(510, 540, 30, 25, "CA");
+            o->callback((Fl_Callback*)cb_CA4);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(510, 570, 30, 25, "CA");
+            o->callback((Fl_Callback*)cb_CA5);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(95, 575, 30, 25, "1;2");
+            o->callback((Fl_Callback*)cb_1);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(130, 575, 30, 25, "2;3");
+            o->callback((Fl_Callback*)cb_2);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(165, 575, 30, 25, "3;4");
+            o->callback((Fl_Callback*)cb_3);
+          } // Fl_Button* o
+          { tab5_dataplot_mode_console_plot_on = new Fl_Check_Button(310, 650, 25, 25, "Plot Console");
+            tab5_dataplot_mode_console_plot_on->down_box(FL_DOWN_BOX);
+            tab5_dataplot_mode_console_plot_on->value( 0 );
+          } // Fl_Check_Button* tab5_dataplot_mode_console_plot_on
+          { Fl_Button* o = new Fl_Button(635, 580, 120, 35, "&Adv. Plot Data");
+            o->callback((Fl_Callback*)cb_Adv);
+          } // Fl_Button* o
+          { tab5_dataplot_mode_console_plot_scale_on = new Fl_Check_Button(310, 600, 25, 25, "Plot with x/y scale");
+            tab5_dataplot_mode_console_plot_scale_on->down_box(FL_DOWN_BOX);
+            tab5_dataplot_mode_console_plot_scale_on->value( 1 );
+          } // Fl_Check_Button* tab5_dataplot_mode_console_plot_scale_on
           o->end();
         } // Fl_Group* o
         o->end();
@@ -1081,18 +1214,15 @@ int main( int argc, char *argv[]) {
   printf( " == FLTK == \n" );
   
     
-    if ( argc == 2)
+    if ( argc == 2 )
     if ( strcmp( argv[1] , "" ) !=  0 )
     {
-            chdir( argv[ 1 ] );
+           printf( "chdir %s\n" , argv[ 1 ] ); 
+           chdir( argv[ 1 ] );
     }
-  
-  
-  
-  
     
   
-    make_window();
+          make_window();
     
    	browser1->type(FL_HOLD_BROWSER);
   	browser1->add("============");  

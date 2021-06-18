@@ -1,5 +1,5 @@
 # data file for the Fltk User Interface Designer (fluid)
-version 1.0305
+version 1.0304
 header_name {.h}
 code_name {.cxx}
 decl {\#include <stdio.h>} {private local
@@ -42,7 +42,7 @@ Function {make_window()} {open
 } {
   Fl_Window win1 {
     label FLOPENCALPHAD open
-    xywh {66 334 785 695} type Double resizable visible
+    xywh {67 335 785 695} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad}
@@ -541,7 +541,7 @@ else
   }
   Fl_Window win2 {
     label Database open
-    xywh {1015 26 905 460} type Double resizable visible
+    xywh {1015 27 905 460} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Database}
@@ -929,7 +929,7 @@ redraw();
   }
   Fl_Window win3 {
     label Option open
-    xywh {275 320 580 470} type Double resizable visible
+    xywh {277 315 580 470} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Option}
@@ -944,7 +944,7 @@ redraw();
       xywh {15 75 550 340}
     } {
       Fl_Group {} {
-        label {&Applications} open
+        label {&Applications} open selected
         xywh {40 100 525 315}
       } {
         Fl_Group {} {
@@ -1060,7 +1060,7 @@ redraw();
             xywh {215 245 150 40}
           }
           Fl_Button {} {
-            label {Micro. material}
+            label {Microst. material}
             callback {nsystem(  " screen -d -m  flmicromat  " );}
             xywh {215 195 150 40}
           }
@@ -1174,7 +1174,7 @@ else
           Fl_Button {} {
             label {&notepad}
             callback {nsystem( " screen -d -m flnotepad " );}
-            xywh {350 185 75 25}
+            xywh {360 185 65 25}
           }
           Fl_Button {} {
             label {&xpaint}
@@ -1182,7 +1182,7 @@ else
 
 
  nsystem( "   screen -d -m  xpaint   -canvas -size 640x480    " );}
-            xywh {350 150 75 25}
+            xywh {360 150 65 25}
           }
           Fl_Button {} {
             label Path
@@ -1212,14 +1212,14 @@ else
             xywh {430 150 50 25}
           }
           Fl_Button {} {
-            label Keyboard
-            callback {nsystem( " screen -d -m flkeyboard " );}
-            xywh {270 185 75 25}
+            label Screenshot
+            callback {nsystem( " cd ;  screen -d -m flscreenshot " );}
+            xywh {270 185 85 25}
           }
           Fl_Button {} {
             label Monitor
             callback {nsystem( " screen -d -m flmonitor " );}
-            xywh {270 150 75 25}
+            xywh {270 150 85 25}
           }
           Fl_Button {} {
             label CAS
@@ -1292,7 +1292,7 @@ else
   }
   Fl_Window win4 {
     label {Graphics Plot} open
-    xywh {703 384 910 605} type Double resizable visible
+    xywh {704 385 910 605} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Plot}
@@ -1409,7 +1409,7 @@ else
         }
       }
       Fl_Group {} {
-        label {Advanced Plot} open selected
+        label {Advanced Plot} open
         xywh {35 95 860 200}
       } {
         Fl_Button {} {
@@ -1650,7 +1650,7 @@ flplot_preview_browser->clear();}
   }
   Fl_Window win5 {
     label Macro open
-    xywh {1070 26 850 485} type Double resizable visible
+    xywh {1070 27 850 485} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Macro}
@@ -1874,7 +1874,7 @@ flplot_preview_browser->clear();}
   }
   Fl_Window win6 {
     label Condition open
-    xywh {1265 82 655 465} type Double resizable visible
+    xywh {1265 83 655 465} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Condition}
@@ -1923,7 +1923,7 @@ flplot_preview_browser->clear();}
   }
   Fl_Window win7 {
     label Development open
-    xywh {1481 87 395 480} type Double resizable visible
+    xywh {1482 88 395 480} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Development}
@@ -2075,7 +2075,7 @@ flplot_preview_browser->clear();}
   }
   Fl_Window form_element_pse {
     label Periodic open
-    xywh {1084 128 680 435} type Double resizable visible
+    xywh {1085 129 680 435} type Double resizable visible
   } {
     Fl_Button {} {
       label {&Close frame}
@@ -2683,7 +2683,7 @@ flplot_preview_browser->clear();}
   }
   Fl_Window form1_periodic_information {
     label {Periodic -- Information} open
-    xywh {1057 172 780 535} type Double resizable visible
+    xywh {1058 173 780 535} type Double resizable visible
   } {
     Fl_Button {} {
       label {&Close frame}

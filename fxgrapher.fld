@@ -18,7 +18,7 @@ Function {make_window()} {open
 } {
   Fl_Window win1 {
     label FLTK open
-    xywh {766 164 835 750} type Double box DOWN_BOX resizable visible
+    xywh {1014 85 835 750} type Double box DOWN_BOX resizable visible
   } {
     Fl_Box {} {
       label FxGrapher
@@ -29,8 +29,8 @@ Function {make_window()} {open
       xywh {20 80 800 630}
     } {
       Fl_Group {} {
-        label {Fx Grapher} open selected
-        xywh {40 105 780 605}
+        label {Fx Grapher} open
+        xywh {40 105 780 605} hide
       } {
         Fl_Group {} {
           label {Plot file} open
@@ -493,7 +493,7 @@ if (  browser2->value() >= 1)
       }
       Fl_Group {} {
         label {Data Plot} open
-        xywh {45 105 775 605} hide
+        xywh {45 105 775 605}
       } {
         Fl_Group {} {
           label Browser open
@@ -561,7 +561,10 @@ if (  tab5_browser2->value() >= 1)
                 {
                     if ( ( strstr( dp->d_name, ".txt" ) != 0 )
                     || ( strstr( dp->d_name, ".ini" ) != 0 )   
-                    || ( strstr( dp->d_name, ".dat" ) != 0 )   
+                    
+                    || ( strstr( dp->d_name, ".dat" ) != 0 )  
+                    || ( strstr( dp->d_name, ".asc" ) != 0 )  
+                     
                     || ( strstr( dp->d_name, "Makefile" ) != 0 )  
                     || ( strstr( dp->d_name, ".csv" ) != 0 ) 
                       || ( strstr( dp->d_name, ".ddb" ) != 0 )     //tdb
@@ -585,7 +588,7 @@ if (  tab5_browser2->value() >= 1)
   strncat( charo , tab5_input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
   system(  charo );}
-            xywh {270 165 75 25}
+            xywh {205 165 75 25}
           }
           Fl_Button {} {
             label {&View}
@@ -597,7 +600,7 @@ if (  tab5_browser2->value() >= 1)
   strncat( charo , tab5_input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
   system(  charo );}
-            xywh {350 165 50 25}
+            xywh {285 165 50 25}
           }
           Fl_Button {} {
             label {&Edit}
@@ -609,7 +612,7 @@ if (  tab5_browser2->value() >= 1)
   strncat( charo , tab5_input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
   system(  charo );}
-            xywh {350 195 50 25}
+            xywh {285 195 50 25}
           }
           Fl_Button {} {
             label dos2unix
@@ -621,7 +624,17 @@ if (  tab5_browser2->value() >= 1)
   strncat( charo , tab5_input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
   system(  charo );}
-            xywh {270 195 75 25}
+            xywh {205 195 75 25}
+          }
+          Fl_Button {} {
+            label rox
+            callback {system( " rox " );}
+            xywh {340 165 55 25}
+          }
+          Fl_Button {} {
+            label flm
+            callback {system( " flm " );}
+            xywh {340 195 55 25}
           }
         }
         Fl_Group {} {
@@ -634,24 +647,32 @@ if (  tab5_browser2->value() >= 1)
           }
         }
         Fl_Group {} {
-          label {Default plot} open
+          label {Default plot} open selected
           xywh {45 530 720 165} box DOWN_BOX labeltype ENGRAVED_LABEL
         } {
           Fl_Button {} {
-            label {Plot data file}
-            callback {// gnuplot ... file:  plot "5h-Loesung.csv" u 1:4
+            label {&Single Plot Data}
+            callback {/*
+ gnuplot -p -e  "  set datafile separator ';' ;  plot 'test.csv'  using 1:2 with points lt 1 pt 1 "
+ */
 
+/// gnuplot ... file:  plot "5h-Loesung.csv" u 1:4
   char charo[PATH_MAX];
   strncpy( charo, "", PATH_MAX );
-  strncat( charo , "    gnuplot -p  -e    " , PATH_MAX - strlen( charo ) -1 );
-  strncat( charo , " '  "  , PATH_MAX -  strlen( charo ) -1 ); 
   
+  if ( tab5_dataplot_mode_console_plot_on->value( ) == 1 ) 
+  {  
+      strncat( charo , "    screen -d -m     xterm -e    " , PATH_MAX - strlen( charo ) -1 ); 
+  }
+    
+  strncat( charo , "    gnuplot -p  -e    " , PATH_MAX - strlen( charo ) -1 );    
+  strncat( charo , " '  "  , PATH_MAX -  strlen( charo ) -1 ); 
   if ( tab5_dataplot_mode_x11_driver_on->value( ) == 1 )
   {
      strncat( charo , "  set termin x11 ;  " , PATH_MAX -  strlen( charo ) -1 );
   }
-  
   strncat( charo , "  plot " , PATH_MAX -  strlen( charo ) -1 );
+
   
   strncat( charo , tab6_form1_tab1_grapher_xrange->value() , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
@@ -668,43 +689,137 @@ if (  tab5_browser2->value() >= 1)
   strncat( charo , " ;   "  , PATH_MAX -  strlen( charo ) -1 ); 
   strncat( charo , " '  "  , PATH_MAX -  strlen( charo ) -1 ); 
   
+  
+  if ( tab5_dataplot_mode_console_plot_on->value( ) == 1 ) 
+  {  
+      //strncat( charo , "    ;  read keypress   " , PATH_MAX - strlen( charo ) -1 ); 
+  }
   printf( "Command: %s \\n" , charo );
-     
   system(  charo );}
-            xywh {55 540 120 35}
+            xywh {635 540 120 35}
           }
           Fl_Input tab5_dataplot_colx {
             label {Col X}
-            xywh {230 545 35 25}
+            xywh {95 540 35 25}
             code1 {tab5_dataplot_colx->value( "2" );}
           }
           Fl_Input tab5_dataplot_coly {
             label {Col Y}
-            xywh {315 545 35 25}
+            xywh {180 540 35 25}
             code0 {tab5_dataplot_coly->value( "3" );}
           }
           Fl_Check_Button tab5_dataplot_mode_x11_driver_on {
             label {Plot driver with X11 Library}
-            xywh {460 625 25 25} down_box DOWN_BOX
+            xywh {310 625 25 25} down_box DOWN_BOX
             code1 {tab5_dataplot_mode_x11_driver_on->value( 0 );}
           }
           Fl_Button {} {
-            label {Close all plots}
+            label {Close &all plots}
             callback {// form1_tab1_diffusion_filesource->value() 
         char cmdi[PATH_MAX];
      
         system( " pkill gnuplot " );}
-            xywh {55 590 120 35}
+            xywh {635 620 120 35}
           }
           Fl_Input tab6_form1_tab1_grapher_xrange {
             label {X range}
-            xywh {515 545 225 25}
+            xywh {310 540 200 25}
             code1 {tab6_form1_tab1_grapher_xrange->value( "[-10:10]" );}
           }
           Fl_Input tab6_form1_tab1_grapher_yrange {
             label {Y range}
-            xywh {515 580 225 25}
+            xywh {310 570 200 25}
             code1 {tab6_form1_tab1_grapher_yrange->value( "[-10:10]" );}
+          }
+          Fl_Button {} {
+            label CA
+            callback {tab6_form1_tab1_grapher_xrange->value( "" );}
+            xywh {510 540 30 25}
+          }
+          Fl_Button {} {
+            label CA
+            callback {tab6_form1_tab1_grapher_yrange->value( "" );}
+            xywh {510 570 30 25}
+          }
+          Fl_Button {} {
+            label {1;2}
+            callback {tab5_dataplot_colx->value( "1" );
+tab5_dataplot_coly->value( "2" );}
+            xywh {95 575 30 25}
+          }
+          Fl_Button {} {
+            label {2;3}
+            callback {tab5_dataplot_colx->value( "2" );
+tab5_dataplot_coly->value( "3" );}
+            xywh {130 575 30 25}
+          }
+          Fl_Button {} {
+            label {3;4}
+            callback {tab5_dataplot_colx->value( "3" );
+tab5_dataplot_coly->value( "4" );}
+            xywh {165 575 30 25}
+          }
+          Fl_Check_Button tab5_dataplot_mode_console_plot_on {
+            label {Plot Console}
+            xywh {310 650 25 25} down_box DOWN_BOX
+            code1 {tab5_dataplot_mode_console_plot_on->value( 0 );}
+          }
+          Fl_Button {} {
+            label {&Adv. Plot Data}
+            callback {/*
+ gnuplot -p -e  "     set datafile separator ';' ;  plot 'test.csv'  using 1:2 with points lt 1 pt 1     "
+ */
+
+/// gnuplot ... file:  plot "5h-Loesung.csv" u 1:4
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  
+  if ( tab5_dataplot_mode_console_plot_on->value( ) == 1 ) 
+  {  
+      strncat( charo , "    screen -d -m     xterm -e    " , PATH_MAX - strlen( charo ) -1 ); 
+  }
+    
+  strncat( charo , "    gnuplot -p  -e    ' " , PATH_MAX - strlen( charo ) -1 );    
+  //strncat( charo , " '  "  , PATH_MAX -  strlen( charo ) -1 ); 
+  
+  
+  if ( tab5_dataplot_mode_x11_driver_on->value( ) == 1 )
+  {
+     strncat( charo , "  set termin x11 ;  " , PATH_MAX -  strlen( charo ) -1 );
+  }
+  strncat( charo , "       set datafile separator \\";\\" ;  plot  " , PATH_MAX -  strlen( charo ) -1 );
+
+
+  if ( tab5_dataplot_mode_console_plot_scale_on->value(  ) == 1 )
+  {
+    strncat( charo , tab6_form1_tab1_grapher_xrange->value() , PATH_MAX -  strlen( charo ) -1 );
+    strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+    strncat( charo , tab6_form1_tab1_grapher_yrange->value() , PATH_MAX -  strlen( charo ) -1 );
+    strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  }
+  
+  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , tab5_input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\\"  u   " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , tab5_dataplot_colx->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , ":"  , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , tab5_dataplot_coly->value() , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "    with points lt 1 pt 1  ;   "  , PATH_MAX -  strlen( charo ) -1 ); 
+  strncat( charo , " '  "  , PATH_MAX -  strlen( charo ) -1 ); 
+  
+  
+  if ( tab5_dataplot_mode_console_plot_on->value( ) == 1 ) 
+  {  
+      //strncat( charo , "    ;  read keypress   " , PATH_MAX - strlen( charo ) -1 ); 
+  }
+  printf( "Command: %s \\n" , charo );
+  system(  charo );}
+            xywh {635 580 120 35}
+          }
+          Fl_Check_Button tab5_dataplot_mode_console_plot_scale_on {
+            label {Plot with x/y scale}
+            xywh {310 600 25 25} down_box DOWN_BOX
+            code1 {tab5_dataplot_mode_console_plot_scale_on->value( 1 );}
           }
         }
       }
@@ -991,18 +1106,15 @@ Function {main( int argc, char *argv[])} {open return_type int
   code {printf( " == FLTK == \\n" );
 
   
-  if ( argc == 2)
+  if ( argc == 2 )
   if ( strcmp( argv[1] , "" ) !=  0 )
   {
-          chdir( argv[ 1 ] );
+         printf( "chdir %s\\n" , argv[ 1 ] ); 
+         chdir( argv[ 1 ] );
   }
-
-
-
-
   
 
-  make_window();
+        make_window();
   
  	browser1->type(FL_HOLD_BROWSER);
 	browser1->add("============");  

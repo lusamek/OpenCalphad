@@ -1,0 +1,226 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0304
+header_name {.h}
+code_name {.cxx}
+decl {\#include <stdio.h>} {private local
+}
+
+decl {\#include <stdlib.h>} {private local
+}
+
+decl {\#include "ccode.h"} {private local
+}
+
+decl {char user_arg1[PATH_MAX];} {private local
+}
+
+decl {int flfontsize = 14;} {private local
+}
+
+Function {loadpanel( const char *pattern )} {open
+} {
+  code {printf("Load Panel!\\n");
+
+
+  
+  int fetchi;
+  FILE *fp5;
+  FILE *fp6;
+  char fetchline[PATH_MAX];
+  char fetchlinetmp[PATH_MAX];
+
+    fbrow->clear( );    
+    
+    fp6 = fopen( pattern , "rb");
+    while( !feof(fp6) ) 
+    {
+          fgets(fetchlinetmp, PATH_MAX, fp6); 
+          strncpy( fetchline, "" , PATH_MAX );
+          for( fetchi = 0 ; ( fetchi <= strlen( fetchlinetmp ) ); fetchi++ )
+            if ( fetchlinetmp[ fetchi ] != '\\n' )
+                 fetchline[fetchi]=fetchlinetmp[fetchi];
+                 
+                if ( !feof( fp6 ) ) 
+                {
+                 fbrow->add( fetchline );    
+                }
+
+     }
+     fclose( fp6 );} {}
+}
+
+Function {make_window()} {open
+} {
+  Fl_Window win1 {open
+    xywh {491 61 875 655} type Double resizable visible
+  } {
+    Fl_Button {} {
+      label {&Select Resolution}
+      callback {printf( " Click View\\n" );
+char cwd[PATH_MAX];
+char cmdi[PATH_MAX];
+ 
+if (  fbrow->value()  >= 1 ) 
+{
+    
+      printf( "Path %s\\n" , getcwd( cwd, PATH_MAX ) );
+      printf( "Copy %s\\n" , fbrow->text( fbrow->value() ) );
+
+
+      char str[PATH_MAX];
+      strncpy( str,  fbrow->text( fbrow->value() )    , PATH_MAX ); 
+	
+      // right side to to finish
+      char ptr[strlen(str)+1];
+      int strposmax = strlen( str );
+      int lastposchar = strposmax;
+      int i,j=0;
+      int foundspace = 1;
+
+      /// find last char
+      foundspace = 1;
+      for( i= strposmax-1 ; i >= 0 ; i--)
+      {
+         //printf( "|%d-%d-%c| ", i , lastposchar , str[i] );
+	 // find where to space
+         if ( foundspace == 1 ) 
+         if ( str[i] == ' ' ) 
+   	    lastposchar = i-1;
+
+         if ( str[i] != ' ' ) 
+           foundspace = 0;
+      } 
+
+      // add the content
+      foundspace = 1;
+      int activecontent = 0 ;
+      int gameover = 0; 
+      for( i=0; i <= lastposchar ; i++)
+      {
+        if ( foundspace == 1 ) 
+          if ( ( str[i] != ' ' )  && ( str[i] != 9 ) ) //added! with 9 for a TAB!!
+             foundspace = 0;
+        
+        if ( ( activecontent == 1 ) && ( str[i] == ' ' )  )
+           gameover = 1; 
+  
+        if ( foundspace == 0 )
+        if ( gameover == 0 ) 
+        { 
+           ptr[j++]=str[i];
+           activecontent = 1; 
+        }
+           
+      } 
+      ptr[j]='\\0';
+	
+      printf( "Resolution: (%s)\\n" , ptr ); 	
+ 
+ 
+ 
+	strncpy( cmdi , " "  , PATH_MAX );
+	strncat( cmdi , " " , PATH_MAX - strlen( cmdi ) -1 );
+	strncat( cmdi , " xrandr -s   \\""  , PATH_MAX - strlen( cmdi ) -1 );
+	strncat( cmdi ,   ptr    , PATH_MAX - strlen( cmdi ) -1 );
+	strncat( cmdi , "\\"  "  , PATH_MAX - strlen( cmdi ) -1 );	
+	strncat( cmdi , "  "  , PATH_MAX - strlen( cmdi ) -1 );
+	strncat( cmdi , " " , PATH_MAX - strlen( cmdi ) -1 );
+
+        printf( "Command line: (%s)\\n" , cmdi  ); 	
+        system( cmdi ); 
+
+}} selected
+      xywh {25 580 210 25} labelfont 1
+    }
+    Fl_Browser fbrow {
+      xywh {25 60 825 510}
+      code0 {fbrow->labelsize( flfontsize  );}
+      code1 {fbrow->textsize( flfontsize  );}
+      code2 {fbrow->type(FL_HOLD_BROWSER);}
+    }
+    Fl_Button {} {
+      label {&Quit}
+      callback {exit( 0 );}
+      xywh {775 610 75 25} labelfont 1
+    }
+    Fl_Button {} {
+      label {Font (&+)}
+      callback {flfontsize++;
+   fbrow->labelsize( flfontsize  );
+   fbrow->textsize( flfontsize  );
+
+
+//loadpanel( user_arg1 );}
+      xywh {555 610 75 25} labelfont 1
+    }
+    Fl_Button {} {
+      label {Font (&-)}
+      callback {flfontsize--;
+
+fbrow->labelsize( flfontsize  );
+   fbrow->textsize( flfontsize  );
+
+
+//loadpanel( user_arg1 );}
+      xywh {555 580 75 25} labelfont 1
+    }
+    Fl_Button {} {
+      label {&Down}
+      callback {fbrow->value(  fbrow->value( ) + 10 );}
+      xywh {695 580 55 25}
+    }
+    Fl_Button {} {
+      label {&Up}
+      callback {fbrow->value(  fbrow->value( ) - 10 );}
+      xywh {635 580 55 25}
+    }
+    Fl_Button {} {
+      label {&k}
+      callback {fbrow->value(  fbrow->value( ) - 1 );}
+      xywh {695 610 55 25}
+    }
+    Fl_Button {} {
+      label {&j}
+      callback {fbrow->value(  fbrow->value( ) + 1 );}
+      xywh {635 610 55 25}
+    }
+    Fl_Box {} {
+      label FLXRANDR
+      xywh {25 25 825 25} box ENGRAVED_BOX labeltype ENGRAVED_LABEL
+    }
+  }
+}
+
+Function {main( int argc, char *argv[])} {open return_type int
+} {
+  code {printf( " == FLVIEW == \\n" );
+
+  char mydirnow[2500];
+  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
+ 
+  char filein[PATH_MAX];
+  char filesource[PATH_MAX];
+  strncpy( filesource , "/etc/hostname" , PATH_MAX );
+  strncpy( filein ,     filesource , PATH_MAX );
+  
+  /*
+  if ( argc == 2)
+  if ( strcmp( argv[1] , "" ) !=  0 ) 
+  {
+          strncpy( filein, argv[ 1 ], PATH_MAX );
+          strncpy( filesource , argv[ 1 ], PATH_MAX );
+  }
+  */
+  
+  system( " xrandr > /tmp/xrandr.info  "); 
+  strncpy( user_arg1, "/tmp/xrandr.info"  , PATH_MAX );
+  strncpy( filein , "/tmp/xrandr.info"  , PATH_MAX );
+  strncpy( filesource , "/tmp/xrandr.info"  , PATH_MAX );
+ 
+  make_window();
+  
+  loadpanel(   filein   );
+  
+  win1->show();
+  Fl::run();} {}
+}
