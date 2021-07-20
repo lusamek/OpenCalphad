@@ -167,6 +167,8 @@ The panel for "Set-Condition" allows to give the initial parameters.
 
 <br/>
 
+
+
 # Plot of Phase Diagram
 
 <br/>
@@ -193,12 +195,6 @@ Fe-C phase diagram (metastable):
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Gui-Advanced-Plots-Fe-C-(metastable)-01.png)
 
 
-X-Scale / Y-Scale using the advanced plot module:
-![](images/1623442950-Fe-C-2pct-metastable-v1.png)
-<br/>
-
-
-
 
 Fe-C phase diagram (metastable) with GUI:
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Gui-Advanced-Plots-Fe-C-(metastable)-01-GScr.png)
@@ -213,11 +209,16 @@ Plot the metastable Fe-C diagram and overlay the stable: <br/>
 
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Gui-Advanced-Plots-Fe-C-2Types-01.png)
 <br/>
+<br/>
 
 
-# Studying phase diagrams 
 
-The plot can be changed in order to study given X/Y scaling:
+
+
+
+# Studying Phase Diagram 
+
+The plot can be changed in order to study given X/Y scale:
 <br><br>
 
 Fe-C phase diagram, metastable, calculated with OC: <br>
