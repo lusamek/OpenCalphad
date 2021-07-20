@@ -182,12 +182,6 @@ This allows to use use the cursor for the position (x,y) as well. An example is 
 
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Ag-Cu-System-FLOC-gnuplot-x11-prev-6.png)
 
-![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Ag-Cu-System-FLOC-gnuplot-x11-1.png)
-
-![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Ag-Cu-System-FLOC-gnuplot-x11-det1.png)
-
-![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Ag-Cu-System-FLOC-gnuplot-x11-det2.png)
-
 
 <br/>
 
@@ -218,7 +212,8 @@ Plot the metastable Fe-C diagram and overlay the stable: <br/>
 
 # Studying Phase Diagram 
 
-The plot can be changed in order to study given X/Y scale:
+The plot can be changed in order to study the phase diagram. The user select a given X/Y scale and click on "Plot".
+Some examples for Fe-C, Cu-Ni, and Ag-Cu systems are shown in following Figures.
 <br><br>
 
 Fe-C phase diagram, metastable, calculated with OC: <br>
@@ -231,7 +226,13 @@ Cu-Ni phase diagram calculated with OC: <br>
 <br><br>
 
 
+Ag-Cu phase diagram calculated with OC: <br>
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Ag-Cu-System-FLOC-gnuplot-x11-1.png)
 
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Ag-Cu-System-FLOC-gnuplot-x11-det1.png)
+
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Ag-Cu-System-FLOC-gnuplot-x11-det2.png)
+<br><br>
 
 
 
