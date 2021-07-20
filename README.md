@@ -184,22 +184,23 @@ This allows to use use the cursor for the position (x,y) as well. An example is 
 
 
 <br/>
+<br/>
+
+
+# Studying the Fe-C Phase Diagram 
+
+The Fe-C phase diagram can be calculated with OC.
+<br/>
+The possibility to overlay different diagrams is as well given.
+Plot the metastable Fe-C diagram and overlay the stable: <br/>
+
 
 Fe-C phase diagram (metastable): 
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Gui-Advanced-Plots-Fe-C-(metastable)-01.png)
 
-
-
 Fe-C phase diagram (metastable) with GUI:
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Gui-Advanced-Plots-Fe-C-(metastable)-01-GScr.png)
 
-
-
-
-
-<br/>
-The possibility to overlay different diagrams is given.
-Plot the metastable Fe-C diagram and overlay the stable: <br/>
 
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Gui-Advanced-Plots-Fe-C-2Types-01.png)
 <br/>
@@ -233,6 +234,7 @@ Ag-Cu phase diagram calculated with OC: <br>
 
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Ag-Cu-System-FLOC-gnuplot-x11-det2.png)
 <br><br>
+
 
 
 
