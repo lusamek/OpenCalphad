@@ -215,6 +215,24 @@ Plot the metastable Fe-C diagram and overlay the stable: <br/>
 <br/>
 
 
+# Studying phase diagrams 
+
+The plot can be changed in order to study given X/Y scaling:
+<br><br>
+
+Fe-C phase diagram, metastable, calculated with OC: <br>
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/images/1623442950-Fe-C-2pct-metastable-v1.png) 
+<br><br>
+
+
+Cu-Ni phase diagram calculated with OC: <br>
+![](https://github.com/lusamek/OpenCalphad/blob/master/images/Cu-Ni-Phase-diagram-drawing.svg)
+<br><br>
+
+
+
+
+
 
 # Advanced Plot
 
