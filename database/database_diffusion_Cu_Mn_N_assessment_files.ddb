@@ -1,0 +1,79 @@
+$    The kinetic data for the fcc phase in the CU-NI system
+$                Last updata: 17.11.2009
+$                 By  WEIBIN ZHANG
+$
+TEMP_LIM 298.15 6000.00 !
+$
+$ ELEMENT STABLE ELEMENT REFERENCE  MASS        H298-H0     S298
+ELEM VA   VACUUM                    0.0000E+00  0.0000E+00  0.0000E+00 2 !
+ELEM CU   FCC_A1                    6.3546E+01  5.0041E+03  3.3150E+01!
+ELEM MN   CBCC_A12       	    5.4938E+01  4.9960E+03  3.2008E+01 !
+ELEM NI   FCC_A1                    5.8690E+01  4.7870E+03  2.9797E+01!
+$
+DEFINE_SYSTEM_DEFAULT SPECIE 2 !
+DEFAULT_COM DEF_SY_EL VA !
+$
+ PHASE FCC_A1 % 2 1 1 !
+ CONSTITUENT FCC_A1 :CU,MN,NI:VA: !
+$ 
+TYPE_DEFINITION % SEQ * !
+$
+$VOLUME DATA
+PARAM VS(FCC_A1) 0 1E-5; 6000 N !
+$ 
+ZEROVOLUME_SPECIES VA !
+$
+$==================DIFFUSION DATA===============================
+$+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+$
+$                         **************
+$                          FCC_A1 PHASE
+$                         **************
+$+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+$
+$ CU DIFFUSIVITY
+$
+$ mobility of CU in CU  :bulk self-diffusivity in pure CU
+PARAMETER MQ(FCC_A1&CU,CU:VA) 298.15 -205872-82.52*T; 6000 N !
+$ mobility of CU in MN : impurity-diffusivity for CU in MN
+PARAMETER MQ(FCC_A1&CU,MN:VA) 298.15 -212755.85-98.07*t; 6000.00 N !
+$ mobility of CU in NI : impurity-diffusivity for CU in NI
+PARAMETER MQ(FCC_A1&CU,NI:VA) 298.15 -263689.7-77.04*T; 6000 N !
+$ mobility of CU interaction between CU and MN
+PARAMETER MQ(FCC_A1&CU,CU,MN:VA;0) 298.15 -2905.01-11.91*t; 6000 N !
+$ mobility of CU interaction between CU and NI
+PARAMETER MQ(FCC_A1&CU,CU,NI:VA;0) 298.15  +14204.2-4.98*T; 6000 N !
+$
+$------------------------------------------------------------------
+$ MN DIFFUSIVITY
+$
+$ mobility of MN in CU  :impurity-diffusivity for MN in CU
+PARAMETER MQ(FCC_A1&MN,CU:VA) 298.15 -193085.32-81.86*T; 6000.00 N !
+$ mobility of MN in MN  :bulk self-diffusivity in pure MN
+PARAMETER MQ(FCC_A1&MN,MN:VA) 298.15 -212755.85-98.07*t; 6000.00 N !
+$ mobility of MN in NI : impurity-diffusivity for MN in NI
+PARAMETER MQ(FCC_A1&MN,NI:VA) 298.15 -261376.6-73.8*t; 6000.00 N !
+$ mobility of MN interaction between CU and MN
+PARAMETER MQ(FCC_A1&Mn,CU,MN:VA;0) 298.15 -16533.17+130.19*t; 6000 N !
+$ mobility of MN interaction between MN and NI
+PARAMETER MQ(FCC_A1&MN,MN,NI:VA;0) 298.15 -5280.15+42.3*T; 6000.00 N !
+$
+$------------------------------------------------------------------
+$ NI DIFFUSIVITY
+$
+$ mobility of NI in CU : impurity-diffusivity for NI in CU
+PARAMETER MQ(FCC_A1&NI,CU:VA) 298.15 -229936.8-72.83*T; 6000 N !
+$ mobility of NI in MN : impurity-diffusivity for NI in MN
+PARAMETER MQ(FCC_A1&NI,MN:VA) 298.15 -212755.85-98.07*t; 6000.00 N !
+$ mobility of NI in NI : bulk self-diffusivity in pure NI
+PARAMETER MQ(FCC_A1&NI,NI:VA) 298.15 -271377.6-81.79*T; 6000 N !
+$mobility of NI interaction between CU and NI
+PARAMETER MQ(FCC_A1&NI,CU,NI:VA;0) 298.15  +39620.8-24.19*T; 6000 N !
+$ mobility of NI interaction between MN and NI
+PARAMETER MQ(FCC_A1&NI,MN,NI:VA;0) 298.15 4646.4+150.19*T; 6000.00 N !
+
+$------------------------BINARY PARAMETER------------------------------
+$ mobility of MN interaction between CU and NI
+PARAMETER MQ(FCC_A1&MN,CU,NI:VA;0) 298.15 -72767.27; 6000.00 N !
+PARAMETER MQ(FCC_A1&CU,MN,NI:VA;0) 298.15 1.19214891E+04; 6000.00 N !
+PARAMETER MQ(FCC_A1&NI,CU,MN:VA;0) 298.15 1.40451478E+05; 6000.00 N !
