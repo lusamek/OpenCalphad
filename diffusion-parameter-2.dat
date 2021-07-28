@@ -1,0 +1,24 @@
+Specie ; Host metal ; D0 [m^2*s^-1] ; Ea [kJ*mol^-1]
+
+C ; fe bcc ; 2e-6   ; 84.2   
+C ; fe fcc ; 7e-6   ; 134    
+
+N ; fe bcc ; 66e-6  ; 78
+N ; fe fcc ; 1.9e-6 ; 118.5 
+
+Cu ; Al ; 8.5e-6  ; 136.5
+Zn ; Al ; 12e-4   ; 116.4  
+Si ; Al ; 0.9e-4  ; 127.7 
+Mn ; Al ; 2e-6    ; 269 
+Mg ; Al ; 1.2e-4  ; 117.2 
+
+Zn ; Cu ; 3e-10    ; 83.9 
+Sn ; Cu ; 4.1e-7   ; 130 
+Ni ; Cu ; 6.5e-9   ; 125.6 
+Al ; Cu ; 7.2e-7   ; 163.2 
+
+Cu ; Ni ; 1e-7     ; 146.5 
+Sn ; Pb ; 4.1e-4   ; 109 
+Mo ; W  ; 6.2e-8   ; 335
+
+
