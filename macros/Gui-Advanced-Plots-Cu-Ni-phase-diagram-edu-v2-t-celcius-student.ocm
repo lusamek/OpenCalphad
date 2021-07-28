@@ -1,0 +1,36 @@
+
+
+new Y
+
+
+ set echo
+
+
+ r t CuNi-COST.tdb
+ ni cu
+
+
+ set cond  t=1000 p=1e5 n=1  x(ni)=0.01  
+ c e
+
+ l r 1
+
+ set ax 1 x(ni) 0 1 ,,,
+
+ set ax 2 T 500 2200 10
+
+ l ax
+
+ l sh
+
+
+ map
+
+
+ plot
+ w%(*,ni)
+ T_c
+ title Cu-Ni System 
+ render
+
+
