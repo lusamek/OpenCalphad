@@ -90,7 +90,7 @@ Example #4: Al-Fe system <br/>
  
  
  
-# Using GUI (under dev)
+# Graphical User Interface
 
 The graphical user interface (GUI) of OC is under development. 
 An image of the virtual machine with the GUI OC is available for download at the following Link. 
@@ -171,8 +171,6 @@ The panel for "Set-Condition" allows to give the initial parameters.
 
 
 
-# Plot of Phase Diagram
-
 <br/>
 
 The GUI allows to use gnuplot-x11 (or gnuplot-qt) to plot the results. The results can be viewed and there is a zoom option with gnuplot-x11.
@@ -186,7 +184,7 @@ This allows to use use the cursor for the position (x,y) as well. An example is 
 
 
 <br/>
-<br/>
+<br/><br/>
 
 
 
