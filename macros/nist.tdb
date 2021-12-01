@@ -1,0 +1,474 @@
+$
+
+DATABASE_INFO Database for solder alloys under development'
+Compiled by Ursula R. Kattner, NIST, Gaithersburg, MD, USA '
+Last update: 04-Aug-2017 '
+Previous update: 30-Nov-1999 !
+
+$
+
+ELEMENT /-   ELECTRON_GAS           0.0000E+00  0.0000E+00  0.0000E+00 !
+ELEMENT VA   VACUUM                 0.0000E+00  0.0000E+00  0.0000E+00 !
+ELEMENT AG   FCC_A1                 1.0787E+02  5.7446E+03  4.2551E+01 !
+ELEMENT BI   RHOMBOHEDRAL_A7        2.0898E+02  6.4266E+03  5.6735E+01 !
+ELEMENT CU   FCC_A1                 6.3546E+01  5.0041E+03  3.3150E+01 !
+ELEMENT PB   FCC_A1                 2.0720E+02  6.8785E+03  6.4785E+01 !
+ELEMENT SB   RHOMBOHEDRAL_A7        1.2175E+02  5.8702E+03  4.5522E+01 !
+ELEMENT SN   BCT_A5                 1.1869E+02  6.3220E+03  5.1195E+01 !
+
+TYPE_DEFINITION % SEQ * !
+DEFINE_SYSTEM_DEFAULT SPECIE 2 !
+DEFAULT_COMMAND DEF_SYS_ELEMENT VA !
+
+$-----------------------------------------------------------------------
+$ Model descriptions of the phases
+$-----------------------------------------------------------------------
+
+PHASE LIQUID:L %  1  1.0 !
+   CONSTITUENT LIQUID:L  :AG,BI,CU,PB,SB,SN : !
+
+PHASE FCC_A1 %A  2  1.0 1.0 !
+   CONSTITUENT FCC_A1  :AG%,BI,CU%,PB%,SB,SN :VA : !
+
+PHASE BCC_A2 %B  2  1.0 3.0 !
+   CONSTITUENT BCC_A2  :CU%,SN :VA : !
+
+PHASE HCP_A3 %A  2  1.0 0.5 !
+   CONSTITUENT HCP_A3  :AG%,BI,PB%,SB,SN :VA : !
+
+PHASE BCT_A5 %  1  1.0 !
+   CONSTITUENT BCT_A5  :AG,BI,CU,PB,SB,SN% : !
+
+PHASE RHOMBO_A7 %  1  1.0 !
+   CONSTITUENT RHOMBO_A7  :BI%,PB,SB%,SN : !
+
+PHASE DO3 %  2  0.75  0.25  !
+   CONSTITUENT DO3 :CU,SN :CU,SN :  !
+
+PHASE EPSILON %  2  0.75  0.25  !
+   CONSTITUENT EPSILON :AG,SB :AG,SB,SN :  !
+
+PHASE CU41SN11 %  2  0.788  0.212  !
+   CONSTITUENT CU41SN11 :CU :SN :  !
+
+PHASE CU10SN3 %  2  0.769  0.231  !
+   CONSTITUENT CU10SN3 :CU :SN :  !
+
+PHASE CU3SN %  2  0.75  0.25  !
+   CONSTITUENT CU3SN :CU :SN :  !
+
+PHASE CU6SN5 %  2  0.545  0.455  !
+   CONSTITUENT CU6SN5 :CU :SN :  !
+
+PHASE CU6SN5_L %  2  0.545  0.455  !
+   CONSTITUENT CU6SN5_L :CU :SN :  !
+
+PHASE SBSN %  2  1.000 1.000  !
+   CONSTITUENT SBSN :SB,SN :SB,SN : !
+
+PHASE SB2SN3 %  2  2.000 3.000  !
+   CONSTITUENT SB2SN3 :SB :SN : !
+
+
+$ Type definitions
+
+TYPE_DEF A GES A_P_D @ MAGNETIC -3.0 0.280 !
+TYPE_DEF B GES A_P_D @ MAGNETIC -1.0 0.400 !
+
+$-----------------------------------------------------------------------
+$ Functions of the pure elements
+$-----------------------------------------------------------------------
+
+FUN GHSERAG  298.15   -7209.512+118.202013*T-23.8463314*T*LN(T)
+                        -.001790585*T**2-3.98587E-07*T**3-12011*T**(-1);
+            1234.93 Y -15095.252+190.266404*T-33.472*T*LN(T)
+                        +1.412E+29*T**(-9);
+            3000.00 N 91Din !
+
+FUN GAGBCC   298.15   +3400.00-1.05*T+GHSERAG; 3000.00 N 91Din ! 
+FUN GAGHCP   298.15    +300.0+0.30*T+GHSERAG; 3000.00 N 91Din ! 
+FUN GAGBCT   298.15   +4184.1+GHSERAG; 3000.00 N 88Che ! 
+
+
+FUN GHSERBI  298.15   -7817.776+128.418925*T-28.4096529*T*LN(T)
+                         +.012338888*T**2-8.381598E-06*T**3; 
+             544.55 Y +30208.022-393.650351*T+51.8556592*T*LN(T)
+                         -.075311163*T**2+1.3499885E-05*T**3
+                         -3616168*T**(-1)+1.66145E+25*T**(-9);
+             800.00 Y -11045.664+182.548971*T-35.9824*T*LN(T)
+                         +.0074266*T**2-1.046E-06*T**3
+                         +1.66145E+25*T**(-9);
+            1200.00 Y -7581.312+124.77144*T-27.196*T*LN(T)
+                      +1.66145E+25*T**(-9);  
+            3000.00 N 91Din !
+
+FUN GBIFCC   298.15    9900-12.5*T+GHSERBI;,,N 91Din !
+FUN GBIHCP   298.15    9900-11.8*T+GHSERBI;,,N 91Din !
+FUN GBIBCT   298.15    13526.3+GHSERBI;,,N 96Lee !
+$FUN GBIBCT   298.15    4184.07+GHSERBI;,,N 91Din !
+
+
+FUN GHSERCU  298.15   -7770.458+130.485235*T-24.112392*T*LN(T)
+                        -.00265684*T**2+1.29223E-07*T**3+52478*T**(-1);
+            1357.77 Y -13542.026+183.803828*T-31.38*T*LN(T)
+                        +3.642E+29*T**(-9);
+            3200.00  N 91Din !
+
+FUN GCUBCC   298.15   +4017.0-1.255*T+GHSERCU; 3200.00 N 91Din !
+FUN GCUHCP   298.15    +600.0+0.20*T+GHSERCU; 3200.00 N 91Din !
+FUN GCUBCT   298.15   +4184.0+GHSERCU; 3200.00 N 0 !
+
+
+FUN GHSERPB  298.15   -7650.085+101.700244*T-24.5242231*T*LN(T)
+                         -.00365895*T**2-2.4395E-07*T**3;
+             600.61 Y -10531.095+154.243182*T-32.4913959*T*LN(T)
+                         +.00154613*T**2+8.054E+25*T**(-9);
+            1200.00 Y +4157.616+53.139072*T-18.9640637*T*LN(T)
+                         -.002882943*T**2+9.8144E-08*T**3
+                         -2696755*T**(-1)+8.054E+25*T**(-9);
+            2100.00 N 91Din !
+
+FUN GPBHCP   298.15     300+1.0*T+GHSERPB;,,N 91Din !
+FUN GPBBCT   298.15     489+3.52*T+GHSERPB;,,N 91Din !
+FUN GPBRHO   298.15     15000.0+GHSERPB;,,N 98Yoo !
+$FUN GPBRHO   298.15      5000.0+GHSERPB;,,N 94Lee !
+$FUN GPBRHO   298.15      9900.0-12.5*T+GHSERPB;,,N 95Oht !
+
+
+FUN GHSERSB   298.15   -9242.858+156.154689*T-30.5130752*T*LN(T)
+                          +.007748768*T**2-3.003415E-06*T**3
+                          +100625*T**(-1);
+              903.9 Y -11738.671+169.485713*T-31.38*T*LN(T)
+                          +1.610442E+27*T**(-9);
+             2000.00 N 91DIN !
+
+FUN GSBFCC   298.15    19874-13.7*T+GHSERSB;,,N 91Din !
+FUN GSBBCC   298.15    19874-15.1*T+GHSERSB;,,N 91Din !
+FUN GSBHCP   298.15    19874-13.0*T+GHSERSB;,,N 91Din !
+FUN GSBBCT   298.15    1000+GHSERSB;,,N 91Din !
+
+
+FUN GHSERSN  100.00   -7958.517+122.765451*T-25.858*T*LN(T)
+                         +.00051185*T**2-3.192767E-06*T**3
+                         +18440*T**(-1);
+             250.00 Y -5855.135+65.443315*T-15.961*T*LN(T)
+                         -.0188702*T**2+3.121167E-06*T**3
+                         -61960*T**(-1);
+             505.08 Y +2524.724+4.005269*T-8.2590486*T*LN(T)
+                         -.016814429*T**2+2.623131E-06*T**3
+                         -1081244*T**(-1)-1.2307E+25*T**(-9);
+             800.00 Y -8256.959+138.99688*T-28.4512*T*LN(T)
+                         -1.2307E+25*T**(-9);
+            3000.00 N 91Din !
+
+FUN GSNFCC   298.15    5510-8.46*T+GHSERSN;,,N 81Nga !
+FUN GSNBCC   298.15    4400.0-6.00*T+GHSERSN; 3000.00 N 91Din !
+FUN GSNHCP   298.15    3900-7.646*T+GHSERSN;,,N 93Ans !
+FUN GSNRHO   298.15    2035+GHSERSN;,,N 91Din !
+$FUN GSNFCC   298.15    4150-5.2*T+GHSERSN;,,N 91Din !
+$FUN GSNHCP   298.15    3900-4.4*T+GHSERSN;,,N 91Din !
+
+
+$-----------------------------------------------------------------------
+$ Functions used in excess terms
+$-----------------------------------------------------------------------
+
+FUN UN_ASS   298.15    0; 6000.00 N 0 !
+
+$-----------------------------------------------------------------------
+$ Phase parameters
+$-----------------------------------------------------------------------
+
+$ Phase LIQUID
+
+PARA G(LIQUID,AG;0)  298.15   +11025.076-8.891021*T-1.034E-20*T**7
+                                +GHSERAG#;
+                    1235.08 Y +11508.141-9.301747*T-1.412E+29*T**(-9)
+                                +GHSERAG#;
+                    3000.00  N 91Din !
+PARA G(LIQUID,BI;0)  298.15   +11246.067-20.63651*T-5.955E-19*T**7
+                                 +GHSERBI#;
+                     544.55 Y +11336.259-20.810418*T-1.661E+25*T**(-9)
+                                 +GHSERBI#;  
+                    3000.00 N 91Din !
+PARA G(LIQUID,CU;0)  298.15   +12964.736-9.511904*T-5.849E-21*T**7
+                                 +GHSERCU#;
+                    1358.02 Y +13495.481-9.922344*T-3.642E+29*T**(-9)
+                                 +GHSERCU#;  3200.00  N 91Din !
+PARA G(LIQUID,PB;0)  298.15   +4672.123-7.750683*T-6.019E-19*T**7
+                                 +GHSERPB#;
+                     600.61 Y +4853.138-8.067136*T-8.054E+25*T**(-9)
+                                 +GHSERPB#;
+                    2100.00 N 91Din !
+PARA G(LIQUID,SB;0)  298.15   +19822.329-21.923164*T-1.7485E-20*T**7
+                                 +GHSERSB#;
+                     903.78 Y +19914.189-22.029886*T-1.6168E+27*T**(-9)
+                                 +GHSERSB#;
+                    2000.00 N 91Din !
+PARA G(LIQUID,SN;0)  100.00   +7103.092-14.087767*T+1.47031E-18*T**7
+                                 +GHSERSN#;
+                     505.08 Y +6971.587-13.814382*T+1.2307E+25*T**(-9)
+                                 +GHSERSN#;
+                    3000.00 N 91Din !
+
+PARA L(LIQUID,AG,BI;0)  298.15  +5953.61+14.27487*T-2.739828*T*LN(T)
+                                ;,,N 94Kat !
+PARA L(LIQUID,AG,BI;1)  298.15  -4984.85-1.35493*T;,,N 94Kat !
+PARA L(LIQUID,AG,BI;2)  298.15  -1512.05;,,N 94Kat !
+PARA L(LIQUID,AG,CU;0)  298.15  +17323.40-4.46819*T;,,N 86Hay !
+PARA L(LIQUID,AG,CU;1)  298.15  +1654.38-2.35285*T;,,N 86Hay !
+PARA L(LIQUID,AG,PB;0)  298.15  +6799.50+44.94525*T-6.350100*T*LN(T)
+                                ;,,N 86Hay !
+PARA L(LIQUID,AG,PB;1)  298.15  -2730.60+1.25124*T;,,N 86Hay !
+PARA L(LIQUID,AG,PB;2)  298.15  -1185.50-0.16656*T;,,N 86Hay !
+PARA L(LIQUID,AG,SB;0)  298.15  -821.8-9.6561*T;,,N 96Oh !
+PARA L(LIQUID,AG,SB;1)  298.15  -19309.0+4.4239*T;,,N 96Oh !
+PARA L(LIQUID,AG,SB;2)  298.15  -10381.2;,,N 96Oh !
+PARA L(LIQUID,AG,SN;0)  298.15  -5146.7-5.0103*T;,,N 96Oh !
+PARA L(LIQUID,AG,SN;1)  298.15  -15799.3+3.3208*T;,,N 96Oh !
+PARA L(LIQUID,AG,SN;2)  298.15  -6687.5;,,N 96Oh !
+PARA L(LIQUID,BI,CU;0)  298.15  23844.75-9.84341*T;,,N 90Tep !
+PARA L(LIQUID,BI,CU;1)  298.15  -1260.32-1.19289*T;,,N 90Tep !
+PARA L(LIQUID,BI,PB;0)  298.15  -4807.37-1.25*T;,,N 98Yoo !
+PARA L(LIQUID,BI,SN;0)  298.15  446.6+0.87696*T;,,N 96Lee !
+PARA L(LIQUID,BI,SN;1)  298.15  -1.2081*T;,,N 96Lee !
+PARA L(LIQUID,CU,PB;0)  298.15  +27447.0-4.798*T;,,N 95Bol !
+PARA L(LIQUID,CU,PB;1)  298.15  +3253.1-0.744*T;,,N 95Bol !
+PARA L(LIQUID,CU,PB;2)  298.15  +4134.0-3.302*T;,,N 95Bol !
+PARA L(LIQUID,CU,SN;0)  298.15  -9002.8-5.8381*T;,,N 96Shi !
+PARA L(LIQUID,CU,SN;1)  298.15  -20100.4+3.6366*T;,,N 96Shi !
+PARA L(LIQUID,CU,SN;2)  298.15  -10528.40;,,N 96Shi !
+$PARA L(LIQUID,PB,SN;0)  298.15  5125+1.46424*T;,,N 81Nga !
+$PARA L(LIQUID,PB,SN;1)  298.15  293.82;,,N 81Nga !
+PARA L(LIQUID,PB,SN;0)  298.15  5368+0.93414*T;,,N 89Fec !
+PARA L(LIQUID,PB,SN;1)  298.15  97.8+0.09354*T;,,N 89Fec !
+$PARA L(LIQUID,PB,SN;0)  298.15  6200-0.418*T;,,N 95Oht !
+$PARA L(LIQUID,PB,SN;0)  298.15  5900-0.418*T;,,N 0 !
+$PARA L(LIQUID,PB,SN;1)  298.15  790.0-1.914*T;,,N 95Oht !
+PARA L(LIQUID,SB,SN;0)  298.15  -5695.14-1.709*T;,,N 86Jon !
+PARA L(LIQUID,SB,SN;1)  298.15  +782.595;,,N 86Jon !
+PARA L(LIQUID,SB,SN;2)  298.15  +1840.91;,,N 86Jon !
+PARA L(LIQUID,AG,CU,PB;0)  298.15  -21442.5;,,N 86Hay !
+PARA L(LIQUID,AG,CU,PB;1)  298.15  -20328.1;,,N 86Hay !
+PARA L(LIQUID,AG,CU,PB;2)  298.15  -27778.9;,,N 86Hay !
+PARA L(LIQUID,AG,CU,SN;0)  298.15  -30000;,,N 0 !
+PARA L(LIQUID,AG,SB,SN;0)  298.15  +95275.5-61.7966*T;,,N 96Oh !
+PARA L(LIQUID,AG,SB,SN;1)  298.15  -19022.1+21.7912*T;,,N 96Oh !
+PARA L(LIQUID,AG,SB,SN;2)  298.15  +18150.3-9.4021*T;,,N 96Oh !
+
+
+$ Phase FCC_A1
+
+PARA G(FCC_A1,AG:VA;0)  298.15  +GHSERAG#;,,N 0 !
+PARA G(FCC_A1,BI:VA;0)  298.15  +GBIFCC#;,,N 0 !
+PARA G(FCC_A1,CU:VA;0)  298.15  +GHSERCU#;,,N 0 !
+PARA G(FCC_A1,PB:VA;0)  298.15  +GHSERPB#;,,N 0 !
+PARA G(FCC_A1,SB:VA;0)  298.15  +GSBFCC#;,,N 0 !
+PARA G(FCC_A1,SN:VA;0)  298.15  +GSNFCC#;,,N 0 !
+
+PARA L(FCC_A1,AG,BI:VA;0)  298.15  +24927.08-11.82749*T;,,N 94Kat !
+PARA L(FCC_A1,AG,CU:VA;0)  298.15  +36061.88-10.44288*T;,,N 86Hay !
+PARA L(FCC_A1,AG,CU:VA;1)  298.15  -4310.12;,,N 86Hay !
+PARA L(FCC_A1,AG,PB:VA;0)  298.15  +18993.7+13.47519*T;,,N 86Hay !
+PARA L(FCC_A1,AG,PB:VA;1)  298.15  +4226.8-14.63006*T;,,N 86Hay !
+PARA L(FCC_A1,AG,SB:VA;0)  298.15  -22937.9+54.18535*T;,,N 96Oh !
+PARA L(FCC_A1,AG,SB:VA;1)  298.15  -530.7-58.38697*T;,,N 96Oh !
+$PARA L(FCC_A1,AG,SN:VA;0)  298.15  +1445.0+8.65984*T;,,N 96Oh !
+$PARA L(FCC_A1,AG,SN:VA;1)  298.15  -36541.5;,,N 96Oh !
+PARA L(FCC_A1,AG,SN:VA;0)  298.15  +745.45+11.498027*T;,,N 99Din !
+PARA L(FCC_A1,AG,SN:VA;1)  298.15  -36541.5;,,N 99Din !
+PARA L(FCC_A1,BI,CU:VA;0)  298.15  77868.73;,,N 90Tep !
+PARA L(FCC_A1,BI,PB:VA;0)  298.15  -5208.18+0.575*T;,,N 98Yoo !
+$PARA L(FCC_A1,CU,SN:VA;0)  298.15  -10672.00-1.48370*T;,,N 96Shi !
+$PARA L(FCC_A1,CU,SN:VA;1)  298.15  -15331.30+6.95390*T;,,N 96Shi !
+PARA L(FCC_A1,CU,SN:VA;0)  298.15  -11106.95+2.07910*T;,,N 99Lee !
+PARA L(FCC_A1,CU,SN:VA;1)  298.15  -15718.02+5.92467*T;,,N 99Lee !
+$PARA L(FCC_A1,PB,SN:VA;0)  298.15  +5132.42+1.5631*T;,,N 81Nga !
+PARA L(FCC_A1,PB,SN:VA;0)  298.15  4758.8+2.4719*T;,,N 89Fec !
+PARA L(FCC_A1,PB,SN:VA;1)  298.15  2293.4-4.9197*T;,,N 89Fec !
+$PARA L(FCC_A1,PB,SN:VA;0)  298.15  +7860.0-4.94*T;,,N 95Oht !
+PARA L(FCC_A1,AG,SB,SN:VA;0)  298.15  +75000;,,N 96Oh !
+PARA L(FCC_A1,BI,PB,SN:VA;0)  298.15  +10000;,,N 98Yoo !
+
+
+$ Phase BCC_A2
+
+PARA G(BCC_A2,CU:VA;0)  298.15  +GCUBCC#;,,N!
+PARA G(BCC_A2,SN:VA;0)  298.15  +GSNBCC#;,,N!
+
+PARA L(BCC_A2,CU,SN:VA;0)  298.15  -44821.6+51.2164*T;,,N 96Shi !
+PARA L(BCC_A2,CU,SN:VA;1)  298.15   -6876.5-56.4271*T;,,N 96Shi !
+
+
+$ Phase HCP_A3
+
+PARA G(HCP_A3,AG:VA;0)  298.15  +GAGHCP#;,,N 0 !
+PARA G(HCP_A3,BI:VA;0)  298.15  +GBIHCP#;,,N 0 !
+PARA G(HCP_A3,PB:VA;0)  298.15  +GPBHCP#;,,N 0 !
+PARA G(HCP_A3,SB:VA;0)  298.15  +GSBHCP#;,,N 0 !
+PARA G(HCP_A3,SN:VA;0)  298.15  +GSNHCP#;,,N 0 !
+
+PARA L(HCP_A3,AG,BI:VA;0)  298.15  +24927.08-11.82749*T;,,N 94Kat !
+PARA L(HCP_A3,AG,PB:VA;0)  298.15  +18993.7+13.4519*T;,,N 86Hay !
+PARA L(HCP_A3,AG,PB:VA;1)  298.15  +4226.8-14.63006*T;,,N 86Hay !
+PARA L(HCP_A3,AG,SB:VA;0)  298.15  -23050.3+38.36772*T;,,N 96Oh !
+PARA L(HCP_A3,AG,SB:VA;1)  298.15  -5357.5-45.06379*T;,,N 96Oh !
+PARA L(HCP_A3,AG,SN:VA;0)  298.15  +1046.1+10.23693*T;,,N 96Oh !
+PARA L(HCP_A3,AG,SN:VA;1)  298.15  -40505.5;,,N 96Oh !
+PARA L(HCP_A3,BI,PB:VA;0)  298.15  -7388.9-0.68*T;,,N 98Yoo !
+PARA L(HCP_A3,BI,PB:VA;1)  298.15  2.86*T;,,N 98Yoo !
+PARA L(HCP_A3,PB,SN:VA;0)  298.15  +2000+17.1*T;,,N 0 !
+PARA L(HCP_A3,AG,PB,SN:VA;0)  298.15  +75000;,,N 96Oh !
+PARA L(HCP_A3,AG,SB,SN:VA;0)  298.15  +75000;,,N 96Oh !
+
+$PARA L(HCP_A3,PB,SN:VA;0)  298.15  -5000+29*T;,,N 98Yoo !
+$Parameter readjusted for revised GSNHCP
+
+
+$ Phase BCT_A5
+
+PARA G(BCT_A5,AG;0)  298.15  +GAGBCT#;,,N 0 !
+PARA G(BCT_A5,BI;0)  298.15  +GBIBCT#;,,N 0 !
+PARA G(BCT_A5,CU;0)  298.15  +GCUBCT#;,,N 0 !
+PARA G(BCT_A5,PB;0)  298.15  +GPBBCT#;,,N 0 !
+PARA G(BCT_A5,SB;0)  298.15  +GSBBCT#;,,N 0 !
+PARA G(BCT_A5,SN;0)  298.15  +GHSERSN#;,,N 0 !
+
+PARA L(BCT_A5,AG,CU;0)  298.15   20000;,,N 0 !
+PARA L(BCT_A5,AG,SB;0)  298.15   +5*T;,,N 96Oh !
+PARA L(BCT_A5,AG,SN;0)  298.15   18358.8;,,N 96Oh !
+PARA L(BCT_A5,BI,SN;0)  298.15  -4828.9-18.811*T;,,N 96Lee !
+PARA L(BCT_A5,BI,SN;1)  298.15  -8134.2;,,N 96Lee !
+PARA L(BCT_A5,CU,SN;0)  298.15   21000.0;,,N 0 !
+$PARA L(BCT_A5,PB,SN;0)  298.15  17177.79-11.8066*T;,,N 81Nga !
+PARA L(BCT_A5,PB,SN;0)  298.15  19693.75-15.89485*T;,,N 89Fec !
+$PARA L(BCT_A5,PB,SN;0)  298.15  19700.0-15.89*T;,,N 95Oht !
+PARA L(BCT_A5,SB,SN;0)  298.15  +25404.55-36.2286*T;,,N 86Jon !
+PARA L(BCT_A5,SB,SN;1)  298.15  -10404.55+36.2286*T;,,N 86Jon !
+
+
+$ Phase RHOMBOHEDRAL_A7
+
+PARA G(RHOMBO_A7,BI;0)  298.15  +GHSERBI#;,,N 0 !
+PARA G(RHOMBO_A7,PB;0)  298.15  +GPBRHO#;,,N 0 !
+PARA G(RHOMBO_A7,SB;0)  298.15  +GHSERSB#;,,N 0 !
+PARA G(RHOMBO_A7,SN;0)  298.15  +GSNRHO#;,,N 0 !
+
+PARA L(RHOMBO_A7,BI,SN;0)  298.15  18998;,,N 98Yoo !
+
+
+$ Phase DO3 (gamma-Cu3Sn.h)
+
+PARA G(DO3,CU:CU;0)  298.15 +GCUBCC#;,,N!
+PARA G(DO3,SN:SN;0)  298.15 +GSNBCC#;,,N!
+PARA G(DO3,CU:SN;0)  298.15 -10029.85+0.00285*T
+ +0.75*GCUBCC#+0.25*GSNBCC#;,,N 96Shi !
+PARA G(DO3,SN:CU;0)  298.15 +116674.85+4.8166*T
+ +0.75*GSNBCC#+0.25*GCUBCC#;,,N 96Shi !
+$PARA G(DO3,CU:SN;0)  298.15 -5917.1-2.4384*T
+$ +0.75*GHSERCU#+0.25*GHSERSN#;,,N 96Shi !
+$PARA G(DO3,SN:CU;0)  298.15 +120979.1
+$ +0.75*GHSERSN#+0.25*GHSERCU#;,,N 96Shi !
+PARA L(DO3,CU:CU,SN;0)  298.15 -1857.8-2.5311*T;,,N 96Shi !
+PARA L(DO3,CU:CU,SN;1)  298.15 -2.9894*T;,,N 96Shi !
+PARA L(DO3,CU,SN:SN;0)  298.15 +45850.0-42.2191*T;,,N 96Shi !
+
+
+$ Phase EPSILON Ag3(Sb,Sn) (Description needs to be "cleaned up")
+
+PARA G(EPSILON,AG:AG;0)  298.15  +4750-0.5*T+GHSERAG;,,N 96Oh !
+PARA G(EPSILON,SB:SB;0)  298.15  +20000-10*T+GHSERSB;,,N 96Oh !
+PARA G(EPSILON,AG:SB;0)  298.15  -338.5-4.5184*T
+ +0.75*GHSERAG+0.25*GHSERSB;,,N 96Oh !
+PARA G(EPSILON,SB:AG;0)  298.15  +23223.9
+ +0.25*GHSERAG+0.75*GHSERSB;,,N 96Oh !
+PARA G(EPSILON,AG:SN;0)  298.15  -11085.3+110.01471*T
+ -23.18*T*LN(T)-0.00359*T**2+4389.5*T**(-1);,,N 96Oh !
+PARA G(EPSILON,SB:SN;0)  298.15  0;,,N 96Oh !
+
+PARA L(EPSILON,AG:AG,SB;0)  298.15  -4873.3;,,N 96Oh!
+PARA L(EPSILON,AG,SB:SB;0)  298.15  +5932.3;,,N 96Oh!
+
+
+$ Phase CU41SN11
+
+PARA G(CU41SN11,CU:SN;0)  298.15  -6323.5-1.2808*T
+ +0.788*GHSERCU#+0.212*GHSERSN#;,,N 96Shi !
+
+
+$ Phase CU10SN3
+
+PARA G(CU10SN3,CU:SN;0)  298.15  -6655.0-1.4483*T
+ +0.769*GHSERCU#+0.231*GHSERSN#;,,N 96Shi !
+
+
+$ Phase CU3SN
+
+PARA G(CU3SN,CU:SN;0)  298.15 -8194.2-0.2043*T
+ +0.75*GHSERCU#+0.25*GHSERSN#;,,N 96Shi !
+
+
+$ Phase CU6SN5
+
+PARA G(CU6SN5,CU:SN;0)  298.15  -6869.5-0.1589*T
+ +0.545*GHSERCU#+0.455*GHSERSN#;,,N 96Shi !
+
+
+$ Phase CU6SN5_L
+
+PARA G(CU6SN5_L,CU:SN;0)  298.15  -7129.7+0.4059*T
+ +0.545*GHSERCU#+0.455*GHSERSN#;,,N 96Shi !
+
+
+$ Phase SBSN
+
+PARA G(SBSN,SB:SB;0)  298.15  +6227.48+2*GHSERSB;,,N 86Jon !
+PARA G(SBSN,SN:SN;0)  298.15  +7463.66+2*GHSERSN;,,N 86Jon !
+PARA G(SBSN,SB:SN;0)  298.15  -6561.73-1.02354*T
+ +GHSERSB+GHSERSN;,,N 86Jon !
+PARA G(SBSN,SN:SB;0)  298.15  -6561.73-1.02354*T
+ +GHSERSB+GHSERSN;,,N 86Jon !
+
+
+$ Phase SB2SN3
+
+PARA G(SB2SN3,SB:SN;0)  298.15  -1749.05-28.1335*T
+ +2*GHSERSB+3*GHSERSN;,,N 86Jon !
+
+
+$-----------------------------------------------------------------------
+$  End of parameters
+$-----------------------------------------------------------------------
+
+ LIST_OF_REFERENCES
+ NUMBER  SOURCE   
+ 81Nga     'T.L. Ngai and Y.A. Chang, CALPHAD 5 (1981) 267-276;
+               Pb-Sn'
+ 86Hay     'F.H. Hayes, H.L. Lukas, G. Effenberg and G. Petzow,
+               Z. Metallkd. 77 (1986) 749-754; Ag-Cu, Ag-Pb, Ag-Cu-Pb'
+ 86Jon     'B. Jonsson and J. Agren, Mater. Sci. Tech. 2 (1986) 913-
+               916; Sb-Sn (modified description)'
+ 89Fec     'H.J. Fecht, M.-X. Zhang, Y.A. Chang and J.H. Perepezko,
+               Metall. Trans. A 20A (1989) 795-803; Pb-Sn'
+ 90Tep     'O. Teppo, J. Niemela and P. Taskinen, Thermochim. Acta
+               173 (1990) 137-150; Bi-Cu'
+ 91Din     'A.T. Dinsdale, CALPHAD 15 (1991) 317-425; Unaries'
+ 94Kat     'U.R. Kattner and W.J. Boettinger, J. Electron. Mater. 23
+               (1994) 603-610; Ag-Bi, Ag-Bi-Sn'
+ 95Oht     'H. Ohtani, K. Okuda and K. Ishida, J. Phase Equilibria
+               16 (1995) 416-429; Pb-Sn'
+ 96Lee     'B.-J. Lee, C.-S. Oh and J.-H. Shim, J. Electron. Mater.
+               25 (1996) 983-991; Bi-Sn, In-Sn'
+ 96Oh      'C.-S.Oh, J.-H. Shim, B.-J. Lee and D.N. Lee, J. Alloys
+               Comp. 238 (1996) 155-166; Ag-Sb, Ag-Sn, Ag-Sb-Sn
+			   The liquidus shown in the paper does not agree with
+			   86Jon that was used for Sb-Sn'
+ 96Shi     'J.-H. Shim, C.-S.Oh, B.-J. Lee and D.N. Lee,
+               Z. Metallkd. 87 (1996) 205-212; Cu-Sn'
+ 98Yoo     'S.W. Yoon and H.M. Lee, CALPHAD 22 (1998) 167-178;
+               Bi-Pb, Bi-Pb-Sn (L.st. changed from [89Din] to [91Din])'
+ 99Din     'A.T. Dinsdale, NPL, Fcc_a1 update, 1999; Ag-Sn'
+ 99Lee     'B.-J. Lee, KRISS, Fcc_a1 update, 1999; Cu-Sn'
+
+!
+
