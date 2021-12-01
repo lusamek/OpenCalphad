@@ -227,7 +227,10 @@ Cu-Ni phase diagram calculated with OC: <br>
 <br><br>
 
 
-Ag-Cu phase diagram calculated with OC: <br>
+* Ag-Cu phase diagram calculated with OC: * <br>
+
+The macro for Ag-Cu is provided in this repository under the directory "macros".
+
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Ag-Cu-System-FLOC-gnuplot-x11-1.png)
 
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Ag-Cu-System-FLOC-gnuplot-x11-det1.png)
@@ -235,6 +238,13 @@ Ag-Cu phase diagram calculated with OC: <br>
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Ag-Cu-System-FLOC-gnuplot-x11-det2.png)
 <br><br>
 
+
+
+* Pb-Sn phase diagram calculated with OC:* <br>
+
+The macro for Pb-Sn is provided in this repository under the directory "macros".
+
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/edu-material/Pb-Sn-edu-1-LS.png)
 
 
 
