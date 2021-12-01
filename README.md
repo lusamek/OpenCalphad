@@ -223,12 +223,12 @@ Some examples for Fe-C, Cu-Ni, and Ag-Cu systems are shown in following Figures.
 <br><br>
 
 
-Cu-Ni phase diagram calculated with OC: <br>
+### Cu-Ni phase diagram calculated with OC 
 ![](https://github.com/lusamek/OpenCalphad/blob/master/images/Cu-Ni-Phase-diagram-drawing.svg)
 <br><br>
 
 
-### Ag-Cu phase diagram, calculated with OC
+### Ag-Cu phase diagram calculated with OC
 
 The macro for Ag-Cu is provided in this repository under the directory "macros".
 
@@ -241,7 +241,7 @@ The macro for Ag-Cu is provided in this repository under the directory "macros".
 
 
 
-### Pb-Sn phase diagram, calculated with OC
+### Pb-Sn phase diagram calculated with OC
 
 The macro for Pb-Sn is provided in this repository under the directory "macros".
 
