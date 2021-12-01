@@ -217,7 +217,8 @@ The plot can be changed in order to study the phase diagram. The user select a g
 Some examples for Fe-C, Cu-Ni, and Ag-Cu systems are shown in following Figures.
 <br><br>
 
-Fe-C phase diagram, metastable, calculated with OC: <br>
+### Fe-C phase diagram, metastable, calculated with OC
+
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/images/1623442950-Fe-C-2pct-metastable-v1.png) 
 <br><br>
 
@@ -227,7 +228,7 @@ Cu-Ni phase diagram calculated with OC: <br>
 <br><br>
 
 
-* Ag-Cu phase diagram calculated with OC: * <br>
+### Ag-Cu phase diagram, calculated with OC
 
 The macro for Ag-Cu is provided in this repository under the directory "macros".
 
@@ -240,7 +241,7 @@ The macro for Ag-Cu is provided in this repository under the directory "macros".
 
 
 
-* Pb-Sn phase diagram calculated with OC:* <br>
+### Pb-Sn phase diagram, calculated with OC
 
 The macro for Pb-Sn is provided in this repository under the directory "macros".
 
