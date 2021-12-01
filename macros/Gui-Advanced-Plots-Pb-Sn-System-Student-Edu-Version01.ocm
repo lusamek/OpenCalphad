@@ -1,0 +1,44 @@
+
+
+new Y
+@$ Calculate the phase diagram for Pb-Sn, Samek, using NIST TDB
+
+set echo
+
+r t ./nist.tdb
+pb sn 
+
+
+set cond t=200 p=1e5 n=1 x(sn)=.8
+
+c e
+
+l r 1
+
+@&
+
+set ax 1 x(sn) 0 1 0.25
+set ax 2 t 200 2000 10
+
+l ax
+
+l sh
+
+set ref pb fcc_a1,,,,,
+set ref sn bct_a5,,,,,
+
+@&
+
+map
+
+@&
+
+@$ This is the normal x-T phase diagram plot
+plot
+w%(*,sn)
+T
+title Pb-Sn, Samek, Temperatur (K), NIST
+render
+
+
+
