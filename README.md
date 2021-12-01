@@ -371,7 +371,7 @@ The opensource graphical user interface using Linux/BSD libraries is under devel
 
 
 
-# User Support 
+# User support and development
 
 IRC Channel for user exchange: 
 
