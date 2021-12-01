@@ -243,7 +243,7 @@ The macro for Ag-Cu is provided in this website under the directory "macros".
 ### Ag-Cu phase diagram calculated with OC
 
 
-![]https://raw.githubusercontent.com/lusamek/OpenCalphad/master/edu-material/Ag-Cu-edu-1-LS.png)
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/edu-material/Ag-Cu-edu-1-LS.png)
 
 
 The macro for Ag-Cu is provided in this website under the directory "macros".
