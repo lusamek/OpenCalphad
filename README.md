@@ -6,6 +6,8 @@ This website gives the possibility to use OpenCalphad using a virtual machine. I
 Screenshot #1: ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/OC-Screen1.jpg)
 
 
+
+
 # Installation
 ## 1. Virtualbox
 Download the software virtualbox corresponding to your architecture. https://www.virtualbox.org/wiki/Downloads
@@ -367,10 +369,16 @@ The opensource graphical user interface using Linux/BSD libraries is under devel
 
 --
 
-# Support 
 
-IRC on Freenode
-https://webchat.freenode.net/?channels=#opencalphad
+
+# User Support 
+
+IRC Channel for user exchange: 
+
+https://kiwiirc.com/nextclient/irc.libera.chat/?channels=#opencalphad
+
+
+
 
 # References
 
