@@ -1,0 +1,51 @@
+
+new Y
+@$ ===================================================================
+@$ step2cm1200.ocm
+@$ Calculating G curves for the phases in Ag-Cu at T = 1200 deg C
+@$ ===================================================================
+
+
+set echo
+
+r t ./agcu
+
+
+ 
+
+set cond t=1200 p=1e5 n=1 x(cu)=.2
+
+c e
+
+l r 1
+
+ 
+set ref ag fcc,,,,,
+set ref cu fcc,,,,,,
+
+set ax 1 x(cu) 0 1 ,,,
+
+l ax
+
+l sh
+
+ 
+
+step 
+sep
+
+//@&
+//@$ --------------------------------------------------------
+//@$ Plot of the Gibbe energy curves at 1200 K
+
+
+plot
+x(cu)
+G(*)
+title step step2cm1200, 1200 K, fig 1
+render
+
+
+
+
+
