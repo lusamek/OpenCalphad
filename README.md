@@ -267,7 +267,7 @@ The macro for Ag-Cu is provided in this website under the directory "macros".
 
 
 
-# Advanced Plot
+# Advanced Calculations
 
 <br/>
 The diagram shows the use of advanced plot for specific examples. <br/>
@@ -311,8 +311,9 @@ Example of calculating G curves for the Fe-Mo system at 1400K:
 
 
 
-# Advanced Plot
+# Customizing the Plots and Advanced Plot
 <br/>
+
 
 The plot can be edited and modified. Scaling x and/or y is possible.
 Editing the GNUPLOT plot is as well possible.
