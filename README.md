@@ -310,7 +310,31 @@ Example of calculating G curves for the Fe-Mo system at 1400K:
 
 
 
-# Plot - Diffusion
+
+# Advanced Plot
+<br/>
+
+The plot can be edited and modified. Scaling x and/or y is possible.
+Editing the GNUPLOT plot is as well possible.
+
+
+<br/>
+<br/>
+
+
+
+![](images/1667217043-screenshot.png)
+
+
+![](images/1667217476-screenshot.png)
+
+
+
+
+# Utils
+<br/>
+
+Diffusion
 <br/>
 
 Several utils for materials science are included for calculation of diffusion,...
@@ -320,6 +344,9 @@ Example of plot showing the diffusion of elements (C and Fe) in host metal Fe:
 
 <br/>
 <br/>
+
+
+
 
 # Tutorial
 
@@ -357,6 +384,15 @@ The diagram for the Fe-Mn system can be achieved as follows. <br/>
 <br/>
 
 
+
+
+
+
+
+
+
+
+
 # Contribution
 
 <br/>
@@ -367,6 +403,8 @@ The opensource graphical user interface using Linux/BSD libraries is under devel
 <br/>
 
 --
+
+
 
 
 
