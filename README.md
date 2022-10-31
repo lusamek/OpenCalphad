@@ -324,11 +324,9 @@ Editing the GNUPLOT plot is as well possible.
 
 
 
-![](images/1667217043-screenshot.png)
+![](images/1667217043-screenshot-2.png)
 
-
-![](images/1667217476-screenshot.png)
-
+ 
 
 
 
