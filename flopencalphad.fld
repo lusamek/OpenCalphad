@@ -20,7 +20,8 @@ decl {\#include <FL/Fl_Output.H>} {private local
 decl {\#include "flopencalphad_def.h"} {private local
 }
 
-Function {redraw()} {} {
+Function {redraw()} {open
+} {
   code {printf("> Procedure redraw!\\n");
 
 
@@ -42,7 +43,7 @@ Function {make_window()} {open
 } {
   Fl_Window win1 {
     label FLOPENCALPHAD open
-    xywh {67 335 785 695} type Double resizable visible
+    xywh {257 475 785 695} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad}
@@ -50,11 +51,15 @@ Function {make_window()} {open
     }
     Fl_Group {} {
       label {1. Element} open
-      xywh {25 70 350 155} box DOWN_BOX labeltype ENGRAVED_LABEL
+      xywh {25 70 350 150} box DOWN_BOX labeltype ENGRAVED_LABEL
     } {
       Fl_Button {} {
         label Fe
         callback {printf( " Fe Element Selected\\n" );
+
+
+  if ( var_calc_number_element == 1 ) 
+     input_var_calc_x->value( "fe" );
 
 // printf( "%s\\n" ,   inputline->value( browser1->text(  browser1->value() )  ) ) ;
 
@@ -71,6 +76,8 @@ Function {make_window()} {open
         callback {printf( " C Selected\\n" );
 
 
+  if ( var_calc_number_element == 1 ) 
+     input_var_calc_x->value( "c" );
 
   strncat( var_system , "c" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
@@ -90,6 +97,9 @@ redraw();}
         callback {printf( " Mn Selected\\n" );
 
 
+  if ( var_calc_number_element == 1 ) 
+     input_var_calc_x->value( "mn" );
+
   strncat( var_system , "mn" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );
@@ -106,6 +116,9 @@ redraw();}
       Fl_Button {} {
         label Al
         callback {printf( " Al Selected\\n" );
+
+  if ( var_calc_number_element == 1 ) 
+     input_var_calc_x->value( "al" );
 
 
   strncat( var_system , "al" , PATH_MAX - strlen( var_system ) -1 );
@@ -130,9 +143,13 @@ redraw();}
 
 printf( " Si Selected\\n" );
 
+  
+  if ( var_calc_number_element == 1 ) 
+     input_var_calc_x->value( "si" );
+
   strncat( var_system , "si" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
-    output_system->value( var_system );
+  output_system->value( var_system );
 
   var_calc_number_element++;
   
@@ -140,14 +157,15 @@ printf( " Si Selected\\n" );
   add_new_element( "si" );  
 
 
-
-redraw();}
+ redraw();}
         xywh {275 80 45 35} labelfont 1 labelsize 12
       }
       Fl_Button {} {
         label V
         callback {printf( " V Selected\\n" );
 
+  if ( var_calc_number_element == 1 ) 
+     input_var_calc_x->value( "v" );
 
   strncat( var_system , "v" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
@@ -165,6 +183,9 @@ redraw();}
       Fl_Button {} {
         label Mo
         callback {printf( " Mo Selected\\n" );
+
+  if ( var_calc_number_element == 1 ) 
+     input_var_calc_x->value( "mo" );
 
   strncat( var_system , "mo" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
@@ -184,6 +205,9 @@ redraw();}
         callback {printf( " Cr Selected\\n" );
 
 
+  if ( var_calc_number_element == 1 ) 
+     input_var_calc_x->value( "cr" );
+
   strncat( var_system , "cr" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );
@@ -200,6 +224,9 @@ redraw();}
       Fl_Button {} {
         label Cu
         callback {printf( " Cu Selected\\n" );
+
+  if ( var_calc_number_element == 1 ) 
+     input_var_calc_x->value( "cu" );
 
   strncat( var_system , "cu" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
@@ -219,6 +246,8 @@ redraw();}
         label Nb
         callback {printf( " nb Selected\\n" );
 
+  if ( var_calc_number_element == 1 ) 
+     input_var_calc_x->value( "nb" );
 
   strncat( var_system , "nb" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
@@ -236,6 +265,9 @@ redraw();}
         label Ni
         callback {printf( " ni Selected\\n" );
 
+
+  if ( var_calc_number_element == 1 ) 
+     input_var_calc_x->value( "ni" );
 
   strncat( var_system , "ni" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
@@ -256,6 +288,8 @@ redraw();}
         label Ag
         callback {printf( " ag Selected\\n" );
 
+  if ( var_calc_number_element == 1 ) 
+     input_var_calc_x->value( "ag" );
 
   strncat( var_system , "ag" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
@@ -275,6 +309,9 @@ redraw();}
         callback {printf( " ti Selected\\n" );
 
 
+  if ( var_calc_number_element == 1 ) 
+     input_var_calc_x->value( "ti" );
+
   strncat( var_system , "ti" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );
@@ -292,6 +329,8 @@ redraw();}
         label Zn
         callback {printf( " zn Selected\\n" );
 
+  if ( var_calc_number_element == 1 ) 
+     input_var_calc_x->value( "zn" );
 
   strncat( var_system , "zn" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
@@ -310,6 +349,8 @@ redraw();}
         label W
         callback {printf( " w Selected\\n" );
 
+  if ( var_calc_number_element == 1 ) 
+     input_var_calc_x->value( "w" );
 
   strncat( var_system , "w" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
@@ -327,27 +368,22 @@ redraw();}
       Fl_Button {} {
         label {...}
         callback {form_element_pse->show();}
-        xywh {330 170 40 35}
+        xywh {330 80 40 35}
       }
     }
     Fl_Group {} {
-      label {2. Compute} open
-      xywh {25 260 350 150} box DOWN_FRAME labeltype ENGRAVED_LABEL
+      label {2. Create Macro} open
+      xywh {25 265 350 140} box DOWN_FRAME labeltype ENGRAVED_LABEL
     } {
       Fl_Output output_system {
         label System
-        xywh {90 275 205 25} color 49
+        xywh {85 280 205 25} color 49
         code1 {output_system->value( "fe c " );}
         code2 {var_calc_number_element = 2;}
       }
       Fl_Button {} {
         label CA
-        callback {printf( " Clr \\n" );
-
-// printf( "%s\\n" ,   inputline->value( browser1->text(  browser1->value() )  ) ) ;
-
-
-   input_var_set_condition->value( " t=1000 p=1e5 n=1  " );
+        callback {input_var_set_condition->value( " t=1000 p=1e5 n=1  " );
    
    strncpy( var_system, "", PATH_MAX );
    output_system->value( var_system ); 
@@ -355,11 +391,11 @@ redraw();}
    var_calc_number_element = 0; 
 
    redraw();}
-        xywh {300 275 30 25} labelfont 1 labelsize 12
+        xywh {295 280 30 25} labelfont 1 labelsize 12
       }
       Fl_Input input_var_calc_x {
         label {X var.}
-        xywh {90 305 205 25}
+        xywh {85 310 205 25}
         code1 {input_var_calc_x->value( "c" );}
       }
       Fl_Button {} {
@@ -371,11 +407,11 @@ redraw();}
 input_var_calc_x->value( "" );
 
 redraw();}
-        xywh {300 305 30 25} labelfont 1 labelsize 12
+        xywh {295 310 30 25} labelfont 1 labelsize 12
       }
       Fl_Input input_var_calc_y {
         label {Y var.}
-        xywh {90 335 205 25}
+        xywh {85 340 205 25}
         code1 {input_var_calc_y->value( "T" );}
       }
       Fl_Button {} {
@@ -387,11 +423,11 @@ redraw();}
 input_var_calc_y->value( "" );
 
 redraw();}
-        xywh {300 335 30 25} labelfont 1 labelsize 12
+        xywh {295 340 30 25} labelfont 1 labelsize 12
       }
       Fl_Input input_var_tdb_database {
         label TDB
-        xywh {90 365 205 25}
+        xywh {85 370 205 25}
         code1 {input_var_tdb_database->value( "steel1.tdb" );}
       }
       Fl_Button {} {
@@ -403,7 +439,65 @@ redraw();}
 input_var_tdb_database->value( "" );
 
 redraw();}
-        xywh {300 365 30 25} labelfont 1 labelsize 12
+        xywh {295 370 30 25} labelfont 1 labelsize 12
+      }
+      Fl_Button {} {
+        label SGTE
+        callback {char str[PATH_MAX];
+      strncpy( str, output_system->value(), PATH_MAX ); 
+      int foocplt = 0;
+      
+      char ptr[strlen(str)+1];
+      int i,j=0;
+      for(i=0; str[i]!='\\0'; i++)
+      {
+        if ( str[i] == ' ' )
+        {
+          if ( foocplt == 0 ) 
+          {
+             ptr[j++]='-';   
+             foocplt = 1 ; 
+          }
+        }
+        else if (str[i] != '\\n' && str[i] != '\\n') 
+          ptr[j++]=str[i];
+      } 
+      ptr[j]='\\0';
+
+ 
+
+  char foostr[PATH_MAX];
+  
+   
+  if ( fexist( "/usr/bin/dillo" ) == 1 ) 
+     snprintf( foostr , sizeof( foostr ), "%s%s.jpg' " ,  "    screen -d -m  /usr/bin/dillo  'https://www.crct.polymtl.ca/fact/documentation/SGTE2017/" , ptr );  // ptr
+  
+  
+  // ssl https... 
+  else if ( fexist( "/usr/bin/chromium" ) == 1 ) 
+      snprintf( foostr , sizeof( foostr ), "%s%s.jpg' " ,  "    screen -d -m  /usr/bin/chromium  'https://www.crct.polymtl.ca/fact/documentation/SGTE2017/" , ptr );  // ptr
+
+  else if ( fexist( "/usr/bin/chromium-browser" ) == 1 ) 
+      snprintf( foostr , sizeof( foostr ), "%s%s.jpg' " ,  "    screen -d -m  /usr/bin/chromium-browser  'https://www.crct.polymtl.ca/fact/documentation/SGTE2017/" , ptr );  // ptr
+
+  
+  else if ( fexist( "/usr/bin/firefox" ) == 1 ) 
+      snprintf( foostr , sizeof( foostr ), "%s%s.jpg' " ,  "    screen -d -m  /usr/bin/firefox  'https://www.crct.polymtl.ca/fact/documentation/SGTE2017/" , ptr );  // ptr
+
+
+  else 
+      snprintf( foostr , sizeof( foostr ), "%s%s.jpg' " ,  "    screen -d -m  dillo  'https://www.crct.polymtl.ca/fact/documentation/SGTE2017/" , ptr );  // ptr
+  
+  printf( "CMD %s\\n", foostr ); 
+  system( foostr ) ;
+  
+  
+  
+   
+   
+// https://www.crct.polymtl.ca/fact/documentation/SGTE2017/Al-Si.jpg
+// var_input_floc_elements->value( "" );}
+        xywh {330 280 40 25} labelfont 1 labelsize 12
       }
     }
     Fl_Button {} {
@@ -424,8 +518,18 @@ redraw();}
       system( " rm ocgnu.plt  " ); 
 
   void_plot_preview_plotfile(   "ocgnu.plt"   );
-
   redraw();
+
+
+ 
+  if ( fexist( "editor.ocm"  ) == 1 ) 
+  {
+     // ncopy_conv( "macro.ocm" , "editor.ocm" );  // <-- copy, from editor to macro (standard) 
+     
+     // New feature ... quite beta !
+     // ncpadvmac( "macro.ocm" , "editor.ocm" ); 
+  }
+     
   
   if ( checkbutton_xterm_console->value( ) == 1 ) 
      nsystem(  "  screen -d  -m   xterm -e   oc   macro.ocm " );
@@ -443,7 +547,9 @@ redraw();}
         label {[&2] Edit!}
         callback {redraw();
 
-nsystem( "  screen -d -m fledit  macro.ocm " );}
+ nsystem( "  screen -d -m fledit  macro.ocm " );
+
+  // nsystem( "  screen -d -m fledit  editor.ocm " );}
         xywh {130 505 145 25}
       }
       Fl_Button {} {
@@ -490,15 +596,27 @@ void_flfront_preview_browser1_refresh();}
       }
       Fl_Button {} {
         label {Refresh Preview}
-        callback {void_flfront_preview_browser1_refresh();}
+        callback {void_flfront_preview_browser1_refresh(  );}
         xywh {395 590 130 25}
       }
       Fl_Button {} {
         label Edit
         callback {redraw();
 
-nsystem( "  screen -d -m fledit  macro.ocm " );}
-        xywh {530 590 60 25}
+  nsystem( "  screen -d -m fledit  macro.ocm " );
+// redraw();
+
+// beta
+// nsystem( "  screen -d -m fledit  editor.ocm " );}
+        xywh {550 590 65 25}
+      }
+      Fl_Button {} {
+        label {Close Plots}
+        callback {redraw();
+
+  
+  nsystem( " pkill gnuplot " );}
+        xywh {640 590 105 25}
       }
     }
     Fl_Button {} {
@@ -541,7 +659,7 @@ else
   }
   Fl_Window win2 {
     label Database open
-    xywh {1015 27 905 460} type Double resizable visible
+    xywh {1275 680 905 460} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Database}
@@ -592,14 +710,20 @@ else
 
  redraw();
  
+}
+
+
+if ( form_database_tab1_filebrowser1->value() >= 1 )
+{
+   form_database_statusbar->value(   form_database_tab1_filebrowser1->text(   form_database_tab1_filebrowser1->value() )    ); 
 }}
-          xywh {35 110 465 265}
+          xywh {35 110 845 195}
           code1 {form_database_tab1_filebrowser1->load( "." );}
           code2 {form_database_tab1_filebrowser1->type(FL_HOLD_BROWSER);}
         }
         Fl_Output form_database_tab1_currentfile {
           label {TDB Selection}
-          xywh {340 380 540 25} color 49
+          xywh {340 315 540 25} color 49
         }
         Fl_Input form_database_tab1_filter {
           label Filter
@@ -627,8 +751,13 @@ if ( strcmp( form_database_tab1_filter->value(  ) , "" ) == 0 )
    form_database_tab1_currentfile->value();
    
    form_database_tab1_filebrowser1->load( "." );}
-          xywh {70 380 155 25} when 8
+          xywh {70 315 155 25} when 8
           code2 {form_database_tab1_filter->value( "*" );}
+        }
+        Fl_Button {} {
+          label {TDB Content Preview }
+          callback {system( " screen -d -m flpreview  ");}
+          xywh {675 350 205 25}
         }
       }
       Fl_Group {} {
@@ -640,13 +769,16 @@ if ( strcmp( form_database_tab1_filter->value(  ) , "" ) == 0 )
           xywh {30 130 390 220} box DOWN_BOX labeltype ENGRAVED_LABEL
         } {
           Fl_Browser browser1 {
-            callback {printf( "Click\\n" );
+            callback {if ( browser1->value() >= 1 )
+{
+   form_database_statusbar->value(   browser1->text(   browser1->value() )    ); 
+}
 
 
 
- input_var_tdb_database->value(  browser1->text(   browser1->value() ) ); 
+ printf( "Click\\n" );
+ input_var_tdb_database->value(    browser1->text(   browser1->value() )    ); 
  
-  
   printf( "============================\\n" );
   printf( "   ELEMENT                  \\n" );
   printf( "============================\\n" );
@@ -925,11 +1057,77 @@ redraw();
           }
         }
       }
+      Fl_Group {} {
+        label SGTE open
+        xywh {40 95 850 320} hide
+      } {
+        Fl_Button {} {
+          label {Open SGTE Website for Selected Elements (Phasediagram) for elements in main panel}
+          callback {char str[PATH_MAX];
+      strncpy( str, output_system->value(), PATH_MAX ); 
+      int foocplt = 0;
+      
+      char ptr[strlen(str)+1];
+      int i,j=0;
+      for(i=0; str[i]!='\\0'; i++)
+      {
+        if ( str[i] == ' ' )
+        {
+          if ( foocplt == 0 ) 
+          {
+             ptr[j++]='-';   
+             foocplt = 1 ; 
+          }
+        }
+        else if (str[i] != '\\n' && str[i] != '\\n') 
+          ptr[j++]=str[i];
+      } 
+      ptr[j]='\\0';
+
+ 
+
+  char foostr[PATH_MAX];
+  
+   
+  if ( fexist( "/usr/bin/dillo" ) == 1 ) 
+     snprintf( foostr , sizeof( foostr ), "%s%s.jpg' " ,  "    screen -d -m  /usr/bin/dillo  'https://www.crct.polymtl.ca/fact/documentation/SGTE2017/" , ptr );  // ptr
+  
+  
+  // ssl https... 
+  else if ( fexist( "/usr/bin/chromium" ) == 1 ) 
+      snprintf( foostr , sizeof( foostr ), "%s%s.jpg' " ,  "    screen -d -m  /usr/bin/chromium  'https://www.crct.polymtl.ca/fact/documentation/SGTE2017/" , ptr );  // ptr
+
+  else if ( fexist( "/usr/bin/chromium-browser" ) == 1 ) 
+      snprintf( foostr , sizeof( foostr ), "%s%s.jpg' " ,  "    screen -d -m  /usr/bin/chromium-browser  'https://www.crct.polymtl.ca/fact/documentation/SGTE2017/" , ptr );  // ptr
+
+  
+  else if ( fexist( "/usr/bin/firefox" ) == 1 ) 
+      snprintf( foostr , sizeof( foostr ), "%s%s.jpg' " ,  "    screen -d -m  /usr/bin/firefox  'https://www.crct.polymtl.ca/fact/documentation/SGTE2017/" , ptr );  // ptr
+
+
+  else 
+      snprintf( foostr , sizeof( foostr ), "%s%s.jpg' " ,  "    screen -d -m  dillo  'https://www.crct.polymtl.ca/fact/documentation/SGTE2017/" , ptr );  // ptr
+  
+  printf( "CMD %s\\n", foostr ); 
+  system( foostr ) ;
+  
+  
+  
+   
+   
+// https://www.crct.polymtl.ca/fact/documentation/SGTE2017/Al-Si.jpg
+// var_input_floc_elements->value( "" );}
+          xywh {65 140 770 35} labelfont 1 labelsize 12
+        }
+      }
+    }
+    Fl_Output form_database_statusbar {
+      xywh {15 425 755 25} color 49
     }
   }
   Fl_Window win3 {
     label Option open
-    xywh {277 315 580 470} type Double resizable visible
+    xywh {46 216 580 470} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Option}
@@ -993,12 +1191,12 @@ redraw();
           }
           Fl_Button {} {
             label {Rox Filer}
-            callback {nsystem( " cd ; screen -d -m rox " );}
+            callback {nsystem( "   rox " );}
             image {../../../../nuvola/32x32/apps/kcmdevice.png} xywh {110 305 80 55}
           }
           Fl_Button {} {
             label FLM
-            callback {nsystem( " cd ; screen -d -m flm " );}
+            callback {nsystem( " screen -d -m flm " );}
             image {../../../../nuvola/32x32/apps/mycomputer.png} xywh {195 305 75 55}
           }
           Fl_Button {} {
@@ -1006,73 +1204,13 @@ redraw();
             callback {// nsystem( " screen -d -m xpaint   " );
 
 
-     system( " cd ; screen -d -m  xpaint   -canvas -size 800x600    " );}
+     system( "   screen -d -m  xpaint   -canvas -size 800x600    " );}
             image {../../../../nuvola/32x32/apps/ooo_gulls.png} xywh {275 305 80 55}
           }
           Fl_Button {} {
             label Gftp
-            callback {system( " cd ;  screen -d -m   gftp      " );}
+            callback {system( "   screen -d -m   gftp      " );}
             image {../../../../nuvola/32x32/apps/package_network.png} xywh {360 305 75 55}
-          }
-        }
-      }
-      Fl_Group {} {
-        label {&Metal Sc. Utils} open
-        xywh {40 100 525 315} hide
-      } {
-        Fl_Group {} {
-          label {Metal Sciences} open
-          xywh {40 135 500 230} box DOWN_BOX labeltype ENGRAVED_LABEL
-        } {
-          Fl_Button {} {
-            label {Mixture Law}
-            callback {nsystem(  " screen -d -m  flmechprop    " );}
-            xywh {375 195 150 40}
-          }
-          Fl_Button {} {
-            label {Bulk Diffusion}
-            callback {nsystem(  " screen -d -m  fldiffusion  diffusion.dat    " );}
-            xywh {375 145 150 40}
-          }
-          Fl_Button {} {
-            label {&Fx Grapher}
-            callback {nsystem(  " screen -d -m  fxgrapher  " );}
-            xywh {55 145 150 40}
-          }
-          Fl_Button {} {
-            label {Solubility Product}
-            callback {nsystem(  " screen -d -m  flsolubility    " );}
-            xywh {215 145 150 40}
-          }
-          Fl_Button {} {
-            label {&Periodic Table}
-            callback {nsystem(  " screen -d -m  gperiodic  " );}
-            xywh {55 245 150 40}
-          }
-          Fl_Button {} {
-            label {&JMol Chem. 3D}
-            callback {nsystem(  " screen -d -m jmol   " );}
-            xywh {55 195 150 40}
-          }
-          Fl_Button {} {
-            label {Time Temp. Cycle}
-            callback {nsystem(  " screen -d -m  fltimetempcycle  " );}
-            xywh {215 245 150 40}
-          }
-          Fl_Button {} {
-            label {Microst. material}
-            callback {nsystem(  " screen -d -m  flmicromat  " );}
-            xywh {215 195 150 40}
-          }
-          Fl_Button {} {
-            label Mobility
-            callback {nsystem(  " screen -d -m  flmobility  " );}
-            xywh {375 245 150 40}
-          }
-          Fl_Button {} {
-            label {Grain size / ReX}
-            callback {nsystem(  " screen -d -m  flgrainrex  " );}
-            xywh {55 295 150 40}
           }
         }
       }
@@ -1082,7 +1220,7 @@ redraw();
       } {
         Fl_Group {} {
           label {Online Repository OC Calphad} open
-          xywh {100 140 375 180} box DOWN_BOX labeltype ENGRAVED_LABEL
+          xywh {100 140 375 220} box DOWN_BOX labeltype ENGRAVED_LABEL
         } {
           Fl_Button {} {
             label {&Fetch online ~/macros directory}
@@ -1102,7 +1240,7 @@ redraw();
   
   
   system( "  cd ; sync ; sleep 1 ; screen -d -m  flopencalphad ~/macros  " );}
-            xywh {115 165 340 30}
+            xywh {120 165 340 30}
           }
           Fl_Button {} {
             label {&Fetch online source code OC Gui}
@@ -1111,7 +1249,7 @@ redraw();
 
 
  system( " cd ;  screen -d -m xterm -e ' wget -c --no-check-certificate https://codeload.github.com/lusamek/OpenCalphad/zip/master  -O  OpenCalphad.zip ' ")}
-            xywh {115 210 340 30}
+            xywh {120 210 340 30}
           }
           Fl_Button {} {
             label {&Help}
@@ -1123,7 +1261,42 @@ else if ( fexist( "/usr/bin/chromium-browser" ) == 1)
    
 else
    nsystem(  " screen -d -m dillo http://github.com/lusamek/opencalphad " );}
-            xywh {115 255 340 30} labelfont 1
+            xywh {120 255 340 30} labelfont 1
+          }
+          Fl_Button {} {
+            label {Manual OpenCalphad (PDF)}
+            callback {system( "  mconfig --webbrowser  'https://github.com/lusamek/OpenCalphad/blob/master/Manual-Introduction-OC6.pdf'  " );}
+            xywh {120 300 340 30} labelfont 1
+          }
+        }
+      }
+      Fl_Group {} {
+        label {&Metal Sc. Utils} open
+        xywh {40 100 525 315} hide
+      } {
+        Fl_Group {} {
+          label {Metal Sciences} open
+          xywh {40 135 500 230} box DOWN_BOX labeltype ENGRAVED_LABEL
+        } {
+          Fl_Button {} {
+            label {Mixture Law}
+            callback {nsystem(  " screen -d -m  flmechprop    " );}
+            xywh {215 145 150 40}
+          }
+          Fl_Button {} {
+            label {Bulk Diffusion}
+            callback {nsystem(  " screen -d -m  fldiffusion  diffusion.dat    " );}
+            xywh {375 145 150 40}
+          }
+          Fl_Button {} {
+            label {&Fx Grapher}
+            callback {nsystem(  " screen -d -m  fxgrapher  " );}
+            xywh {55 145 150 40}
+          }
+          Fl_Button {} {
+            label FLOCCALC
+            callback {nsystem(  " cd ; screen -d -m  floccalc   " );}
+            xywh {55 195 150 40}
           }
         }
       }
@@ -1154,7 +1327,7 @@ else
         }
       }
       Fl_Group {} {
-        label {&System} open
+        label {&Apps} open
         xywh {40 100 525 315} hide
       } {
         Fl_Group {} {
@@ -1265,7 +1438,7 @@ else
         }
       }
       Fl_Group {} {
-        label Development open
+        label Settings open
         xywh {40 100 525 315} hide
       } {
         Fl_Button {} {
@@ -1275,15 +1448,15 @@ else
         }
         Fl_Group {} {
           label {Console output} open
-          xywh {50 215 375 95} box DOWN_BOX labeltype ENGRAVED_LABEL
+          xywh {50 245 375 95} box DOWN_BOX labeltype ENGRAVED_LABEL
         } {
           Fl_Check_Button checkbutton_single_console {
-            label {Single console output}
-            xywh {70 235 25 25} down_box DOWN_BOX
+            label {Single console output }
+            xywh {70 300 25 25} down_box DOWN_BOX
           }
           Fl_Check_Button checkbutton_xterm_console {
-            label {xterm console output}
-            xywh {70 265 25 25} down_box DOWN_BOX
+            label {xterm console output + screen (background)}
+            xywh {70 260 25 25} down_box DOWN_BOX
             code2 {checkbutton_xterm_console->value( 1 );}
           }
         }
@@ -1291,8 +1464,8 @@ else
     }
   }
   Fl_Window win4 {
-    label {Graphics Plot} open
-    xywh {704 385 910 605} type Double resizable visible
+    label {FLOPENCALPHAD - PLOT} open
+    xywh {1482 506 910 600} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Plot}
@@ -1301,284 +1474,11 @@ else
     Fl_Button {} {
       label {Close Frame}
       callback {win4->hide();}
-      xywh {735 555 160 30}
+      xywh {735 560 160 30}
     }
     Fl_Output form_plot_statusline {
-      xywh {15 555 715 30} color 49
+      xywh {10 560 715 30} color 49
       code1 {form_plot_statusline->value("ocgnu.plt");}
-    }
-    Fl_Tabs {} {open
-      xywh {10 70 885 225}
-    } {
-      Fl_Group {} {
-        label {Single Plot} open
-        xywh {35 95 860 200} hide
-      } {
-        Fl_Button {} {
-          label {View Plot File}
-          callback {redraw();
-  
-  char charo[PATH_MAX];
-  strncpy( charo, "", PATH_MAX );
-  strncat( charo , " screen -d -m  flview   " , PATH_MAX - strlen( charo ) -1 );
-  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , "ocgnu.plt"   , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
-  nsystem(  charo );}
-          xywh {55 135 130 25}
-        }
-        Fl_Button {} {
-          label {Edit Plot File}
-          callback {redraw();
-  
-  char charo[PATH_MAX];
-  strncpy( charo, "", PATH_MAX );
-  strncat( charo , " screen -d -m  fledit   " , PATH_MAX - strlen( charo ) -1 );
-  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , "ocgnu.plt"   , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
-  nsystem(  charo );}
-          xywh {195 135 130 25}
-        }
-        Fl_Button {} {
-          label {Plot!}
-          callback {char mydirnow[2500];
-  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
-  
-  redraw();
-
-  
-  if ( plot_gnuplot_term_driver_force->value( ) == 0 )  
-  {
-      ncp( "advocgnu.plt" , "ocgnu.plt" );
-      form_plot_statusline->value("ocgnu.plt");
-      void_plot_preview_plotfile(  "ocgnu.plt" );
-      nsystem(  "  screen -d  -m  gnuplot ocgnu.plt     " );
-  }   
-  
-  else if ( plot_gnuplot_term_driver_force->value( ) == 1 )
-  { 
-      ncp(           "advocgnu.plt" , "ocgnu.plt" );
-      ncopysetterm(  "advocgnu.plt" ,  "ocgnu.plt" ,  plot_gnuplot_term_drivername->value()   );
-      form_plot_statusline->value( "advocgnu.plt" );
-      void_plot_preview_plotfile(  "advocgnu.plt" );
-      nsystem(  "  screen -d  -m  gnuplot advocgnu.plt  " );
-  }  
-     
-  // oc6 bug 
-  // gnuplot ocgnu.plt  &}
-          xywh {610 135 135 25} labelfont 1
-        }
-        Fl_Button {} {
-          label {Edit Adv. Plot}
-          callback {redraw();
-  
-  char charo[PATH_MAX];
-  strncpy( charo, "", PATH_MAX );
-  strncat( charo , " screen -d -m  fledit   " , PATH_MAX - strlen( charo ) -1 );
-  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , "advocgnu.plt"   , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
-  nsystem(  charo );}
-          xywh {335 135 135 25}
-        }
-        Fl_Button {} {
-          label Compute
-          callback {nsystem( "  rm  ocgnu.plt " );
-  nsystem( "  rm  advocgnu.plt " );
-
-  char mydirnow[2500];
-  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
-  redraw();
-  
-  form_plot_statusline->value( "Compute ocgnu.plt in progress..." );
-  flplot_preview_browser->clear();
-  
-  if ( checkbutton_xterm_console->value( ) == 1 ) 
-     nsystem(  "  screen -d  -m   xterm -e   oc   macro.ocm " );
-     
-  else if ( checkbutton_single_console->value( ) == 1 ) 
-     nsystem(  "  oc   macro.ocm " );
-     
-  // oc6 bug 
-  // gnuplot ocgnu.plt  &}
-          xywh {475 135 130 25}
-        }
-      }
-      Fl_Group {} {
-        label {Advanced Plot} open
-        xywh {35 95 860 200}
-      } {
-        Fl_Button {} {
-          label {1. Dup. Adv. Macro}
-          callback {redraw();
-  ncp( "advmacro.ocm" , "macro.ocm" );}
-          xywh {40 120 145 25}
-        }
-        Fl_Check_Button plot_adv_computer_skipint {
-          label {Skip Keypress}
-          callback {plot_adv_computer_skipint_int = plot_adv_computer_skipint->value();
-
-printf( "%d\\n", plot_adv_computer_skipint->value() );
-printf( "%d\\n", plot_adv_computer_skipint_int );}
-          xywh {40 150 25 25} down_box DOWN_BOX
-        }
-        Fl_Input var_x_advplot_str {
-          label {Scale X-axis }
-          xywh {305 120 275 25}
-          code1 {var_x_advplot_str->value( "set xrange [0 : 2]" );}
-        }
-        Fl_Input var_y_advplot_str {
-          label {Scale Y-axis }
-          xywh {305 145 275 25}
-          code1 {var_y_advplot_str->value( "set yrange [600 : 1600]" );}
-        }
-        Fl_Check_Button var_button_y_advplot_str_automatic {
-          label {Set both X and Y}
-          xywh {305 175 155 25} down_box DOWN_BOX
-          code1 {var_button_y_advplot_str_automatic->value( 1 );}
-        }
-        Fl_Button {} {
-          label {2. Copy/Set Plot}
-          callback {redraw();
-  
-  ncp_advfix( "advocgnu.plt" , "ocgnu.plt",   var_x_advplot_str->value( ),   var_y_advplot_str->value( )  ,   var_button_y_advplot_str_automatic->value(  )  );  
-  
-  
-  void_plot_preview_plotfile(  "advocgnu.plt" );
-  
-  //  nsystem( "  rm  ocgnu.plt " );
-  //  nsystem( "  rm  advocgnu.plt " );
-  
-  // set xrange [0.5 : 0.7]
-  
-  // var_x_advplot_str->value( "set xrange [0 : 2]" );}
-          xywh {305 200 145 25}
-        }
-        Fl_Button {} {
-          label {3. Adv.Plot!}
-          callback {char mydirnow[2500];
-  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
-  
-
-      nsystem(  "  screen -d  -m  gnuplot advocgnu.plt  " );}
-          xywh {455 200 125 25} labelfont 1
-        }
-        Fl_Button {} {
-          label {Adv. Compute}
-          callback {char mydirnow[2500];
-  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
-
-  redraw();
-  ncpadvmac( "macro2.ocm" , "advmacro.ocm" );
-  
-  form_plot_statusline->value( "Compute advocgnu.plt in progress..." );
-  flplot_preview_browser->clear();
-  //void_plot_preview_plotfile(  "advocgnu.plt" );
-  
-  nsystem( "  rm  ocgnu.plt " );
-  nsystem( "  rm  advocgnu.plt " );
-  
-  if ( checkbutton_xterm_console->value( ) == 1 ) 
-     nsystem(  "  screen -d  -m   xterm -e   oc   macro2.ocm " );
-     
-  else if ( checkbutton_single_console->value( ) == 1 ) 
-     nsystem(  "  oc   macro2.ocm " );
-     
-  // oc6 bug 
-  // gnuplot ocgnu.plt  &}
-          xywh {750 170 130 25}
-        }
-        Fl_Button {} {
-          label {Edit Adv. Macro}
-          callback {redraw();
-
-
-  form_plot_statusline->value( "Edit advmacro.ocm in progress..." );
-  
-  char charo[PATH_MAX];
-  strncpy( charo, "", PATH_MAX );
-  strncat( charo , " screen -d -m  fledit   " , PATH_MAX - strlen( charo ) -1 );
-  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , "advmacro.ocm"   , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
-  nsystem(  charo );}
-          xywh {750 110 130 25}
-        }
-        Fl_Button {} {
-          label {View Res. Macro.}
-          callback {redraw();
-  ncpadvmac( "macro2.ocm" , "advmacro.ocm" );
-
-  ncat( "macro2.ocm" );
-
-  form_plot_statusline->value( "View macro2.ocm in progress..." );
-  
-  char charo[PATH_MAX];
-  strncpy( charo, "", PATH_MAX );
-  strncat( charo , " screen -d -m  flview    " , PATH_MAX - strlen( charo ) -1 );
-  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , "macro2.ocm"   , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
-  nsystem(  charo );}
-          xywh {750 140 130 25}
-        }
-        Fl_Button {} {
-          label {Single Adv. Plot !}
-          callback {char mydirnow[2500];
-  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
-  
-  redraw();
-  
- 
-      //ncp(           "advocgnu.plt" , "ocgnu.plt" );
-      //ncopysetterm(  "advocgnu.plt" ,  "ocgnu.plt" ,  plot_gnuplot_term_drivername->value()   );
-      // form_plot_statusline->value( "Plot of advocgnu.plt in progress..." );
-      //void_plot_preview_plotfile(  "advocgnu.plt" );
-      
-      nsystem(  "  screen -d  -m  gnuplot advocgnu.plt  " );}
-          xywh {750 260 130 25}
-        }
-        Fl_Button {} {
-          label Preview
-          callback {char mydirnow[2500];
-  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
-  
-  redraw();
-  
-   
-        
-      //form_plot_statusline->value( "Plot of advocgnu.plt in progress..." );
-      void_plot_preview_plotfile(  "advocgnu.plt" );
-      
-      //ncp_advfix( "advocgnu.plt" , "ocgnu.plt" );  
-      //nsystem(  "  screen -d  -m  gnuplot advocgnu.plt  " );}
-          xywh {750 230 130 25}
-        }
-        Fl_Button {} {
-          label {Edit Adv. Plot}
-          callback {redraw();
-
- 
-  
-  char charo[PATH_MAX];
-  strncpy( charo, "", PATH_MAX );
-  strncat( charo , " screen -d -m  fledit   " , PATH_MAX - strlen( charo ) -1 );
-  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , "advocgnu.plt"   , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
-  nsystem(  charo );
-  
-///   nsystem(  "  screen -d  -m  gnuplot advocgnu.plt  " );}
-          xywh {750 200 130 25}
-        }
-      }
     }
     Fl_Button {} {
       label {Close all &plots}
@@ -1602,7 +1502,7 @@ flplot_preview_browser->clear();}
       xywh {15 485 130 30}
     }
     Fl_Browser flplot_preview_browser {
-      xywh {15 305 875 175} resizable
+      xywh {10 290 885 180} resizable
       code1 {flplot_preview_browser->type( FL_HOLD_BROWSER );}
     }
     Fl_Button {} {
@@ -1647,26 +1547,332 @@ flplot_preview_browser->clear();}
       nsystem( " screen -d -m flview help.txt " );}
       xywh {845 485 30 25}
     }
+    Fl_Tabs {} {open
+      xywh {10 75 885 205}
+    } {
+      Fl_Group {} {
+        label {Single Plot} open
+        xywh {45 106 850 168}
+      } {
+        Fl_Button {} {
+          label {4.) View Plot File}
+          callback {redraw();
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  flview   " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "ocgnu.plt"   , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );}
+          xywh {485 155 130 25}
+        }
+        Fl_Button {} {
+          label {3.) Edit Plot File}
+          callback {redraw();
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  fledit   " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "ocgnu.plt"   , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );}
+          xywh {345 155 130 25}
+        }
+        Fl_Button {} {
+          label {5.) Plot!}
+          callback {char mydirnow[2500];
+  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
+  
+  redraw();
+
+  
+  if ( plot_gnuplot_term_driver_force->value( ) == 0 )  
+  {
+      ncp( "advocgnu.plt" , "ocgnu.plt" );
+      form_plot_statusline->value("ocgnu.plt");
+      void_plot_preview_plotfile(  "ocgnu.plt" );
+      nsystem(  "  screen -d  -m  gnuplot ocgnu.plt     " );
+  }   
+  
+  else if ( plot_gnuplot_term_driver_force->value( ) == 1 )
+  { 
+      ncp(           "advocgnu.plt" , "ocgnu.plt" );
+      ncopysetterm(  "advocgnu.plt" ,  "ocgnu.plt" ,  plot_gnuplot_term_drivername->value()   );
+      form_plot_statusline->value( "advocgnu.plt" );
+      void_plot_preview_plotfile(  "advocgnu.plt" );
+      nsystem(  "  screen -d  -m  gnuplot advocgnu.plt  " );
+  }  
+     
+  // oc6 bug 
+  // gnuplot ocgnu.plt  &}
+          xywh {625 155 135 25} labelfont 1
+        }
+        Fl_Button {} {
+          label {2.) Compute}
+          callback {nsystem( "  rm  ocgnu.plt " );
+  nsystem( "  rm  advocgnu.plt " );
+
+  char mydirnow[2500];
+  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
+  redraw();
+  
+  form_plot_statusline->value( "Compute ocgnu.plt in progress..." );
+  flplot_preview_browser->clear();
+  
+  if ( checkbutton_xterm_console->value( ) == 1 ) 
+     nsystem(  "  screen -d  -m   xterm -e   oc   macro.ocm " );
+     
+  else if ( checkbutton_single_console->value( ) == 1 ) 
+     nsystem(  "  oc   macro.ocm " );
+     
+  // oc6 bug 
+  // gnuplot ocgnu.plt  &}
+          xywh {205 155 130 25}
+        }
+        Fl_Button {} {
+          label {1.) Edit macro}
+          callback {redraw();
+
+  nsystem( "  screen -d -m fledit  macro.ocm " );
+// redraw();
+
+// beta
+// nsystem( "  screen -d -m fledit  editor.ocm " );}
+          xywh {65 155 130 25}
+        }
+      }
+      Fl_Group {} {
+        label {Rescale Plot} open
+        xywh {30 100 865 180} hide
+      } {
+        Fl_Button {} {
+          label {1. Dup. Adv. Macro}
+          callback {redraw();
+  ncp( "advmacro.ocm" , "macro.ocm" );}
+          xywh {50 115 145 25}
+        }
+        Fl_Check_Button plot_adv_computer_skipint {
+          label {Skip Keypress}
+          callback {plot_adv_computer_skipint_int = plot_adv_computer_skipint->value();
+
+printf( "%d\\n", plot_adv_computer_skipint->value() );
+printf( "%d\\n", plot_adv_computer_skipint_int );}
+          xywh {80 245 25 25} down_box DOWN_BOX
+        }
+        Fl_Input var_x_advplot_str {
+          label {Scale X-axis }
+          xywh {165 155 275 25}
+          code1 {var_x_advplot_str->value( "set xrange [0 : 2]" );}
+        }
+        Fl_Input var_y_advplot_str {
+          label {Scale Y-axis }
+          xywh {165 180 275 25}
+          code1 {var_y_advplot_str->value( "set yrange [600 : 1600]" );}
+        }
+        Fl_Check_Button var_button_y_advplot_str_automatic {
+          label {Set both X and Y}
+          xywh {80 215 155 25} down_box DOWN_BOX
+          code1 {var_button_y_advplot_str_automatic->value( 1 );}
+        }
+        Fl_Button {} {
+          label {2. Copy/Set Plot}
+          callback {redraw();
+  
+  ncp_advfix( "advocgnu.plt" , "ocgnu.plt",   var_x_advplot_str->value( ),   var_y_advplot_str->value( )  ,   var_button_y_advplot_str_automatic->value(  )  );  
+  
+  
+  void_plot_preview_plotfile(  "advocgnu.plt" );
+  
+  //  nsystem( "  rm  ocgnu.plt " );
+  //  nsystem( "  rm  advocgnu.plt " );
+  
+  // set xrange [0.5 : 0.7]
+  
+  // var_x_advplot_str->value( "set xrange [0 : 2]" );}
+          xywh {205 115 145 25}
+        }
+        Fl_Button {} {
+          label {4. Adv.Plot (Gnuplot)}
+          callback {char mydirnow[2500];
+  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
+  
+
+      nsystem(  "  screen -d  -m  gnuplot advocgnu.plt  " );}
+          xywh {570 115 195 25} labelfont 1
+        }
+        Fl_Button {} {
+          label {3. Edit Adv.Plot (Gnuplot)}
+          callback {redraw();
+
+ 
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  fledit   " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "advocgnu.plt"   , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );
+  
+///   nsystem(  "  screen -d  -m  gnuplot advocgnu.plt  " );}
+          xywh {360 115 200 25}
+        }
+      }
+      Fl_Group {} {
+        label {Misc.} open
+        xywh {20 100 875 180} hide
+      } {
+        Fl_Button {} {
+          label {Edit Adv. Plot}
+          callback {redraw();
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  fledit   " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "advocgnu.plt"   , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );}
+          xywh {50 180 130 25}
+        }
+        Fl_Button {} {
+          label {Adv. Compute}
+          callback {char mydirnow[2500];
+  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
+
+  redraw();
+  ncpadvmac( "macro2.ocm" , "advmacro.ocm" );
+  
+  form_plot_statusline->value( "Compute advocgnu.plt in progress..." );
+  flplot_preview_browser->clear();
+  //void_plot_preview_plotfile(  "advocgnu.plt" );
+  
+  nsystem( "  rm  ocgnu.plt " );
+  nsystem( "  rm  advocgnu.plt " );
+  
+  if ( checkbutton_xterm_console->value( ) == 1 ) 
+     nsystem(  "  screen -d  -m   xterm -e   oc   macro2.ocm " );
+     
+  else if ( checkbutton_single_console->value( ) == 1 ) 
+     nsystem(  "  oc   macro2.ocm " );
+     
+  // oc6 bug 
+  // gnuplot ocgnu.plt  &}
+          xywh {185 125 130 25}
+        }
+        Fl_Button {} {
+          label {Edit Adv. Macro}
+          callback {redraw();
+
+
+  form_plot_statusline->value( "Edit advmacro.ocm in progress..." );
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  fledit   " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "advmacro.ocm"   , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );}
+          xywh {50 125 130 25}
+        }
+        Fl_Button {} {
+          label {View Res. Macro.}
+          callback {redraw();
+  ncpadvmac( "macro2.ocm" , "advmacro.ocm" );
+
+  ncat( "macro2.ocm" );
+
+  form_plot_statusline->value( "View macro2.ocm in progress..." );
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  flview    " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "macro2.ocm"   , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );}
+          xywh {320 125 130 25}
+        }
+        Fl_Button {} {
+          label {Single Adv. Plot !}
+          callback {char mydirnow[2500];
+  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
+  
+  redraw();
+  
+ 
+      //ncp(           "advocgnu.plt" , "ocgnu.plt" );
+      //ncopysetterm(  "advocgnu.plt" ,  "ocgnu.plt" ,  plot_gnuplot_term_drivername->value()   );
+      // form_plot_statusline->value( "Plot of advocgnu.plt in progress..." );
+      //void_plot_preview_plotfile(  "advocgnu.plt" );
+      
+      nsystem(  "  screen -d  -m  gnuplot advocgnu.plt  " );}
+          xywh {320 180 130 25}
+        }
+        Fl_Button {} {
+          label Preview
+          callback {char mydirnow[2500];
+  printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
+  
+  redraw();
+  
+   
+        
+      //form_plot_statusline->value( "Plot of advocgnu.plt in progress..." );
+      void_plot_preview_plotfile(  "advocgnu.plt" );
+      
+      //ncp_advfix( "advocgnu.plt" , "ocgnu.plt" );  
+      //nsystem(  "  screen -d  -m  gnuplot advocgnu.plt  " );}
+          xywh {185 180 130 25}
+        }
+      }
+    }
   }
   Fl_Window win5 {
     label Macro open
-    xywh {1070 27 850 485} type Double resizable visible
+    xywh {137 506 885 555} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Macro}
-      xywh {15 15 820 35} box ENGRAVED_BOX labeltype ENGRAVED_LABEL
+      xywh {5 5 875 35} box ENGRAVED_BOX labeltype ENGRAVED_LABEL
     }
-    Fl_Group {} {
-      label Browser open
-      xywh {15 205 370 240} box DOWN_BOX labeltype ENGRAVED_LABEL
+    Fl_Button {} {
+      label {&Close Frame}
+      callback {win5->hide();}
+      xywh {750 520 115 25}
+    }
+    Fl_Tabs {} {open
+      xywh {15 60 850 440}
     } {
-      Fl_Browser browser2 {
-        callback {printf( "Click\\n" );
+      Fl_Group {} {
+        label {File Selection} open
+        xywh {25 85 840 415} hide
+      } {
+        Fl_Group {} {
+          label Browser open
+          xywh {30 245 370 240} box DOWN_BOX labeltype ENGRAVED_LABEL
+        } {
+          Fl_Browser browser2 {
+            callback {printf( "Click\\n" );
 
 
  input_var_macro_filename->value(  browser2->text(   browser2->value() ) ); 
 
 
+ if ( browser2->value() >= 1 ) 
+ {
+  form_macro_statusbar->value(  browser2->text( browser2->value() ) );
+ }
+ 
 
   
   int fetchi;
@@ -1700,21 +1906,21 @@ flplot_preview_browser->clear();}
   
  
  redraw();}
-        xywh {35 245 330 195}
-        code1 {browser2->type(FL_HOLD_BROWSER);}
-      }
-      Fl_Input input_var_macro_filename {
-        label Filename
-        xywh {100 215 265 25}
-      }
-    }
-    Fl_Group {} {
-      label Macro open
-      xywh {15 85 370 95} box DOWN_BOX labeltype ENGRAVED_LABEL
-    } {
-      Fl_Button {} {
-        label Browse
-        callback {redraw();
+            xywh {50 285 330 195}
+            code1 {browser2->type(FL_HOLD_BROWSER);}
+          }
+          Fl_Input input_var_macro_filename {
+            label Filename
+            xywh {115 255 265 25}
+          }
+        }
+        Fl_Group {} {
+          label Macro open
+          xywh {30 125 370 95} box DOWN_BOX labeltype ENGRAVED_LABEL
+        } {
+          Fl_Button {} {
+            label {&Browse}
+            callback {redraw();
 
   printf( "============================\\n" );
   printf( "   MACRO                    \\n" );
@@ -1741,11 +1947,11 @@ flplot_preview_browser->clear();}
                 }
 	}
 	closedir( dirp );}
-        xywh {25 105 95 25}
-      }
-      Fl_Button {} {
-        label {&New}
-        callback {redraw();
+            xywh {40 145 95 25}
+          }
+          Fl_Button {} {
+            label {&New}
+            callback {redraw();
   char charo[PATH_MAX];
   strncpy( charo, "", PATH_MAX );
   strncat( charo , " screen -d -m  flnotepad  " , PATH_MAX - strlen( charo ) -1 );
@@ -1754,11 +1960,11 @@ flplot_preview_browser->clear();}
   strncat( charo , input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
   nsystem(  charo );}
-        xywh {265 135 50 25}
-      }
-      Fl_Button {} {
-        label {&Use macro}
-        callback {redraw();
+            xywh {280 175 50 25}
+          }
+          Fl_Button {} {
+            label {&Use macro}
+            callback {redraw();
 
   printf( "============================\\n" );
   printf( "   MACRO                    \\n" );
@@ -1772,11 +1978,11 @@ flplot_preview_browser->clear();}
   ncp( "macro.ocm" ,   input_var_macro_filename->value() );
   
   void_flfront_preview_browser1_refresh();}
-        xywh {25 135 95 25}
-      }
-      Fl_Button {} {
-        label {&View}
-        callback {redraw();
+            xywh {40 175 95 25}
+          }
+          Fl_Button {} {
+            label {&View}
+            callback {redraw();
   
   char charo[PATH_MAX];
   strncpy( charo, "", PATH_MAX );
@@ -1786,18 +1992,18 @@ flplot_preview_browser->clear();}
   strncat( charo , input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
   nsystem(  charo );}
-        xywh {320 105 50 25}
-      }
-      Fl_Button {} {
-        label {&Cat}
-        callback {redraw();
+            xywh {335 145 50 25}
+          }
+          Fl_Button {} {
+            label {&Cat}
+            callback {redraw();
   
   ncat( input_var_macro_filename->value() );}
-        xywh {265 105 50 25}
-      }
-      Fl_Button {} {
-        label {&Edit}
-        callback {redraw();
+            xywh {280 145 50 25}
+          }
+          Fl_Button {} {
+            label {&Edit}
+            callback {redraw();
   
   char charo[PATH_MAX];
   strncpy( charo, "", PATH_MAX );
@@ -1807,11 +2013,11 @@ flplot_preview_browser->clear();}
   strncat( charo , input_var_macro_filename->value() , PATH_MAX -  strlen( charo ) -1 );
   strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
   nsystem(  charo );}
-        xywh {320 135 50 25}
-      }
-      Fl_Button {} {
-        label {Browse ocl}
-        callback {redraw();
+            xywh {335 175 50 25}
+          }
+          Fl_Button {} {
+            label {Browse ocl}
+            callback {redraw();
 
   printf( "============================\\n" );
   printf( "   MACRO                    \\n" );
@@ -1839,11 +2045,11 @@ flplot_preview_browser->clear();}
                 }
 	}
 	closedir( dirp );}
-        xywh {145 105 95 25}
-      }
-      Fl_Button {} {
-        label {&Use ocl}
-        callback {redraw();
+            xywh {160 145 95 25}
+          }
+          Fl_Button {} {
+            label {Use ocl}
+            callback {redraw();
 
   printf( "============================\\n" );
   printf( "   MACRO (OCL with SKIP)    \\n" );
@@ -1854,27 +2060,125 @@ flplot_preview_browser->clear();}
   printf( "   Destination: %s                  \\n" ,  "macro.ocm"   );
   
   ncpskip(  "macro.ocm" ,  input_var_macro_filename->value()  ,  "@&"  );}
-        xywh {145 135 95 25}
+            xywh {160 175 95 25}
+          }
+        }
+        Fl_Group {} {
+          label {File description} open
+          xywh {420 120 430 365} box DOWN_BOX labeltype ENGRAVED_LABEL resizable
+        } {
+          Fl_Browser browser_macro_filecontent {
+            xywh {425 125 420 355}
+            code0 {browser_macro_filecontent->type(FL_HOLD_BROWSER);}
+          }
+        }
+      }
+      Fl_Group {} {
+        label {Brow&ser} open
+        xywh {40 85 825 415}
+      } {
+        Fl_Group {} {open
+          xywh {50 110 660 325} box DOWN_BOX resizable
+        } {
+          Fl_File_Browser win_macro_flbrowser1 {
+            callback {if ( win_macro_flbrowser1->value() >= 1 ) 
+{
+
+   
+     win_macro_flbrowser1_output1->value(  win_macro_flbrowser1->text( win_macro_flbrowser1->value() ) );
+ 
+ 
+   form_macro_statusbar->value(  win_macro_flbrowser1->text( win_macro_flbrowser1->value() ) );
+
+ 
+ 
+ }}
+            xywh {60 120 640 275} resizable
+            code1 {win_macro_flbrowser1->type( FL_HOLD_BROWSER  );}
+          }
+          Fl_Output win_macro_flbrowser1_output1 {
+            xywh {60 400 640 20} color 49 labelsize 12 textsize 12
+          }
+        }
+        Fl_Button {} {
+          label {&Browse}
+          callback {win_macro_flbrowser1->clear();
+     win_macro_flbrowser1->filter( 0 ); 
+     win_macro_flbrowser1->load( "." );
+     
+     
+     //eow}
+          xywh {730 110 95 25}
+        }
+        Fl_Button {} {
+          label {&Use macro}
+          callback {//char mydirnow[2500];
+//printf( "Current Directory: %s \\n", getcwd( mydirnow, 2500 ) );
+  
+redraw();
+
+char foofile[PATH_MAX];
+if ( win_macro_flbrowser1->value() >= 1 ) 
+{
+   // win_macro_flbrowser1_output1->value(  win_macro_flbrowser1->text( win_macro_flbrowser1->value() ) );
+   snprintf( foofile , sizeof( foofile ), "%s" ,      win_macro_flbrowser1->text( win_macro_flbrowser1->value() )   ); 
+   printf( "============================\\n" );
+   printf( "   MACRO                    \\n" );
+   printf( "============================\\n" );
+   printf( "   FILECOPY                  \\n" );
+   printf( "   Source: %s                \\n" ,  foofile  );
+   printf( "   Destination: %s           \\n" ,  "macro.ocm"   );
+   ncp( "macro.ocm" ,  foofile );
+   
+   void_flfront_preview_browser1_refresh();
+}}
+          xywh {730 145 95 25} labelfont 1
+        }
+        Fl_Button {} {
+          label {&View}
+          callback {// system( "   screen -d -m flpreview  " );
+
+redraw();
+
+  
+ if ( win_macro_flbrowser1->value() >= 1 ) 
+ {
+
+   
+    // win_macro_flbrowser1_output1->value(  win_macro_flbrowser1->text( win_macro_flbrowser1->value() ) );
+ 
+ 
+   form_macro_statusbar->value(       win_macro_flbrowser1->text( win_macro_flbrowser1->value() )        );
+
+ 
+ 
+   
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  flview   " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \\"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo ,      win_macro_flbrowser1->text( win_macro_flbrowser1->value() )    , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );
+ 
+ }}
+          xywh {730 180 95 25}
+        }
+        Fl_Button {} {
+          label {&Preview Util}
+          callback {system( "   screen -d -m flpreview  " );}
+          xywh {730 215 95 25}
+        }
       }
     }
-    Fl_Button {} {
-      label {&Close Frame}
-      callback {win5->hide();}
-      xywh {725 450 110 25}
-    }
-    Fl_Group {} {
-      label {File description} open
-      xywh {405 80 430 365} box DOWN_BOX labeltype ENGRAVED_LABEL resizable
-    } {
-      Fl_Browser browser_macro_filecontent {
-        xywh {410 85 420 355}
-        code0 {browser_macro_filecontent->type(FL_HOLD_BROWSER);}
-      }
+    Fl_Output form_macro_statusbar {
+      xywh {15 520 725 25} color 49
     }
   }
   Fl_Window win6 {
     label Condition open
-    xywh {1265 83 655 465} type Double resizable visible
+    xywh {1264 22 655 465} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Condition}
@@ -1923,7 +2227,7 @@ flplot_preview_browser->clear();}
   }
   Fl_Window win7 {
     label Development open
-    xywh {1482 88 395 480} type Double resizable visible
+    xywh {1336 491 395 480} type Double resizable visible
   } {
     Fl_Box {} {
       label {FLTK OpenCalphad -- Development}
@@ -2075,7 +2379,7 @@ flplot_preview_browser->clear();}
   }
   Fl_Window form_element_pse {
     label Periodic open
-    xywh {1085 129 680 435} type Double resizable visible
+    xywh {1207 52 680 435} type Double resizable visible
   } {
     Fl_Button {} {
       label {&Close frame}
@@ -2537,7 +2841,7 @@ flplot_preview_browser->clear();}
       }
       Fl_Button {} {
         label La
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "la" );}
         xywh {95 310 30 25}
       }
       Fl_Button {} {
@@ -2637,7 +2941,7 @@ flplot_preview_browser->clear();}
       }
       Fl_Button {} {
         label Ho
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "ho" );}
         xywh {445 310 30 25}
       }
       Fl_Button {} {
@@ -2647,7 +2951,7 @@ flplot_preview_browser->clear();}
       }
       Fl_Button {} {
         label Er
-        callback {system( " xterm   "  );}
+        callback {void_form_add_new_element( "er" );}
         xywh {480 310 30 25}
       }
       Fl_Button {} {
@@ -2683,7 +2987,7 @@ flplot_preview_browser->clear();}
   }
   Fl_Window form1_periodic_information {
     label {Periodic -- Information} open
-    xywh {1058 173 780 535} type Double resizable visible
+    xywh {1147 489 780 535} type Double resizable visible
   } {
     Fl_Button {} {
       label {&Close frame}
@@ -2882,4 +3186,42 @@ Function {void_form_add_new_element( const char *foonew )} {open
   var_calc_number_element++;
   add_new_element( foonew  );
   redraw();} {}
+}
+
+Function {void_gui_copy_un2ocm( const char *foonew )} {open
+} {
+  code {//flfront_preview_browser1->clear();    
+
+/*  
+  char filein[PATH_MAX];
+  strncpy( filein, "editor.ocm"  , PATH_MAX );
+  // foonew 
+  
+  int fetchi;
+  FILE *fp5;
+  FILE *fp6;
+  char fetchline[PATH_MAX];
+  char fetchlinetmp[PATH_MAX];
+  
+  if ( fexist( filein ) == 1 )
+  {
+    fp6 = fopen( filein , "rb");
+    while( !feof(fp6) ) 
+    {
+          fgets(fetchlinetmp, PATH_MAX, fp6); 
+          strncpy( fetchline, "" , PATH_MAX );
+          for( fetchi = 0 ; ( fetchi <= strlen( fetchlinetmp ) ); fetchi++ )
+            if ( fetchlinetmp[ fetchi ] != '\\n' )
+              fetchline[fetchi]=fetchlinetmp[fetchi];
+              
+          if ( !feof(fp6)  )
+          {
+             // flfront_preview_browser1->add( fetchline );    
+             printf( " FILE =>> %s\\n" , fetchline );
+          }
+
+     }
+     fclose( fp6 );
+ }
+ */} {}
 }

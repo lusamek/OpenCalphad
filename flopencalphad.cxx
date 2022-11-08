@@ -31,6 +31,10 @@ Fl_Double_Window *win1=(Fl_Double_Window *)0;
 static void cb_Fe(Fl_Button*, void*) {
   printf( " Fe Element Selected\n" );
 
+
+  if ( var_calc_number_element == 1 ) 
+     input_var_calc_x->value( "fe" );
+
 // printf( "%s\n" ,   inputline->value( browser1->text(  browser1->value() )  ) ) ;
 
   strncat( var_system , "fe" , PATH_MAX - strlen( var_system ) -1 );
@@ -45,6 +49,8 @@ static void cb_C(Fl_Button*, void*) {
   printf( " C Selected\n" );
 
 
+  if ( var_calc_number_element == 1 ) 
+     input_var_calc_x->value( "c" );
 
   strncat( var_system , "c" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
@@ -63,6 +69,9 @@ static void cb_Mn(Fl_Button*, void*) {
   printf( " Mn Selected\n" );
 
 
+  if ( var_calc_number_element == 1 ) 
+     input_var_calc_x->value( "mn" );
+
   strncat( var_system , "mn" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );
@@ -78,6 +87,9 @@ redraw();
 
 static void cb_Al(Fl_Button*, void*) {
   printf( " Al Selected\n" );
+
+  if ( var_calc_number_element == 1 ) 
+     input_var_calc_x->value( "al" );
 
 
   strncat( var_system , "al" , PATH_MAX - strlen( var_system ) -1 );
@@ -101,9 +113,13 @@ static void cb_Si(Fl_Button*, void*) {
 
 printf( " Si Selected\n" );
 
+  
+  if ( var_calc_number_element == 1 ) 
+     input_var_calc_x->value( "si" );
+
   strncat( var_system , "si" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
-    output_system->value( var_system );
+  output_system->value( var_system );
 
   var_calc_number_element++;
   
@@ -111,13 +127,14 @@ printf( " Si Selected\n" );
   add_new_element( "si" );  
 
 
-
-redraw();
+ redraw();
 }
 
 static void cb_V(Fl_Button*, void* v) {
   printf( " V Selected\n" );
 
+  if ( var_calc_number_element == 1 ) 
+     input_var_calc_x->value( "v" );
 
   strncat( var_system , "v" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
@@ -134,6 +151,9 @@ redraw();
 
 static void cb_Mo(Fl_Button*, void*) {
   printf( " Mo Selected\n" );
+
+  if ( var_calc_number_element == 1 ) 
+     input_var_calc_x->value( "mo" );
 
   strncat( var_system , "mo" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
@@ -152,6 +172,9 @@ static void cb_Cr(Fl_Button*, void*) {
   printf( " Cr Selected\n" );
 
 
+  if ( var_calc_number_element == 1 ) 
+     input_var_calc_x->value( "cr" );
+
   strncat( var_system , "cr" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );
@@ -167,6 +190,9 @@ redraw();
 
 static void cb_Cu(Fl_Button*, void*) {
   printf( " Cu Selected\n" );
+
+  if ( var_calc_number_element == 1 ) 
+     input_var_calc_x->value( "cu" );
 
   strncat( var_system , "cu" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
@@ -185,6 +211,8 @@ redraw();
 static void cb_Nb(Fl_Button*, void*) {
   printf( " nb Selected\n" );
 
+  if ( var_calc_number_element == 1 ) 
+     input_var_calc_x->value( "nb" );
 
   strncat( var_system , "nb" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
@@ -201,6 +229,9 @@ redraw();
 static void cb_Ni(Fl_Button*, void*) {
   printf( " ni Selected\n" );
 
+
+  if ( var_calc_number_element == 1 ) 
+     input_var_calc_x->value( "ni" );
 
   strncat( var_system , "ni" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
@@ -220,6 +251,8 @@ redraw();
 static void cb_Ag(Fl_Button*, void*) {
   printf( " ag Selected\n" );
 
+  if ( var_calc_number_element == 1 ) 
+     input_var_calc_x->value( "ag" );
 
   strncat( var_system , "ag" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
@@ -238,6 +271,9 @@ static void cb_Ti(Fl_Button*, void*) {
   printf( " ti Selected\n" );
 
 
+  if ( var_calc_number_element == 1 ) 
+     input_var_calc_x->value( "ti" );
+
   strncat( var_system , "ti" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
     output_system->value( var_system );
@@ -254,6 +290,8 @@ redraw();
 static void cb_Zn(Fl_Button*, void*) {
   printf( " zn Selected\n" );
 
+  if ( var_calc_number_element == 1 ) 
+     input_var_calc_x->value( "zn" );
 
   strncat( var_system , "zn" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
@@ -271,6 +309,8 @@ redraw();
 static void cb_W(Fl_Button*, void*) {
   printf( " w Selected\n" );
 
+  if ( var_calc_number_element == 1 ) 
+     input_var_calc_x->value( "w" );
 
   strncat( var_system , "w" , PATH_MAX - strlen( var_system ) -1 );
   strncat( var_system , " " , PATH_MAX -  strlen( var_system ) -1 );
@@ -292,12 +332,7 @@ static void cb_(Fl_Button*, void*) {
 Fl_Output *output_system=(Fl_Output *)0;
 
 static void cb_CA(Fl_Button*, void*) {
-  printf( " Clr \n" );
-
-// printf( "%s\n" ,   inputline->value( browser1->text(  browser1->value() )  ) ) ;
-
-
-   input_var_set_condition->value( " t=1000 p=1e5 n=1  " );
+  input_var_set_condition->value( " t=1000 p=1e5 n=1  " );
    
    strncpy( var_system, "", PATH_MAX );
    output_system->value( var_system ); 
@@ -343,6 +378,63 @@ input_var_tdb_database->value( "" );
 redraw();
 }
 
+static void cb_SGTE(Fl_Button*, void*) {
+  char str[PATH_MAX];
+      strncpy( str, output_system->value(), PATH_MAX ); 
+      int foocplt = 0;
+      
+      char ptr[strlen(str)+1];
+      int i,j=0;
+      for(i=0; str[i]!='\0'; i++)
+      {
+        if ( str[i] == ' ' )
+        {
+          if ( foocplt == 0 ) 
+          {
+             ptr[j++]='-';   
+             foocplt = 1 ; 
+          }
+        }
+        else if (str[i] != '\n' && str[i] != '\n') 
+          ptr[j++]=str[i];
+      } 
+      ptr[j]='\0';
+
+ 
+
+  char foostr[PATH_MAX];
+  
+   
+  if ( fexist( "/usr/bin/dillo" ) == 1 ) 
+     snprintf( foostr , sizeof( foostr ), "%s%s.jpg' " ,  "    screen -d -m  /usr/bin/dillo  'https://www.crct.polymtl.ca/fact/documentation/SGTE2017/" , ptr );  // ptr
+  
+  
+  // ssl https... 
+  else if ( fexist( "/usr/bin/chromium" ) == 1 ) 
+      snprintf( foostr , sizeof( foostr ), "%s%s.jpg' " ,  "    screen -d -m  /usr/bin/chromium  'https://www.crct.polymtl.ca/fact/documentation/SGTE2017/" , ptr );  // ptr
+
+  else if ( fexist( "/usr/bin/chromium-browser" ) == 1 ) 
+      snprintf( foostr , sizeof( foostr ), "%s%s.jpg' " ,  "    screen -d -m  /usr/bin/chromium-browser  'https://www.crct.polymtl.ca/fact/documentation/SGTE2017/" , ptr );  // ptr
+
+  
+  else if ( fexist( "/usr/bin/firefox" ) == 1 ) 
+      snprintf( foostr , sizeof( foostr ), "%s%s.jpg' " ,  "    screen -d -m  /usr/bin/firefox  'https://www.crct.polymtl.ca/fact/documentation/SGTE2017/" , ptr );  // ptr
+
+
+  else 
+      snprintf( foostr , sizeof( foostr ), "%s%s.jpg' " ,  "    screen -d -m  dillo  'https://www.crct.polymtl.ca/fact/documentation/SGTE2017/" , ptr );  // ptr
+  
+  printf( "CMD %s\n", foostr ); 
+  system( foostr ) ;
+  
+  
+  
+   
+   
+// https://www.crct.polymtl.ca/fact/documentation/SGTE2017/Al-Si.jpg
+// var_input_floc_elements->value( "" );
+}
+
 static void cb_Quit(Fl_Button*, void*) {
   exit( 0 );
 }
@@ -355,8 +447,18 @@ static void cb_3(Fl_Button*, void*) {
       system( " rm ocgnu.plt  " ); 
 
   void_plot_preview_plotfile(   "ocgnu.plt"   );
-
   redraw();
+
+
+ 
+  if ( fexist( "editor.ocm"  ) == 1 ) 
+  {
+     // ncopy_conv( "macro.ocm" , "editor.ocm" );  // <-- copy, from editor to macro (standard) 
+     
+     // New feature ... quite beta !
+     // ncpadvmac( "macro.ocm" , "editor.ocm" ); 
+  }
+     
   
   if ( checkbutton_xterm_console->value( ) == 1 ) 
      nsystem(  "  screen -d  -m   xterm -e   oc   macro.ocm " );
@@ -373,7 +475,9 @@ static void cb_3(Fl_Button*, void*) {
 static void cb_2(Fl_Button*, void*) {
   redraw();
 
-nsystem( "  screen -d -m fledit  macro.ocm " );
+ nsystem( "  screen -d -m fledit  macro.ocm " );
+
+  // nsystem( "  screen -d -m fledit  editor.ocm " );
 }
 
 static void cb_1(Fl_Button*, void*) {
@@ -409,13 +513,24 @@ static void cb_Option(Fl_Button*, void*) {
 Fl_Browser *flfront_preview_browser1=(Fl_Browser *)0;
 
 static void cb_Refresh(Fl_Button*, void*) {
-  void_flfront_preview_browser1_refresh();
+  void_flfront_preview_browser1_refresh(  );
 }
 
 static void cb_Edit(Fl_Button*, void*) {
   redraw();
 
-nsystem( "  screen -d -m fledit  macro.ocm " );
+  nsystem( "  screen -d -m fledit  macro.ocm " );
+// redraw();
+
+// beta
+// nsystem( "  screen -d -m fledit  editor.ocm " );
+}
+
+static void cb_Close(Fl_Button*, void*) {
+  redraw();
+
+  
+  nsystem( " pkill gnuplot " );
 }
 
 static void cb_Database(Fl_Button*, void*) {
@@ -451,7 +566,7 @@ static void cb_Period(Fl_Button*, void*) {
 
 Fl_Double_Window *win2=(Fl_Double_Window *)0;
 
-static void cb_Close(Fl_Button*, void*) {
+static void cb_Close1(Fl_Button*, void*) {
   win2->hide();
 }
 
@@ -489,6 +604,12 @@ else
 
  redraw();
  
+}
+
+
+if ( form_database_tab1_filebrowser1->value() >= 1 )
+{
+   form_database_statusbar->value(   form_database_tab1_filebrowser1->text(   form_database_tab1_filebrowser1->value() )    ); 
 };
 }
 
@@ -523,16 +644,23 @@ if ( strcmp( form_database_tab1_filter->value(  ) , "" ) == 0 )
    form_database_tab1_filebrowser1->load( "." );
 }
 
+static void cb_TDB(Fl_Button*, void*) {
+  system( " screen -d -m flpreview  ");
+}
+
 Fl_Browser *browser1=(Fl_Browser *)0;
 
 static void cb_browser1(Fl_Browser*, void*) {
-  printf( "Click\n" );
+  if ( browser1->value() >= 1 )
+{
+   form_database_statusbar->value(   browser1->text(   browser1->value() )    ); 
+}
 
 
 
- input_var_tdb_database->value(  browser1->text(   browser1->value() ) ); 
+ printf( "Click\n" );
+ input_var_tdb_database->value(    browser1->text(   browser1->value() )    ); 
  
-  
   printf( "============================\n" );
   printf( "   ELEMENT                  \n" );
   printf( "============================\n" );
@@ -779,9 +907,68 @@ static void cb_Edit2(Fl_Button*, void*) {
   nsystem(  charo );
 }
 
+static void cb_Open(Fl_Button*, void*) {
+  char str[PATH_MAX];
+      strncpy( str, output_system->value(), PATH_MAX ); 
+      int foocplt = 0;
+      
+      char ptr[strlen(str)+1];
+      int i,j=0;
+      for(i=0; str[i]!='\0'; i++)
+      {
+        if ( str[i] == ' ' )
+        {
+          if ( foocplt == 0 ) 
+          {
+             ptr[j++]='-';   
+             foocplt = 1 ; 
+          }
+        }
+        else if (str[i] != '\n' && str[i] != '\n') 
+          ptr[j++]=str[i];
+      } 
+      ptr[j]='\0';
+
+ 
+
+  char foostr[PATH_MAX];
+  
+   
+  if ( fexist( "/usr/bin/dillo" ) == 1 ) 
+     snprintf( foostr , sizeof( foostr ), "%s%s.jpg' " ,  "    screen -d -m  /usr/bin/dillo  'https://www.crct.polymtl.ca/fact/documentation/SGTE2017/" , ptr );  // ptr
+  
+  
+  // ssl https... 
+  else if ( fexist( "/usr/bin/chromium" ) == 1 ) 
+      snprintf( foostr , sizeof( foostr ), "%s%s.jpg' " ,  "    screen -d -m  /usr/bin/chromium  'https://www.crct.polymtl.ca/fact/documentation/SGTE2017/" , ptr );  // ptr
+
+  else if ( fexist( "/usr/bin/chromium-browser" ) == 1 ) 
+      snprintf( foostr , sizeof( foostr ), "%s%s.jpg' " ,  "    screen -d -m  /usr/bin/chromium-browser  'https://www.crct.polymtl.ca/fact/documentation/SGTE2017/" , ptr );  // ptr
+
+  
+  else if ( fexist( "/usr/bin/firefox" ) == 1 ) 
+      snprintf( foostr , sizeof( foostr ), "%s%s.jpg' " ,  "    screen -d -m  /usr/bin/firefox  'https://www.crct.polymtl.ca/fact/documentation/SGTE2017/" , ptr );  // ptr
+
+
+  else 
+      snprintf( foostr , sizeof( foostr ), "%s%s.jpg' " ,  "    screen -d -m  dillo  'https://www.crct.polymtl.ca/fact/documentation/SGTE2017/" , ptr );  // ptr
+  
+  printf( "CMD %s\n", foostr ); 
+  system( foostr ) ;
+  
+  
+  
+   
+   
+// https://www.crct.polymtl.ca/fact/documentation/SGTE2017/Al-Si.jpg
+// var_input_floc_elements->value( "" );
+}
+
+Fl_Output *form_database_statusbar=(Fl_Output *)0;
+
 Fl_Double_Window *win3=(Fl_Double_Window *)0;
 
-static void cb_Close1(Fl_Button*, void*) {
+static void cb_Close2(Fl_Button*, void*) {
   win3->hide();
 }
 
@@ -2272,11 +2459,11 @@ static Fl_Image *image_kate() {
 }
 
 static void cb_Rox(Fl_Button*, void*) {
-  nsystem( " cd ; screen -d -m rox " );
+  nsystem( "   rox " );
 }
 
 static void cb_FLM(Fl_Button*, void*) {
-  nsystem( " cd ; screen -d -m flm " );
+  nsystem( " screen -d -m flm " );
 }
 
 static const unsigned char idata_mycomputer[] =
@@ -2461,7 +2648,7 @@ static void cb_Paint(Fl_Button*, void*) {
   // nsystem( " screen -d -m xpaint   " );
 
 
-     system( " cd ; screen -d -m  xpaint   -canvas -size 800x600    " );
+     system( "   screen -d -m  xpaint   -canvas -size 800x600    " );
 }
 
 static const unsigned char idata_ooo_gulls[] =
@@ -2656,7 +2843,7 @@ static Fl_Image *image_ooo_gulls() {
 }
 
 static void cb_Gftp(Fl_Button*, void*) {
-  system( " cd ;  screen -d -m   gftp      " );
+  system( "   screen -d -m   gftp      " );
 }
 
 static const unsigned char idata_package_network[] =
@@ -2840,46 +3027,6 @@ static Fl_Image *image_package_network() {
   return image;
 }
 
-static void cb_Mixture(Fl_Button*, void*) {
-  nsystem(  " screen -d -m  flmechprop    " );
-}
-
-static void cb_Bulk(Fl_Button*, void*) {
-  nsystem(  " screen -d -m  fldiffusion  diffusion.dat    " );
-}
-
-static void cb_Fx(Fl_Button*, void*) {
-  nsystem(  " screen -d -m  fxgrapher  " );
-}
-
-static void cb_Solubility(Fl_Button*, void*) {
-  nsystem(  " screen -d -m  flsolubility    " );
-}
-
-static void cb_Periodic(Fl_Button*, void*) {
-  nsystem(  " screen -d -m  gperiodic  " );
-}
-
-static void cb_JMol(Fl_Button*, void*) {
-  nsystem(  " screen -d -m jmol   " );
-}
-
-static void cb_Time(Fl_Button*, void*) {
-  nsystem(  " screen -d -m  fltimetempcycle  " );
-}
-
-static void cb_Microst(Fl_Button*, void*) {
-  nsystem(  " screen -d -m  flmicromat  " );
-}
-
-static void cb_Mobility(Fl_Button*, void*) {
-  nsystem(  " screen -d -m  flmobility  " );
-}
-
-static void cb_Grain(Fl_Button*, void*) {
-  nsystem(  " screen -d -m  flgrainrex  " );
-}
-
 static void cb_Fetch1(Fl_Button* o, void* v) {
   system( " cd ; rm macros.zip ;   xterm -e ' wget -c --no-check-certificate   https://raw.githubusercontent.com/lusamek/OpenCalphad/master/macros.zip -O   ~/macros.zip ; cd ; unzip -o macros.zip ' " );
   
@@ -2916,6 +3063,26 @@ else if ( fexist( "/usr/bin/chromium-browser" ) == 1)
    
 else
    nsystem(  " screen -d -m dillo http://github.com/lusamek/opencalphad " );
+}
+
+static void cb_Manual(Fl_Button*, void*) {
+  system( "  mconfig --webbrowser  'https://github.com/lusamek/OpenCalphad/blob/master/Manual-Introduction-OC6.pdf'  " );
+}
+
+static void cb_Mixture(Fl_Button*, void*) {
+  nsystem(  " screen -d -m  flmechprop    " );
+}
+
+static void cb_Bulk(Fl_Button*, void*) {
+  nsystem(  " screen -d -m  fldiffusion  diffusion.dat    " );
+}
+
+static void cb_Fx(Fl_Button*, void*) {
+  nsystem(  " screen -d -m  fxgrapher  " );
+}
+
+static void cb_FLOCCALC(Fl_Button*, void*) {
+  nsystem(  " cd ; screen -d -m  floccalc   " );
 }
 
 static void cb_OpenCalphad(Fl_Button*, void*) {
@@ -3029,250 +3196,13 @@ Fl_Check_Button *checkbutton_xterm_console=(Fl_Check_Button *)0;
 
 Fl_Double_Window *win4=(Fl_Double_Window *)0;
 
-static void cb_Close2(Fl_Button*, void*) {
+static void cb_Close3(Fl_Button*, void*) {
   win4->hide();
 }
 
 Fl_Output *form_plot_statusline=(Fl_Output *)0;
 
-static void cb_View1(Fl_Button*, void*) {
-  redraw();
-  
-  char charo[PATH_MAX];
-  strncpy( charo, "", PATH_MAX );
-  strncat( charo , " screen -d -m  flview   " , PATH_MAX - strlen( charo ) -1 );
-  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , " \"" , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , "ocgnu.plt"   , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , "\" " , PATH_MAX -  strlen( charo ) -1 );
-  nsystem(  charo );
-}
-
-static void cb_Edit3(Fl_Button*, void*) {
-  redraw();
-  
-  char charo[PATH_MAX];
-  strncpy( charo, "", PATH_MAX );
-  strncat( charo , " screen -d -m  fledit   " , PATH_MAX - strlen( charo ) -1 );
-  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , " \"" , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , "ocgnu.plt"   , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , "\" " , PATH_MAX -  strlen( charo ) -1 );
-  nsystem(  charo );
-}
-
-static void cb_Plot1(Fl_Button*, void*) {
-  char mydirnow[2500];
-  printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
-  
-  redraw();
-
-  
-  if ( plot_gnuplot_term_driver_force->value( ) == 0 )  
-  {
-      ncp( "advocgnu.plt" , "ocgnu.plt" );
-      form_plot_statusline->value("ocgnu.plt");
-      void_plot_preview_plotfile(  "ocgnu.plt" );
-      nsystem(  "  screen -d  -m  gnuplot ocgnu.plt     " );
-  }   
-  
-  else if ( plot_gnuplot_term_driver_force->value( ) == 1 )
-  { 
-      ncp(           "advocgnu.plt" , "ocgnu.plt" );
-      ncopysetterm(  "advocgnu.plt" ,  "ocgnu.plt" ,  plot_gnuplot_term_drivername->value()   );
-      form_plot_statusline->value( "advocgnu.plt" );
-      void_plot_preview_plotfile(  "advocgnu.plt" );
-      nsystem(  "  screen -d  -m  gnuplot advocgnu.plt  " );
-  }  
-     
-  // oc6 bug 
-  // gnuplot ocgnu.plt  &;
-}
-
-static void cb_Edit4(Fl_Button*, void*) {
-  redraw();
-  
-  char charo[PATH_MAX];
-  strncpy( charo, "", PATH_MAX );
-  strncat( charo , " screen -d -m  fledit   " , PATH_MAX - strlen( charo ) -1 );
-  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , " \"" , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , "advocgnu.plt"   , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , "\" " , PATH_MAX -  strlen( charo ) -1 );
-  nsystem(  charo );
-}
-
-static void cb_Compute(Fl_Button*, void*) {
-  nsystem( "  rm  ocgnu.plt " );
-  nsystem( "  rm  advocgnu.plt " );
-
-  char mydirnow[2500];
-  printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
-  redraw();
-  
-  form_plot_statusline->value( "Compute ocgnu.plt in progress..." );
-  flplot_preview_browser->clear();
-  
-  if ( checkbutton_xterm_console->value( ) == 1 ) 
-     nsystem(  "  screen -d  -m   xterm -e   oc   macro.ocm " );
-     
-  else if ( checkbutton_single_console->value( ) == 1 ) 
-     nsystem(  "  oc   macro.ocm " );
-     
-  // oc6 bug 
-  // gnuplot ocgnu.plt  &;
-}
-
-static void cb_11(Fl_Button*, void*) {
-  redraw();
-  ncp( "advmacro.ocm" , "macro.ocm" );
-}
-
-Fl_Check_Button *plot_adv_computer_skipint=(Fl_Check_Button *)0;
-
-static void cb_plot_adv_computer_skipint(Fl_Check_Button*, void*) {
-  plot_adv_computer_skipint_int = plot_adv_computer_skipint->value();
-
-printf( "%d\n", plot_adv_computer_skipint->value() );
-printf( "%d\n", plot_adv_computer_skipint_int );
-}
-
-Fl_Input *var_x_advplot_str=(Fl_Input *)0;
-
-Fl_Input *var_y_advplot_str=(Fl_Input *)0;
-
-Fl_Check_Button *var_button_y_advplot_str_automatic=(Fl_Check_Button *)0;
-
-static void cb_21(Fl_Button*, void*) {
-  redraw();
-  
-  ncp_advfix( "advocgnu.plt" , "ocgnu.plt",   var_x_advplot_str->value( ),   var_y_advplot_str->value( )  ,   var_button_y_advplot_str_automatic->value(  )  );  
-  
-  
-  void_plot_preview_plotfile(  "advocgnu.plt" );
-  
-  //  nsystem( "  rm  ocgnu.plt " );
-  //  nsystem( "  rm  advocgnu.plt " );
-  
-  // set xrange [0.5 : 0.7]
-  
-  // var_x_advplot_str->value( "set xrange [0 : 2]" );
-}
-
-static void cb_31(Fl_Button*, void*) {
-  char mydirnow[2500];
-  printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
-  
-
-      nsystem(  "  screen -d  -m  gnuplot advocgnu.plt  " );
-}
-
-static void cb_Adv(Fl_Button*, void*) {
-  char mydirnow[2500];
-  printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
-
-  redraw();
-  ncpadvmac( "macro2.ocm" , "advmacro.ocm" );
-  
-  form_plot_statusline->value( "Compute advocgnu.plt in progress..." );
-  flplot_preview_browser->clear();
-  //void_plot_preview_plotfile(  "advocgnu.plt" );
-  
-  nsystem( "  rm  ocgnu.plt " );
-  nsystem( "  rm  advocgnu.plt " );
-  
-  if ( checkbutton_xterm_console->value( ) == 1 ) 
-     nsystem(  "  screen -d  -m   xterm -e   oc   macro2.ocm " );
-     
-  else if ( checkbutton_single_console->value( ) == 1 ) 
-     nsystem(  "  oc   macro2.ocm " );
-     
-  // oc6 bug 
-  // gnuplot ocgnu.plt  &;
-}
-
-static void cb_Edit5(Fl_Button*, void*) {
-  redraw();
-
-
-  form_plot_statusline->value( "Edit advmacro.ocm in progress..." );
-  
-  char charo[PATH_MAX];
-  strncpy( charo, "", PATH_MAX );
-  strncat( charo , " screen -d -m  fledit   " , PATH_MAX - strlen( charo ) -1 );
-  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , " \"" , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , "advmacro.ocm"   , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , "\" " , PATH_MAX -  strlen( charo ) -1 );
-  nsystem(  charo );
-}
-
-static void cb_View2(Fl_Button*, void*) {
-  redraw();
-  ncpadvmac( "macro2.ocm" , "advmacro.ocm" );
-
-  ncat( "macro2.ocm" );
-
-  form_plot_statusline->value( "View macro2.ocm in progress..." );
-  
-  char charo[PATH_MAX];
-  strncpy( charo, "", PATH_MAX );
-  strncat( charo , " screen -d -m  flview    " , PATH_MAX - strlen( charo ) -1 );
-  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , " \"" , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , "macro2.ocm"   , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , "\" " , PATH_MAX -  strlen( charo ) -1 );
-  nsystem(  charo );
-}
-
-static void cb_Single(Fl_Button*, void*) {
-  char mydirnow[2500];
-  printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
-  
-  redraw();
-  
- 
-      //ncp(           "advocgnu.plt" , "ocgnu.plt" );
-      //ncopysetterm(  "advocgnu.plt" ,  "ocgnu.plt" ,  plot_gnuplot_term_drivername->value()   );
-      // form_plot_statusline->value( "Plot of advocgnu.plt in progress..." );
-      //void_plot_preview_plotfile(  "advocgnu.plt" );
-      
-      nsystem(  "  screen -d  -m  gnuplot advocgnu.plt  " );
-}
-
-static void cb_Preview(Fl_Button*, void*) {
-  char mydirnow[2500];
-  printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
-  
-  redraw();
-  
-   
-        
-      //form_plot_statusline->value( "Plot of advocgnu.plt in progress..." );
-      void_plot_preview_plotfile(  "advocgnu.plt" );
-      
-      //ncp_advfix( "advocgnu.plt" , "ocgnu.plt" );  
-      //nsystem(  "  screen -d  -m  gnuplot advocgnu.plt  " );
-}
-
-static void cb_Edit6(Fl_Button*, void*) {
-  redraw();
-
- 
-  
-  char charo[PATH_MAX];
-  strncpy( charo, "", PATH_MAX );
-  strncat( charo , " screen -d -m  fledit   " , PATH_MAX - strlen( charo ) -1 );
-  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , " \"" , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , "advocgnu.plt"   , PATH_MAX -  strlen( charo ) -1 );
-  strncat( charo , "\" " , PATH_MAX -  strlen( charo ) -1 );
-  nsystem(  charo );
-  
-///   nsystem(  "  screen -d  -m  gnuplot advocgnu.plt  " );
-}
-
-static void cb_Close3(Fl_Button*, void*) {
+static void cb_Close4(Fl_Button*, void*) {
   nsystem( " pkill gnuplot " );
 }
 
@@ -3327,7 +3257,258 @@ static void cb_5(Fl_Button*, void*) {
       nsystem( " screen -d -m flview help.txt " );
 }
 
+static void cb_41(Fl_Button*, void*) {
+  redraw();
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  flview   " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "ocgnu.plt"   , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );
+}
+
+static void cb_31(Fl_Button*, void*) {
+  redraw();
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  fledit   " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "ocgnu.plt"   , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );
+}
+
+static void cb_51(Fl_Button*, void*) {
+  char mydirnow[2500];
+  printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
+  
+  redraw();
+
+  
+  if ( plot_gnuplot_term_driver_force->value( ) == 0 )  
+  {
+      ncp( "advocgnu.plt" , "ocgnu.plt" );
+      form_plot_statusline->value("ocgnu.plt");
+      void_plot_preview_plotfile(  "ocgnu.plt" );
+      nsystem(  "  screen -d  -m  gnuplot ocgnu.plt     " );
+  }   
+  
+  else if ( plot_gnuplot_term_driver_force->value( ) == 1 )
+  { 
+      ncp(           "advocgnu.plt" , "ocgnu.plt" );
+      ncopysetterm(  "advocgnu.plt" ,  "ocgnu.plt" ,  plot_gnuplot_term_drivername->value()   );
+      form_plot_statusline->value( "advocgnu.plt" );
+      void_plot_preview_plotfile(  "advocgnu.plt" );
+      nsystem(  "  screen -d  -m  gnuplot advocgnu.plt  " );
+  }  
+     
+  // oc6 bug 
+  // gnuplot ocgnu.plt  &;
+}
+
+static void cb_21(Fl_Button*, void*) {
+  nsystem( "  rm  ocgnu.plt " );
+  nsystem( "  rm  advocgnu.plt " );
+
+  char mydirnow[2500];
+  printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
+  redraw();
+  
+  form_plot_statusline->value( "Compute ocgnu.plt in progress..." );
+  flplot_preview_browser->clear();
+  
+  if ( checkbutton_xterm_console->value( ) == 1 ) 
+     nsystem(  "  screen -d  -m   xterm -e   oc   macro.ocm " );
+     
+  else if ( checkbutton_single_console->value( ) == 1 ) 
+     nsystem(  "  oc   macro.ocm " );
+     
+  // oc6 bug 
+  // gnuplot ocgnu.plt  &;
+}
+
+static void cb_11(Fl_Button*, void*) {
+  redraw();
+
+  nsystem( "  screen -d -m fledit  macro.ocm " );
+// redraw();
+
+// beta
+// nsystem( "  screen -d -m fledit  editor.ocm " );
+}
+
+static void cb_12(Fl_Button*, void*) {
+  redraw();
+  ncp( "advmacro.ocm" , "macro.ocm" );
+}
+
+Fl_Check_Button *plot_adv_computer_skipint=(Fl_Check_Button *)0;
+
+static void cb_plot_adv_computer_skipint(Fl_Check_Button*, void*) {
+  plot_adv_computer_skipint_int = plot_adv_computer_skipint->value();
+
+printf( "%d\n", plot_adv_computer_skipint->value() );
+printf( "%d\n", plot_adv_computer_skipint_int );
+}
+
+Fl_Input *var_x_advplot_str=(Fl_Input *)0;
+
+Fl_Input *var_y_advplot_str=(Fl_Input *)0;
+
+Fl_Check_Button *var_button_y_advplot_str_automatic=(Fl_Check_Button *)0;
+
+static void cb_22(Fl_Button*, void*) {
+  redraw();
+  
+  ncp_advfix( "advocgnu.plt" , "ocgnu.plt",   var_x_advplot_str->value( ),   var_y_advplot_str->value( )  ,   var_button_y_advplot_str_automatic->value(  )  );  
+  
+  
+  void_plot_preview_plotfile(  "advocgnu.plt" );
+  
+  //  nsystem( "  rm  ocgnu.plt " );
+  //  nsystem( "  rm  advocgnu.plt " );
+  
+  // set xrange [0.5 : 0.7]
+  
+  // var_x_advplot_str->value( "set xrange [0 : 2]" );
+}
+
+static void cb_42(Fl_Button*, void*) {
+  char mydirnow[2500];
+  printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
+  
+
+      nsystem(  "  screen -d  -m  gnuplot advocgnu.plt  " );
+}
+
+static void cb_32(Fl_Button*, void*) {
+  redraw();
+
+ 
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  fledit   " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "advocgnu.plt"   , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );
+  
+///   nsystem(  "  screen -d  -m  gnuplot advocgnu.plt  " );
+}
+
+static void cb_Edit3(Fl_Button*, void*) {
+  redraw();
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  fledit   " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "advocgnu.plt"   , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );
+}
+
+static void cb_Adv(Fl_Button*, void*) {
+  char mydirnow[2500];
+  printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
+
+  redraw();
+  ncpadvmac( "macro2.ocm" , "advmacro.ocm" );
+  
+  form_plot_statusline->value( "Compute advocgnu.plt in progress..." );
+  flplot_preview_browser->clear();
+  //void_plot_preview_plotfile(  "advocgnu.plt" );
+  
+  nsystem( "  rm  ocgnu.plt " );
+  nsystem( "  rm  advocgnu.plt " );
+  
+  if ( checkbutton_xterm_console->value( ) == 1 ) 
+     nsystem(  "  screen -d  -m   xterm -e   oc   macro2.ocm " );
+     
+  else if ( checkbutton_single_console->value( ) == 1 ) 
+     nsystem(  "  oc   macro2.ocm " );
+     
+  // oc6 bug 
+  // gnuplot ocgnu.plt  &;
+}
+
+static void cb_Edit4(Fl_Button*, void*) {
+  redraw();
+
+
+  form_plot_statusline->value( "Edit advmacro.ocm in progress..." );
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  fledit   " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "advmacro.ocm"   , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );
+}
+
+static void cb_View1(Fl_Button*, void*) {
+  redraw();
+  ncpadvmac( "macro2.ocm" , "advmacro.ocm" );
+
+  ncat( "macro2.ocm" );
+
+  form_plot_statusline->value( "View macro2.ocm in progress..." );
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  flview    " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "macro2.ocm"   , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );
+}
+
+static void cb_Single(Fl_Button*, void*) {
+  char mydirnow[2500];
+  printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
+  
+  redraw();
+  
+ 
+      //ncp(           "advocgnu.plt" , "ocgnu.plt" );
+      //ncopysetterm(  "advocgnu.plt" ,  "ocgnu.plt" ,  plot_gnuplot_term_drivername->value()   );
+      // form_plot_statusline->value( "Plot of advocgnu.plt in progress..." );
+      //void_plot_preview_plotfile(  "advocgnu.plt" );
+      
+      nsystem(  "  screen -d  -m  gnuplot advocgnu.plt  " );
+}
+
+static void cb_Preview(Fl_Button*, void*) {
+  char mydirnow[2500];
+  printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
+  
+  redraw();
+  
+   
+        
+      //form_plot_statusline->value( "Plot of advocgnu.plt in progress..." );
+      void_plot_preview_plotfile(  "advocgnu.plt" );
+      
+      //ncp_advfix( "advocgnu.plt" , "ocgnu.plt" );  
+      //nsystem(  "  screen -d  -m  gnuplot advocgnu.plt  " );
+}
+
 Fl_Double_Window *win5=(Fl_Double_Window *)0;
+
+static void cb_Close5(Fl_Button*, void*) {
+  win5->hide();
+}
 
 Fl_Browser *browser2=(Fl_Browser *)0;
 
@@ -3338,6 +3519,11 @@ static void cb_browser2(Fl_Browser*, void*) {
  input_var_macro_filename->value(  browser2->text(   browser2->value() ) ); 
 
 
+ if ( browser2->value() >= 1 ) 
+ {
+  form_macro_statusbar->value(  browser2->text( browser2->value() ) );
+ }
+ 
 
   
   int fetchi;
@@ -3434,7 +3620,7 @@ static void cb_Use(Fl_Button*, void*) {
   void_flfront_preview_browser1_refresh();
 }
 
-static void cb_View3(Fl_Button*, void*) {
+static void cb_View2(Fl_Button*, void*) {
   redraw();
   
   char charo[PATH_MAX];
@@ -3453,7 +3639,7 @@ static void cb_Cat1(Fl_Button*, void*) {
   ncat( input_var_macro_filename->value() );
 }
 
-static void cb_Edit7(Fl_Button*, void*) {
+static void cb_Edit5(Fl_Button*, void*) {
   redraw();
   
   char charo[PATH_MAX];
@@ -3511,11 +3697,94 @@ static void cb_Use1(Fl_Button*, void*) {
   ncpskip(  "macro.ocm" ,  input_var_macro_filename->value()  ,  "@&"  );
 }
 
-static void cb_Close4(Fl_Button*, void*) {
-  win5->hide();
+Fl_Browser *browser_macro_filecontent=(Fl_Browser *)0;
+
+Fl_File_Browser *win_macro_flbrowser1=(Fl_File_Browser *)0;
+
+static void cb_win_macro_flbrowser1(Fl_File_Browser*, void*) {
+  if ( win_macro_flbrowser1->value() >= 1 ) 
+{
+
+   
+     win_macro_flbrowser1_output1->value(  win_macro_flbrowser1->text( win_macro_flbrowser1->value() ) );
+ 
+ 
+   form_macro_statusbar->value(  win_macro_flbrowser1->text( win_macro_flbrowser1->value() ) );
+
+ 
+ 
+ };
 }
 
-Fl_Browser *browser_macro_filecontent=(Fl_Browser *)0;
+Fl_Output *win_macro_flbrowser1_output1=(Fl_Output *)0;
+
+static void cb_Browse3(Fl_Button*, void*) {
+  win_macro_flbrowser1->clear();
+     win_macro_flbrowser1->filter( 0 ); 
+     win_macro_flbrowser1->load( "." );
+     
+     
+     //eow;
+}
+
+static void cb_Use2(Fl_Button*, void*) {
+  //char mydirnow[2500];
+//printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
+  
+redraw();
+
+char foofile[PATH_MAX];
+if ( win_macro_flbrowser1->value() >= 1 ) 
+{
+   // win_macro_flbrowser1_output1->value(  win_macro_flbrowser1->text( win_macro_flbrowser1->value() ) );
+   snprintf( foofile , sizeof( foofile ), "%s" ,      win_macro_flbrowser1->text( win_macro_flbrowser1->value() )   ); 
+   printf( "============================\n" );
+   printf( "   MACRO                    \n" );
+   printf( "============================\n" );
+   printf( "   FILECOPY                  \n" );
+   printf( "   Source: %s                \n" ,  foofile  );
+   printf( "   Destination: %s           \n" ,  "macro.ocm"   );
+   ncp( "macro.ocm" ,  foofile );
+   
+   void_flfront_preview_browser1_refresh();
+};
+}
+
+static void cb_View3(Fl_Button*, void*) {
+  // system( "   screen -d -m flpreview  " );
+
+redraw();
+
+  
+ if ( win_macro_flbrowser1->value() >= 1 ) 
+ {
+
+   
+    // win_macro_flbrowser1_output1->value(  win_macro_flbrowser1->text( win_macro_flbrowser1->value() ) );
+ 
+ 
+   form_macro_statusbar->value(       win_macro_flbrowser1->text( win_macro_flbrowser1->value() )        );
+
+ 
+ 
+   
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  flview   " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo ,      win_macro_flbrowser1->text( win_macro_flbrowser1->value() )    , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );
+ 
+ };
+}
+
+static void cb_Preview1(Fl_Button*, void*) {
+  system( "   screen -d -m flpreview  " );
+}
+
+Fl_Output *form_macro_statusbar=(Fl_Output *)0;
 
 Fl_Double_Window *win6=(Fl_Double_Window *)0;
 
@@ -3531,7 +3800,7 @@ Fl_Input *input_var_calc_xmin=(Fl_Input *)0;
 
 Fl_Input *input_var_calc_xmax=(Fl_Input *)0;
 
-static void cb_Close5(Fl_Button*, void*) {
+static void cb_Close6(Fl_Button*, void*) {
   win6->hide();
 }
 
@@ -3585,7 +3854,7 @@ static void cb_chdir(Fl_Button*, void*) {
 
 Fl_Input *dev_path_input1=(Fl_Input *)0;
 
-static void cb_Close6(Fl_Button*, void*) {
+static void cb_Close7(Fl_Button*, void*) {
   win7->hide();
 }
 
@@ -3607,7 +3876,7 @@ static void cb_VIM2(Fl_Button*, void*) {
   nrun( " vim " , input_var_tdb_database->value(  ) );
 }
 
-static void cb_41(Fl_Button*, void*) {
+static void cb_43(Fl_Button*, void*) {
   char mydirnow[2500];
   printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
 
@@ -3621,7 +3890,7 @@ static void cb_41(Fl_Button*, void*) {
   // gnuplot ocgnu.plt  &;
 }
 
-static void cb_32(Fl_Button*, void*) {
+static void cb_33(Fl_Button*, void*) {
   char mydirnow[2500];
   printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
 
@@ -3656,7 +3925,7 @@ Fl_Check_Button *var_calc_rm_ocgnu=(Fl_Check_Button *)0;
 
 Fl_Double_Window *form_element_pse=(Fl_Double_Window *)0;
 
-static void cb_Close7(Fl_Button*, void*) {
+static void cb_Close8(Fl_Button*, void*) {
   form_element_pse->hide();
 }
 
@@ -4021,7 +4290,7 @@ static void cb_He(Fl_Button*, void*) {
 }
 
 static void cb_La(Fl_Button*, void*) {
-  system( " xterm   "  );
+  void_form_add_new_element( "la" );
 }
 
 static void cb_Ac(Fl_Button*, void*) {
@@ -4101,7 +4370,7 @@ static void cb_Cf(Fl_Button*, void*) {
 }
 
 static void cb_Ho(Fl_Button*, void*) {
-  system( " xterm   "  );
+  void_form_add_new_element( "ho" );
 }
 
 static void cb_Es(Fl_Button*, void*) {
@@ -4109,7 +4378,7 @@ static void cb_Es(Fl_Button*, void*) {
 }
 
 static void cb_Er(Fl_Button*, void*) {
-  system( " xterm   "  );
+  void_form_add_new_element( "er" );
 }
 
 static void cb_Fm(Fl_Button*, void*) {
@@ -4134,7 +4403,7 @@ static void cb_No(Fl_Button*, void*) {
 
 Fl_Double_Window *form1_periodic_information=(Fl_Double_Window *)0;
 
-static void cb_Close8(Fl_Button*, void*) {
+static void cb_Close9(Fl_Button*, void*) {
   form1_periodic_information->hide();
 }
 
@@ -4146,7 +4415,7 @@ Fl_Double_Window* make_window() {
       o->box(FL_ENGRAVED_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
     } // Fl_Box* o
-    { Fl_Group* o = new Fl_Group(25, 70, 350, 155, "1. Element");
+    { Fl_Group* o = new Fl_Group(25, 70, 350, 150, "1. Element");
       o->box(FL_DOWN_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
       { Fl_Button* o = new Fl_Button(35, 80, 45, 35, "Fe");
@@ -4224,47 +4493,52 @@ Fl_Double_Window* make_window() {
         o->labelsize(12);
         o->callback((Fl_Callback*)cb_W);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(330, 170, 40, 35, "...");
+      { Fl_Button* o = new Fl_Button(330, 80, 40, 35, "...");
         o->callback((Fl_Callback*)cb_);
       } // Fl_Button* o
       o->end();
     } // Fl_Group* o
-    { Fl_Group* o = new Fl_Group(25, 260, 350, 150, "2. Compute");
+    { Fl_Group* o = new Fl_Group(25, 265, 350, 140, "2. Create Macro");
       o->box(FL_DOWN_FRAME);
       o->labeltype(FL_ENGRAVED_LABEL);
-      { output_system = new Fl_Output(90, 275, 205, 25, "System");
+      { output_system = new Fl_Output(85, 280, 205, 25, "System");
         output_system->color(FL_BACKGROUND_COLOR);
         output_system->value( "fe c " );
         var_calc_number_element = 2;
       } // Fl_Output* output_system
-      { Fl_Button* o = new Fl_Button(300, 275, 30, 25, "CA");
+      { Fl_Button* o = new Fl_Button(295, 280, 30, 25, "CA");
         o->labelfont(1);
         o->labelsize(12);
         o->callback((Fl_Callback*)cb_CA);
       } // Fl_Button* o
-      { input_var_calc_x = new Fl_Input(90, 305, 205, 25, "X var.");
+      { input_var_calc_x = new Fl_Input(85, 310, 205, 25, "X var.");
         input_var_calc_x->value( "c" );
       } // Fl_Input* input_var_calc_x
-      { Fl_Button* o = new Fl_Button(300, 305, 30, 25, "CA");
+      { Fl_Button* o = new Fl_Button(295, 310, 30, 25, "CA");
         o->labelfont(1);
         o->labelsize(12);
         o->callback((Fl_Callback*)cb_CA1);
       } // Fl_Button* o
-      { input_var_calc_y = new Fl_Input(90, 335, 205, 25, "Y var.");
+      { input_var_calc_y = new Fl_Input(85, 340, 205, 25, "Y var.");
         input_var_calc_y->value( "T" );
       } // Fl_Input* input_var_calc_y
-      { Fl_Button* o = new Fl_Button(300, 335, 30, 25, "CA");
+      { Fl_Button* o = new Fl_Button(295, 340, 30, 25, "CA");
         o->labelfont(1);
         o->labelsize(12);
         o->callback((Fl_Callback*)cb_CA2);
       } // Fl_Button* o
-      { input_var_tdb_database = new Fl_Input(90, 365, 205, 25, "TDB");
+      { input_var_tdb_database = new Fl_Input(85, 370, 205, 25, "TDB");
         input_var_tdb_database->value( "steel1.tdb" );
       } // Fl_Input* input_var_tdb_database
-      { Fl_Button* o = new Fl_Button(300, 365, 30, 25, "CA");
+      { Fl_Button* o = new Fl_Button(295, 370, 30, 25, "CA");
         o->labelfont(1);
         o->labelsize(12);
         o->callback((Fl_Callback*)cb_CA3);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(330, 280, 40, 25, "SGTE");
+        o->labelfont(1);
+        o->labelsize(12);
+        o->callback((Fl_Callback*)cb_SGTE);
       } // Fl_Button* o
       o->end();
     } // Fl_Group* o
@@ -4300,8 +4574,11 @@ Fl_Double_Window* make_window() {
       { Fl_Button* o = new Fl_Button(395, 590, 130, 25, "Refresh Preview");
         o->callback((Fl_Callback*)cb_Refresh);
       } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(530, 590, 60, 25, "Edit");
+      { Fl_Button* o = new Fl_Button(550, 590, 65, 25, "Edit");
         o->callback((Fl_Callback*)cb_Edit);
+      } // Fl_Button* o
+      { Fl_Button* o = new Fl_Button(640, 590, 105, 25, "Close Plots");
+        o->callback((Fl_Callback*)cb_Close);
       } // Fl_Button* o
       o->end();
       Fl_Group::current()->resizable(o);
@@ -4333,23 +4610,26 @@ Fl_Double_Window* make_window() {
       o->labeltype(FL_ENGRAVED_LABEL);
     } // Fl_Box* o
     { Fl_Button* o = new Fl_Button(780, 425, 110, 25, "&Close Frame");
-      o->callback((Fl_Callback*)cb_Close);
+      o->callback((Fl_Callback*)cb_Close1);
     } // Fl_Button* o
     { Fl_Tabs* o = new Fl_Tabs(15, 70, 875, 345, "File browser");
       { Fl_Group* o = new Fl_Group(35, 95, 850, 315, "File browser");
-        { form_database_tab1_filebrowser1 = new Fl_File_Browser(35, 110, 465, 265);
+        { form_database_tab1_filebrowser1 = new Fl_File_Browser(35, 110, 845, 195);
           form_database_tab1_filebrowser1->callback((Fl_Callback*)cb_form_database_tab1_filebrowser1);
           form_database_tab1_filebrowser1->load( "." );
           form_database_tab1_filebrowser1->type(FL_HOLD_BROWSER);
         } // Fl_File_Browser* form_database_tab1_filebrowser1
-        { form_database_tab1_currentfile = new Fl_Output(340, 380, 540, 25, "TDB Selection");
+        { form_database_tab1_currentfile = new Fl_Output(340, 315, 540, 25, "TDB Selection");
           form_database_tab1_currentfile->color(FL_BACKGROUND_COLOR);
         } // Fl_Output* form_database_tab1_currentfile
-        { form_database_tab1_filter = new Fl_Input(70, 380, 155, 25, "Filter");
+        { form_database_tab1_filter = new Fl_Input(70, 315, 155, 25, "Filter");
           form_database_tab1_filter->callback((Fl_Callback*)cb_form_database_tab1_filter);
           form_database_tab1_filter->when(FL_WHEN_ENTER_KEY);
           form_database_tab1_filter->value( "*" );
         } // Fl_Input* form_database_tab1_filter
+        { Fl_Button* o = new Fl_Button(675, 350, 205, 25, "TDB Content Preview ");
+          o->callback((Fl_Callback*)cb_TDB);
+        } // Fl_Button* o
         o->end();
       } // Fl_Group* o
       { Fl_Group* o = new Fl_Group(30, 95, 860, 320, "Advanced browser");
@@ -4427,8 +4707,21 @@ Fl_Double_Window* make_window() {
         } // Fl_Group* o
         o->end();
       } // Fl_Group* o
+      { Fl_Group* o = new Fl_Group(40, 95, 850, 320, "SGTE");
+        o->hide();
+        { Fl_Button* o = new Fl_Button(65, 140, 770, 35, "Open SGTE Website for Selected Elements (Phasediagram) for elements in main p\
+anel");
+          o->labelfont(1);
+          o->labelsize(12);
+          o->callback((Fl_Callback*)cb_Open);
+        } // Fl_Button* o
+        o->end();
+      } // Fl_Group* o
       o->end();
     } // Fl_Tabs* o
+    { form_database_statusbar = new Fl_Output(15, 425, 755, 25);
+      form_database_statusbar->color(FL_BACKGROUND_COLOR);
+    } // Fl_Output* form_database_statusbar
     win2->end();
     win2->resizable(win2);
   } // Fl_Double_Window* win2
@@ -4438,7 +4731,7 @@ Fl_Double_Window* make_window() {
       o->labeltype(FL_ENGRAVED_LABEL);
     } // Fl_Box* o
     { Fl_Button* o = new Fl_Button(450, 430, 115, 30, "&Close Frame");
-      o->callback((Fl_Callback*)cb_Close1);
+      o->callback((Fl_Callback*)cb_Close2);
     } // Fl_Button* o
     { Fl_Tabs* o = new Fl_Tabs(15, 75, 550, 340);
       { Fl_Group* o = new Fl_Group(40, 100, 525, 315, "&Applications");
@@ -4497,12 +4790,35 @@ Fl_Double_Window* make_window() {
         } // Fl_Group* o
         o->end();
       } // Fl_Group* o
+      { Fl_Group* o = new Fl_Group(40, 100, 525, 315, "&Repository");
+        o->hide();
+        { Fl_Group* o = new Fl_Group(100, 140, 375, 220, "Online Repository OC Calphad");
+          o->box(FL_DOWN_BOX);
+          o->labeltype(FL_ENGRAVED_LABEL);
+          { Fl_Button* o = new Fl_Button(120, 165, 340, 30, "&Fetch online ~/macros directory");
+            o->callback((Fl_Callback*)cb_Fetch1);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(120, 210, 340, 30, "&Fetch online source code OC Gui");
+            o->callback((Fl_Callback*)cb_Fetch2);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(120, 255, 340, 30, "&Help");
+            o->labelfont(1);
+            o->callback((Fl_Callback*)cb_Help1);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(120, 300, 340, 30, "Manual OpenCalphad (PDF)");
+            o->labelfont(1);
+            o->callback((Fl_Callback*)cb_Manual);
+          } // Fl_Button* o
+          o->end();
+        } // Fl_Group* o
+        o->end();
+      } // Fl_Group* o
       { Fl_Group* o = new Fl_Group(40, 100, 525, 315, "&Metal Sc. Utils");
         o->hide();
         { Fl_Group* o = new Fl_Group(40, 135, 500, 230, "Metal Sciences");
           o->box(FL_DOWN_BOX);
           o->labeltype(FL_ENGRAVED_LABEL);
-          { Fl_Button* o = new Fl_Button(375, 195, 150, 40, "Mixture Law");
+          { Fl_Button* o = new Fl_Button(215, 145, 150, 40, "Mixture Law");
             o->callback((Fl_Callback*)cb_Mixture);
           } // Fl_Button* o
           { Fl_Button* o = new Fl_Button(375, 145, 150, 40, "Bulk Diffusion");
@@ -4511,45 +4827,8 @@ Fl_Double_Window* make_window() {
           { Fl_Button* o = new Fl_Button(55, 145, 150, 40, "&Fx Grapher");
             o->callback((Fl_Callback*)cb_Fx);
           } // Fl_Button* o
-          { Fl_Button* o = new Fl_Button(215, 145, 150, 40, "Solubility Product");
-            o->callback((Fl_Callback*)cb_Solubility);
-          } // Fl_Button* o
-          { Fl_Button* o = new Fl_Button(55, 245, 150, 40, "&Periodic Table");
-            o->callback((Fl_Callback*)cb_Periodic);
-          } // Fl_Button* o
-          { Fl_Button* o = new Fl_Button(55, 195, 150, 40, "&JMol Chem. 3D");
-            o->callback((Fl_Callback*)cb_JMol);
-          } // Fl_Button* o
-          { Fl_Button* o = new Fl_Button(215, 245, 150, 40, "Time Temp. Cycle");
-            o->callback((Fl_Callback*)cb_Time);
-          } // Fl_Button* o
-          { Fl_Button* o = new Fl_Button(215, 195, 150, 40, "Microst. material");
-            o->callback((Fl_Callback*)cb_Microst);
-          } // Fl_Button* o
-          { Fl_Button* o = new Fl_Button(375, 245, 150, 40, "Mobility");
-            o->callback((Fl_Callback*)cb_Mobility);
-          } // Fl_Button* o
-          { Fl_Button* o = new Fl_Button(55, 295, 150, 40, "Grain size / ReX");
-            o->callback((Fl_Callback*)cb_Grain);
-          } // Fl_Button* o
-          o->end();
-        } // Fl_Group* o
-        o->end();
-      } // Fl_Group* o
-      { Fl_Group* o = new Fl_Group(40, 100, 525, 315, "&Repository");
-        o->hide();
-        { Fl_Group* o = new Fl_Group(100, 140, 375, 180, "Online Repository OC Calphad");
-          o->box(FL_DOWN_BOX);
-          o->labeltype(FL_ENGRAVED_LABEL);
-          { Fl_Button* o = new Fl_Button(115, 165, 340, 30, "&Fetch online ~/macros directory");
-            o->callback((Fl_Callback*)cb_Fetch1);
-          } // Fl_Button* o
-          { Fl_Button* o = new Fl_Button(115, 210, 340, 30, "&Fetch online source code OC Gui");
-            o->callback((Fl_Callback*)cb_Fetch2);
-          } // Fl_Button* o
-          { Fl_Button* o = new Fl_Button(115, 255, 340, 30, "&Help");
-            o->labelfont(1);
-            o->callback((Fl_Callback*)cb_Help1);
+          { Fl_Button* o = new Fl_Button(55, 195, 150, 40, "FLOCCALC");
+            o->callback((Fl_Callback*)cb_FLOCCALC);
           } // Fl_Button* o
           o->end();
         } // Fl_Group* o
@@ -4567,7 +4846,7 @@ Fl_Double_Window* make_window() {
         } // Fl_Button* o
         o->end();
       } // Fl_Group* o
-      { Fl_Group* o = new Fl_Group(40, 100, 525, 315, "&System");
+      { Fl_Group* o = new Fl_Group(40, 100, 525, 315, "&Apps");
         o->hide();
         { Fl_Group* o = new Fl_Group(90, 140, 400, 90, "User system call");
           o->box(FL_DOWN_BOX);
@@ -4623,18 +4902,18 @@ Fl_Double_Window* make_window() {
         } // Fl_Group* o
         o->end();
       } // Fl_Group* o
-      { Fl_Group* o = new Fl_Group(40, 100, 525, 315, "Development");
+      { Fl_Group* o = new Fl_Group(40, 100, 525, 315, "Settings");
         o->hide();
         { Fl_Button* o = new Fl_Button(50, 115, 375, 60, "&Advanced Development Settings");
           o->callback((Fl_Callback*)cb_Advanced);
         } // Fl_Button* o
-        { Fl_Group* o = new Fl_Group(50, 215, 375, 95, "Console output");
+        { Fl_Group* o = new Fl_Group(50, 245, 375, 95, "Console output");
           o->box(FL_DOWN_BOX);
           o->labeltype(FL_ENGRAVED_LABEL);
-          { checkbutton_single_console = new Fl_Check_Button(70, 235, 25, 25, "Single console output");
+          { checkbutton_single_console = new Fl_Check_Button(70, 300, 25, 25, "Single console output ");
             checkbutton_single_console->down_box(FL_DOWN_BOX);
           } // Fl_Check_Button* checkbutton_single_console
-          { checkbutton_xterm_console = new Fl_Check_Button(70, 265, 25, 25, "xterm console output");
+          { checkbutton_xterm_console = new Fl_Check_Button(70, 260, 25, 25, "xterm console output + screen (background)");
             checkbutton_xterm_console->down_box(FL_DOWN_BOX);
             checkbutton_xterm_console->value( 1 );
           } // Fl_Check_Button* checkbutton_xterm_console
@@ -4647,88 +4926,20 @@ Fl_Double_Window* make_window() {
     win3->end();
     win3->resizable(win3);
   } // Fl_Double_Window* win3
-  { win4 = new Fl_Double_Window(910, 605, "Graphics Plot");
+  { win4 = new Fl_Double_Window(910, 600, "FLOPENCALPHAD - PLOT");
     { Fl_Box* o = new Fl_Box(10, 25, 885, 35, "FLTK OpenCalphad -- Plot");
       o->box(FL_ENGRAVED_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
     } // Fl_Box* o
-    { Fl_Button* o = new Fl_Button(735, 555, 160, 30, "Close Frame");
-      o->callback((Fl_Callback*)cb_Close2);
+    { Fl_Button* o = new Fl_Button(735, 560, 160, 30, "Close Frame");
+      o->callback((Fl_Callback*)cb_Close3);
     } // Fl_Button* o
-    { form_plot_statusline = new Fl_Output(15, 555, 715, 30);
+    { form_plot_statusline = new Fl_Output(10, 560, 715, 30);
       form_plot_statusline->color(FL_BACKGROUND_COLOR);
       form_plot_statusline->value("ocgnu.plt");
     } // Fl_Output* form_plot_statusline
-    { Fl_Tabs* o = new Fl_Tabs(10, 70, 885, 225);
-      { Fl_Group* o = new Fl_Group(35, 95, 860, 200, "Single Plot");
-        o->hide();
-        { Fl_Button* o = new Fl_Button(55, 135, 130, 25, "View Plot File");
-          o->callback((Fl_Callback*)cb_View1);
-        } // Fl_Button* o
-        { Fl_Button* o = new Fl_Button(195, 135, 130, 25, "Edit Plot File");
-          o->callback((Fl_Callback*)cb_Edit3);
-        } // Fl_Button* o
-        { Fl_Button* o = new Fl_Button(610, 135, 135, 25, "Plot!");
-          o->labelfont(1);
-          o->callback((Fl_Callback*)cb_Plot1);
-        } // Fl_Button* o
-        { Fl_Button* o = new Fl_Button(335, 135, 135, 25, "Edit Adv. Plot");
-          o->callback((Fl_Callback*)cb_Edit4);
-        } // Fl_Button* o
-        { Fl_Button* o = new Fl_Button(475, 135, 130, 25, "Compute");
-          o->callback((Fl_Callback*)cb_Compute);
-        } // Fl_Button* o
-        o->end();
-      } // Fl_Group* o
-      { Fl_Group* o = new Fl_Group(35, 95, 860, 200, "Advanced Plot");
-        { Fl_Button* o = new Fl_Button(40, 120, 145, 25, "1. Dup. Adv. Macro");
-          o->callback((Fl_Callback*)cb_11);
-        } // Fl_Button* o
-        { plot_adv_computer_skipint = new Fl_Check_Button(40, 150, 25, 25, "Skip Keypress");
-          plot_adv_computer_skipint->down_box(FL_DOWN_BOX);
-          plot_adv_computer_skipint->callback((Fl_Callback*)cb_plot_adv_computer_skipint);
-        } // Fl_Check_Button* plot_adv_computer_skipint
-        { var_x_advplot_str = new Fl_Input(305, 120, 275, 25, "Scale X-axis ");
-          var_x_advplot_str->value( "set xrange [0 : 2]" );
-        } // Fl_Input* var_x_advplot_str
-        { var_y_advplot_str = new Fl_Input(305, 145, 275, 25, "Scale Y-axis ");
-          var_y_advplot_str->value( "set yrange [600 : 1600]" );
-        } // Fl_Input* var_y_advplot_str
-        { var_button_y_advplot_str_automatic = new Fl_Check_Button(305, 175, 155, 25, "Set both X and Y");
-          var_button_y_advplot_str_automatic->down_box(FL_DOWN_BOX);
-          var_button_y_advplot_str_automatic->value( 1 );
-        } // Fl_Check_Button* var_button_y_advplot_str_automatic
-        { Fl_Button* o = new Fl_Button(305, 200, 145, 25, "2. Copy/Set Plot");
-          o->callback((Fl_Callback*)cb_21);
-        } // Fl_Button* o
-        { Fl_Button* o = new Fl_Button(455, 200, 125, 25, "3. Adv.Plot!");
-          o->labelfont(1);
-          o->callback((Fl_Callback*)cb_31);
-        } // Fl_Button* o
-        { Fl_Button* o = new Fl_Button(750, 170, 130, 25, "Adv. Compute");
-          o->callback((Fl_Callback*)cb_Adv);
-        } // Fl_Button* o
-        { Fl_Button* o = new Fl_Button(750, 110, 130, 25, "Edit Adv. Macro");
-          o->callback((Fl_Callback*)cb_Edit5);
-        } // Fl_Button* o
-        { Fl_Button* o = new Fl_Button(750, 140, 130, 25, "View Res. Macro.");
-          o->callback((Fl_Callback*)cb_View2);
-        } // Fl_Button* o
-        { Fl_Button* o = new Fl_Button(750, 260, 130, 25, "Single Adv. Plot !");
-          o->callback((Fl_Callback*)cb_Single);
-        } // Fl_Button* o
-        { Fl_Button* o = new Fl_Button(750, 230, 130, 25, "Preview");
-          o->callback((Fl_Callback*)cb_Preview);
-        } // Fl_Button* o
-        { Fl_Button* o = new Fl_Button(750, 200, 130, 25, "Edit Adv. Plot");
-          o->callback((Fl_Callback*)cb_Edit6);
-        } // Fl_Button* o
-        o->end();
-      } // Fl_Group* o
-      o->end();
-    } // Fl_Tabs* o
     { Fl_Button* o = new Fl_Button(285, 485, 135, 30, "Close all &plots");
-      o->callback((Fl_Callback*)cb_Close3);
+      o->callback((Fl_Callback*)cb_Close4);
     } // Fl_Button* o
     { Fl_Button* o = new Fl_Button(150, 485, 130, 30, "Clear GnuPlot plt");
       o->callback((Fl_Callback*)cb_Clear);
@@ -4736,7 +4947,7 @@ Fl_Double_Window* make_window() {
     { Fl_Button* o = new Fl_Button(15, 485, 130, 30, "Refresh Preview");
       o->callback((Fl_Callback*)cb_Refresh1);
     } // Fl_Button* o
-    { flplot_preview_browser = new Fl_Browser(15, 305, 875, 175);
+    { flplot_preview_browser = new Fl_Browser(10, 290, 885, 180);
       Fl_Group::current()->resizable(flplot_preview_browser);
       flplot_preview_browser->type( FL_HOLD_BROWSER );
     } // Fl_Browser* flplot_preview_browser
@@ -4752,66 +4963,183 @@ Fl_Double_Window* make_window() {
     { Fl_Button* o = new Fl_Button(845, 485, 30, 25, "&?");
       o->callback((Fl_Callback*)cb_5);
     } // Fl_Button* o
+    { Fl_Tabs* o = new Fl_Tabs(10, 75, 885, 205);
+      { Fl_Group* o = new Fl_Group(45, 106, 850, 168, "Single Plot");
+        { Fl_Button* o = new Fl_Button(485, 155, 130, 25, "4.) View Plot File");
+          o->callback((Fl_Callback*)cb_41);
+        } // Fl_Button* o
+        { Fl_Button* o = new Fl_Button(345, 155, 130, 25, "3.) Edit Plot File");
+          o->callback((Fl_Callback*)cb_31);
+        } // Fl_Button* o
+        { Fl_Button* o = new Fl_Button(625, 155, 135, 25, "5.) Plot!");
+          o->labelfont(1);
+          o->callback((Fl_Callback*)cb_51);
+        } // Fl_Button* o
+        { Fl_Button* o = new Fl_Button(205, 155, 130, 25, "2.) Compute");
+          o->callback((Fl_Callback*)cb_21);
+        } // Fl_Button* o
+        { Fl_Button* o = new Fl_Button(65, 155, 130, 25, "1.) Edit macro");
+          o->callback((Fl_Callback*)cb_11);
+        } // Fl_Button* o
+        o->end();
+      } // Fl_Group* o
+      { Fl_Group* o = new Fl_Group(30, 100, 865, 180, "Rescale Plot");
+        o->hide();
+        { Fl_Button* o = new Fl_Button(50, 115, 145, 25, "1. Dup. Adv. Macro");
+          o->callback((Fl_Callback*)cb_12);
+        } // Fl_Button* o
+        { plot_adv_computer_skipint = new Fl_Check_Button(80, 245, 25, 25, "Skip Keypress");
+          plot_adv_computer_skipint->down_box(FL_DOWN_BOX);
+          plot_adv_computer_skipint->callback((Fl_Callback*)cb_plot_adv_computer_skipint);
+        } // Fl_Check_Button* plot_adv_computer_skipint
+        { var_x_advplot_str = new Fl_Input(165, 155, 275, 25, "Scale X-axis ");
+          var_x_advplot_str->value( "set xrange [0 : 2]" );
+        } // Fl_Input* var_x_advplot_str
+        { var_y_advplot_str = new Fl_Input(165, 180, 275, 25, "Scale Y-axis ");
+          var_y_advplot_str->value( "set yrange [600 : 1600]" );
+        } // Fl_Input* var_y_advplot_str
+        { var_button_y_advplot_str_automatic = new Fl_Check_Button(80, 215, 155, 25, "Set both X and Y");
+          var_button_y_advplot_str_automatic->down_box(FL_DOWN_BOX);
+          var_button_y_advplot_str_automatic->value( 1 );
+        } // Fl_Check_Button* var_button_y_advplot_str_automatic
+        { Fl_Button* o = new Fl_Button(205, 115, 145, 25, "2. Copy/Set Plot");
+          o->callback((Fl_Callback*)cb_22);
+        } // Fl_Button* o
+        { Fl_Button* o = new Fl_Button(570, 115, 195, 25, "4. Adv.Plot (Gnuplot)");
+          o->labelfont(1);
+          o->callback((Fl_Callback*)cb_42);
+        } // Fl_Button* o
+        { Fl_Button* o = new Fl_Button(360, 115, 200, 25, "3. Edit Adv.Plot (Gnuplot)");
+          o->callback((Fl_Callback*)cb_32);
+        } // Fl_Button* o
+        o->end();
+      } // Fl_Group* o
+      { Fl_Group* o = new Fl_Group(20, 100, 875, 180, "Misc.");
+        o->hide();
+        { Fl_Button* o = new Fl_Button(50, 180, 130, 25, "Edit Adv. Plot");
+          o->callback((Fl_Callback*)cb_Edit3);
+        } // Fl_Button* o
+        { Fl_Button* o = new Fl_Button(185, 125, 130, 25, "Adv. Compute");
+          o->callback((Fl_Callback*)cb_Adv);
+        } // Fl_Button* o
+        { Fl_Button* o = new Fl_Button(50, 125, 130, 25, "Edit Adv. Macro");
+          o->callback((Fl_Callback*)cb_Edit4);
+        } // Fl_Button* o
+        { Fl_Button* o = new Fl_Button(320, 125, 130, 25, "View Res. Macro.");
+          o->callback((Fl_Callback*)cb_View1);
+        } // Fl_Button* o
+        { Fl_Button* o = new Fl_Button(320, 180, 130, 25, "Single Adv. Plot !");
+          o->callback((Fl_Callback*)cb_Single);
+        } // Fl_Button* o
+        { Fl_Button* o = new Fl_Button(185, 180, 130, 25, "Preview");
+          o->callback((Fl_Callback*)cb_Preview);
+        } // Fl_Button* o
+        o->end();
+      } // Fl_Group* o
+      o->end();
+    } // Fl_Tabs* o
     win4->end();
   } // Fl_Double_Window* win4
-  { win5 = new Fl_Double_Window(850, 485, "Macro");
-    { Fl_Box* o = new Fl_Box(15, 15, 820, 35, "FLTK OpenCalphad -- Macro");
+  { win5 = new Fl_Double_Window(885, 555, "Macro");
+    { Fl_Box* o = new Fl_Box(5, 5, 875, 35, "FLTK OpenCalphad -- Macro");
       o->box(FL_ENGRAVED_BOX);
       o->labeltype(FL_ENGRAVED_LABEL);
     } // Fl_Box* o
-    { Fl_Group* o = new Fl_Group(15, 205, 370, 240, "Browser");
-      o->box(FL_DOWN_BOX);
-      o->labeltype(FL_ENGRAVED_LABEL);
-      { browser2 = new Fl_Browser(35, 245, 330, 195);
-        browser2->callback((Fl_Callback*)cb_browser2);
-        browser2->type(FL_HOLD_BROWSER);
-      } // Fl_Browser* browser2
-      { input_var_macro_filename = new Fl_Input(100, 215, 265, 25, "Filename");
-      } // Fl_Input* input_var_macro_filename
-      o->end();
-    } // Fl_Group* o
-    { Fl_Group* o = new Fl_Group(15, 85, 370, 95, "Macro");
-      o->box(FL_DOWN_BOX);
-      o->labeltype(FL_ENGRAVED_LABEL);
-      { Fl_Button* o = new Fl_Button(25, 105, 95, 25, "Browse");
-        o->callback((Fl_Callback*)cb_Browse1);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(265, 135, 50, 25, "&New");
-        o->callback((Fl_Callback*)cb_New);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(25, 135, 95, 25, "&Use macro");
-        o->callback((Fl_Callback*)cb_Use);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(320, 105, 50, 25, "&View");
-        o->callback((Fl_Callback*)cb_View3);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(265, 105, 50, 25, "&Cat");
-        o->callback((Fl_Callback*)cb_Cat1);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(320, 135, 50, 25, "&Edit");
-        o->callback((Fl_Callback*)cb_Edit7);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(145, 105, 95, 25, "Browse ocl");
-        o->callback((Fl_Callback*)cb_Browse2);
-      } // Fl_Button* o
-      { Fl_Button* o = new Fl_Button(145, 135, 95, 25, "&Use ocl");
-        o->callback((Fl_Callback*)cb_Use1);
-      } // Fl_Button* o
-      o->end();
-    } // Fl_Group* o
-    { Fl_Button* o = new Fl_Button(725, 450, 110, 25, "&Close Frame");
-      o->callback((Fl_Callback*)cb_Close4);
+    { Fl_Button* o = new Fl_Button(750, 520, 115, 25, "&Close Frame");
+      o->callback((Fl_Callback*)cb_Close5);
     } // Fl_Button* o
-    { Fl_Group* o = new Fl_Group(405, 80, 430, 365, "File description");
-      o->box(FL_DOWN_BOX);
-      o->labeltype(FL_ENGRAVED_LABEL);
-      { browser_macro_filecontent = new Fl_Browser(410, 85, 420, 355);
-        browser_macro_filecontent->type(FL_HOLD_BROWSER);
-      } // Fl_Browser* browser_macro_filecontent
+    { Fl_Tabs* o = new Fl_Tabs(15, 60, 850, 440);
+      { Fl_Group* o = new Fl_Group(25, 85, 840, 415, "File Selection");
+        o->hide();
+        { Fl_Group* o = new Fl_Group(30, 245, 370, 240, "Browser");
+          o->box(FL_DOWN_BOX);
+          o->labeltype(FL_ENGRAVED_LABEL);
+          { browser2 = new Fl_Browser(50, 285, 330, 195);
+            browser2->callback((Fl_Callback*)cb_browser2);
+            browser2->type(FL_HOLD_BROWSER);
+          } // Fl_Browser* browser2
+          { input_var_macro_filename = new Fl_Input(115, 255, 265, 25, "Filename");
+          } // Fl_Input* input_var_macro_filename
+          o->end();
+        } // Fl_Group* o
+        { Fl_Group* o = new Fl_Group(30, 125, 370, 95, "Macro");
+          o->box(FL_DOWN_BOX);
+          o->labeltype(FL_ENGRAVED_LABEL);
+          { Fl_Button* o = new Fl_Button(40, 145, 95, 25, "&Browse");
+            o->callback((Fl_Callback*)cb_Browse1);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(280, 175, 50, 25, "&New");
+            o->callback((Fl_Callback*)cb_New);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(40, 175, 95, 25, "&Use macro");
+            o->callback((Fl_Callback*)cb_Use);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(335, 145, 50, 25, "&View");
+            o->callback((Fl_Callback*)cb_View2);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(280, 145, 50, 25, "&Cat");
+            o->callback((Fl_Callback*)cb_Cat1);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(335, 175, 50, 25, "&Edit");
+            o->callback((Fl_Callback*)cb_Edit5);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(160, 145, 95, 25, "Browse ocl");
+            o->callback((Fl_Callback*)cb_Browse2);
+          } // Fl_Button* o
+          { Fl_Button* o = new Fl_Button(160, 175, 95, 25, "Use ocl");
+            o->callback((Fl_Callback*)cb_Use1);
+          } // Fl_Button* o
+          o->end();
+        } // Fl_Group* o
+        { Fl_Group* o = new Fl_Group(420, 120, 430, 365, "File description");
+          o->box(FL_DOWN_BOX);
+          o->labeltype(FL_ENGRAVED_LABEL);
+          { browser_macro_filecontent = new Fl_Browser(425, 125, 420, 355);
+            browser_macro_filecontent->type(FL_HOLD_BROWSER);
+          } // Fl_Browser* browser_macro_filecontent
+          o->end();
+          Fl_Group::current()->resizable(o);
+        } // Fl_Group* o
+        o->end();
+      } // Fl_Group* o
+      { Fl_Group* o = new Fl_Group(40, 85, 825, 415, "Brow&ser");
+        { Fl_Group* o = new Fl_Group(50, 110, 660, 325);
+          o->box(FL_DOWN_BOX);
+          { win_macro_flbrowser1 = new Fl_File_Browser(60, 120, 640, 275);
+            win_macro_flbrowser1->callback((Fl_Callback*)cb_win_macro_flbrowser1);
+            Fl_Group::current()->resizable(win_macro_flbrowser1);
+            win_macro_flbrowser1->type( FL_HOLD_BROWSER  );
+          } // Fl_File_Browser* win_macro_flbrowser1
+          { win_macro_flbrowser1_output1 = new Fl_Output(60, 400, 640, 20);
+            win_macro_flbrowser1_output1->color(FL_BACKGROUND_COLOR);
+            win_macro_flbrowser1_output1->labelsize(12);
+            win_macro_flbrowser1_output1->textsize(12);
+          } // Fl_Output* win_macro_flbrowser1_output1
+          o->end();
+          Fl_Group::current()->resizable(o);
+        } // Fl_Group* o
+        { Fl_Button* o = new Fl_Button(730, 110, 95, 25, "&Browse");
+          o->callback((Fl_Callback*)cb_Browse3);
+        } // Fl_Button* o
+        { Fl_Button* o = new Fl_Button(730, 145, 95, 25, "&Use macro");
+          o->labelfont(1);
+          o->callback((Fl_Callback*)cb_Use2);
+        } // Fl_Button* o
+        { Fl_Button* o = new Fl_Button(730, 180, 95, 25, "&View");
+          o->callback((Fl_Callback*)cb_View3);
+        } // Fl_Button* o
+        { Fl_Button* o = new Fl_Button(730, 215, 95, 25, "&Preview Util");
+          o->callback((Fl_Callback*)cb_Preview1);
+        } // Fl_Button* o
+        o->end();
+      } // Fl_Group* o
       o->end();
-      Fl_Group::current()->resizable(o);
-    } // Fl_Group* o
+    } // Fl_Tabs* o
+    { form_macro_statusbar = new Fl_Output(15, 520, 725, 25);
+      form_macro_statusbar->color(FL_BACKGROUND_COLOR);
+    } // Fl_Output* form_macro_statusbar
     win5->end();
+    win5->resizable(win5);
   } // Fl_Double_Window* win5
   { win6 = new Fl_Double_Window(655, 465, "Condition");
     { Fl_Box* o = new Fl_Box(15, 15, 625, 30, "FLTK OpenCalphad -- Condition");
@@ -4843,7 +5171,7 @@ Fl_Double_Window* make_window() {
       Fl_Group::current()->resizable(o);
     } // Fl_Group* o
     { Fl_Button* o = new Fl_Button(530, 430, 110, 25, "&Close Frame");
-      o->callback((Fl_Callback*)cb_Close5);
+      o->callback((Fl_Callback*)cb_Close6);
     } // Fl_Button* o
     win6->end();
   } // Fl_Double_Window* win6
@@ -4872,7 +5200,7 @@ Fl_Double_Window* make_window() {
       o->end();
     } // Fl_Group* o
     { Fl_Button* o = new Fl_Button(275, 440, 110, 30, "&Close Frame");
-      o->callback((Fl_Callback*)cb_Close6);
+      o->callback((Fl_Callback*)cb_Close7);
     } // Fl_Button* o
     { Fl_Group* o = new Fl_Group(10, 275, 375, 155, "Development");
       o->box(FL_DOWN_BOX);
@@ -4887,10 +5215,10 @@ Fl_Double_Window* make_window() {
         o->callback((Fl_Callback*)cb_VIM2);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(215, 325, 145, 25, "[&4] Plot!");
-        o->callback((Fl_Callback*)cb_41);
+        o->callback((Fl_Callback*)cb_43);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(40, 325, 150, 25, "[&3] Compute!");
-        o->callback((Fl_Callback*)cb_32);
+        o->callback((Fl_Callback*)cb_33);
       } // Fl_Button* o
       { Fl_Button* o = new Fl_Button(40, 360, 320, 25, "GnuPlot XForward/Unix");
         o->callback((Fl_Callback*)cb_GnuPlot);
@@ -4907,7 +5235,7 @@ Fl_Double_Window* make_window() {
   { form_element_pse = new Fl_Double_Window(680, 435, "Periodic");
     { Fl_Button* o = new Fl_Button(15, 400, 650, 25, "&Close frame");
       o->labelfont(1);
-      o->callback((Fl_Callback*)cb_Close7);
+      o->callback((Fl_Callback*)cb_Close8);
     } // Fl_Button* o
     { Fl_Group* o = new Fl_Group(15, 55, 650, 335);
       o->box(FL_DOWN_BOX);
@@ -5357,7 +5685,7 @@ Fl_Double_Window* make_window() {
   { form1_periodic_information = new Fl_Double_Window(780, 535, "Periodic -- Information");
     { Fl_Button* o = new Fl_Button(20, 495, 740, 25, "&Close frame");
       o->labelfont(1);
-      o->callback((Fl_Callback*)cb_Close8);
+      o->callback((Fl_Callback*)cb_Close9);
     } // Fl_Button* o
     { Fl_Group* o = new Fl_Group(20, 50, 740, 440);
       o->box(FL_DOWN_BOX);
@@ -5546,4 +5874,41 @@ void void_form_add_new_element( const char *foonew ) {
     var_calc_number_element++;
     add_new_element( foonew  );
     redraw();
+}
+
+void void_gui_copy_un2ocm( const char *foonew ) {
+  //flfront_preview_browser1->clear();    
+  
+  /*  
+    char filein[PATH_MAX];
+    strncpy( filein, "editor.ocm"  , PATH_MAX );
+    // foonew 
+    
+    int fetchi;
+    FILE *fp5;
+    FILE *fp6;
+    char fetchline[PATH_MAX];
+    char fetchlinetmp[PATH_MAX];
+    
+    if ( fexist( filein ) == 1 )
+    {
+      fp6 = fopen( filein , "rb");
+      while( !feof(fp6) ) 
+      {
+            fgets(fetchlinetmp, PATH_MAX, fp6); 
+            strncpy( fetchline, "" , PATH_MAX );
+            for( fetchi = 0 ; ( fetchi <= strlen( fetchlinetmp ) ); fetchi++ )
+              if ( fetchlinetmp[ fetchi ] != '\n' )
+                fetchline[fetchi]=fetchlinetmp[fetchi];
+                
+            if ( !feof(fp6)  )
+            {
+               // flfront_preview_browser1->add( fetchline );    
+               printf( " FILE =>> %s\n" , fetchline );
+            }
+  
+       }
+       fclose( fp6 );
+   }
+   */
 }

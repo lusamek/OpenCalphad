@@ -163,6 +163,12 @@ void nlsgrep( const char *pattern )
 
 
 
+
+
+
+
+
+
 void filegrep(  const char *filein , const char *pattern )
 {
   int i;
@@ -204,12 +210,18 @@ void filegrep(  const char *filein , const char *pattern )
 
 
 
+
+
+
 void nsystem( const char *mycmd )
 {
 	printf( "1.System Command %s>\n", mycmd );
 	system( mycmd );
 	printf( "2.System Command %s>\n", mycmd );
 }
+
+
+
 
 
 
@@ -360,9 +372,7 @@ void create_macro(  )
 
 
 
-
-
-
+/// Operation ncopy conv 
 void ncpadvmac( const char *filetarget,  const char *  filesource )
 {
   int fetchi;
@@ -424,6 +434,8 @@ void ncpadvmac( const char *filetarget,  const char *  filesource )
 		    lineskip = 1;
 		}
 
+
+
                 if ( gameover == 0 )
 		if ( fetchline[ 0 ] == '@'  )   
 		if ( fetchline[ 1 ] == '!'  )   
@@ -435,6 +447,25 @@ void ncpadvmac( const char *filetarget,  const char *  filesource )
 		    printf( "    => @!EOF detected (end of file).\n");
 		    gameover = 1;
 		}
+
+
+
+
+                //id-20220428-144229
+		// new 
+                if ( gameover == 0 )
+		if ( fetchline[ 0 ] == '!'  )   
+		if ( fetchline[ 1 ] == 'E'  )   
+		if ( fetchline[ 2 ] == 'O'  )   
+		if ( fetchline[ 3 ] == 'F'  )   
+		{
+                    /// mode debug: !EOF => end of file  (upper case)
+		    printf( "    => Command !EOF detected (end of file).\n");
+		    gameover = 1;
+		}
+
+
+
 
 
                 if ( gameover == 0 )
@@ -502,6 +533,10 @@ void ncpadvmac( const char *filetarget,  const char *  filesource )
 
 
 
+
+
+
+
 void ncpskip( const char *filetarget,  const char *  filesource , const char *pattern)
 {
   int fetchi;
@@ -539,6 +574,7 @@ void ncpskip( const char *filetarget,  const char *  filesource , const char *pa
 		}
 
 
+
                 if ( gameover == 0 )
 		if ( fetchline[ 0 ] == '!'  )   
 		if ( fetchline[ 1 ] == 'E'  )   
@@ -570,6 +606,10 @@ void ncpskip( const char *filetarget,  const char *  filesource , const char *pa
      fclose( fp5 );
    }
 }
+
+
+
+
 
 
 
@@ -655,6 +695,9 @@ void ncp_advfix( const char *filetarget,  const char *  filesource, const char *
 		    gameover = 1;
 		}
 
+
+
+
                 if ( gameover == 0 )
 		if ( fetchline[ 0 ] == '!'  )   
 		if ( fetchline[ 1 ] == 'E'  )   
@@ -665,6 +708,9 @@ void ncp_advfix( const char *filetarget,  const char *  filesource, const char *
 		    printf( "    => !EOF detected (end of file).\n");
 		    gameover = 1;
 		}
+
+
+
 
 
                 if ( gameover == 0 )
@@ -688,6 +734,10 @@ void ncp_advfix( const char *filetarget,  const char *  filesource, const char *
 		    lineskip = 1;
 		}
 
+
+
+
+
                 if ( gameover == 0 )
 		if ( fetchline[ 0 ] == '!'  )   
 		if ( fetchline[ 1 ] == 'E'  )   
@@ -698,6 +748,7 @@ void ncp_advfix( const char *filetarget,  const char *  filesource, const char *
 		    printf( "    => !EOF detected (end of file).\n");
 		    gameover = 1;
 		}
+
 
 
 
