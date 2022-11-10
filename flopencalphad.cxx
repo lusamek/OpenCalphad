@@ -3066,7 +3066,7 @@ else
 }
 
 static void cb_Manual(Fl_Button*, void*) {
-  system( "  mconfig --webbrowser  'https://github.com/lusamek/OpenCalphad/blob/master/Manual-Introduction-OC6.pdf'  " );
+  system( "   screen -d -m    mconfig --webbrowser  'https://github.com/lusamek/OpenCalphad/blob/master/Manual-Introduction-OC6.pdf'  " );
 }
 
 static void cb_Mixture(Fl_Button*, void*) {
@@ -3362,7 +3362,7 @@ Fl_Input *var_y_advplot_str=(Fl_Input *)0;
 
 Fl_Check_Button *var_button_y_advplot_str_automatic=(Fl_Check_Button *)0;
 
-static void cb_22(Fl_Button*, void*) {
+static void cb_42(Fl_Button*, void*) {
   redraw();
   
   ncp_advfix( "advocgnu.plt" , "ocgnu.plt",   var_x_advplot_str->value( ),   var_y_advplot_str->value( )  ,   var_button_y_advplot_str_automatic->value(  )  );  
@@ -3378,7 +3378,7 @@ static void cb_22(Fl_Button*, void*) {
   // var_x_advplot_str->value( "set xrange [0 : 2]" );
 }
 
-static void cb_42(Fl_Button*, void*) {
+static void cb_6(Fl_Button*, void*) {
   char mydirnow[2500];
   printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
   
@@ -3386,7 +3386,7 @@ static void cb_42(Fl_Button*, void*) {
       nsystem(  "  screen -d  -m  gnuplot advocgnu.plt  " );
 }
 
-static void cb_32(Fl_Button*, void*) {
+static void cb_52(Fl_Button*, void*) {
   redraw();
 
  
@@ -3401,6 +3401,53 @@ static void cb_32(Fl_Button*, void*) {
   nsystem(  charo );
   
 ///   nsystem(  "  screen -d  -m  gnuplot advocgnu.plt  " );
+}
+
+static void cb_32(Fl_Button*, void*) {
+  char mydirnow[2500];
+  printf( "Current Directory: %s \n", getcwd( mydirnow, 2500 ) );
+
+  redraw();
+  ncpadvmac( "macro2.ocm" , "advmacro.ocm" );
+  
+  form_plot_statusline->value( "Compute advocgnu.plt in progress..." );
+  flplot_preview_browser->clear();
+  //void_plot_preview_plotfile(  "advocgnu.plt" );
+  
+  nsystem( "  rm  ocgnu.plt " );
+  nsystem( "  rm  advocgnu.plt " );
+  
+  if ( checkbutton_xterm_console->value( ) == 1 ) 
+     nsystem(  "  screen -d  -m   xterm -e   oc   macro2.ocm " );
+     
+  else if ( checkbutton_single_console->value( ) == 1 ) 
+     nsystem(  "  oc   macro2.ocm " );
+     
+  // oc6 bug 
+  // gnuplot ocgnu.plt  &;
+}
+
+static void cb_22(Fl_Button*, void*) {
+  redraw();
+
+
+  form_plot_statusline->value( "Edit advmacro.ocm in progress..." );
+  
+  char charo[PATH_MAX];
+  strncpy( charo, "", PATH_MAX );
+  strncat( charo , " screen -d -m  fledit   " , PATH_MAX - strlen( charo ) -1 );
+  strncat( charo , " " , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , " \"" , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "advmacro.ocm"   , PATH_MAX -  strlen( charo ) -1 );
+  strncat( charo , "\" " , PATH_MAX -  strlen( charo ) -1 );
+  nsystem(  charo );
+}
+
+static void cb_13(Fl_Button*, void*) {
+  redraw();
+  // ncp( "advmacro.ocm" , "macro.ocm" );
+  
+  ncpadvmac( "advmacro.ocm" , "macro.ocm" );
 }
 
 static void cb_Edit3(Fl_Button*, void*) {
@@ -4983,34 +5030,43 @@ anel");
         } // Fl_Button* o
         o->end();
       } // Fl_Group* o
-      { Fl_Group* o = new Fl_Group(30, 100, 865, 180, "Rescale Plot");
+      { Fl_Group* o = new Fl_Group(15, 100, 880, 180, "Rescale Plot");
         o->hide();
-        { Fl_Button* o = new Fl_Button(50, 115, 145, 25, "1. Dup. Adv. Macro");
+        { Fl_Button* o = new Fl_Button(20, 115, 145, 25, "1. Dup. Adv. Macro");
           o->callback((Fl_Callback*)cb_12);
         } // Fl_Button* o
         { plot_adv_computer_skipint = new Fl_Check_Button(80, 245, 25, 25, "Skip Keypress");
           plot_adv_computer_skipint->down_box(FL_DOWN_BOX);
           plot_adv_computer_skipint->callback((Fl_Callback*)cb_plot_adv_computer_skipint);
         } // Fl_Check_Button* plot_adv_computer_skipint
-        { var_x_advplot_str = new Fl_Input(165, 155, 275, 25, "Scale X-axis ");
+        { var_x_advplot_str = new Fl_Input(330, 220, 225, 25, "Scale X-axis ");
           var_x_advplot_str->value( "set xrange [0 : 2]" );
         } // Fl_Input* var_x_advplot_str
-        { var_y_advplot_str = new Fl_Input(165, 180, 275, 25, "Scale Y-axis ");
+        { var_y_advplot_str = new Fl_Input(330, 245, 225, 25, "Scale Y-axis ");
           var_y_advplot_str->value( "set yrange [600 : 1600]" );
         } // Fl_Input* var_y_advplot_str
         { var_button_y_advplot_str_automatic = new Fl_Check_Button(80, 215, 155, 25, "Set both X and Y");
           var_button_y_advplot_str_automatic->down_box(FL_DOWN_BOX);
           var_button_y_advplot_str_automatic->value( 1 );
         } // Fl_Check_Button* var_button_y_advplot_str_automatic
-        { Fl_Button* o = new Fl_Button(205, 115, 145, 25, "2. Copy/Set Plot");
-          o->callback((Fl_Callback*)cb_22);
-        } // Fl_Button* o
-        { Fl_Button* o = new Fl_Button(570, 115, 195, 25, "4. Adv.Plot (Gnuplot)");
-          o->labelfont(1);
+        { Fl_Button* o = new Fl_Button(615, 145, 200, 25, "4. Copy/Set Plot");
           o->callback((Fl_Callback*)cb_42);
         } // Fl_Button* o
-        { Fl_Button* o = new Fl_Button(360, 115, 200, 25, "3. Edit Adv.Plot (Gnuplot)");
+        { Fl_Button* o = new Fl_Button(615, 205, 200, 25, "6. Adv.Plot (Gnuplot)");
+          o->labelfont(1);
+          o->callback((Fl_Callback*)cb_6);
+        } // Fl_Button* o
+        { Fl_Button* o = new Fl_Button(615, 175, 200, 25, "5. Edit Adv.Plot (Gnuplot)");
+          o->callback((Fl_Callback*)cb_52);
+        } // Fl_Button* o
+        { Fl_Button* o = new Fl_Button(615, 115, 200, 25, "3. Adv. Compute");
           o->callback((Fl_Callback*)cb_32);
+        } // Fl_Button* o
+        { Fl_Button* o = new Fl_Button(450, 115, 155, 25, "2. Edit Adv. Macro");
+          o->callback((Fl_Callback*)cb_22);
+        } // Fl_Button* o
+        { Fl_Button* o = new Fl_Button(170, 115, 270, 25, "1. Dup. Adv. Macro (commentary)");
+          o->callback((Fl_Callback*)cb_13);
         } // Fl_Button* o
         o->end();
       } // Fl_Group* o
