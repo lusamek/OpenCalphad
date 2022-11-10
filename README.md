@@ -35,6 +35,14 @@ Screenshot #3:
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/vdi-image-explorer.png)
 
 
+## 4. Start the virtual image 
+After the user can use the context menu of the virtual machine, as indicated in the screenshot (screenshot #4), to start the machine. "Start" will be displayed (screenshot #4). The virtual machine will boot. It will take 1-2 minute(s) of boot time. After the boot of the system, OpenCalphad will be launched directly. The virtual machine is running OC on the Linux operating system. The window manager is IceWM. 
+
+Screenshot #4:
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Guide-OC-VM-P02.jpg)
+
+
+
 
 # Live Image for Pendrive
 
@@ -56,16 +64,9 @@ It is beta / early testing and with few features. It allows to use OC, Kalzium f
 
 
 
-## 4. Quick Start 
-After the user can use the context menu of the virtual machine, as indicated in the screenshot (screenshot #4), to start the machine. "Start" will be displayed (screenshot #4). The virtual machine will boot. It will take 1-2 minute(s) of boot time. After the boot of the system, OpenCalphad will be launched directly. The virtual machine is running OC on the Linux operating system. The window manager is IceWM. 
-
-Screenshot #4:
-![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Guide-OC-VM-P02.jpg)
 
 
-
-
-## 5. Using OC
+# Quick Start: Using OC
 The documentation of OpenCalphad is available at the url: http://www.opencalphad.com/
 Please visit the website of OpenCalphad for more information. 
 <br/>
