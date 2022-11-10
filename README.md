@@ -469,6 +469,11 @@ https://kiwiirc.com/nextclient/irc.libera.chat/?channels=#opencalphad
 
 
 
+# Acknowledgments
+
+Boss, S. Fries, B. Hallstedt, A. Menager, ... 
+L.Samek.
+
 
 # References
 
