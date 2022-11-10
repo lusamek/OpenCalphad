@@ -333,6 +333,24 @@ Example of calculating G curves for the Fe-Mo system at 1400K:
 
 
 
+# Further examples: systems and phase diagrams 
+<br/>
+
+Cu-Ni System:
+
+![](images/1667217043-screenshot-2.png)
+
+
+
+
+
+
+<br/>
+<br/>
+
+
+
+
 
 # Customizing the Plots and Advanced Plot
 <br/>
@@ -346,8 +364,6 @@ Editing the GNUPLOT plot is as well possible.
 <br/>
 
 
-
-![](images/1667217043-screenshot-2.png)
 
  
 
