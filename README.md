@@ -493,7 +493,7 @@ L.Samek.
 
 # References
 
-[1] Source Code: https://www.opencalphad.org
+[1] OpenCalphad Website: https://www.opencalphad.org
 
 [2] Source Code: https://github.com/sundmanbo/opencalphad
 
