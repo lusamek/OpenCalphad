@@ -487,7 +487,7 @@ https://kiwiirc.com/nextclient/irc.libera.chat/?channels=#opencalphad
 # Acknowledgments
 
  
-Bo Sundman, S. Fries, Chunhui Luo, B. Hallstedt, A. Menager,... 
+Bo Sundman, S. Fries, Chunhui Luo, B. Hallstedt, B. Grzegorczyk, A. Grajcar, A. Menager,... 
 L.Samek.
 
 
