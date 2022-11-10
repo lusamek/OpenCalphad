@@ -36,8 +36,27 @@ Screenshot #3:
 
 
 
+# Live Image for Pendrive
 
-## 4. Start 
+A live image for USB-Stick/Pendrive with OC and some utils for chemistry / material sciences is available.
+
+The image can be copied on a pendrive or directly on harddisk. It contains the distribution OpenSUSE and OpenCalphad. The utility allows to calculate and compare results with the web. It is bootable on PC using a pendrive with the EFI / UEFI.  
+
+Image: https://archive.org/download/material-simulation-image/image-opensuse-leap-master-amd64-axel-OC-kalzium-version1.1.img.gz
+
+
+To create the live pendrive:
+zcat image-opensuse-leap-master-amd64-axel-OC-kalzium-version1.1.img.gz  > /dev/sdX 
+
+On Windows, you may use rawrite.
+https://www.netbsd.org/~martin/rawrite32/download.html
+
+It is beta / early testing and with few features. It allows to use OC, Kalzium for chemistry,... 
+
+
+
+
+## 4. Quick Start 
 After the user can use the context menu of the virtual machine, as indicated in the screenshot (screenshot #4), to start the machine. "Start" will be displayed (screenshot #4). The virtual machine will boot. It will take 1-2 minute(s) of boot time. After the boot of the system, OpenCalphad will be launched directly. The virtual machine is running OC on the Linux operating system. The window manager is IceWM. 
 
 Screenshot #4:
