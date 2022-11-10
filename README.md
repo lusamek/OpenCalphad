@@ -350,7 +350,11 @@ Pb-Sn phase diagram calculated with OC:
 
 
 
+![](images/1668090322-screenshot.png)
 
+![](images/1668090387-screenshot.png)
+
+![](images/1668090433-screenshot.png)
 
 
 <br/>
