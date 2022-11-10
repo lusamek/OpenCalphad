@@ -486,13 +486,16 @@ https://kiwiirc.com/nextclient/irc.libera.chat/?channels=#opencalphad
 
 # Acknowledgments
 
-Boss, S. Fries, B. Hallstedt, A. Menager, ... 
+ 
+Bo Sundman, S. Fries, Chunhui Luo, B. Hallstedt, A. Menager,... 
 L.Samek.
 
 
 # References
 
-[1] Source Code: https://github.com/sundmanbo/opencalphad
+[1] Source Code: https://www.opencalphad.org
 
-[2] Virtualbox: https://www.virtualbox.org/
+[2] Source Code: https://github.com/sundmanbo/opencalphad
+
+[3] Virtualbox: https://www.virtualbox.org/
 
