@@ -213,7 +213,10 @@ This allows to use use the cursor for the position (x,y) as well. An example is 
 
 
 
-# Studying the Fe-C Phase Diagram 
+
+
+# Fe-C System  
+<br/>
 
 The Fe-C phase diagram can be calculated with OC.
 <br/>
@@ -238,6 +241,7 @@ Fe-C phase diagram (metastable) with GUI:
 
 
 # Studying Phase Diagram 
+<br>
 
 The plot can be changed in order to study the phase diagram. The user select a given X/Y scale and click on "Plot".
 Some examples for Fe-C, Cu-Ni, and Ag-Cu systems are shown in following Figures.
@@ -255,14 +259,6 @@ The macro for Ag-Cu is provided in this website under the directory "macros".
 
 
 
-
-
-### Cu-Ni phase diagram calculated with OC 
-
-![](https://github.com/lusamek/OpenCalphad/blob/master/images/Cu-Ni-Phase-diagram-drawing.svg)
-<br><br>
-
-
 ### Ag-Cu phase diagram calculated with OC
 
 
@@ -277,16 +273,6 @@ The macro for Ag-Cu is provided in this website under the directory "macros".
 
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Ag-Cu-System-FLOC-gnuplot-x11-det2.png)
 <br><br>
-
-
-
-### Pb-Sn phase diagram calculated with OC
-
- 
-
-![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/edu-material/Pb-Sn-edu-1-LS.png)
-
-
 
 
 
@@ -336,9 +322,31 @@ Example of calculating G curves for the Fe-Mo system at 1400K:
 # Further examples: systems and phase diagrams 
 <br/>
 
+
+
 Cu-Ni System:
 
 ![](images/1667217043-screenshot-2.png)
+
+
+
+Cu-Ni phase diagram calculated with OC:
+
+![](https://github.com/lusamek/OpenCalphad/blob/master/images/Cu-Ni-Phase-diagram-drawing.svg)
+<br><br>
+
+
+
+
+Pb-Sn phase diagram calculated with OC:
+
+ 
+
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/edu-material/Pb-Sn-edu-1-LS.png)
+
+
+
+
 
 
 
