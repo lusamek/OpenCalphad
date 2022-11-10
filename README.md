@@ -276,6 +276,27 @@ The macro for Ag-Cu is provided in this website under the directory "macros".
 
 
 
+
+
+
+
+
+# Customizing the Plots and Advanced Plot
+<br/>
+
+
+The plot can be edited and modified. Scaling x and/or y is possible.
+Editing the GNUPLOT plot is as well possible.
+
+![](images/1668091143-screenshot.png)
+
+
+<br/>
+<br/>
+
+
+
+
 # Advanced Calculations
 
 <br/>
@@ -359,24 +380,6 @@ Pb-Sn phase diagram calculated with OC:
 
 <br/>
 <br/>
-
-
-
-
-
-# Customizing the Plots and Advanced Plot
-<br/>
-
-
-The plot can be edited and modified. Scaling x and/or y is possible.
-Editing the GNUPLOT plot is as well possible.
-
-
-<br/>
-<br/>
-
-
-
  
 
 
