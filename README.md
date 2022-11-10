@@ -243,6 +243,13 @@ Fe-C phase diagram (metastable) with GUI:
 # Studying Phase Diagram 
 <br>
 
+Phase diagram can be studied using OC. 
+
+Example of calculations:
+
+![](images/1668092060-screenshot.png)
+
+
 The plot can be changed in order to study the phase diagram. The user select a given X/Y scale and click on "Plot".
 Some examples for Fe-C, Cu-Ni, and Ag-Cu systems are shown in following Figures.
 <br><br>
@@ -377,6 +384,14 @@ Pb-Sn phase diagram calculated with OC:
 
 ![](images/1668090433-screenshot.png)
 
+
+
+
+
+![](images/1668092021-screenshot.png)
+
+
+![](images/1668092038-screenshot.png)
 
 <br/>
 <br/>
