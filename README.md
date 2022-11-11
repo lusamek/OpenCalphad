@@ -55,7 +55,7 @@ The image can be copied on a pendrive or directly on harddisk. It contains the d
 
 Image: https://archive.org/download/material-simulation-image/image-opensuse-leap-master-amd64-axel-OC-kalzium-version1.1.img.gz
 
-
+It requires an USB-Stick/pendrive larger than 32 GB (>= 32GB). 
 To create the live pendrive:
 zcat image-opensuse-leap-master-amd64-axel-OC-kalzium-version1.1.img.gz  > /dev/sdX 
 
