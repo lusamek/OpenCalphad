@@ -397,6 +397,18 @@ Pb-Sn phase diagram calculated with OC:
 ![](images/1668675149-screenshot.png)
 
 
+![](images/1668691542-1-Al-Cu.png)
+
+![](images/1668691542-2-Al-Mg.png)
+
+![](images/1668691542-3-Al-Si.png)
+
+![](images/1668691542-4-floccalc-example-t1.png)
+
+
+
+
+
 
 <br/>
 <br/>
