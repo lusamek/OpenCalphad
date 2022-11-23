@@ -1,0 +1,36 @@
+﻿new Y
+
+set echo
+
+r t ./saf2507
+fe cr ni
+
+set c t=1200 p=1e5 n=1 x(cr)=.45 x(ni)=.5
+
+c e
+
+l,,,,
+
+
+
+set ax 1 x(cr) 0 1 ,,,,
+
+set ax 2 x(ni) 0 1 ,,,,
+
+map
+
+
+plot
+
+
+extra gibbs
+y
+extra tie
+3
+title map 10 fig 7
+
+
+set inter
+
+
+
