@@ -490,6 +490,16 @@ The opensource graphical user interface using Linux/BSD libraries is under devel
 
 
 
+# Presentations
+
+
+
+January 24th, 2023:
+
+![](Presentations/1674728199-1-Presentation-OpenCalphad-Mr.-Axel-Menager.pptx)
+
+
+
 
 
 # User support and development
