@@ -138,6 +138,12 @@ https://gitlab.com/lusamek/opencalphad/-/raw/main/version-3.2/virtualbox-debian-
 <br/>
 <br/>
 
+A VMDK image is as well available for use with QEmu (opensource) or Vmplayer (VMWare, prop. software).
+Software: VMPLAYER (Vmware) <br/>
+VMDK Datei (harddisk):  https://gitlab.com/lusamek/opencalphad/-/raw/main/version-3.2/debian-oc-v0.32.vmdk  <br/>
+
+
+
 
 Virtualbox on Linux: <br/>
 Kernel and headers for Ascii/Stretch: https://www.dropbox.com/sh/p21btpcbt8d0lf6/AABMbmwVGKGjm1LBvjPxgx7Ca?dl=0
