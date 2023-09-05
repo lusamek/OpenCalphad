@@ -67,6 +67,13 @@ It is beta / early testing and with few features. It allows to use OC, Kalzium f
 
 ![](images/rawrite-hw-1.jpg)
 
+# Installation running on VMPlayer VMWARE
+
+![](https://github.com/lusamek/OpenCalphad/blob/master/capture_037_05092023_110605.jpg)
+
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/capture_040_05092023_110621.jpg)
+
+
 
 
 # Quick Start: Using OC
