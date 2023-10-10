@@ -96,7 +96,7 @@ Example #4: Al-Fe system <br/>
  
  
  
-# Graphical User Interface
+# Graphical User Interface (running on Debian)
 
 The graphical user interface (GUI) of OC is under development. 
 An image of the virtual machine with the GUI OC is available for download at the following Link. 
@@ -152,7 +152,7 @@ Screenshot of Virtual Machine running the GUI:
 
 
 
-### Live Image for Pendrive
+### Live Image for Pendrive using OpenSUSE
 
 A live image for USB-Stick/Pendrive with OC and some utils for chemistry / material sciences is available.
 
@@ -173,14 +173,15 @@ It is beta / early testing and with few features. It allows to use OC, Kalzium f
 ![](images/rawrite-hw-1.jpg)
 
 
+### Live Image for Pendrive with OpenCalphad, Kalzium und floccalc using Ubuntu
 
-### Installation running on VMPlayer VMWARE
+- Installation running on VMPlayer VMWARE
 
 ![](https://github.com/lusamek/OpenCalphad/blob/master/capture_037_05092023_110605.jpg)
 
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/capture_040_05092023_110621.jpg)
 
-
+(Download link will be available)
 
 ### Frontend for Fe-C system:<br/>
 ` flopencalphad ~/macros/ ` 
