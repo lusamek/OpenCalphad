@@ -9,6 +9,7 @@ Screenshot #1: ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/
 
 
 # Installation
+
 ## 1. Virtualbox
 Download the software virtualbox corresponding to your architecture. https://www.virtualbox.org/wiki/Downloads
 If necessary, the manual of installation of virtualbox is at the following url: https://www.virtualbox.org/wiki/Documentation
@@ -17,7 +18,7 @@ After download, virtualbox needs to be installed.
 Screenshot #2:
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Guide-OC-VB-P01.jpg)
 
-
+Alternatively, the software can run as well under VMWARE VMPLAYER 16. 
 
 
 ## 2. OC-image with terminal 
@@ -38,6 +39,8 @@ Screenshot #3:
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/vdi-image-explorer.png)
 
 
+
+
 ## 4. Start the virtual image 
 After the user can use the context menu of the virtual machine, as indicated in the screenshot (screenshot #4), to start the machine. "Start" will be displayed (screenshot #4). The virtual machine will boot. It will take 1-2 minute(s) of boot time. After the boot of the system, OpenCalphad will be launched directly. The virtual machine is running OC on the Linux operating system. The window manager is IceWM. 
 
@@ -45,33 +48,6 @@ Screenshot #4:
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/Guide-OC-VM-P02.jpg)
 
 
-
-
-# Live Image for Pendrive
-
-A live image for USB-Stick/Pendrive with OC and some utils for chemistry / material sciences is available.
-
-The image can be copied on a pendrive or directly on harddisk. It contains the distribution OpenSUSE and OpenCalphad. The utility allows to calculate and compare results with the web. It is bootable on PC using a pendrive with the EFI / UEFI.  
-
-Image: https://archive.org/download/material-simulation-image/image-opensuse-leap-master-amd64-axel-OC-kalzium-version1.1.img.gz
-
-It requires an USB-Stick/pendrive larger than 32 GB (>= 32GB). 
-To create the live pendrive:
-zcat image-opensuse-leap-master-amd64-axel-OC-kalzium-version1.1.img.gz  > /dev/sdX 
-
-On Windows, you may use rawrite.
-https://www.netbsd.org/~martin/rawrite32/download.html
-
-It is beta / early testing and with few features. It allows to use OC, Kalzium for chemistry,... 
-
-
-![](images/rawrite-hw-1.jpg)
-
-# Installation running on VMPlayer VMWARE
-
-![](https://github.com/lusamek/OpenCalphad/blob/master/capture_037_05092023_110605.jpg)
-
-![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/capture_040_05092023_110621.jpg)
 
 
 
@@ -149,7 +125,8 @@ A VMDK image is as well available for use with QEmu (opensource) or Vmplayer (VM
 Software: VMPLAYER (Vmware) <br/>
 VMDK Datei (harddisk):  https://gitlab.com/lusamek/opencalphad/-/raw/main/version-3.2/debian-oc-v0.32.vmdk  <br/>
 
-
+See more files and examples: 
+https://gitlab.com/lusamek/opencalphad/
 
 
 Virtualbox on Linux: <br/>
@@ -173,7 +150,39 @@ Screenshot of Virtual Machine running the GUI:
 <br/>
 
 
-Frontend for Fe-C system:<br/>
+
+
+### Live Image for Pendrive
+
+A live image for USB-Stick/Pendrive with OC and some utils for chemistry / material sciences is available.
+
+The image can be copied on a pendrive or directly on harddisk. It contains the distribution OpenSUSE and OpenCalphad. The utility allows to calculate and compare results with the web. It is bootable on PC using a pendrive with the EFI / UEFI.  
+
+Image: https://archive.org/download/material-simulation-image/image-opensuse-leap-master-amd64-axel-OC-kalzium-version1.1.img.gz
+
+It requires an USB-Stick/pendrive larger than 32 GB (>= 32GB). 
+To create the live pendrive:
+zcat image-opensuse-leap-master-amd64-axel-OC-kalzium-version1.1.img.gz  > /dev/sdX 
+
+On Windows, you may use rawrite.
+https://www.netbsd.org/~martin/rawrite32/download.html
+
+It is beta / early testing and with few features. It allows to use OC, Kalzium for chemistry,... 
+
+
+![](images/rawrite-hw-1.jpg)
+
+
+
+### Installation running on VMPlayer VMWARE
+
+![](https://github.com/lusamek/OpenCalphad/blob/master/capture_037_05092023_110605.jpg)
+
+![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/capture_040_05092023_110621.jpg)
+
+
+
+### Frontend for Fe-C system:<br/>
 ` flopencalphad ~/macros/ ` 
 (Press Return) <br/>
 
