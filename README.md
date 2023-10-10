@@ -152,7 +152,7 @@ Screenshot of Virtual Machine running the GUI:
 
 
 
-### Live Image for Pendrive using OpenSUSE
+### Preinstalled Live Image for Pendrive using OpenSUSE
 
 A live image for USB-Stick/Pendrive with OC and some utils for chemistry / material sciences is available.
 
@@ -173,15 +173,21 @@ It is beta / early testing and with few features. It allows to use OC, Kalzium f
 ![](images/rawrite-hw-1.jpg)
 
 
-### Live Image for Pendrive with OpenCalphad, Kalzium und floccalc using Ubuntu
+### Image for VMWARE VMPLAYER 16 with OpenCalphad, Kalzium und floccalc using Ubuntu
+
 
 - Installation running on VMPlayer VMWARE
+- 
+https://download3.vmware.com/software/WKST-PLAYER-1625/VMware-player-full-16.2.5-20904516.exe
 
 ![](https://github.com/lusamek/OpenCalphad/blob/master/capture_037_05092023_110605.jpg)
 
 ![](https://raw.githubusercontent.com/lusamek/OpenCalphad/master/capture_040_05092023_110621.jpg)
 
 (Download link will be available)
+
+
+
 
 ### Frontend for Fe-C system:<br/>
 ` flopencalphad ~/macros/ ` 
