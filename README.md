@@ -177,7 +177,8 @@ It is beta / early testing and with few features. It allows to use OC, Kalzium f
 
 
 - Installation running on VMPlayer VMWARE
-- 
+
+Download link for the client (windows):
 https://download3.vmware.com/software/WKST-PLAYER-1625/VMware-player-full-16.2.5-20904516.exe
 
 ![](https://github.com/lusamek/OpenCalphad/blob/master/capture_037_05092023_110605.jpg)
